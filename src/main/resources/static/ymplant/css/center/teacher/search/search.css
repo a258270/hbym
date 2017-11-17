@@ -80,9 +80,11 @@ textarea{
     resize:none;
 }
 .kd-bafa{
+    background-color: #5BC0DE;
     padding: 2px 15px;
-    background-color: #009BDB;
     color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
     border: none;
 }
 /*模态框 结束*/

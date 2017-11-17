@@ -8,6 +8,7 @@ import com.cms4j.plant.chat.service.ChatService;
 import com.cms4j.plant.school.service.ScArticleService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.user.service.CompleteTeacherService;
+import com.cms4j.plant.user.service.PlantUserService;
 import com.cms4j.plant.user.service.ScImageService;
 import com.cms4j.plant.user.service.ScVideoService;
 import com.cms4j.plant.util.PlantConst;
@@ -44,6 +45,8 @@ public class PlantTeacherApiController extends ApiBaseController {
     private ScArticleService scArticleService;
     @Autowired
     private ChatScoreService chatScoreService;
+    @Autowired
+    private PlantUserService plantUserService;
 
     @RequestMapping(value = "/basic")
     public InvokeResult basic(@RequestParam(name = "HEADURL", required = false) MultipartFile file) throws Exception {
@@ -439,5 +442,61 @@ public class PlantTeacherApiController extends ApiBaseController {
         scArticleService.editArticle(dataMap);
 
         return InvokeResult.success();
+    }
+
+    @RequestMapping(value = "/searchstus")
+    public InvokeResult searchStus() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        if(StringUtils.isBlank(dataMap.getString("MAXSCORE")))
+            dataMap.put("MAXSCORE", null);
+
+        if(StringUtils.isBlank(dataMap.getString("MINSCORE")))
+            dataMap.put("MINSCORE", null);
+
+        if(StringUtils.isBlank(dataMap.getString("EXAMAREA")))
+            dataMap.put("EXAMAREA", null);
+
+        if(StringUtils.isBlank(dataMap.getString("MAJORTYPE")))
+            dataMap.put("MAJORTYPE", null);
+
+        if(StringUtils.isBlank(dataMap.getString("SEX")))
+            dataMap.put("SEX", null);
+
+        if(StringUtils.isBlank(dataMap.getString("BIRTH")))
+            dataMap.put("BIRTH", null);
+        else{
+            try{
+                String[] births = dataMap.getString("BIRTH").split("-");
+                if(births.length == 2) {
+                    dataMap.put("MINBIRTH", Integer.valueOf(births[0]));
+                    dataMap.put("MAXBIRTH", Integer.valueOf(births[1]));
+                }
+            }
+            catch (Exception e) {}
+        }
+
+        if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
+        else{
+            try{
+                Integer currentPage = Integer.valueOf(dataMap.getString("currentPage"));
+                currentPage--;
+                if(currentPage < 0) currentPage = 0;
+                dataMap.put("currentPage", currentPage);
+            }
+            catch (Exception e) {
+                dataMap.put("currentPage", "0");
+            }
+        }
+        Page page = new Page();
+        page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
+        page.setPageSize(20);
+        List<DataMap> results = plantUserService.getExperts(page);
+        page.setResults(results);
+
+        return InvokeResult.success(page);
     }
 }

@@ -65,10 +65,10 @@
                     <#--<option value="">发送邀请（已选中）</option>-->
                     <#--<option value="">发送邀请（未选中）</option>-->
                 <#--</select>-->
-                    <input class="kd-yshi" type="button" value="批量操作">
+                    <input class="kd-yshi" type="button" value="批量操作" onclick="send();">
                     <input class="kd-yshi" id="tions" type="button" value="全选">
                     <input class="kd-yshi" id="tions2" type="button" value="全部选">
-                <input class="kd-bji" type="button" value="编辑信息"/>
+                <input class="kd-bji" type="button" value="编辑信息" onclick="editTemplate();"/>
                 <div class="row" style="padding: 15px 0;">
                     <div class="col-md-3 col-sm-3 col-xs-3">
                         <div class="row" style="padding-bottom: 15px;">
@@ -171,4 +171,9 @@
         </div>
     </div>
 </body>
+<script language="JavaScript">
+    function editTemplate() {
+        showWindow("编辑模板", ctxPath + "/plant/teacher/template", 500, 395);
+    }
+</script>
 </html>

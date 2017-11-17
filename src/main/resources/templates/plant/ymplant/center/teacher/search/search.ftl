@@ -5,7 +5,7 @@
     <!-- 公共引入 -->
 <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
-    <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/search/search.css?v=${v}"/>
+    <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/teacher/search/search.css?v=${v}"/>
 </head>
 <body>
     <div class="kd-pli">

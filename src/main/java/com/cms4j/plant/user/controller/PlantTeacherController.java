@@ -353,4 +353,17 @@ public class PlantTeacherController extends PageBaseController {
         modelAndView.setViewName("/plant/ymplant/center/teacher/article/article-edit");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/search")
+    public ModelAndView search() throws Exception {
+        ModelAndView modelAndView = this.getModelAndView();
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID"))) {
+            modelAndView.setViewName(PlantConst.URL_NOLOGIN);
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("/plant/ymplant/center/teacher/search/search");
+        return modelAndView;
+    }
 }

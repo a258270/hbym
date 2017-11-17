@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StucountMapper">
+    
+    <select id="getStuCountByYear" parameterType="DataMap" resultType="DataMap">
+        SELECT STUCOUNT FROM TB_STUCOUNT WHERE YEAR_ID = #{YEAR_ID} AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+    </select>
+
+    <insert id="addStuCount" parameterType="DataMap">
+        INSERT INTO TB_STUCOUNT (STUCOUNT_ID, YEAR_ID, MAJORTYPE_ID, STUCOUNT) VALUES (#{STUCOUNT_ID}, #{YEAR_ID}, #{MAJORTYPE_ID}, #{STUCOUNT})
+    </insert>
+    <delete id="removeStucountByYearAndMajortype" parameterType="DataMap">
+        DELETE FROM TB_STUCOUNT WHERE YEAR_ID = #{YEAR_ID} AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+    </delete>
+</mapper>

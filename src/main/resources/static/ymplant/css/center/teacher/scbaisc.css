@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+}
+input{
+    outline:medium;
+}
+h1,h2,h3,h4,h5,h6{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+/*老师个人中心 开始*/
+.zlan{
+    border-left: 5px solid #01C3D4;
+    color: #01C3D4;
+    font-weight: bold;
+    padding-left: 3px;
+}
+.minis{
+    border-top: 2px solid #cccccc;
+    padding: 5px;
+    margin: 0;
+}
+.toxang{
+    border: 1px solid #000;
+    background-color: #F6F6F6;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+.attribute{
+    color: #fff;
+    background-color: #FE7F26;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+.xzeng{
+    padding: 2px 15px;
+    border: none;
+    background-color: #FF3232;
+    border-radius: 25px;
+    color: #fff;
+    margin-left: 20px;
+}
+.nfen{
+    margin-top: 20px;
+}
+.nfen tr{
+    border-bottom: 1px solid #000;
+}
+.nfen tr td{
+    padding: 2px 15px;
+}
+.hxian{
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.yce{
+    border-left: 1px solid #000;
+    padding: 2px 5px;
+}
+.zce{
+    padding-top: 2px;
+    padding-bottom:  2px;
+}
+.butn{
+    padding: 5px 30px;
+    background-color: #5BC0DE;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+/*老师个人中心 结束*/
+/*视频管理 开始*/
+.upload{
+    background-color: #00A3E8;
+    color: #fff;
+    border: none;
+    padding: 5px 20px;
+    border-radius:4px;
+}
+.kd-schu{
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #aaa;
+}
+.jtu{
+    margin: 20px 0 5px 0;
+    padding: 10px 5px;
+    background-color: #F0F0F0;
+}
+.gli{
+    padding: 10px 5px;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+/*视频管理 结束*/
+
+/*文章管理 开始*/
+.wzh{
+    padding: 10px 5px;
+    margin: 20px 0;
+    border-top: 1px solid #ccc;
+}
+.xji{
+    border: 1px solid #AAAAAA;
+    padding: 5px 30px;
+    background-color: #fff;
+}
+.bti{
+    margin: 0;
+    background-color: #F0F0F0;
+    font-weight: bold;
+    padding: 10px 5px;
+    text-align: center;
+}
+.offline{
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 5px;
+    text-align: center;
+}
+/*文章管理 结束*/
+
+/*图片管理 开始*/
+.online{
+    padding: 10px 0;
+    margin: 10px;
+    border-top: 1px solid #ccc;
+}
+.pict{
+    padding: 2px 15px;
+    background-color: #808080;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+}
+.pdi{
+    padding: 0 5px;
+    margin-bottom: 15px;
+}
+/*图片管理 结束*/

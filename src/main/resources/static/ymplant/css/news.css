@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 1;*/
+    /*-webkit-box-orient: vertical;*/
+}
+h1,h2,h3,h4,h5,h6,p{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+/*banner 开始*/
+.kd-content{
+    background-color: #2DC473;
+    padding: 15px;
+}
+.juxing{
+    width: 500px;
+    height: 70px;
+    background:#10FDF3;
+    position: relative;
+    top:0;
+    right: 0;
+    margin-top: 70px;
+}
+.juxing>.sanjiao{
+    width: 50px;
+    height: 50px;
+    background-color: #10FDF3;
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    transform: rotate(45deg););
+}
+
+/*.zjuxing{*/
+    /*width: 500px;*/
+    /*height: 70px;*/
+    /*background: #FFC32F;*/
+    /*position: relative;*/
+    /*top: -300px;*/
+    /*right: -600px;*/
+    /*margin-top: 60px;*/
+/*}*/
+.zjuxing{
+    width: 500px;
+    height: 70px;
+    background:#FFC32F;
+    position: relative;
+    top:0;
+    right: 0;
+}
+.zjuxing>.zsanjiao{
+    width: 50px;
+    height: 50px;
+    background-color: #FFC32F;
+    position: absolute;
+    top: 10px;
+    left: -25px;
+    transform: rotate(45deg);
+}
+
+/*banner 结束*/
+
+
+/*公告 开始*/
+
+
+#gonggao>.container>.gonggao{
+    width: 100%;
+    background-color:#33C9B5;
+    padding: 6px 50px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 16px;
+    /*text-align: center;*/
+}
+.kd-ydon{
+    position: relative;
+}
+.noticet{
+    position: absolute;
+    top: 6px;
+    left: 15px;
+}
+#gonggao>.container>.gonggao>h4{
+    background-color: #fff;
+    color: red;
+}
+#gonggao>.container>.hengxian{
+    border-top: 1px solid #C6C6C6;
+    /*border-bottom: 1px solid #C6C6C6;*/
+    padding: 8px;
+}
+
+.more{
+    position: absolute;
+    top:26px;
+    right: 30px;
+}
+.more>a{
+    text-decoration:none;
+}
+.more>a>h4{
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+.zhongyao{
+    width: 100%;
+    background-color:#00C4D5;
+    padding: 20px;
+}
+.zgao{
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+}
+.zhongyao>div>h4{
+    color: #fff;
+    font-weight: bold;
+    text-align: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.experts{
+    padding: 13px;
+    /*height: 154px;*/
+    padding-left: 0;
+}
+.experts>a{
+    text-decoration:none;
+}
+.experts img{
+    width: 100%;
+}
+.experts h4{
+    font-weight: bold;
+    margin-top: 5px;
+    color: #000;
+}
+.oneti{
+    padding-left: 0;
+}
+.oneti>a{
+    text-decoration:none;
+}
+.oneti h4{
+    /*font-weight: bold;*/
+    padding: 2px 13px 2px 0;
+    /*line-height: 0;*/
+}
+.menda>li{
+    line-height: 2;
+}
+
+/*公告 结束*/
+
+
+/*新闻资讯 开始*/
+.consulting{
+    width: 100%;
+    background-color: #33C9B5;
+    padding: 6px 50px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+}
+
+/*.consulting>h4{*/
+    /*background-color: #fff;*/
+    /*color: red;*/
+/*}*/
+#consulting>.container>.hengxian{
+    border-top: 1px solid #C6C6C6;
+    /*border-bottom: 1px solid #C6C6C6;*/
+    padding: 8px;
+    margin: 0;
+    padding-left: 0;
+}
+#consulting>.container>.hengxian a{
+    text-decoration:none;
+}
+.dynamics{
+    margin-bottom: 15px;
+}
+.dynamics>.dynamics{
+    background-color: #11FDF3;
+    padding: 5px 15px;
+    margin:0 20px;
+    position: relative;
+    font-weight: bold;
+    font-size: .1em;
+}
+.dynamics>.dynamics>span{
+    width: 17px;
+    height: 17px;
+    background: #11FDF3;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+    right: -9px;
+}
+.mend>.kd-jju{
+    line-height: 2;
+}
+.mend>li>span{
+    color: #AFAFAF;
+}
+/*新闻资讯 结束*/
+
+
+/*往届活动 开始*/
+
+.activity{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.activity>.activity{
+    background-color: #11FDF3;
+    padding: 5px 0 5px 15px;
+    margin: 0 20px;
+    position: relative;
+    font-weight: bold;
+}
+.activity>.activity>a{
+    text-decoration:none;
+    color: #000;
+}
+.activity>.activity>span{
+    width: 15px;
+    height: 15px;
+    background: #11FDF3;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+    right: -8px;
+
+}
+
+/*往届活动 结束*/
+
+
+

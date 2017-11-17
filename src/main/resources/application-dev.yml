@@ -1,0 +1,18 @@
+server:
+  port: 80
+  session:
+    timeout: 43200
+  tomcat:
+    basedir: c:/tomcat_tmp
+
+spring:
+    session:
+    datasource:
+      url: jdbc:mysql://192.168.1.111:3306/cms4j?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 'Mb123456'
+
+wechat:
+  applet:
+    appId: wx1b06cc20dbfe8314
+    secret: e574eaddbafe863e6b6325aa25a49042

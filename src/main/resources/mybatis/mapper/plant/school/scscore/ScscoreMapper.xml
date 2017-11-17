@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScscoreMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getScscoreById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            scscore.SCSCORE_ID,
+            scscore.SCHOOL_ID,
+            scscore.YEAR_ID,
+            dic1.NAME AS YEAR_ID_VALUE,
+            scscore.ARRANGMENT_ID,
+            dic2.NAME AS ARRANGMENT_ID_VALUE,
+            scscore.MAJORTYPE_ID,
+            dic3.NAME AS MAJORTYPE_ID_VALUE,
+            scscore.MAXSCORE,
+            scscore.MINSCORE,
+            scscore.ENTERCOUNT,
+            scscore.MSORT
+        FROM
+        SC_SCSCORE scscore
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = scscore.YEAR_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = scscore.ARRANGMENT_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = scscore.MAJORTYPE_ID
+        WHERE SCSCORE_ID = #{SCSCORE_ID}
+    </select>
+    <select id="getScscoresByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            SCSCORE_ID,
+            SCHOOL_ID,
+            YEAR_ID,
+            ARRANGMENT_ID,
+            MAJORTYPE_ID,
+            MAXSCORE,
+            MINSCORE,
+            ENTERCOUNT,
+            MSORT
+        FROM SC_SCSCORE
+        WHERE SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY MSORT
+    </select>
+
+    <!-- 获取院校录取分分页数据 -->
+    <select id="getScscores" parameterType="Page" resultType="DataMap">
+        SELECT
+        scscore.SCSCORE_ID,
+        scscore.SCHOOL_ID,
+        scscore.YEAR_ID,
+            dic1.NAME AS YEAR_ID_VALUE,
+        scscore.ARRANGMENT_ID,
+            dic2.NAME AS ARRANGMENT_ID_VALUE,
+        scscore.MAJORTYPE_ID,
+            dic3.NAME AS MAJORTYPE_ID_VALUE,
+        scscore.MAXSCORE,
+        scscore.MINSCORE,
+        scscore.ENTERCOUNT,
+        scscore.MSORT
+        FROM
+        SC_SCSCORE scscore
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = scscore.YEAR_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = scscore.ARRANGMENT_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = scscore.MAJORTYPE_ID
+        WHERE 1 = 1
+    </select>
+
+    <!-- 批量删除院校录取分 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            SC_SCSCORE
+        WHERE
+            SCSCORE_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <delete id="removeScscoresByScId" parameterType="DataMap">
+        DELETE FROM
+            SC_SCSCORE
+        WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </delete>
+
+    <!-- 新增院校录取分 -->
+    <insert id="addScscore" parameterType="DataMap">
+        INSERT INTO
+            SC_SCSCORE
+        (
+        SCSCORE_ID,
+        SCHOOL_ID,
+        YEAR_ID,
+        ARRANGMENT_ID,
+        MAJORTYPE_ID,
+        MAXSCORE,
+        MINSCORE,
+        ENTERCOUNT,
+        MSORT
+        )
+        VALUES
+        (
+        #{SCSCORE_ID},
+        #{SCHOOL_ID},
+        #{YEAR_ID},
+        #{ARRANGMENT_ID},
+        #{MAJORTYPE_ID},
+        #{MAXSCORE},
+        #{MINSCORE},
+        #{ENTERCOUNT},
+        #{MSORT}
+        )
+    </insert>
+
+    <!-- 编辑院校录取分 -->
+    <update id="editScscore" parameterType="DataMap">
+        UPDATE
+            SC_SCSCORE
+        <set>
+            SCHOOL_ID = #{SCHOOL_ID},
+            YEAR_ID = #{YEAR_ID},
+            ARRANGMENT_ID = #{ARRANGMENT_ID},
+            MAJORTYPE_ID = #{MAJORTYPE_ID},
+            MAXSCORE = #{MAXSCORE},
+            MINSCORE = #{MINSCORE},
+            ENTERCOUNT = #{ENTERCOUNT},
+            <if test="MSORT != null">
+                MSORT = #{MSORT},
+            </if>
+        </set>
+        WHERE
+            SCSCORE_ID = #{SCSCORE_ID}
+    </update>
+    <select id="getScscoresByYear" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        score.*, dic.NAME AS YEAR_VALUE, dic2.NAME AS ARRANGMENT_VALUE
+        FROM
+        SC_SCSCORE score
+        LEFT JOIN SYS_DICTIONARIES dic ON score.YEAR_ID = dic.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON score.ARRANGMENT_ID = dic2.DIC_ID
+        WHERE score.SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY YEAR_VALUE DESC
+    </select>
+    
+    <select id="getScscoresByYearAndMajortype" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        score.*, dic.NAME AS YEAR_VALUE, dic2.NAME AS ARRANGMENT_VALUE
+        FROM
+        SC_SCSCORE score
+        LEFT JOIN SYS_DICTIONARIES dic ON score.YEAR_ID = dic.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON score.ARRANGMENT_ID = dic2.DIC_ID
+        WHERE score.SCHOOL_ID = #{SCHOOL_ID}
+        AND score.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        ORDER BY YEAR_VALUE DESC
+    </select>
+
+    <select id="getScscoresByScIdAndMajortypeId" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        score.*, dic.NAME AS YEAR_VALUE, dic2.NAME AS ARRANGMENT_VALUE
+        FROM
+        SC_SCSCORE score
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = score.YEAR_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic.DIC_ID = score.ARRANGMENT_ID
+        WHERE
+        SCHOOL_ID = #{SCHOOL_ID}
+        AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+        ORDER BY dic.NAME DESC
+    </select>
+</mapper>

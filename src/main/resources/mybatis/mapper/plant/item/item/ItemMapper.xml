@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItemMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getItemById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            item.ITEM_ID,
+            item.NAME,
+            item.PRICE,
+            item.SUMMARY,
+            item.IMGURL,
+            item.ISSALE,
+            item.ITEMTYPE,
+            dic5.NAME AS ITEMTYPE_VALUE,
+            item.ITEMPROPERTY,
+            dic6.NAME AS ITEMPROPERTY_VALUE,
+            item.MSORT
+        FROM
+        ITEM_ITEM item
+        LEFT JOIN SYS_DICTIONARIES dic5 ON dic5.DIC_ID = item.ITEMTYPE
+        LEFT JOIN SYS_DICTIONARIES dic6 ON dic6.DIC_ID = item.ITEMPROPERTY
+        WHERE ITEM_ID = #{ITEM_ID}
+        ORDER BY item.MSORT
+    </select>
+
+    <!-- 获取商品分页数据 -->
+    <select id="getItems" parameterType="Page" resultType="DataMap">
+        SELECT
+        item.ITEM_ID,
+        item.NAME,
+        item.PRICE,
+        item.SUMMARY,
+        item.IMGURL,
+        item.ISSALE,
+        item.ITEMTYPE,
+            dic5.NAME AS ITEMTYPE_VALUE,
+        item.ITEMPROPERTY,
+            dic6.NAME AS ITEMPROPERTY_VALUE,
+        item.MSORT
+        FROM
+        ITEM_ITEM item
+        LEFT JOIN SYS_DICTIONARIES dic5 ON dic5.DIC_ID = item.ITEMTYPE
+        LEFT JOIN SYS_DICTIONARIES dic6 ON dic6.DIC_ID = item.ITEMPROPERTY
+        WHERE 1 = 1
+        <if test='params.NAME != null'>
+            AND item.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+        <if test='params.PRICE != null'>
+            AND item.PRICE &gt;= #{params.PRICE}
+        </if>
+        <if test='params.ISSALE != null'>
+            AND item.ISSALE = #{params.ISSALE}
+        </if>
+        <if test='params.ITEMTYPE != null'>
+            AND item.ITEMTYPE = #{params.ITEMTYPE}
+        </if>
+        <if test='params.ITEMPROPERTY != null'>
+            AND item.ITEMPROPERTY = #{params.ITEMPROPERTY}
+        </if>
+        ORDER BY item.MSORT
+    </select>
+
+    <!-- 批量删除商品 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            ITEM_ITEM
+        WHERE
+            ITEM_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增商品 -->
+    <insert id="addItem" parameterType="DataMap">
+        INSERT INTO
+            ITEM_ITEM
+        (
+        ITEM_ID,
+        NAME,
+        PRICE,
+        SUMMARY,
+        IMGURL,
+        ISSALE,
+        ITEMTYPE,
+        ITEMPROPERTY,
+        MSORT
+        )
+        VALUES
+        (
+        #{ITEM_ID},
+        #{NAME},
+        #{PRICE},
+        #{SUMMARY},
+        #{IMGURL},
+        #{ISSALE},
+        #{ITEMTYPE},
+        #{ITEMPROPERTY},
+        #{MSORT}
+        )
+    </insert>
+
+    <!-- 编辑商品 -->
+    <update id="editItem" parameterType="DataMap">
+        UPDATE
+            ITEM_ITEM
+        <set>
+            NAME = #{NAME},
+            PRICE = #{PRICE},
+            SUMMARY = #{SUMMARY},
+            ISSALE = #{ISSALE},
+            ITEMTYPE = #{ITEMTYPE},
+            ITEMPROPERTY = #{ITEMPROPERTY},
+            MSORT = #{MSORT},
+            IMGURL = #{IMGURL},
+        </set>
+        WHERE
+            ITEM_ID = #{ITEM_ID}
+    </update>
+    <!-- 编辑商品中的非前台录入属性 -->
+    <update id="editNotFrontOfItem" parameterType="DataMap">
+        UPDATE
+            ITEM_ITEM
+        <set>
+            IMGURL = #{IMGURL},
+        </set>
+        WHERE
+            ITEM_ID = #{ITEM_ID}
+    </update>
+    <!--获取上架商品 -->
+    <select id="getAllSalingItems" parameterType="Page" resultType="DataMap">
+        SELECT
+        item.ITEM_ID,
+        item.NAME,
+        item.PRICE,
+        item.SUMMARY,
+        item.IMGURL,
+        item.ISSALE,
+        item.ITEMTYPE,
+        dic5.NAME AS ITEMTYPE_VALUE,
+        item.ITEMPROPERTY,
+        dic6.NAME AS ITEMPROPERTY_VALUE,
+        item.MSORT
+        FROM
+        ITEM_ITEM item
+        LEFT JOIN SYS_DICTIONARIES dic5 ON dic5.DIC_ID = item.ITEMTYPE
+        LEFT JOIN SYS_DICTIONARIES dic6 ON dic6.DIC_ID = item.ITEMPROPERTY
+        WHERE item.ISSALE = true
+        <if test='params.ITEMTYPE != null'>
+            AND item.ITEMTYPE = #{params.ITEMTYPE}
+        </if>
+        ORDER BY item.MSORT
+    </select>
+</mapper>

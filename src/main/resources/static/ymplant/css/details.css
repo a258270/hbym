@@ -1,0 +1,110 @@
+div,ul,li,ol{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+a{
+    color: #333333;
+}
+ul{
+    list-style: none;
+}
+
+
+
+
+/*.gonggao{*/
+    /*margin-bottom: 40px;*/
+    /*transition: 0.5s;*/
+/*}*/
+/*.gonggao:hover{*/
+    /*padding-left: 15px;*/
+/*}*/
+
+
+
+
+
+
+.shunjian>li{
+    float: left;
+    padding: 0 0 14px 14px;
+}
+.kd-tag>a{
+    float: left;
+    padding: 7px 7px;
+    background-color: ghostwhite;
+    margin: 0 6px 6px 0;
+}
+
+
+
+.detail-thumb{
+    border: 1px solid #cfcfcf;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.kd-detailpost-option{
+    margin-bottom: 15px;
+    color: #b0b0b0;
+}
+/*.kd-detailpost-option>li{*/
+/*color: #b0b0b0;*/
+/*!*float: left;*!*/
+/*!*clear: both;*!*/
+/*}*/
+.thcolorhover{
+    color: #b0b0b0;
+}
+blockquote{
+    background-color:#f8f8f8;
+    color: #1a1919;
+    font-size:2em;
+    font-style: italic;
+    border-left:7px solid #087dc2;
+    border-right:7px solid #087dc2;
+    padding: 30px;
+    box-shadow: 0 7px 11px 0 rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+.activity{
+    padding-left: 20px;
+}
+.activity>div{
+    padding: 0 10px 10px 0;
+}
+/*.new{*/
+    /*width: 80px;*/
+    /*padding: 20px;*/
+    /*background-color: #087DC2;*/
+    /*color: #fff;*/
+    /*font-weight:bold;*/
+/*}*/
+.kd-widget-title2{
+    width: 100%;
+    height: 30px;
+    background-color: #33c9b5;
+    padding: 5px 50px;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+    /*line-height: 20px;*/
+    margin: 15px 0;
+}
+.noticet{
+    position: absolute;
+    top: 5px;
+    left: 15px;
+}
+
+
+
+
+
+
+
+
+
+

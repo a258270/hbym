@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WechatUserMapper">
+
+    <select id="getWechatUserByUnionId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_WECHAT_USER WHERE UNIONID = #{UNIONID}
+    </select>
+    
+    <insert id="addWechatUser">
+        INSERT INTO
+        UR_WECHAT_USER
+        (WECHAT_ID, USER_ID, WXOPENID, WXAPPOPENID, UNIONID)
+        VALUES
+        (#{WECHAT_ID}, #{USER_ID}, #{WXOPENID}, #{WXAPPOPENID}, #{UNIONID})
+    </insert>
+
+    <update id="editWechatUser">
+        UPDATE UR_WECHAT_USER
+        <set>
+            <if test="WXOPENID != null">
+                WXOPENID = #{WXOPENID}
+            </if>
+            <if test="WXAPPOPENID != null">
+                WXAPPOPENID = #{WXAPPOPENID}
+            </if>
+        </set>
+    </update>
+    
+    <delete id="removeWechatUser">
+        DELETE FROM UR_WECHAT_USER
+        WHERE WECHAT_ID = #{WECHAT_ID}
+    </delete>
+</mapper>

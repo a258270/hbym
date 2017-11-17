@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChatMappingMapper">
+    <select id="getChatRecBySendUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT m.*, u.ROLE_ID FROM TB_CHATMAPPING m, UR_USER u
+        WHERE m.SUSER_ID = #{SUSER_ID} AND m.RUSER_ID = u.USER_ID ORDER BY m.CREATETIME DESC
+    </select>
+
+    <select id="getChatRecByRecUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT m.*, u.ROLE_ID FROM TB_CHATMAPPING m, UR_USER u
+        WHERE m.RUSER_ID = #{RUSER_ID} AND m.SUSER_ID = u.USER_ID ORDER BY m.CREATETIME DESC
+    </select>
+    
+    <insert id="addChatMapping" parameterType="DataMap">
+        INSERT INTO TB_CHATMAPPING (REC_ID, SUSER_ID, RUSER_ID, CREATETIME, ISVALIABLE) VALUES (#{REC_ID}, #{SUSER_ID}, #{RUSER_ID}, #{CREATETIME}, #{ISVALIABLE})
+    </insert>
+
+    <update id="deleteChatMapping" parameterType="DataMap">
+        UPDATE TB_CHATMAPPING SET ISVALIABLE = false WHERE SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID}
+    </update>
+
+    <select id="getChatRecBySendTeacherId" parameterType="DataMap" resultType="DataMap">
+        SELECT m.*, u.ROLE_ID, stu.*, dic.NAME AS PROVINCE_VALUE FROM TB_CHATMAPPING m, UR_USER u, UR_COMPLETE_STU stu, UR_EXAMINEE exam LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = exam.EXAMAREA
+        WHERE m.SUSER_ID = #{SUSER_ID} AND m.RUSER_ID = u.USER_ID AND stu.USER_ID = m.RUSER_ID AND u.USER_ID = exam.USER_ID ORDER BY m.CREATETIME DESC
+    </select>
+
+    <select id="getChatRecBySendStudentId" parameterType="DataMap" resultType="DataMap">
+        SELECT m.*, u.ROLE_ID,  tea.NICKNAME AS TEANICKNAME, pro.NICKNAME AS PRONICKNAME, tea.HEADURL AS TEAHEADURL, pro.HEADURL AS PROHEADURL, tea.SCHOOL_ID FROM UR_USER u, TB_CHATMAPPING m
+        LEFT JOIN UR_COMPLETE_TEA tea ON tea.USER_ID = m.RUSER_ID
+        LEFT JOIN UR_COMPLETE_PRO pro ON pro.USER_ID = m.RUSER_ID
+        WHERE m.SUSER_ID = #{SUSER_ID} AND m.RUSER_ID = u.USER_ID ORDER BY m.CREATETIME DESC
+    </select>
+
+    <select id="getChatMappingBySRUserId" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM TB_CHATMAPPING WHERE (SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID}) OR (RUSER_ID = #{SUSER_ID} AND SUSER_ID = #{RUSER_ID})
+    </select>
+
+    <delete id="deleteChatMappingBySRUserId" parameterType="DataMap">
+        DELETE FROM TB_CHATMAPPING WHERE (SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID}) OR (RUSER_ID = #{SUSER_ID} AND SUSER_ID = #{RUSER_ID})
+    </delete>
+
+    <select id="getStudentChatInfos" parameterType="Page" resultType="DataMap">
+        SELECT stu.USER_ID, stu.NICKNAME, dic.NAME AS EXAMAREA_VALUE, exam.EXAMSCORE, chat.CREATETIME AS CHATCREATETIME FROM TB_CHATMAPPING chat , UR_EXAMINEE exam, UR_COMPLETE_STU stu, SYS_DICTIONARIES dic
+        WHERE chat.SUSER_ID = #{params.USER_ID}
+        AND chat.RUSER_ID = exam.USER_ID
+        AND stu.USER_ID = chat.RUSER_ID
+        AND exam.EXAMAREA = dic.DIC_ID
+        <if test="params.NAME != null">
+            AND stu.NICKNAME LIKE CONCAT(CONCAT("%", #{params.NAME}), "%")
+        </if>
+        ORDER BY chat.CREATETIME DESC
+    </select>
+    <delete id="deleteUserChatMapping" parameterType="DataMap">
+        DELETE FROM TB_CHATMAPPING WHERE SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID}
+    </delete>
+    <update id="setChatMappingValiable" parameterType="DataMap">
+        UPDATE TB_CHATMAPPING SET ISVALIABLE = true WHERE ((SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID}) OR (SUSER_ID = #{RUSER_ID} AND RUSER_ID = #{SUSER_ID})) AND ISVALIABLE = false
+    </update>
+    <select id="getCountTeacherChatMapping" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM TB_CHATMAPPING WHERE RUSER_ID = #{RUSER_ID}
+    </select>
+</mapper>

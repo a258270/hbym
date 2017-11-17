@@ -1,0 +1,376 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+}
+input{
+    outline:medium;
+}
+h1,h2,h3,h4,h5,h6,p{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+
+/*首页 开始*/
+/*banner 开始*/
+.bakg{
+    background: url("/static/ymplant/img/sye/banner4.jpg") no-repeat;
+    padding: 30px 50px 30px 50px;
+    /*background-color: #2DC473;*/
+    background-position: center;
+}
+.juxing{
+    position: relative;
+    width: 455px;
+    height: 60px;
+    background-color: #10FDF3;
+}
+.sanjiao{
+    width: 43px;
+    height: 43px;
+    background-color: #10FDF3;
+    position: absolute;
+    top: 8px;
+    right: -22px;
+    transform: rotate(45deg)
+}
+.zjuxing{
+    position: relative;
+    /*top: 80px;*/
+    /*left: 30px;*/
+    width: 455px;
+    height: 60px;
+    background-color: #FFC32F;
+    /*margin: 31px 0 30px 60px;*/
+}
+.zsanjiao{
+    width: 43px;
+    height: 43px;
+    background-color: #FFC32F;
+    position: absolute;
+    top: 8px;
+    left: -22px;
+    transform: rotate(45deg)
+}
+
+.xdui{
+    position: relative;
+}
+.zyi{
+    position: absolute;
+    top: 0;
+    right: 1076px;
+}
+.yyi{
+    position: absolute;
+    top: 80px;
+    left: 1555px;
+}
+.xyi{
+    position: absolute;
+    top: 160px;
+    right: 1076px;
+}
+
+.distance{
+    /*background-color: #8DDFB3;*/
+    padding: 20px 10px;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.1);
+}
+.also{
+    font-size: 2.5em;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.fraction{
+    width: 60px;
+    border: #fff;
+    padding: 2px 5px;
+}
+.paper{
+    padding: 5px 33px;
+    background-color: #33c9b5;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    display: block;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    /*text-decoration: none;*/
+}
+.paper:hover{
+    color: #FCF6E3;
+}
+/*banner 结束*/
+/*重要公告 开始*/
+.cement{
+    width: 100%;
+    background-color: #33c9b5;
+    padding: 8px 50px;
+    color: #fff;
+    text-align: right;
+    margin: 20px 0;
+    font-weight: bold;
+}
+/*重要公告 结束*/
+/*专家团 开始*/
+.group{
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+.gdui{
+    border-bottom: 1px solid #ccc;
+    padding: 5px 20px;
+}
+.formula{
+    width: 20%;
+    padding-right: 30px;
+    float: left;
+    margin-bottom: 20px;
+}
+.portrai{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.make{
+    border: 1px solid #9EAAAA;
+    border-radius: 5px;
+    color: #9EAAAA;
+    padding: 2px 5px;
+    background-color: #fff;
+}
+/*专家团 结束*/
+
+/*高考动态 开始*/
+.namic{
+    padding: 12px 0;
+    border: 1px solid #ccc;
+    margin: 0;
+}
+/*高考动态 结束*/
+
+/*在线咨询 开始*/
+.consu{
+    padding: 10px 15px;
+    /*background-color: #81FFFB;*/
+    border:1px solid #ccc;
+}
+.consu>li{
+    width: 20%;
+    padding: 5px;
+    float: left;
+    position: relative;
+}
+.sult{
+    display: none;
+    position: absolute;
+    border: 1px solid #cccccc;
+    background-color: #fff;
+    padding: 20px 10px 20px 30px;
+    width: 300px;
+    z-index: 2;
+}
+.sult>.hbei{
+    width: 33.3%;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: 仿宋;
+}
+.sult>.hbei>p{
+    padding: 2px 0;
+}
+.start{
+    display: inline-block;
+    padding: 6px 20px;
+    background-color: #88BDE9;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
+}
+.consu>li:hover .sult{
+    display: block;
+}
+/*在线咨询 结束*/
+
+/*院校库 开始*/
+.ks-yxk{
+    padding: 44px 35px;
+    background-color: #087DC2;
+    color: #fff;
+}
+.ks-dqu{
+    width: 100%;
+    padding: 15px 15px;
+}
+.region{
+    /*background-color: #F8F8F8;*/
+    width: 75%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #ACACAC;
+    padding: 5px 10px;
+}
+.kd-lei{
+    /*background-color: #F8F8F8;*/
+    width: 27%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #ACACAC;
+    padding: 5px 10px;
+}
+.kd-cha{
+    padding: 5px 20px;
+    background-color: #087DC0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+/*院校库 结束*/
+
+/*线下活动 开始*/
+.tivity{
+    color: #000;
+    text-decoration: none;
+}
+.tivity:hover{
+    color: #A53D3C;
+}
+.tivi{
+    color: #000;
+}
+.kd-bti{
+    border-bottom: 1px solid #ccc;
+    margin-right: 10px;
+    padding: 5px
+}
+.kd-bti:hover .tivi{
+    color: #A53D3C;
+}
+.acti{
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.kd-bse:hover .acti{
+    color: #A53D3C;
+    text-decoration: none;
+}
+/*线下活动 结束*/
+/*精选视频 开始*/
+.kd-sji p{
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.kd-sji:hover{
+    color: #A53D3C;
+}
+/*精选视频 结束*/
+
+/*首页 结束*/
+
+/*修改页面 开始*/
+/*高考动态 开始*/
+.kd-bhong{
+    color: #333333;
+}
+.kd-bhong:hover{
+    color: #A53D3C;
+}
+.kd-bhongs{
+    color: #333;
+    padding-right: 10px;
+    font-size: 10px;
+    /*border-bottom: 1px solid #ccc*/
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical
+}
+.kd-bhongt:hover .kd-bhongs{
+    color: #A53D3C;
+}
+.kd-yc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 3px;
+    font-size: 14px;
+}
+/*高考动态 结束*/
+/*修改 图标 开始*/
+.kd-dtai{
+    width: 100%;
+    height: 40px;
+    background-color: #33c9b5;
+    padding: 5px 45px;
+    /*font-weight: bold;*/
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.kd-dtai2{
+    position: absolute;
+    top: 8px;
+    left: 11px;
+}
+.kd-dian{
+    position: absolute;
+    bottom: -5px;
+}
+/*修改 图标 结束*/
+
+/*增加 更多按钮 开始*/
+.kd-gduo{
+    float: right;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.kd-gduo:hover{
+    color: #A53D3C;
+}
+/*增加 更多按钮 结束*/
+
+/*修改页面 结束*/
+
+

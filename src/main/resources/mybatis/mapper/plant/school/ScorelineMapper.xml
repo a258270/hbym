@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScorelineMapper">
+
+    <insert id="addScoreline" parameterType="DataMap">
+        INSERT INTO TB_SCORELINE (SCORELINE_ID, YEAR_ID, ARRANGMENT_ID, SCORE)
+        VALUES (#{SCORELINE_ID}, #{YEAR_ID}, #{ARRANGMENT_ID}, #{SCORE})
+    </insert>
+    
+    <update id="editScoreline" parameterType="DataMap">
+        UPDATE TB_SCORELINE
+        <set>
+            <if test="YEAR_ID != null">
+                YEAR_ID = #{YEAR_ID}
+            </if>
+            <if test="ARRANGMENT_ID != null">
+                ARRANGMENT_ID = #{ARRANGMENT_ID}
+            </if>
+            <if test="SCORE != null">
+                SCORE = #{SCORE}
+            </if>
+        </set>
+        WHERE SCORELINE_ID = #{SCORELINE_ID}
+    </update>
+    
+    <select id="getScorelineByYear" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_SCORELINE WHERE YEAR_ID = #{YEAR_ID} AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+    </select>
+</mapper>

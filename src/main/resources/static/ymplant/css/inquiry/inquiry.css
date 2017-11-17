@@ -1,0 +1,91 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+a{
+    color: #333333;
+    text-decoration : none
+}
+ul{
+    list-style: none;
+}
+.college{
+    border: 1px solid #FDD573;
+    background-color: #FFFFF7;
+    width: 40%;
+    border-radius: 4px;
+    padding: 5px;
+}
+.ssuo{
+    padding: 3px 10px;
+    color: #fff;
+    border: none;
+    background-color: #FB3A4B;
+    border-radius: 4px;
+    font-size: 1.3em;
+    margin-left: 10px;
+}
+.comprehensive{
+    padding: 10px 20px;
+    background-color: #70E9E4;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.comprehensive a{
+    text-decoration: none;
+    color: #fff;
+}
+/*按价格高低派讯 开始*/
+.circular{
+    overflow: hidden;
+    border-radius: 50%;
+    width: 43px;
+    height: 43px;
+}
+.circular>img{
+    width: 100%;
+}
+.hxan{
+    border-top: 1px solid #fefefe;
+    border-bottom: 1px solid #fefefe;
+    padding: 10px 0;
+}
+.money{
+    color: #FC934F;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family:微软雅黑;
+    text-align: center;
+    margin-top: 10px;
+}
+.kszx{
+    background-color: #FF7F20;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 10px;
+    margin-top: 10px;
+}
+.ranking{
+    padding: 2px 5px;
+    background-color: #F70701;
+    color: #fff;
+}
+/*按价格高低派讯 结束*/
+
+
+
+
+
+
+
+

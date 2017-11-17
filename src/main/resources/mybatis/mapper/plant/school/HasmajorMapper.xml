@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HasmajorMapper">
+
+    <select id="getHasmajorByScId" parameterType="DataMap" resultType="DataMap">
+
+        SELECT
+        hasmajor.HASMAJOR_ID,
+        hasmajor.SCHOOL_ID,
+        hasmajor.DIC_ID,
+        dic.NAME as NAME
+        FROM SC_HASMAJOR hasmajor
+        LEFT JOIN SYS_DICTIONARIES dic ON hasmajor.DIC_ID = dic.DIC_ID
+        WHERE hasmajor.SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+    <insert id="addHasmajor" parameterType="DataMap">
+        INSERT INTO SC_HASMAJOR
+        (HASMAJOR_ID, SCHOOL_ID, DIC_ID)
+        VALUES (#{HASMAJOR_ID}, #{SCHOOL_ID}, #{DIC_ID})
+    </insert>
+    <delete id="removeHasmajorsByScId" parameterType="DataMap">
+        DELETE FROM SC_HASMAJOR WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </delete>
+    <delete id="removeHasmajor" parameterType="DataMap">
+        DELETE FROM SC_HASMAJOR WHERE HASMAJOR_ID = #{HASMAJOR_ID}
+    </delete>
+    <select id="getHasmajorByYear" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        hasmajor.HASMAJOR_ID,
+        hasmajor.SCHOOL_ID,
+        hasmajor.DIC_ID,
+        dic. NAME AS NAME
+        FROM
+        SC_MJSCORE mj,
+        SC_HASMAJOR hasmajor
+        LEFT JOIN SYS_DICTIONARIES dic ON hasmajor.DIC_ID = dic.DIC_ID
+        WHERE
+        hasmajor.SCHOOL_ID = #{SCHOOL_ID}
+        AND hasmajor.SCHOOL_ID = mj.SCHOOL_ID
+        AND hasmajor.DIC_ID = mj.MAJOR_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+        <if test="MAJORTYPE_ID != null">
+            AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        </if>
+    </select>
+</mapper>

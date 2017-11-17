@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PocketMapper">
+    <select id="getPocketById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_POCKET
+        WHERE POCKET_ID = #{POCKET_ID}
+    </select>
+    <select id="getPocketByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_POCKET
+        WHERE USER_ID = #{USER_ID}
+    </select>
+    <insert id="addPocket" parameterType="DataMap">
+        INSERT INTO UR_POCKET
+        (POCKET_ID, USER_ID, CREATETIME, UPDATETIME)
+        VALUES (#{POCKET_ID}, #{USER_ID}, #{CREATETIME}, #{UPDATETIME})
+    </insert>
+    <update id="editPocket" parameterType="DataMap">
+        UPDATE UR_POCKET
+        SET UPDATETIME = #{UPDATETIME}
+        WHERE POCKET_ID = #{POCKET_ID}
+    </update>
+    <update id="consume" parameterType="DataMap">
+        UPDATE UR_POCKET
+        SET BALANCE = BALANCE - #{PRICE}
+        WHERE POCKET_ID = #{POCKET_ID} AND BALANCE >= #{PRICE} AND STATUS = true
+    </update>
+    <update id="recharge" parameterType="DataMap">
+        UPDATE UR_POCKET
+        SET BALANCE = BALANCE + #{PRICE}
+        WHERE POCKET_ID = #{POCKET_ID} AND STATUS = true
+    </update>
+    <update id="removePocket" parameterType="DataMap">
+        UPDATE UR_POCKET
+        SET STATUS = false
+        WHERE POCKET_ID = #{POCKET_ID}
+    </update>
+</mapper>

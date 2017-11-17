@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScIntroductionMapper">
+
+    <insert id="addScIntroduction" parameterType="DataMap">
+        INSERT INTO SC_INTRODUCTION (INTRODUCTION_ID, SCHOOL_ID, CONTENT) VALUES (#{INTRODUCTION_ID}, #{SCHOOL_ID}, #{CONTENT})
+    </insert>
+
+    <update id="editScIntroduction" parameterType="DataMap">
+        UPDATE SC_INTRODUCTION SET CONTENT = #{CONTENT} WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </update>
+
+    <select id="getScIntroductionByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_INTRODUCTION WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+
+    <select id="getScIntroductionById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_INTRODUCTION WHERE INTRODUCTION_ID = #{INTRODUCTION_ID}
+    </select>
+</mapper>

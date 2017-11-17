@@ -1,0 +1,143 @@
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+
+a{
+    color: #6d6d6d;
+}
+ul{
+    list-style: none;
+}
+
+.page_div{
+    text-align: center;
+}
+/*����� ��ʼ*/
+.provinces{
+    padding: 10px 0px;
+}
+.kd-base .shengf{
+    width: 100%;
+    background-color: #33c9b5;
+    padding: 6px 40px;
+    /*margin-bottom: 15px;*/
+    font-size: 16px;
+    color: #ffffff;
+    position: relative;
+}
+.province2{
+    position: absolute;
+    top:6px;
+    left: 10px;
+}
+.kd-base .shengf>h4{
+    background-color: #fff;
+    color: red;
+}
+.anhui{
+    width: 100%;
+}
+.anhui>tbody>tr>td{
+    text-align: center;
+    border: 1px solid #e9e9e9;
+    width: 25%;
+    font-size: 14px;
+}
+
+.youbian{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.xnae{
+    margin-bottom: 10px;
+}
+.xnae>input{
+    border:1px solid #e9e9e9;
+    width: 40%;
+    margin-right: 15px;
+    height: 33px;
+    border-radius: 5px;
+}
+
+.xnae>button{
+    background-color: #5BC0DE;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    padding: 2px 10px;
+    height: 33px;
+}
+
+.youbian .university{
+    border-top: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+    padding: 20px 0;
+    height: 155px;
+}
+
+.ceshi{
+    padding: 2px 15px;
+    background-color: #FB3A4B;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid #FB3A4B;
+}
+.shou{
+    padding: 2px 15px;
+    background-color: #fff;
+    color: #646464;
+    border-radius: 5px;
+    border: 2px solid #FB3A4B;
+}
+
+.selected{
+    background-color: #cccccc;
+}
+.province{
+    display: block;
+    height:100%;
+    padding: 8px 0;
+}
+.property{
+    display: block;
+    height:100%;
+    padding: 8px 0;
+}
+.arrangment{
+    display: block;
+    height:100%;
+    padding: 8px 0;
+}
+.subjecttype{
+    display: block;
+    height:100%;
+    padding: 8px 0;
+}
+.property_table {
+    margin-bottom: 5px;
+}
+.table_title{
+    font-size: 20px;
+    padding: 5px 0 10px;
+    color: #444;
+}
+.table_body{
+    float:left;
+    width:25%;
+    font-size:14px;
+    display: block;
+    height: auto;
+    padding-right: 5px;
+}
+
+
+
+
+
+
+

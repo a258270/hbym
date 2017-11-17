@@ -1,0 +1,83 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+a{
+    color: #333333;
+    text-decoration : none
+}
+ul{
+    list-style: none;
+}
+
+.namic{
+    width: 200px;
+    background-color: #FFC32F;
+    padding: 2px 107px 2px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+.namic>h4{
+    background-color: #fff;
+    color: red;
+}
+
+.dtai>h4{
+    line-height: 2;
+}
+
+.previous{
+    background-color: #FFC32F;
+    padding: 2px 100px 2px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+.previous>h4{
+    background-color: #fff;
+    color: red;
+}
+.notice>a{
+    text-decoration : none
+}
+.notice>a>h4{
+    line-height: 1.5;
+}
+.past{
+    position: relative;
+}
+.pastwo{
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

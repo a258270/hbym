@@ -1,0 +1,337 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+a{
+    /*color: #333333;*/
+    text-decoration : none
+}
+ul{
+    /*list-style: none;*/
+}
+body{
+    background: url("/static/ymplant/images/tubiao2/101.jpg") no-repeat;
+    padding: 175px 0;
+    background-position: center;
+}
+.student{
+    height: 640px;
+    /*border:1px solid #ccc;*/
+}
+.kd-hse{
+    background-color: #868686;
+    padding: 15px 5px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.kd-yse{
+    background-color: #F6EDEE;
+    margin: 0;
+    padding: 5px 0;
+}
+.kd-yse:hover{
+    background-color: #fff;
+}
+.kd-tpi{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.kd-mzi{
+    padding: 10px;
+    border: 2px solid #F2F2F2;
+    height: 75px;
+}
+.kd-jshu>input{
+    padding: 2px 20px;
+    background-color: #FC7F26;
+    color: #fff;
+    font-size: 10px;
+    border: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.kd-ltck{
+    padding: 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+.kd-bse{
+    padding: 2px 10px;
+    background-color: #F6F6F6;
+    float: left;
+    border: 2px solid #F0F0F0;
+    border-radius: 10px;
+}
+.kd-bset{
+    padding: 2px 10px;
+    background-color: #EAF1F7;
+    float: right;
+    border: 2px solid #F0F0F0;
+    border-radius: 10px;
+}
+.kd-jlu{
+    color: #7F7F7F;
+    padding: 3px 6px;
+}
+.kd-jlu:hover{
+    color: #7F7F7F;
+    background-color: #E0E0E1;
+}
+.dhua{
+    height: 100px
+}
+textarea{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    font-size: 12px;
+    border: 0px;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: #fff;
+    outline: medium;
+}
+.nav-justified li .kd-bxi{
+    padding: 2px;
+}
+.kd-fsong{
+    padding: 2px 20px;
+    text-align: right;
+}
+.kd-fann{
+    padding: 2px 15px;
+    background-color: #FF7F28;
+    border: #FF7F28;
+}
+.kd-fann:hover{
+    background-color: #FF7F28;
+}
+#kd-fann:focus{
+    background-color: #FF7F28;
+}
+#kd-fannt:focus{
+    background-color: #FF7F28;
+}
+/*.kd-jshu>input:active{*/
+/*background-color: #000;*/
+/*}*/
+
+.record{
+    height: 640px;
+    border: 1px solid #B6CFD4;
+    display: none;
+    overflow: hidden;
+    padding: 0;
+    background-color: #fff;
+}
+.ltjlu{
+    padding: 5px;
+    background-color: #FC7F26;
+    text-align: center;
+}
+.ltjlu>span{
+    color: #fff;
+    font-size: 14px;
+    font-family: 黑体;
+}
+.strong{
+    padding: 15px;
+    background-color: #fff;
+    height: 600px;
+    overflow-y: scroll;
+    font-size: 14px;
+}
+.heah{
+    color: #7F7F7F;
+    margin-bottom: 5px;
+}
+.fye{
+    border-top: 1px solid #B6CFD4;
+    text-align: center;
+    background-color: #F8F8F8;
+    height: 40px;
+    padding: 10px 0;
+}
+/*评价 开始*/
+.kd-fwu{
+    border-top: 2px solid #7F7F7F;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+}
+.kd-fwpj{
+    position: absolute;
+    top: -15px;
+    left: 190px;
+    padding: 0 15px;
+    background-color: #fff;
+    color: #7F7F7F;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*星星样式*/
+.content{
+    width:600px;
+    margin:0 auto;
+    padding-top:20px;
+}
+.title{
+    font-size:14px;
+    background:#dfdfdf;
+    padding:10px;
+    margin-bottom:10px;
+}
+.block{
+    width:100%;
+    margin:0 0 20px 0;
+    padding-top:10px;
+    padding-left:50px;
+    line-height:21px;
+}
+.block .star_score{
+    float:left;
+}
+.star_list{
+    height:21px;
+    margin:50px;
+    line-height:21px;
+}
+.block p,.block .attitude{
+    padding-left:20px;
+    line-height:21px;
+    display:inline-block;
+}
+.block p span{
+    color:#C00;
+    font-size:16px;
+    font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+.star_score {
+    background:url(/static/ymplant/images/tubiao3/stark2.png);
+    width:160px;
+    height:21px;
+    position:relative;
+}
+
+.star_score a{
+    height:21px;
+    display:block;
+    text-indent:-999em;
+    position:absolute;
+    left:0;
+}
+
+.star_score a:hover{
+    background:url(/static/ymplant/images/tubiao3/stars2.png);
+    left:0;
+}
+
+.star_score a.clibg{
+    background:url(/static/ymplant/images/tubiao3/stars2.png);
+    left:0;
+}
+
+#starttwo .star_score {
+    background:url(/static/ymplant/images/tubiao3/starky.png);
+}
+
+#starttwo .star_score a:hover{
+    background:url(/static/ymplant/images/tubiao3/starsy.png);
+    left:0;
+}
+
+#starttwo .star_score a.clibg{
+    background:url(/static/ymplant/images/tubiao3/starsy.png);
+    left:0;
+}
+
+/*评价内容 开始*/
+.kd-pjnr{
+    border:1px solid #49AFCC;
+    border-radius: 10px;
+    height:150px;
+    padding: 5px 15px;
+}
+/*评价内容 结束*/
+.kd-qre{
+    background-color: #FF7F27;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    /*margin-right: 80px;*/
+}
+/*评价 结束*/
+/*评价按钮 开始*/
+.kd-pjia:hover{
+    background-color: #FC7F26;
+    color: #fff;
+}
+/*评价按钮 结束*/
+
+/*分裂按钮 开始*/
+.kd-xdui a{
+    padding: 3px 20px 3px 30px;
+}
+.kd-xdui{
+    position: relative;
+}
+.kd-jdui{
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    background-color: #EDEEEE;
+    height: 36px;
+    width:19px;
+    line-height: 2;
+}
+.kd-jh2{
+
+}
+/*分裂按钮 结束*/
+
+.active{
+    background-color: #ffffff;
+}
+
+
+/*老师 资料 开始*/
+.round{
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.kd-sheng{
+    padding: 15px;
+    border-top: 2px solid #C3C3C3;
+}
+.kd-sxia{
+    margin: 5px 0;
+}
+.kd-jcu{
+    font-weight: bold;
+    margin-right: 15px;
+}
+/*老师 资料 结束*/

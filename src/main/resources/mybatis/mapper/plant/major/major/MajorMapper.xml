@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MajorMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getMajorById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            major.MAJOR_ID,
+            major.DIC_ID,
+            major.SUMMARY,
+            major.VIEWCOUNT,
+            dic.NAME
+        FROM
+        SC_MAJOR major
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = major.DIC_ID
+        WHERE major.MAJOR_ID = #{MAJOR_ID}
+    </select>
+
+    <select id="getMajorByMajorId" parameterType="DataMap" resultType="DataMap">
+        SELECT major.*,dic.* FROM SC_MAJOR major
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = major.DIC_ID WHERE major.DIC_ID = #{DIC_ID}
+    </select>
+
+    <!-- 获取专业分页数据 -->
+    <select id="getMajors" parameterType="Page" resultType="DataMap">
+        SELECT
+        major.MAJOR_ID,
+        major.DIC_ID,
+        major.SUMMARY,
+        major.VIEWCOUNT,
+        dic.NAME
+        FROM
+        SC_MAJOR major, SYS_DICTIONARIES dic
+        WHERE 1 = 1
+        AND major.DIC_ID = dic.DIC_ID
+        <if test='params.NAME != null'>
+            AND dic.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+    </select>
+
+    <!-- 批量删除专业 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            SC_MAJOR
+        WHERE
+            MAJOR_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增专业 -->
+    <insert id="addMajor" parameterType="DataMap">
+        INSERT INTO
+            SC_MAJOR
+        (
+        MAJOR_ID,
+        DIC_ID,
+        SUMMARY,
+        VIEWCOUNT
+        )
+        VALUES
+        (
+        #{MAJOR_ID},
+        #{DIC_ID},
+        #{SUMMARY},
+        #{VIEWCOUNT}
+        )
+    </insert>
+
+    <!-- 编辑专业 -->
+    <update id="editMajor" parameterType="DataMap">
+        UPDATE
+            SC_MAJOR
+        <set>
+            SUMMARY = #{SUMMARY},
+            VIEWCOUNT = #{VIEWCOUNT},
+        </set>
+        WHERE
+            MAJOR_ID = #{MAJOR_ID}
+    </update>
+    <!-- 编辑专业中的非前台录入属性 -->
+    <update id="editNotFrontOfMajor" parameterType="DataMap">
+        UPDATE
+            SC_MAJOR
+        <set>
+            DIC_ID = #{DIC_ID},
+        </set>
+        WHERE
+            MAJOR_ID = #{MAJOR_ID}
+    </update>
+
+    <select id="getPageMajors" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        dic2.*
+        FROM SYS_DICTIONARIES dic1, SYS_DICTIONARIES dic2, SYS_DICTIONARIES dic3, SYS_DICTIONARIES dic4
+        WHERE
+        dic1.CODE = #{params.CODE}
+        AND dic2.PARENT_ID = dic1.DIC_ID
+        AND dic3.PARENT_ID = dic2.DIC_ID
+        AND dic4.PARENT_ID = dic3.DIC_ID
+        <if test="params.PARENT_ID != null">
+            AND dic2.DIC_ID = #{params.PARENT_ID}
+        </if>
+        <if test="params.NAME != null">
+            AND dic4.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+        GROUP BY DIC_ID
+        ORDER BY SORT
+    </select>
+    
+    <update id="viewMajor" parameterType="DataMap">
+        UPDATE SC_MAJOR
+        SET VIEWCOUNT = VIEWCOUNT + 1
+        WHERE DIC_ID = #{DIC_ID}
+    </update>
+
+    <select id="getTopMajors" parameterType="Page" resultType="DataMap">
+        SELECT major.*, dic.NAME, dic.CODE FROM SC_MAJOR major
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = major.DIC_ID
+        <if test="params.CODE != null">
+            <if test="params.CODE == 'BMAJOR'">
+                WHERE dic.CODE LIKE '0%'
+            </if>
+            <if test="params.CODE == 'ZMAJOR'">
+                WHERE dic.CODE LIKE '5%'
+            </if>
+        </if>
+        ORDER BY major.VIEWCOUNT DESC
+    </select>
+</mapper>

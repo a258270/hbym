@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CardMapper">
+    <select id="getMaxCodeByParams" parameterType="DataMap" resultType="java.lang.String">
+        SELECT MAX(NUMBER) FROM TB_CARD WHERE PROVINCE_ID = #{PROVINCE_ID} AND TYPE_ID = #{TYPE_ID} AND PURPOSE_ID = #{PURPOSE_ID}
+    </select>
+    
+    <update id="setCardSaled" parameterType="DataMap">
+        UPDATE TB_CARD SET ISSALED = true WHERE CARD_ID = #{CARD_ID}
+    </update>
+
+    <update id="setCardUsed" parameterType="DataMap">
+        UPDATE TB_CARD SET ISUSED = true WHERE CARD_ID = #{CARD_ID}
+    </update>
+
+    <insert id="addCard" parameterType="DataMap">
+        INSERT INTO TB_CARD (CARD_ID, PROVINCE_ID, TYPE_ID, PURPOSE_ID, NUMBER, CREATETIME, OVERDUETIME, PASSWORD) VALUES (#{CARD_ID}, #{PROVINCE_ID}, #{TYPE_ID}, #{PURPOSE_ID}, #{NUMBER}, #{CREATETIME}, #{OVERDUETIME}, #{PASSWORD})
+    </insert>
+    
+    <select id="getCardByParams" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_CARD WHERE PROVINCE_ID = #{PROVINCE_ID} AND TYPE_ID = #{TYPE_ID} AND PURPOSE_ID = #{PURPOSE_ID} AND NUMBER = #{NUMBER}
+    </select>
+    
+    <select id="getCardById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_CARD WHERE CARD_ID = #{CARD_ID}
+    </select>
+
+    <select id="getCards" parameterType="Page" resultType="DataMap">
+        SELECT
+        card.*
+        FROM
+        TB_CARD card
+        WHERE 1=1
+        <if test="params.PROVINCE_ID != null">
+            AND card.PROVINCE_ID = #{params.PROVINCE_ID}
+        </if>
+        <if test="params.TYPE_ID != null">
+            AND card.TYPE_ID = #{params.TYPE_ID}
+        </if>
+        <if test="params.PURPOSE_ID != null">
+            AND card.PURPOSE_ID = #{params.PURPOSE_ID}
+        </if>
+        <if test="params.ISSALED">
+            AND card.ISSALED = #{params.ISSALED}
+        </if>
+        <if test="params.ISUSED">
+            AND card.ISUSED = #{params.ISUSED}
+        </if>
+        ORDER BY card.NUMBER DESC
+    </select>
+
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+        TB_CARD
+        WHERE
+        CARD_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+            #{item}
+        </foreach>
+        AND ISSALED = false AND ISUSED = false
+    </delete>
+    <!--<update id="batchEdits" parameterType="java.util.List">
+        UPDATE TB_CARD SET ISSALED = true
+        WHERE CARD_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+            #{item}
+        </foreach>
+    </update>-->
+    <select id="validCard" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_CARD WHERE NUMBER = #{NUMBER} AND PASSWORD = #{PASSWORD}
+    </select>
+
+    <select id="getCardsByBeginTimeAndEndTime" parameterType="DataMap" resultType="DataMap">
+        SELECT card.*, dic1.NAME AS PROVINCE_VALUE, dic2.NAME AS TYPE_VALUE, dic3.NAME AS PURPOSE_VALUE FROM TB_CARD card
+        LEFT JOIN SYS_DICTIONARIES dic1 ON card.PROVINCE_ID = dic1.CODE
+        LEFT JOIN SYS_DICTIONARIES dic2 ON card.TYPE_ID = dic2.CODE
+        LEFT JOIN SYS_DICTIONARIES dic3 ON card.PURPOSE_ID = dic3.CODE
+        WHERE 1=1
+        <if test="BEGINTIME != null">
+            AND card.CREATETIME &gt;= #{BEGINTIME}
+        </if>
+        <if test="ENDTIME != null">
+            AND card.CREATETIME &lt;= #{ENDTIME}
+        </if>
+        <if test="PROVINCE_ID != null">
+            AND card.PROVINCE_ID = #{PROVINCE_ID}
+        </if>
+        <if test="TYPE_ID != null">
+            AND card.TYPE_ID = #{TYPE_ID}
+        </if>
+        <if test="PURPOSE_ID != null">
+            AND card.PURPOSE_ID = #{PURPOSE_ID}
+        </if>
+        <if test="ISSALED != null">
+            AND card.ISSALED = #{ISSALED}
+        </if>
+        <if test="ISUSED != null">
+            AND card.ISUSED = #{ISUSED}
+        </if>
+        ORDER BY card.CREATETIME DESC
+    </select>
+</mapper>

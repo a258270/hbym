@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CompleteTeacherMapper">
+
+    <insert id="addCompleteTeacher" parameterType="DataMap">
+        INSERT INTO UR_COMPLETE_TEA
+        (COMPLETE_ID, USER_ID, NAME, SEX, PHONE, BIRTHDAY, SCHOOL_ID, EMAIL, HEADURL, NICKNAME, IDCARD, TRADEPASSWORD, JOBDATE, NAMESECRET, SEXSECRET, BIRTHDAYSECRET, JOBTYPE)
+        VALUES
+        (#{COMPLETE_ID}, #{USER_ID}, #{NAME}, #{SEX}, #{PHONE}, #{BIRTHDAY}, #{SCHOOL_ID}, #{EMAIL}, #{HEADURL}, #{NICKNAME}, #{IDCARD}, #{TRADEPASSWORD}, #{JOBDATE}, #{NAMESECRET}, #{SEXSECRET}, #{BIRTHDAYSECRET}, #{JOBTYPE})
+    </insert>
+    <update id="editCompleteTeacher" parameterType="DataMap">
+        UPDATE UR_COMPLETE_TEA
+        <set>
+            <if test="NAME != null">
+                NAME = #{NAME},
+            </if>
+            <if test="SEX != null">
+                SEX = #{SEX},
+            </if>
+            <if test="PHONE != null">
+                PHONE = #{PHONE},
+            </if>
+            <if test="BIRTHDAY != null">
+                BIRTHDAY = #{BIRTHDAY},
+            </if>
+            <if test="SCHOOL_ID != null">
+                SCHOOL_ID = #{SCHOOL_ID},
+            </if>
+            <if test="EMAIL != null">
+                EMAIL = #{EMAIL},
+            </if>
+            <if test="HEADURL != null">
+                HEADURL = #{HEADURL},
+            </if>
+            <if test="NICKNAME != null">
+                NICKNAME = #{NICKNAME},
+            </if>
+            <if test="IDCARD != null">
+                IDCARD = #{IDCARD},
+            </if>
+            <if test="TRADEPASSWORD != null">
+                TRADEPASSWORD = #{TRADEPASSWORD},
+            </if>
+            <if test="JOBDATE != null">
+                JOBDATE = #{JOBDATE},
+            </if>
+            <if test="NAMESECRET != null">
+                NAMESECRET = #{NAMESECRET},
+            </if>
+            <if test="SEXSECRET != null">
+                NAMESECRET = #{NAMESECRET},
+            </if>
+            <if test="BIRTHDAYSECRET != null">
+                BIRTHDAYSECRET = #{BIRTHDAYSECRET},
+            </if>
+            <if test="JOBTYPE != null">
+                JOBTYPE = #{JOBTYPE}
+            </if>
+        </set>
+        WHERE USER_ID = #{USER_ID}
+    </update>
+    <select id="getCompleteTeacherByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        complete.*, school.NAME AS SCNAME, dic1.NAME AS SEX_VALUE, dic2.NAME AS JOBDATE_VALUE
+        FROM
+        UR_COMPLETE_TEA complete
+        LEFT JOIN SC_SCHOOL school ON complete.SCHOOL_ID = school.SCHOOL_ID
+        LEFT JOIN SYS_DICTIONARIES dic1 ON complete.SEX = dic1.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON complete.JOBDATE = dic2.DIC_ID
+        WHERE
+        complete.USER_ID = #{USER_ID}
+    </select>
+    <select id="getCompleteTeacherById" parameterType="DataMap" resultType="DataMap">
+        SELECT complete.*, school.NAME AS SCNAME FROM UR_COMPLETE_TEA complete LEFT JOIN SC_SCHOOL school ON complete.SCHOOL_ID = school.SCHOOL_ID WHERE complete.COMPLETE_ID = #{COMPLETE_ID}
+    </select>
+
+    <select id="getCompleteTeacherByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        tea.*,
+        dic1.NAME AS JOBDATE_VALUE
+        FROM
+        UR_COMPLETE_TEA tea
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = tea.JOBDATE
+        WHERE
+        SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+
+    <select id="isHasPhoneInCompleteTeacher" parameterType="DataMap" resultType="java.lang.Boolean">
+        SELECT COUNT(0) > 0 FROM UR_COMPLETE_TEA WHERE PHONE = #{PHONE}
+    </select>
+</mapper>

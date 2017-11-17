@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+}
+input{
+    outline:medium;
+}
+.kd-zdao{
+    padding: 10px 0;
+    border-bottom: 2px solid #000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.kd-bti{
+    background-color: #F0F0F0;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+.kd-btit{
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    color: #A1A09E;
+    border-bottom: 1px dashed #A1A09E;
+}
+.kd-bse>a{
+    color: #000;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.kd-btit:hover .kd-bse>a{
+    color:#A53D3C;
+}
+#profile{
+    /*display: none;*/
+}
+/*��Ƶ ��ʼ*/
+.kd-bkua{
+    border: 1px solid #EAEAEA;
+    padding: 5px;
+    color: #000;
+    margin: 10px 0;
+}
+.kd-bkua:hover{
+    color: #A53D3C;
+}
+.kd-yshi{
+    font-size: 10px;
+    padding: 5px;
+    margin: 0;
+}
+/*��Ƶ ����*/
+/*רҵ ��ʼ*/
+.kd-gcheng{
+    padding: 10px 0;
+    border-bottom: 1px solid #E3E3E3;
+}
+.kd-bkzk{
+    padding: 2px 5px;
+    background-color: #EF1A22;
+    color: #fff;
+    font-size: 18px;
+}
+.kd-scang{
+    border: 1px solid #FB3647;
+    padding: 0 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
+    margin-top: 10px;
+}
+.kd-dxie{
+    padding: 12px 10px;
+    border-bottom: 1px solid #CDCDCD;
+}
+/*רҵ ����*/
+/*�ұ� ��ʼ*/
+.kd-dtao{
+    border: 1px solid #C3C3C3;
+    padding: 5px 10px;
+}
+.kd-jji{
+    padding: 5px 2px;
+    border-bottom: 1px solid #c3c3c3;
+    font-size: 13px;
+    margin: 0;
+}
+.zxhui{
+    color: #000;
+}
+.kd-jji:hover .zxhui{
+    color: #A53D3C;
+}
+/*ר���� ��ʼ*/
+.kd-zjtu{
+    border: 1px solid #C3C3C3;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.kd-tdui{
+    padding: 10px 30px;
+    color: #A53D3C;
+    border-bottom: 1px solid #c3c3c3;
+}
+.kd-yyue{
+    border: 1px solid #9EAAAA;
+    border-radius: 5px;
+    color: #9EAAAA;
+    padding: 2px 15px;
+    background-color: #fff;
+    font-size: 12px;
+}
+.kd-tpian{
+    margin-top: 20px;
+    padding: 50px;
+    color: #fff;
+    background-color: #00A3E8;
+    text-align: center;
+    line-height: 3;
+    font-size: 2em;
+}
+.university{
+    border-top: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+    padding: 20px 0;
+    height: 155px;
+}

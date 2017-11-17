@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+}
+input{
+    outline:medium;
+}
+h1,h2,h3,h4,h5,h6{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+/*我的物品 开始*/
+/*历史交易记录 开始*/
+.mcheng{
+    background-color: #D1ECFF;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #fff;
+}
+.qhua{
+    background-color: #FDE8E3;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #fff;
+    height: 32px;
+    font-size: .5em;
+}
+/*历史交易记录 结束*/
+/*我的物品 结束*/
+
+
+/*账户权限 开始*/
+.line{
+    border-bottom: 1px solid #cccccc;
+    padding: 30px 80px;
+    margin: 0 auto;
+}
+.line .prompt{
+    border: 3px solid #FF7F27;
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+    padding: 40px 80px;
+}
+.tuao{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -30px;
+    left: 40px;
+    background-color: #fff;
+    padding: 10px;
+}
+.hyan{
+    font-size: 16px;
+    color: #7F7F7F;
+    font-weight: bold;
+}
+.activation{
+    border-radius: 25px;
+    border: 1px solid #cccccc;
+    width: 40%;
+    padding: 5px 20px;
+    outline:medium;
+}
+.complete{
+    text-align: center;
+}
+.complete>input{
+    color: #fff;
+    background-color: #22B14C;
+    padding: 5px 20px;
+    outline:medium;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    display: block;margin: 0 auto;
+    width: 160px;
+}
+.jhuo{
+    border-bottom: 1px solid #cccccc;
+    padding: 40px;
+    text-align: center;
+}
+.mine{
+    border: none;
+    border-radius: 25px;
+    padding: 5px 20px;
+    background-color: #22B14C;
+    color: #fff;
+    /*outline:medium;*/
+}
+.zxng{
+    border-top:1px solid #ccc;
+    padding: 20px 40px;
+    margin-top: 20px;
+}
+.progress{
+    height: 15px;
+    border-radius: 25px;
+    margin: 0;
+}
+/*账户权限 结束*/
+
+

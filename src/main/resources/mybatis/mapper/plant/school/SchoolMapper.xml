@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SchoolMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getSchoolById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            school.SCHOOL_ID,
+            school.HEADURL,
+            school.NAME,
+            school.PROVINCE,
+            dic2.NAME AS PROVINCE_VALUE,
+            school.SCTYPE,
+            dic3.NAME AS SCTYPE_VALUE,
+            school.CREATEDATE,
+            school.PHONE,
+            school.EMAIL,
+            school.ADDRESS,
+            school.WEBSITE,
+            school.SCWEBSITE,
+            school.SCCODE,
+            school.SUBJECTION,
+            school.LON,
+            school.LAT,
+            school.LHEADURL,
+            school.MSORT
+        FROM
+        SC_SCHOOL school
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+        WHERE SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY school.MSORT
+    </select>
+
+    <!-- 获取院校信息分页数据 -->
+    <select id="getSchools" parameterType="Page" resultType="DataMap">
+        SELECT
+        school.SCHOOL_ID,
+        school.HEADURL,
+        school.NAME,
+        school.PROVINCE,
+            dic2.NAME AS PROVINCE_VALUE,
+        school.SCTYPE,
+            dic3.NAME AS SCTYPE_VALUE,
+        school.CREATEDATE,
+        school.PHONE,
+        school.EMAIL,
+        school.ADDRESS,
+        school.WEBSITE,
+        school.SCWEBSITE,
+        school.SCCODE,
+        school.SUBJECTION,
+        school.LON,
+        school.LAT,
+        school.LHEADURL,
+        school.MSORT
+        FROM
+        SC_SCHOOL school
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+        WHERE 1 = 1
+        <if test='params.NAME != null'>
+            AND school.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+        <if test='params.PROVINCE != null'>
+            AND school.PROVINCE = #{params.PROVINCE}
+        </if>
+        <if test='params.SCTYPE != null'>
+            AND school.SCTYPE = #{params.SCTYPE}
+        </if>
+        ORDER BY school.MSORT
+    </select>
+
+    <!-- 获取院校信息分页数据 -->
+    <select id="getSchoolsInLibrary" parameterType="java.util.Map" resultType="DataMap">
+        SELECT
+        school.SCHOOL_ID,
+        school.HEADURL,
+        school.NAME,
+        school.PROVINCE,
+        dic2.NAME AS PROVINCE_VALUE,
+        school.SCTYPE,
+        dic3.NAME AS SCTYPE_VALUE,
+        school.CREATEDATE,
+        school.PHONE,
+        school.EMAIL,
+        school.ADDRESS,
+        school.WEBSITE,
+        school.SCWEBSITE,
+        school.SCCODE,
+        school.SUBJECTION,
+        school.LON,
+        school.LAT,
+        school.LHEADURL,
+        school.VIEWCOUNT,
+        school.MSORT,
+        (SELECT COUNT(0) > 0 FROM SC_STOREUP store WHERE store.SCHOOL_ID = school.SCHOOL_ID AND USER_ID = #{USER_ID}) AS STOREUP
+        FROM
+        SC_SCHOOL school
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+        <if test="properties != null">
+            ,SC_SCPROPERTY property
+        </if>
+        <if test="arrangments != null">
+            ,SC_ARRANGMENT arrangment
+        </if>
+        <if test="subjecttypes != null">
+            ,SC_SUBJECTTYPE subjecttype
+        </if>
+        WHERE 1 = 1
+        <if test="properties != null">
+            AND school.SCHOOL_ID = property.SCHOOL_ID
+        </if>
+        <if test="arrangments != null">
+            AND school.SCHOOL_ID = arrangment.SCHOOL_ID
+        </if>
+        <if test="subjecttypes != null">
+            AND school.SCHOOL_ID = subjecttype.SCHOOL_ID
+        </if>
+        <if test='NAME != null'>
+            AND school.NAME LIKE CONCAT(CONCAT('%', #{NAME}), '%')
+        </if>
+        <if test="provinces != null">
+            AND school.PROVINCE IN <foreach item='item' index='index' collection='provinces' open='(' separator=',' close=')'>#{item}</foreach>
+        </if>
+        <if test="properties != null">
+            AND
+            <foreach item="item" collection="properties" open="(" close=")" separator="OR">
+                property.DIC_ID = #{item}
+            </foreach>
+        </if>
+        <if test="arrangments != null">
+            AND
+            <foreach item="item" collection="arrangments" open="(" close=")" separator="OR">
+                arrangment.DIC_ID = #{item}
+            </foreach>
+        </if>
+        <if test="subjecttypes != null">
+            AND
+            <foreach item="item" collection="subjecttypes" open="(" close=")" separator="OR">
+                subjecttype.DIC_ID = #{item}
+            </foreach>
+        </if>
+        GROUP BY school.SCHOOL_ID ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
+
+    </select>
+
+    <select id="getCountSchoolsInLibrary" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT COUNT(0) FROM (
+            SELECT
+            school.SCHOOL_ID,
+            school.HEADURL,
+            school.NAME,
+            school.PROVINCE,
+            dic2.NAME AS PROVINCE_VALUE,
+            school.SCTYPE,
+            dic3.NAME AS SCTYPE_VALUE,
+            school.CREATEDATE,
+            school.PHONE,
+            school.EMAIL,
+            school.ADDRESS,
+            school.WEBSITE,
+            school.SCWEBSITE,
+            school.SCCODE,
+            school.SUBJECTION,
+            school.LON,
+            school.LAT,
+            school.LHEADURL,
+            school.MSORT,
+            (SELECT COUNT(0) > 0 FROM SC_STOREUP store WHERE store.SCHOOL_ID = school.SCHOOL_ID AND USER_ID = #{USER_ID}) AS STOREUP
+            FROM
+            SC_SCHOOL school
+            LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+            LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+            <if test="properties != null">
+                ,SC_SCPROPERTY property
+            </if>
+            <if test="arrangments != null">
+                ,SC_ARRANGMENT arrangment
+            </if>
+            <if test="subjecttypes != null">
+                ,SC_SUBJECTTYPE subjecttype
+            </if>
+            WHERE 1 = 1
+            <if test="properties != null">
+                AND school.SCHOOL_ID = property.SCHOOL_ID
+            </if>
+            <if test="arrangments != null">
+                AND school.SCHOOL_ID = arrangment.SCHOOL_ID
+            </if>
+            <if test="subjecttypes != null">
+                AND school.SCHOOL_ID = subjecttype.SCHOOL_ID
+            </if>
+            <if test='NAME != null'>
+                AND school.NAME LIKE CONCAT(CONCAT('%', #{NAME}), '%')
+            </if>
+            <if test="provinces != null">
+                AND school.PROVINCE IN <foreach item='item' index='index' collection='provinces' open='(' separator=',' close=')'>#{item}</foreach>
+            </if>
+            <if test="properties != null">
+                AND
+                <foreach item="item" collection="properties" open="(" close=")" separator="OR">
+                    property.DIC_ID = #{item}
+                </foreach>
+            </if>
+            <if test="arrangments != null">
+                AND
+                <foreach item="item" collection="arrangments" open="(" close=")" separator="OR">
+                    arrangment.DIC_ID = #{item}
+                </foreach>
+            </if>
+            <if test="subjecttypes != null">
+                AND
+                <foreach item="item" collection="subjecttypes" open="(" close=")" separator="OR">
+                    subjecttype.DIC_ID = #{item}
+                </foreach>
+            </if>
+            GROUP BY school.SCHOOL_ID
+            ORDER BY school.MSORT
+        ) tmp_count
+    </select>
+
+    <select id="getCountSchoolsHasTeacher" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT COUNT(0) FROM (
+            SELECT
+            school.SCHOOL_ID,
+            school.HEADURL,
+            school.NAME,
+            school.PROVINCE,
+            dic2.NAME AS PROVINCE_VALUE,
+            school.SCTYPE,
+            dic3.NAME AS SCTYPE_VALUE,
+            school.CREATEDATE,
+            school.PHONE,
+            school.EMAIL,
+            school.ADDRESS,
+            school.WEBSITE,
+            school.SCWEBSITE,
+            school.SCCODE,
+            school.SUBJECTION,
+            school.LON,
+            school.LAT,
+            school.LHEADURL,
+            school.MSORT,
+            (SELECT COUNT(0) > 0 FROM SC_STOREUP store WHERE store.SCHOOL_ID = school.SCHOOL_ID AND USER_ID = #{params.USER_ID}) AS STOREUP
+            FROM
+            UR_COMPLETE_TEA tea,
+            SC_SCHOOL school
+            LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+            LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+            <if test="PROPERTY != null">
+                ,SC_SCPROPERTY property
+            </if>
+            <if test="ARRANGMENT != null">
+                ,SC_ARRANGMENT arrangment
+            </if>
+            <if test="SUBJECTTYPE != null">
+                ,SC_SUBJECTTYPE subjecttype
+            </if>
+            WHERE 1 = 1
+            <if test='NAME != null'>
+                AND school.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+            </if>
+            <if test="PROPERTY != null">
+                AND school.SCHOOL_ID = property.SCHOOL_ID
+            </if>
+            <if test="ARRANGMENT != null">
+                AND school.SCHOOL_ID = arrangment.SCHOOL_ID
+            </if>
+            <if test="SUBJECTTYPE != null">
+                AND school.SCHOOL_ID = subjecttype.SCHOOL_ID
+            </if>
+
+            <if test="PROVINCE != null">
+                AND school.PROVINCE IN <foreach item='item' index='index' collection='PROVINCE' open='(' separator=',' close=')'>#{item}</foreach>
+            </if>
+            <if test="PROPERTY != null">
+                AND
+                <foreach item="item" collection="PROPERTY" open="(" close=")" separator="OR">
+                    property.DIC_ID = #{item}
+                </foreach>
+            </if>
+            <if test="ARRANGMENT != null">
+                AND
+                <foreach item="item" collection="ARRANGMENT" open="(" close=")" separator="OR">
+                    arrangment.DIC_ID = #{item}
+                </foreach>
+            </if>
+            <if test="SUBJECTTYPE != null">
+                AND
+                <foreach item="item" collection="SUBJECTTYPE" open="(" close=")" separator="OR">
+                    subjecttype.DIC_ID = #{item}
+                </foreach>
+            </if>
+            AND school.SCHOOL_ID = tea.SCHOOL_ID
+            GROUP BY school.SCHOOL_ID
+            ORDER BY school.MSORT
+        ) tmp_count
+    </select>
+
+    <select id="getSchoolsHasTeacher" parameterType="Page" resultType="DataMap">
+        SELECT
+        school.SCHOOL_ID,
+        school.HEADURL,
+        school.NAME,
+        school.PROVINCE,
+        dic2.NAME AS PROVINCE_VALUE,
+        school.SCTYPE,
+        dic3.NAME AS SCTYPE_VALUE,
+        school.CREATEDATE,
+        school.PHONE,
+        school.EMAIL,
+        school.ADDRESS,
+        school.WEBSITE,
+        school.SCWEBSITE,
+        school.SCCODE,
+        school.SUBJECTION,
+        school.LON,
+        school.LAT,
+        school.LHEADURL,
+        school.MSORT,
+        (SELECT COUNT(0) > 0 FROM SC_STOREUP store WHERE store.SCHOOL_ID = school.SCHOOL_ID AND USER_ID = #{params.USER_ID}) AS STOREUP,
+        (SELECT COUNT(0) FROM UR_COMPLETE_TEA teacher WHERE teacher.SCHOOL_ID = school.SCHOOL_ID) AS TEACOUNT
+        FROM
+        UR_COMPLETE_TEA tea,
+        SC_SCHOOL school
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
+        <if test="PROPERTY != null">
+            ,SC_SCPROPERTY property
+        </if>
+        <if test="ARRANGMENT != null">
+            ,SC_ARRANGMENT arrangment
+        </if>
+        <if test="SUBJECTTYPE != null">
+            ,SC_SUBJECTTYPE subjecttype
+        </if>
+        WHERE 1 = 1
+        <if test='NAME != null'>
+            AND school.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+        <if test="PROPERTY != null">
+            AND school.SCHOOL_ID = property.SCHOOL_ID
+        </if>
+        <if test="ARRANGMENT != null">
+            AND school.SCHOOL_ID = arrangment.SCHOOL_ID
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND school.SCHOOL_ID = subjecttype.SCHOOL_ID
+        </if>
+
+        <if test="PROVINCE != null">
+            AND school.PROVINCE IN <foreach item='item' index='index' collection='PROVINCE' open='(' separator=',' close=')'>#{item}</foreach>
+        </if>
+        <if test="PROPERTY != null">
+            AND
+            <foreach item="item" collection="PROPERTY" open="(" close=")" separator="OR">
+                property.DIC_ID = #{item}
+            </foreach>
+        </if>
+        <if test="ARRANGMENT != null">
+            AND
+            <foreach item="item" collection="ARRANGMENT" open="(" close=")" separator="OR">
+                arrangment.DIC_ID = #{item}
+            </foreach>
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND
+            <foreach item="item" collection="SUBJECTTYPE" open="(" close=")" separator="OR">
+                subjecttype.DIC_ID = #{item}
+            </foreach>
+        </if>
+        AND school.SCHOOL_ID = tea.SCHOOL_ID
+        GROUP BY school.SCHOOL_ID
+        ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
+
+    </select>
+
+    <!-- 批量删除院校信息 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            SC_SCHOOL
+        WHERE
+            SCHOOL_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增院校信息 -->
+    <insert id="addSchool" parameterType="DataMap">
+        INSERT INTO
+            SC_SCHOOL
+        (
+        SCHOOL_ID,
+        HEADURL,
+        NAME,
+        PROVINCE,
+        SCTYPE,
+        CREATEDATE,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+        WEBSITE,
+        SCWEBSITE,
+        SCCODE,
+        SUBJECTION,
+        LON,
+        LAT,
+        LHEADURL,
+        MSORT
+        )
+        VALUES
+        (
+        #{SCHOOL_ID},
+        #{HEADURL},
+        #{NAME},
+        #{PROVINCE},
+        #{SCTYPE},
+        #{CREATEDATE},
+        #{PHONE},
+        #{EMAIL},
+        #{ADDRESS},
+        #{WEBSITE},
+        #{SCWEBSITE},
+        #{SCCODE},
+        #{SUBJECTION},
+        #{LON},
+        #{LAT},
+        #{LHEADURL},
+        #{MSORT}
+        )
+    </insert>
+
+    <!-- 编辑院校信息 -->
+    <update id="editSchool" parameterType="DataMap">
+        UPDATE
+            SC_SCHOOL
+        <set>
+            HEADURL = #{HEADURL},
+            NAME = #{NAME},
+            PROVINCE = #{PROVINCE},
+            SCTYPE = #{SCTYPE},
+            CREATEDATE = #{CREATEDATE},
+            PHONE = #{PHONE},
+            EMAIL = #{EMAIL},
+            ADDRESS = #{ADDRESS},
+            WEBSITE = #{WEBSITE},
+            SCWEBSITE = #{SCWEBSITE},
+            SCCODE = #{SCCODE},
+            SUBJECTION = #{SUBJECTION},
+            LON = #{LON},
+            LAT = #{LAT},
+            LHEADURL = #{LHEADURL},
+            <if test="MSORT != null">
+                MSORT = #{MSORT}
+            </if>
+        </set>
+        WHERE
+            SCHOOL_ID = #{SCHOOL_ID}
+    </update>
+    <!-- 获取所有院校信息 -->
+    <select id="getAllSchools" resultType="DataMap">
+        SELECT
+        SCHOOL_ID,
+        HEADURL,
+        NAME,
+        PROVINCE,
+        SCTYPE,
+        CREATEDATE,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+        WEBSITE,
+        SCWEBSITE,
+        SCCODE,
+        SUBJECTION,
+        LON,
+        LAT,
+        LHEADURL,
+        MSORT
+        FROM SC_SCHOOL
+        ORDER BY MSORT
+    </select>
+
+    <select id="getSchoolsByMajorType" parameterType="DataMap" resultType="DataMap">
+        SELECT sc.* FROM SC_SCHOOL sc, SC_MJSCORE mj WHERE sc.SCHOOL_ID = mj.SCHOOL_ID AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID} AND mj.YEAR_ID = #{YEAR_ID} <if test="ARRANGMENT_ID != null">AND ARRANGMENT_ID = #{ARRANGMENT_ID}</if> GROUP BY sc.SCHOOL_ID ORDER BY sc.MSORT
+    </select>
+
+    <select id="getHasAdvertisementSchools" resultType="DataMap">
+        SELECT
+        school.*,
+        dic1.NAME AS PROVINCE_VALUE,
+        dic2.NAME AS SCTYPE_VALUE
+        FROM
+        SC_SCHOOL school
+        LEFT JOIN SYS_DICTIONARIES dic1 ON school.PROVINCE = dic1.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON school.SCTYPE = dic2.DIC_ID
+        WHERE LHEADURL IS NOT NULL AND LHEADURL != '/static/ymplant/img/timg.png'
+        ORDER BY MSORT
+        LIMIT 15
+    </select>
+    
+    <select id="getSchoolsOrderByViewcount" parameterType="Page" resultType="DataMap">
+        SELECT * FROM SC_SCHOOL ORDER BY VIEWCOUNT DESC
+    </select>
+
+    <update id="addViewCount" parameterType="DataMap">
+        UPDATE SC_SCHOOL SET VIEWCOUNT = VIEWCOUNT + 1 WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </update>
+    <select id="getCountSchools" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM SC_SCHOOL
+    </select>
+</mapper>

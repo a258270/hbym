@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScBriefingMapper">
+
+    <insert id="addScBriefing" parameterType="DataMap">
+        INSERT INTO SC_BRIEFING (BRIEFING_ID, SCHOOL_ID, CONTENT) VALUES (#{BRIEFING_ID}, #{SCHOOL_ID}, #{CONTENT})
+    </insert>
+
+    <update id="editScBriefing" parameterType="DataMap">
+        UPDATE SC_BRIEFING SET CONTENT = #{CONTENT} WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </update>
+
+    <select id="getScBriefingByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_BRIEFING WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+
+    <select id="getScBriefingById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_BRIEFING WHERE BRIEFING_ID = #{BRIEFING_ID}
+    </select>
+</mapper>

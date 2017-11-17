@@ -1,0 +1,103 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+a{
+    color: #333333;
+    text-decoration : none
+}
+ul{
+    list-style: none;
+}
+/*联系人 开始*/
+.kd-kzhu{
+    border-left: 1px dashed #c3c3c3;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+}
+.kd-kzhu dt{
+    font-size: 16px;
+    color: #323232;
+    font-weight: 100;
+    position: relative;
+}
+.kd-xld{
+    position: relative;
+}
+.kd-ld{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: #4ACA6D;
+    position: absolute;
+    top: 6px;
+    left: -26px;
+}
+.kd-xxi{
+    width: 300px;
+    color: #7A8F9A  ;
+    margin: 15px 0;
+}
+.kd-lxx{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.kd-tzhi{
+    width: 500px;
+    color: #7A8F9A;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+}
+.kd-yji{
+    width: 300px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#kd-lhx>li>a{
+    font-size: 18px;
+    color: #333;
+    font-family:  "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+}
+#kd-lhx>.active>a{
+    border: none;
+    border-bottom: 3px solid #4ACA6D;
+}
+.kd-xhua{
+    text-decoration: underline;
+    color:#7A8F9A;
+    font-size: 14px;
+}
+.kd-nothing{
+    text-align: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-content: center;*/
+}
+.kd-nomsg{
+    font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei",arial,"\5b8b\4f53",sans-serif,tahoma;
+    font-size: 20px;
+    color: #C5D1D8;
+    margin-top: 18px;
+}
+/*联系人 结束*/

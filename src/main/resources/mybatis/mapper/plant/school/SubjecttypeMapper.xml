@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SubjecttypeMapper">
+
+    <select id="getSubjecttypeByScId" parameterType="DataMap" resultType="DataMap">
+
+        SELECT
+        subjecttype.SUBJECTTYPE_ID,
+        subjecttype.SCHOOL_ID,
+        subjecttype.DIC_ID,
+        dic.NAME
+        FROM SC_SUBJECTTYPE subjecttype
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = subjecttype.DIC_ID
+        WHERE subjecttype.SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+    <insert id="addSubjecttype" parameterType="DataMap">
+        INSERT INTO SC_SUBJECTTYPE
+        (SUBJECTTYPE_ID, SCHOOL_ID, DIC_ID)
+        VALUES (#{SUBJECTTYPE_ID}, #{SCHOOL_ID}, #{DIC_ID})
+    </insert>
+    <delete id="removeSubjecttypesByScId" parameterType="DataMap">
+        DELETE FROM SC_SUBJECTTYPE WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </delete>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ShiplinkMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getShiplinkById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            shiplink.SHIPLINK_ID,
+            shiplink.NAME,
+            shiplink.LINKSITE,
+            shiplink.LOGO,
+            shiplink.MSORT
+        FROM
+        PLANT_SHIPLINK shiplink
+        WHERE SHIPLINK_ID = #{SHIPLINK_ID}
+    </select>
+
+    <!-- 获取友情链接分页数据 -->
+    <select id="getShiplinks" parameterType="Page" resultType="DataMap">
+        SELECT
+        shiplink.SHIPLINK_ID,
+        shiplink.NAME,
+        shiplink.LINKSITE,
+        shiplink.LOGO,
+        shiplink.MSORT
+        FROM
+        PLANT_SHIPLINK shiplink
+        WHERE 1 = 1
+        <if test='params.NAME != null'>
+            AND shiplink.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+        </if>
+    </select>
+
+    <!-- 批量删除友情链接 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            PLANT_SHIPLINK
+        WHERE
+            SHIPLINK_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增友情链接 -->
+    <insert id="addShiplink" parameterType="DataMap">
+        INSERT INTO
+            PLANT_SHIPLINK
+        (
+        SHIPLINK_ID,
+        NAME,
+        LINKSITE,
+        LOGO,
+        MSORT
+        )
+        VALUES
+        (
+        #{SHIPLINK_ID},
+        #{NAME},
+        #{LINKSITE},
+        #{LOGO},
+        #{MSORT}
+        )
+    </insert>
+
+    <!-- 编辑友情链接 -->
+    <update id="editShiplink" parameterType="DataMap">
+        UPDATE
+            PLANT_SHIPLINK
+        <set>
+            NAME = #{NAME},
+            LINKSITE = #{LINKSITE},
+            LOGO = #{LOGO},
+        </set>
+        WHERE
+            SHIPLINK_ID = #{SHIPLINK_ID}
+    </update>
+    <!-- 编辑友情链接中的非前台录入属性 -->
+    <update id="editNotFrontOfShiplink" parameterType="DataMap">
+        UPDATE
+            PLANT_SHIPLINK
+        <set>
+            MSORT = #{MSORT},
+        </set>
+        WHERE
+            SHIPLINK_ID = #{SHIPLINK_ID}
+    </update>
+    <select id="getShiplinkCount" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM PLANT_SHIPLINK
+    </select>
+</mapper>

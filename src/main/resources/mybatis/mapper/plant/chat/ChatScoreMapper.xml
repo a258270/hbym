@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChatScoreMapper">
+    <select id="getChatScoreByStudentId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_EVALUATE WHERE STUDENT_ID = #{STUDENT_ID} ORDER BY CREATETIME DESC
+    </select>
+
+    <select id="getChatScoreByTeacherId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_EVALUATE WHERE TEACHER_ID = #{TEACHER_ID} ORDER BY CREATETIME DESC
+    </select>
+
+    <select id="getChatScoreByStudentIdAndTeacherId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_EVALUATE WHERE TEACHER_ID = #{TEACHER_ID} AND STUDENT_ID = #{STUDENT_ID} ORDER BY CREATETIME DESC
+    </select>
+
+    <insert id="addChatScore" parameterType="DataMap">
+        INSERT INTO TB_EVALUATE (EVALUATE_ID, STUDENT_ID, TEACHER_ID, SCORE, CONTENT, CREATETIME) VALUES (#{EVALUATE_ID}, #{STUDENT_ID}, #{TEACHER_ID}, #{SCORE}, #{CONTENT}, #{CREATETIME})
+    </insert>
+    
+    <select id="getTeacherTotalScore" parameterType="DataMap" resultType="java.lang.Double">
+        SELECT AVG(SCORE) FROM TB_EVALUATE WHERE TEACHER_ID = #{TEACHER_ID}
+    </select>
+</mapper>

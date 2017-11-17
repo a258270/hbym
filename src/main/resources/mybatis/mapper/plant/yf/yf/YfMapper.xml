@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="YfMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getYfById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            yf.YF_ID,
+            yf.YEAR_ID,
+            yf.MAJORTYPE_ID,
+            yf.SCORE,
+            yf.COUNT,
+            yf.TOTALCOUNT
+        FROM
+        TB_YF yf
+        WHERE YF_ID = #{YF_ID}
+    </select>
+
+    <!-- 获取一分一档分页数据 -->
+    <select id="getYfs" parameterType="Page" resultType="DataMap">
+        SELECT
+        yf.YF_ID,
+        yf.YEAR_ID,
+        yf.MAJORTYPE_ID,
+        yf.SCORE,
+        yf.COUNT,
+        max(yf.TOTALCOUNT),
+        dic.NAME AS YEAR_VALUE,
+        count.STUCOUNT,
+        dic2.NAME AS MAJORTYPE_VALUE
+        FROM
+        TB_YF yf
+        LEFT JOIN SYS_DICTIONARIES dic ON yf.YEAR_ID = dic.DIC_ID
+        LEFT JOIN TB_STUCOUNT count ON count.YEAR_ID = yf.YEAR_ID AND count.MAJORTYPE_ID = yf.MAJORTYPE_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON yf.MAJORTYPE_ID = dic2.DIC_ID
+        WHERE 1 = 1
+        GROUP BY YEAR_ID, MAJORTYPE_ID
+        ORDER BY YEAR_VALUE DESC
+    </select>
+
+    <!-- 批量删除一分一档 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            TB_YF
+        WHERE
+            YF_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增一分一档 -->
+    <insert id="addYf" parameterType="DataMap">
+        INSERT INTO
+            TB_YF
+        (
+        YF_ID,
+        YEAR_ID,
+        MAJORTYPE_ID,
+        SCORE,
+        COUNT,
+        TOTALCOUNT
+        )
+        VALUES
+        (
+        #{YF_ID},
+        #{YEAR_ID},
+        #{MAJORTYPE_ID},
+        #{SCORE},
+        #{COUNT},
+        #{TOTALCOUNT}
+        )
+    </insert>
+
+    <!-- 编辑一分一档 -->
+    <update id="editYf" parameterType="DataMap">
+        UPDATE
+            TB_YF
+        <set>
+        </set>
+        WHERE
+            YF_ID = #{YF_ID}
+    </update>
+    <!-- 编辑一分一档中的非前台录入属性 -->
+    <update id="editNotFrontOfYf" parameterType="DataMap">
+        UPDATE
+            TB_YF
+        <set>
+            YEAR_ID = #{YEAR_ID},
+            MAJORTYPE_ID = #{MAJORTYPE_ID},
+            SCORE = #{SCORE},
+            COUNT = #{COUNT},
+            TOTALCOUNT = #{TOTALCOUNT},
+        </set>
+        WHERE
+            YF_ID = #{YF_ID}
+    </update>
+
+    <select id="getYfsByYear" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_YF WHERE YEAR_ID = #{YEAR_ID} AND MAJORTYPE_ID = #{MAJORTYPE_ID} ORDER BY SCORE DESC
+    </select>
+
+    <delete id="removeYfByYearAndMajortype" parameterType="DataMap">
+        DELETE FROM TB_YF WHERE YEAR_ID = #{YEAR_ID} AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+    </delete>
+</mapper>

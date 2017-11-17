@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItemStoreupMapper">
+    <!-- 添加收藏 -->
+    <insert id="addItemStoreup" parameterType="DataMap">
+        INSERT INTO ITEM_STOREUP
+        (STOREUP_ID, USER_ID, ITEM_ID, CREATETIME)
+        VALUES(#{STOREUP_ID}, #{USER_ID}, #{ITEM_ID}, #{CREATETIME})
+    </insert>
+
+    <!-- 选取用户收藏商品 -->
+    <select id="getItemStoreupsByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT store.*, item.* FROM ITEM_STOREUP store, ITEM_ITEM item
+        WHERE store.USER_ID = #{USER_ID}
+        AND store.ITEM_ID = item.ITEM_ID
+    </select>
+</mapper>

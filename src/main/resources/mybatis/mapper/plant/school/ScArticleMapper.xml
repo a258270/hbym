@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScArticleMapper">
+    <select id="getArticlesByUserId" parameterType="Page" resultType="DataMap">
+        SELECT * FROM SC_ARTICLE WHERE AUTHOR = #{params.USER_ID} ORDER BY MSORT DESC
+    </select>
+
+    <insert id="addArticle" parameterType="DataMap">
+        INSERT INTO
+        SC_ARTICLE
+        (
+        ARTICLE_ID,
+        TITLE,
+        SUBTITLE,
+        IMGURL,
+        MSORT,
+        CONTENT,
+        AUTHOR,
+        CREATETIME,
+        MODIFYTIME,
+        VIEWCOUNT
+        )
+        VALUES
+        (
+        #{ARTICLE_ID},
+        #{TITLE},
+        #{SUBTITLE},
+        #{IMGURL},
+        #{MSORT},
+        #{CONTENT},
+        #{AUTHOR},
+        #{CREATETIME},
+        #{MODIFYTIME},
+        #{VIEWCOUNT}
+        )
+    </insert>
+
+    <delete id="removeArticles" parameterType="java.util.List">
+        DELETE FROM SC_ARTICLE WHERE ARTICLE_ID IN <foreach collection="list" open="(" separator="," close=")" item="item">#{item}</foreach>
+    </delete>
+
+    <select id="getArticleById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_ARTICLE WHERE ARTICLE_ID = #{ARTICLE_ID}
+    </select>
+
+    <update id="editArticle" parameterType="DataMap">
+        UPDATE SC_ARTICLE SET TITLE = #{TITLE}, SUBTITLE = #{SUBTITLE}, IMGURL = #{IMGURL}, MSORT = #{MSORT}, CONTENT = #{CONTENT}, MODIFYTIME = #{MODIFYTIME} WHERE ARTICLE_ID = #{ARTICLE_ID}
+    </update>
+    <select id="getArticlesByScId" parameterType="Page" resultType="DataMap">
+        SELECT article.* FROM SC_ARTICLE article, UR_COMPLETE_TEA tea WHERE article.AUTHOR = tea.USER_ID AND tea.SCHOOL_ID = #{params.SCHOOL_ID} ORDER BY article.MSORT DESC
+    </select>
+    <update id="addViewCount" parameterType="DataMap">
+        UPDATE SC_ARTICLE SET VIEWCOUNT = VIEWCOUNT + 1 WHERE ARTICLE_ID = #{ARTICLE_ID}
+    </update>
+</mapper>

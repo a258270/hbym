@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NewsMapper">
+    <!-- 根据Id获取数据 -->
+    <select id="getNewsById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            news.NEWS_ID,
+            news.TITLE,
+            news.SUBTITLE,
+            news.IMGURL,
+            news.NEWSTYPE,
+            dic3.NAME AS NEWSTYPE_VALUE,
+            news.MSORT,
+            news.CONTENT,
+            news.AUTHOR,
+            news.CREATETIME,
+            news.MODIFYTIME,
+            news.VIEWCOUNT
+        FROM
+        NEWS_NEWS news
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = news.NEWSTYPE
+        WHERE news.NEWS_ID = #{NEWS_ID}
+        ORDER BY news.MSORT DESC
+    </select>
+
+    <!-- 获取新闻分页数据 -->
+    <select id="getNewss" parameterType="Page" resultType="DataMap">
+        SELECT
+        news.NEWS_ID,
+        news.TITLE,
+        news.SUBTITLE,
+        news.IMGURL,
+        news.NEWSTYPE,
+            dic3.NAME AS NEWSTYPE_VALUE,
+        news.MSORT,
+        news.CONTENT,
+        news.AUTHOR,
+        news.CREATETIME,
+        news.MODIFYTIME,
+        news.VIEWCOUNT
+        FROM
+        NEWS_NEWS news
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = news.NEWSTYPE
+        WHERE 1 = 1
+        <if test="params.TITLE != null">
+            AND news.TITLE LIKE CONCAT(CONCAT('%', #{params.TITLE}), '%')
+        </if>
+        <if test="params.NEWSTYPE != null">
+            AND news.NEWSTYPE = #{params.NEWSTYPE}
+        </if>
+        ORDER BY news.MSORT DESC
+    </select>
+
+    <!-- 批量删除新闻 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            NEWS_NEWS
+        WHERE
+            NEWS_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <!-- 新增新闻 -->
+    <insert id="addNews" parameterType="DataMap">
+        INSERT INTO
+            NEWS_NEWS
+        (
+        NEWS_ID,
+        TITLE,
+        SUBTITLE,
+        IMGURL,
+        NEWSTYPE,
+        MSORT,
+        CONTENT,
+        AUTHOR,
+        CREATETIME,
+        MODIFYTIME,
+        VIEWCOUNT
+        )
+        VALUES
+        (
+        #{NEWS_ID},
+        #{TITLE},
+        #{SUBTITLE},
+        #{IMGURL},
+        #{NEWSTYPE},
+        #{MSORT},
+        #{CONTENT},
+        #{AUTHOR},
+        #{CREATETIME},
+        #{MODIFYTIME},
+        #{VIEWCOUNT}
+        )
+    </insert>
+
+    <!-- 编辑新闻 -->
+    <update id="editNews" parameterType="DataMap">
+        UPDATE
+            NEWS_NEWS
+        <set>
+            TITLE = #{TITLE},
+            SUBTITLE = #{SUBTITLE},
+            IMGURL = #{IMGURL},
+            NEWSTYPE = #{NEWSTYPE},
+            MSORT = #{MSORT},
+            CONTENT = #{CONTENT},
+        </set>
+        WHERE
+            NEWS_ID = #{NEWS_ID}
+    </update>
+    <!-- 编辑新闻中的非前台录入属性 -->
+    <update id="editNotFrontOfNews" parameterType="DataMap">
+        UPDATE
+            NEWS_NEWS
+        <set>
+            AUTHOR = #{AUTHOR},
+            CREATETIME = #{CREATETIME},
+            MODIFYTIME = #{MODIFYTIME},
+            VIEWCOUNT = #{VIEWCOUNT},
+        </set>
+        WHERE
+            NEWS_ID = #{NEWS_ID}
+    </update>
+    <!-- 获取新闻COUNT -->
+    <select id="getNewsCount" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM NEWS_NEWS
+    </select>
+    <!-- 增加浏览量 -->
+    <update id="addViewCount" parameterType="DataMap">
+        UPDATE NEWS_NEWS SET VIEWCOUNT = VIEWCOUNT + 1 WHERE NEWS_ID = #{NEWS_ID}
+    </update>
+</mapper>

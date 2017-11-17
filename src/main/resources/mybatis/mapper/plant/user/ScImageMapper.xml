@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScImageMapper">
+    <insert id="addScImage" parameterType="DataMap">
+        INSERT INTO SC_IMAGE (IMAGE_ID, USER_ID, URL, CREATETIME, VIEWCOUNT, TITLE, ISVAL, SCHOOL_ID) VALUES(#{IMAGE_ID}, #{USER_ID}, #{URL}, #{CREATETIME}, #{VIEWCOUNT}, #{TITLE}, false, #{SCHOOL_ID})
+    </insert>
+    <select id="getImages" parameterType="Page" resultType="DataMap">
+        SELECT * FROM SC_IMAGE WHERE USER_ID = #{params.USER_ID} ORDER BY CREATETIME DESC
+    </select>
+    <select id="getImageById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_IMAGE WHERE IMAGE_ID = #{IMAGE_ID}
+    </select>
+
+    <update id="editImage" parameterType="DataMap">
+        UPDATE SC_IMAGE SET TITLE = #{TITLE} WHERE IMAGE_ID = #{IMAGE_ID}
+    </update>
+
+    <delete id="removeImages" parameterType="java.util.List">
+        DELETE FROM SC_IMAGE WHERE IMAGE_ID IN <foreach collection="list" open="(" separator="," close=")" item="item">#{item}</foreach>
+    </delete>
+    <select id="getImagesByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_IMAGE WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+</mapper>

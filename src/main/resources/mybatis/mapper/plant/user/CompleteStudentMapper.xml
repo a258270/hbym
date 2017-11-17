@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CompleteStudentMapper">
+    
+    <insert id="addCompleteStudent" parameterType="DataMap">
+        INSERT INTO UR_COMPLETE_STU
+        (COMPLETE_ID, USER_ID, NICKNAME, NAME, SEX, PHONE, BIRTHDAY, IDCARD, EMAIL, HEADURL, TRADEPASSWORD, NAMESECRET, SEXSECRET, BIRTHDAYSECRET)
+        VALUES
+        (#{COMPLETE_ID}, #{USER_ID}, #{NICKNAME}, #{NAME}, #{SEX}, #{PHONE}, #{BIRTHDAY}, #{IDCARD}, #{EMAIL}, #{HEADURL}, #{TRADEPASSWORD}, #{NAMESECRET}, #{SEXSECRET}, #{BIRTHDAYSECRET})
+    </insert>
+    <update id="editCompleteStudent" parameterType="DataMap">
+        UPDATE UR_COMPLETE_STU
+        <set>
+            <if test="NICKNAME != null">
+                NICKNAME = #{NICKNAME},
+            </if>
+            <if test="NAME != null">
+                NAME = #{NAME},
+            </if>
+            <if test="SEX != null">
+                SEX = #{SEX},
+            </if>
+            <if test="PHONE != null">
+                PHONE = #{PHONE},
+            </if>
+            <if test="BIRTHDAY != null">
+                BIRTHDAY = #{BIRTHDAY},
+            </if>
+            <if test="IDCARD != null">
+                IDCARD = #{IDCARD},
+            </if>
+            <if test="EMAIL != null">
+                EMAIL = #{EMAIL},
+            </if>
+            <if test="HEADURL != null">
+                HEADURL = #{HEADURL},
+            </if>
+            <if test="TRADEPASSWORD != null">
+                TRADEPASSWORD = #{TRADEPASSWORD},
+            </if>
+            <if test="NAMESECRET != null">
+                NAMESECRET = #{NAMESECRET},
+            </if>
+            <if test="SEXSECRET != null">
+                SEXSECRET = #{SEXSECRET},
+            </if>
+            <if test="BIRTHDAYSECRET != null">
+                BIRTHDAYSECRET = #{BIRTHDAYSECRET},
+            </if>
+        </set>
+        WHERE USER_ID = #{USER_ID}
+    </update>
+    <select id="getCompleteStudentByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT stu.*, dic1.NAME SEX_VALUE, exam.*, dic2.NAME AS EXAMAREA_VALUE, dic3.NAME AS MAJORTYPE_VALUE FROM UR_EXAMINEE exam
+        LEFT JOIN SYS_DICTIONARIES dic2 ON exam.EXAMAREA = dic2.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON exam.MAJORTYPE = dic3.DIC_ID
+        , UR_COMPLETE_STU stu
+        LEFT JOIN SYS_DICTIONARIES dic1 ON stu.SEX = dic1.DIC_ID
+        WHERE stu.USER_ID = #{USER_ID} AND stu.USER_ID = exam.USER_ID
+    </select>
+    <select id="getCompleteStudentById" parameterType="DataMap" resultType="DataMap">
+        SELECT stu.*, dic1.NAME SEX_VALUE FROM UR_COMPLETE_STU stu
+        LEFT JOIN SYS_DICTIONARIES dic1 ON stu.SEX = dic1.DIC_ID
+        WHERE COMPLETE_ID = #{COMPLETE_ID}
+    </select>
+    <select id="completeStudentInfo" parameterType="DataMap">
+        UPDATE UR_COMPLETE_STU SET NICKNAME = #{NICKNAME}, HEADURL = #{HEADURL}, SEX = #{SEX}, NAMESECRET = #{NAMESECRET}, BIRTHDAYSECRET = #{BIRTHDAYSECRET}, SEXSECRET = #{SEXSECRET}, BIRTHDAY = #{BIRTHDAY} WHERE USER_ID = #{USER_ID}
+    </select>
+
+    <select id="isHasPhoneInCompleteStudent" parameterType="DataMap" resultType="java.lang.Boolean">
+        SELECT COUNT(0) > 0 FROM UR_COMPLETE_STU WHERE PHONE = #{PHONE}
+    </select>
+</mapper>

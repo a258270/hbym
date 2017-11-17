@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChatMapper">
+    <insert id="addChatRec" parameterType="DataMap">
+        INSERT INTO TB_CHAT (REC_ID, SUSER_ID, RUSER_ID, CONTENT, CREATETIME) VALUES (#{REC_ID}, #{SUSER_ID}, #{RUSER_ID}, #{CONTENT}, #{CREATETIME})
+    </insert>
+
+    <select id="getChatRecBySRUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT c.* FROM TB_CHAT c WHERE (c.SUSER_ID = #{SUSER_ID} AND c.RUSER_ID = #{RUSER_ID}) OR (c.RUSER_ID = #{SUSER_ID} AND c.SUSER_ID = #{RUSER_ID}) ORDER BY CREATETIME ASC
+    </select>
+
+    <select id="listChatRecords" parameterType="Page" resultType="DataMap">
+        SELECT * FROM TB_CHAT WHERE (SUSER_ID = #{params.SUSER_ID} AND RUSER_ID = #{params.RUSER_ID}) OR (SUSER_ID = #{params.RUSER_ID} AND RUSER_ID = #{params.SUSER_ID}) ORDER BY CREATETIME ASC
+    </select>
+    <update id="setRead" parameterType="DataMap">
+        UPDATE TB_CHAT SET ISREAD = true WHERE SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID} AND ISREAD = false
+    </update>
+    <select id="isHasMsg" parameterType="DataMap" resultType="java.lang.Boolean">
+        SELECT COUNT(0) > 0 FROM TB_CHAT WHERE RUSER_ID = #{RUSER_ID} AND ISREAD = false
+    </select>
+    <select id="getMsgCount" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM TB_CHAT WHERE SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID} AND ISREAD = false
+    </select>
+    <select id="getNoReadMsgCount" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM TB_CHAT WHERE RUSER_ID = #{RUSER_ID} AND ISREAD = false
+    </select>
+</mapper>

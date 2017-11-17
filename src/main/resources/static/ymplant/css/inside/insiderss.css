@@ -1,0 +1,81 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+a{
+    color: #333333;
+    text-decoration : none
+}
+ul{
+    list-style: none;
+}
+.kd-pages .announcement{
+    width: 200px;
+    background-color: #FFC32F;
+    padding: 2px 107px 2px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.kd-pages .announcement>h4{
+    background-color: #fff;
+    color: red;
+}
+.video{
+    width: 100%;
+    padding: 10px 80px;
+}
+.video>img{
+    width: 100%;
+}
+.activity{
+    width: 235px;
+    background-color: #FFC32F;
+    padding: 2px 107px 2px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+.activity>h5{
+    background-color: #fff;
+    /*color: red;*/
+}
+.jube{
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.previous{
+    background-color: #FFC32F;
+    padding: 2px 100px 2px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+.previous>h4{
+    background-color: #fff;
+    color: red;
+}
+
+.namics>h4{
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+

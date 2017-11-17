@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CompleteProMapper">
+
+    <insert id="addCompletePro" parameterType="DataMap">
+        INSERT INTO UR_COMPLETE_PRO
+        (COMPLETE_ID, USER_ID, NAME, SEX, PHONE, BIRTHDAY, EMAIL, HEADURL, NICKNAME, IDCARD, TRADEPASSWORD, JOBDATE, NAMESECRET, SEXSECRET, BIRTHDAYSECRET, PRICE)
+        VALUES
+        (#{COMPLETE_ID}, #{USER_ID}, #{NAME}, #{SEX}, #{PHONE}, #{BIRTHDAY}, #{EMAIL}, #{HEADURL}, #{NICKNAME}, #{IDCARD}, #{TRADEPASSWORD}, #{JOBDATE}, #{NAMESECRET}, #{SEXSECRET}, #{BIRTHDAYSECRET}, #{PRICE})
+    </insert>
+    <update id="editCompletePro" parameterType="DataMap">
+        UPDATE UR_COMPLETE_PRO
+        <set>
+            <if test="NAME != null">
+                NAME = #{NAME},
+            </if>
+            <if test="SEX != null">
+                SEX = #{SEX},
+            </if>
+            <if test="PHONE != null">
+                PHONE = #{PHONE},
+            </if>
+            <if test="BIRTHDAY != null">
+                BIRTHDAY = #{BIRTHDAY},
+            </if>
+            <if test="EMAIL != null">
+                EMAIL = #{EMAIL},
+            </if>
+            <if test="HEADURL != null">
+                HEADURL = #{HEADURL},
+            </if>
+            <if test="NICKNAME != null">
+                NICKNAME = #{NICKNAME},
+            </if>
+            <if test="IDCARD != null">
+                IDCARD = #{IDCARD},
+            </if>
+            <if test="TRADEPASSWORD != null">
+                TRADEPASSWORD = #{TRADEPASSWORD},
+            </if>
+            <if test="JOBDATE != null">
+                JOBDATE = #{JOBDATE},
+            </if>
+            <if test="NAMESECRET != null">
+                NAMESECRET = #{NAMESECRET},
+            </if>
+            <if test="SEXSECRET != null">
+                NAMESECRET = #{NAMESECRET},
+            </if>
+            <if test="BIRTHDAYSECRET != null">
+                BIRTHDAYSECRET = #{BIRTHDAYSECRET},
+            </if>
+            <if test="PRICE != null">
+                PRICE = #{PRICE}
+            </if>
+        </set>
+        WHERE USER_ID = #{USER_ID}
+    </update>
+    <select id="getCompleteProByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_COMPLETE_PRO WHERE USER_ID = #{USER_ID}
+    </select>
+    <select id="getCompleteProById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_COMPLETE_PRO WHERE COMPLETE_ID = #{COMPLETE_ID}
+    </select>
+    <select id="getCompletePros" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        pro.*, dic1.NAME AS JOBDATE_VALUE
+        FROM
+        UR_COMPLETE_PRO pro
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = pro.JOBDATE
+    </select>
+    <select id="isHasPhoneInCompletePro" parameterType="DataMap" resultType="java.lang.Boolean">
+        SELECT COUNT(0) > 0 FROM UR_COMPLETE_PRO WHERE PHONE = #{PHONE}
+    </select>
+</mapper>

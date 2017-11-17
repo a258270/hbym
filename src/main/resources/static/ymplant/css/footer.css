@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+a{
+    /*text-decoration:none;*/
+}
+h1,h2,h3,h4,h5,h6{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+#footer{
+    padding: 10px;
+    /*background: url("../img/footer.png") no-repeat;*/
+    background-color: #5AB4AA;
+}
+.kd-widget-title>h4{
+    color: #fff;
+    font-weight: bold;
+    /*margin-bottom: 30px;*/
+}
+.kd-widget-title>p{
+    color: #fff;
+}
+.youqing>li{
+    float: left;
+    width: 20%;
+    position: relative;
+    overflow: hidden;
+}
+.youqing>li>a>.fnin{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 62px;
+    background-color: rgba(0,0,0,0.4);
+}
+.youqing>li:hover .fnin{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s;
+
+}
+.youqing>li>a{
+    padding:20px 24px;
+    margin: 0 10px 10px 0;
+    background-color: #33C9B5;
+    color: #fff;
+    text-decoration:none;
+    transition: 0.5s;
+}
+.lianxi>li{
+    /*color: #fff;*/
+    padding: 5px 0;
+}
+.bot_a{
+    color: #fff;
+}
+.youqinga>li{
+    padding:5px 0;
+}

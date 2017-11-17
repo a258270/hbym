@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScAssetsMapper">
+
+    <insert id="addScAssets" parameterType="DataMap">
+        INSERT INTO SC_ASSETS (ASSETS_ID, SCHOOL_ID, CONTENT) VALUES (#{ASSETS_ID}, #{SCHOOL_ID}, #{CONTENT})
+    </insert>
+
+    <update id="editScAssets" parameterType="DataMap">
+        UPDATE SC_ASSETS SET CONTENT = #{CONTENT} WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </update>
+
+    <select id="getScAssetsByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_ASSETS WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </select>
+
+    <select id="getScAssetsById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_ASSETS WHERE ASSETS_ID = #{ASSETS_ID}
+    </select>
+</mapper>

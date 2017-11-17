@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItemBelongMapper">
+    <select id="getValItemBelongByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM ITEM_BELONG WHERE USER_ID = #{USER_ID} AND ISVAL = true ORDER BY CREATETIME DESC
+    </select>
+    
+    <select id="getValItemBelongByUserIdAndItemType" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM ITEM_BELONG WHERE USER_ID = #{USER_ID} AND ITEMTYPE = #{ITEMTYPE} AND ISVAL = true
+    </select>
+    
+    <select id="getValItemBelongCountByUserIdAndItemType" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM ITEM_BELONG WHERE USER_ID = #{USER_ID} AND ITEMTYPE = #{ITEMTYPE} AND ISVAL = true
+    </select>
+
+    <insert id="addItemBelong" parameterType="DataMap">
+        INSERT INTO ITEM_BELONG (BELONG_ID, USER_ID, ITEMTYPE, CREATETIME, ISVAL) VALUES (#{BELONG_ID}, #{USER_ID}, #{ITEMTYPE}, #{CREATETIME}, #{ISVAL})
+    </insert>
+
+    <update id="useItem" parameterType="DataMap">
+        UPDATE ITEM_BELONG SET ISVAL = false, USETIME = #{USETIME} WHERE BELONG_ID = #{BELONG_ID}
+    </update>
+</mapper>

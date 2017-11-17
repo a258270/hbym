@@ -1,0 +1,67 @@
+div,ul,li,ol,p{
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear:both;
+}
+a{
+    color: #333333;
+}
+ul{
+    list-style: none;
+}
+.xiangxi{
+    width: 200px;
+    background-color: #FFC32F;
+    padding: 2px 70px 2px 0px;
+    margin-bottom: 15px;
+}
+.xiangxi>span{
+    background-color: #fff;
+    color: red;
+    padding: 2px 16px;
+}
+
+.gmai{
+    /*padding: 20px;*/
+    border: 1px solid #BBBBBB;
+}
+.collect{
+    background-color: #fff;
+    border: 1px solid #FDC33B;
+    border-radius: 4px;
+    padding:5px;
+}
+.buy{
+    background-color: #FF6A06;
+    color: #fff;
+    border: 1px solid #FF6A06;
+    border-radius: 4px;
+    padding:5px 10px;
+}
+
+.account{
+    width: 100%;
+    padding: 20px;
+    background-color: #FFFBF2;
+}
+
+.jianjie>li{
+    color: #050505;
+    line-height: 1.8;
+}
+
+.xiangguan{
+    border-top: 1px solid #B9B9B9;
+}
+
+
+
+
+
+

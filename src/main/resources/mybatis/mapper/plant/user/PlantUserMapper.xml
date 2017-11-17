@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlantUserMapper">
+    <select id="validUser" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            user.*, card.OVERDUETIME AS OVERDUETIME
+        FROM
+        UR_USER user
+        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID
+        LEFT JOIN UR_COMPLETE_STU stu ON user.USER_ID = stu.USER_ID
+        LEFT JOIN UR_COMPLETE_TEA tea ON user.USER_ID = tea.USER_ID
+        LEFT JOIN UR_COMPLETE_PRO pro ON user.USER_ID = pro.USER_ID
+        WHERE (user.USERNAME = #{USERNAME} OR stu.PHONE = #{USERNAME} OR tea.PHONE = #{USERNAME} OR pro.PHONE = #{USERNAME}) AND user.PASSWORD = #{PASSWORD}
+    </select>
+    <insert id="regUser" parameterType="DataMap">
+        INSERT INTO
+            UR_USER
+        (USER_ID, USERNAME, PASSWORD,ROLE_ID,CREATETIME,IP,LAST_LOGIN)
+        VALUES(#{USER_ID}, #{USERNAME}, #{PASSWORD}, #{ROLE_ID}, #{CREATETIME}, #{IP}, #{LAST_LOGIN})
+    </insert>
+    <select id="getUserByUsername" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        user.*, card.OVERDUETIME AS OVERDUETIME
+        FROM UR_USER user
+        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID
+        LEFT JOIN UR_COMPLETE_STU stu ON user.USER_ID = stu.USER_ID
+        LEFT JOIN UR_COMPLETE_TEA tea ON user.USER_ID = tea.USER_ID
+        LEFT JOIN UR_COMPLETE_PRO pro ON user.USER_ID = pro.USER_ID
+        WHERE user.USERNAME = #{USERNAME} OR stu.PHONE = #{USERNAME} OR tea.PHONE = #{USERNAME} OR pro.PHONE = #{USERNAME}
+    </select>
+    <update id="editUserLoginInfo" parameterType="DataMap">
+        UPDATE
+            UR_USER
+        SET IP = #{IP}, LAST_LOGIN = #{LAST_LOGIN}
+        WHERE USERNAME = #{USERNAME}
+    </update>
+    <select id="getUserByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT user.*, card.OVERDUETIME AS OVERDUETIME FROM UR_USER user
+        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID
+        WHERE user.USER_ID = #{USER_ID}
+    </select>
+    <update id="updatePassword" parameterType="DataMap">
+        UPDATE UR_USER SET PASSWORD = #{PASSWORD} WHERE USER_ID = #{USER_ID}
+    </update>
+
+    <select id="getTeachers" parameterType="Page" resultType="DataMap">
+        SELECT
+            user.USERNAME, user.CREATETIME, user.STATUS, user.IP, user.LAST_LOGIN, dic1.NAME as SEX_VALUE, school.NAME as SCHOOL_VALUE, tea.*
+        FROM
+            UR_USER user,
+            UR_COMPLETE_TEA tea
+            LEFT JOIN SC_SCHOOL school ON tea.SCHOOL_ID = school.SCHOOL_ID
+            LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = tea.SEX
+        WHERE tea.USER_ID = user.USER_ID
+        <if test="params.USERNAME != null">
+            AND user.USERNAME LIKE CONCAT(CONCAT("%", #{params.USERNAME}), "%")
+        </if>
+        <if test="params.NICKNAME != null">
+            AND tea.NICKNAME LIKE CONCAT(CONCAT("%", #{params.NICKNAME}), "%")
+        </if>
+    </select>
+
+    <select id="getExperts" parameterType="Page" resultType="DataMap">
+        SELECT
+            user.USERNAME, user.CREATETIME, user.STATUS, user.IP, user.LAST_LOGIN, dic1.NAME as SEX_VALUE, pro.*, dic2.NAME AS JOBDATE_VALUE
+        FROM
+        UR_USER user,
+        UR_COMPLETE_PRO pro
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = pro.SEX
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = pro.JOBDATE
+        WHERE pro.USER_ID = user.USER_ID
+        <if test="params.USERNAME != null">
+            AND user.USERNAME LIKE CONCAT(CONCAT("%", #{params.USERNAME}), "%")
+        </if>
+        <if test="params.NICKNAME != null">
+            AND pro.NICKNAME LIKE CONCAT(CONCAT("%", #{params.NICKNAME}), "%")
+        </if>
+    </select>
+
+    <insert id="addUser" parameterType="DataMap">
+        INSERT INTO UR_USER (USER_ID, USERNAME, PASSWORD, ROLE_ID, CREATETIME, STATUS, IP, LAST_LOGIN)
+        VALUES (#{USER_ID}, #{USERNAME}, #{PASSWORD}, #{ROLE_ID}, #{CREATETIME}, #{STATUS}, #{IP}, #{LAST_LOGIN})
+    </insert>
+
+    <update id="batchRemoves" parameterType="java.util.List">
+        UPDATE
+        UR_USER
+        SET
+        STATUS = false
+        WHERE
+        USER_ID
+        IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    <update id="unRemove" parameterType="DataMap">
+        UPDATE
+        UR_USER
+        SET
+        STATUS = true
+        WHERE
+        USER_ID = #{USER_ID}
+    </update>
+    <update id="setUserVip" parameterType="DataMap">
+        UPDATE UR_USER
+        SET VIP = #{CARD_ID}
+        WHERE USER_ID = #{USER_ID}
+    </update>
+</mapper>

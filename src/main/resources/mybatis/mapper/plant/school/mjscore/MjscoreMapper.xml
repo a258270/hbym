@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MjscoreMapper">
+    <!-- 根据Id获取数据 -->
+    <!--<select id="getMjscoreById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            scscore.MJSCORE_ID,
+            scscore.SCHOOL_ID,
+            scscore.YEAR_ID,
+            dic1.NAME AS YEAR_ID_VALUE,
+            scscore.ARRANGMENT_ID,
+            dic2.NAME AS ARRANGMENT_ID_VALUE,
+            scscore.MAJORTYPE_ID,
+            dic3.NAME AS MAJORTYPE_ID_VALUE,
+            scscore.MAXSCORE,
+            scscore.MINSCORE,
+            scscore.ENTERCOUNT,
+            scscore.MSORT
+        FROM
+        SC_MJSCORE scscore
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = scscore.YEAR_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = scscore.ARRANGMENT_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = scscore.MAJORTYPE_ID
+        WHERE MJSCORE_ID = #{MJSCORE_ID}
+    </select>-->
+    <select id="getMjscoresByScId" parameterType="DataMap" resultType="DataMap">
+        SELECT
+            MJSCORE_ID,
+            SCHOOL_ID,
+            MAJOR_ID,
+            YEAR_ID,
+            ARRANGMENT_ID,
+            MAJORTYPE_ID,
+            MAXSCORE,
+            MINSCORE,
+            ENTERCOUNT,
+            MSORT
+        FROM SC_MJSCORE
+        WHERE SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY MSORT
+    </select>
+
+    <select id="getMjscoresChong" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS PROVINCE_VALUE, mj.MAJOR_ID
+        FROM SC_MJSCORE mj,
+        SYS_DICTIONARIES dic,
+        <if test="SCPROPERTY != null">SC_SCPROPERTY property,</if>
+        <if test="SUBJECTTYPE != null">SC_SUBJECTTYPE subjecttype,</if>
+        SC_SCHOOL sc LEFT JOIN SYS_DICTIONARIES dic2 ON sc.PROVINCE = dic2.DIC_ID
+        WHERE
+        dic.DIC_ID = mj.MAJOR_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND (mj.MINSCORE &gt;= (#{chongMin}) AND mj.MINSCORE &lt; (#{chongMax}))
+        AND sc.SCHOOL_ID = mj.SCHOOL_ID
+        AND mj.ARRANGMENT_ID = #{ARRANGMENT_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        <if test="PROVINCE != null">
+            AND sc.PROVINCE IN
+            <foreach collection="PROVINCE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="MAJOR != null">
+            AND dic.PARENT_ID IN
+            <foreach collection="MAJOR" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="SCPROPERTY != null">
+            AND property.DIC_ID IN
+            <foreach collection="SCPROPERTY" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND property.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND subjecttype.DIC_ID IN
+            <foreach collection="SUBJECTTYPE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND subjecttype.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        GROUP BY mj.MJSCORE_ID ORDER BY rand() LIMIT 10
+    </select>
+
+    <select id="getMjscoresWen" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS PROVINCE_VALUE, mj.MAJOR_ID
+        FROM SC_MJSCORE mj,
+        SYS_DICTIONARIES dic,
+        <if test="SCPROPERTY != null">SC_SCPROPERTY property,</if>
+        <if test="SUBJECTTYPE != null">SC_SUBJECTTYPE subjecttype,</if>
+        SC_SCHOOL sc LEFT JOIN SYS_DICTIONARIES dic2 ON sc.PROVINCE = dic2.DIC_ID
+        WHERE
+        dic.DIC_ID = mj.MAJOR_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND (mj.MINSCORE &gt;= (#{wenMin}) AND mj.MINSCORE &lt; (#{wenMax}))
+        AND sc.SCHOOL_ID = mj.SCHOOL_ID
+        AND ARRANGMENT_ID = #{ARRANGMENT_ID}
+        AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+        <if test="PROVINCE != null">
+            AND sc.PROVINCE IN
+            <foreach collection="PROVINCE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="MAJOR != null">
+            AND dic.PARENT_ID IN
+            <foreach collection="MAJOR" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="SCPROPERTY != null">
+            AND property.DIC_ID IN
+            <foreach collection="SCPROPERTY" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND property.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND subjecttype.DIC_ID IN
+            <foreach collection="SUBJECTTYPE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND subjecttype.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        GROUP BY mj.MJSCORE_ID ORDER BY rand() LIMIT 10
+    </select>
+
+    <select id="getMjscoresBao" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS PROVINCE_VALUE, mj.MAJOR_ID
+        FROM SC_MJSCORE mj,
+        SYS_DICTIONARIES dic,
+        <if test="SCPROPERTY != null">SC_SCPROPERTY property,</if>
+        <if test="SUBJECTTYPE != null">SC_SUBJECTTYPE subjecttype,</if>
+        SC_SCHOOL sc LEFT JOIN SYS_DICTIONARIES dic2 ON sc.PROVINCE = dic2.DIC_ID
+        WHERE
+        dic.DIC_ID = mj.MAJOR_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND (mj.MINSCORE &gt;= (#{baoMin}) AND mj.MINSCORE &lt; (#{baoMax}))
+        AND sc.SCHOOL_ID = mj.SCHOOL_ID
+        AND ARRANGMENT_ID = #{ARRANGMENT_ID}
+        AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+        <if test="PROVINCE != null">
+            AND sc.PROVINCE IN
+            <foreach collection="PROVINCE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="MAJOR != null">
+            AND dic.PARENT_ID IN
+            <foreach collection="MAJOR" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="SCPROPERTY != null">
+            AND property.DIC_ID IN
+            <foreach collection="SCPROPERTY" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND property.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND subjecttype.DIC_ID IN
+            <foreach collection="SUBJECTTYPE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND subjecttype.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        GROUP BY mj.MJSCORE_ID ORDER BY rand() LIMIT 10
+    </select>
+    <select id="getMjscoresDian" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS PROVINCE_VALUE, mj.MAJOR_ID
+        FROM SC_MJSCORE mj,
+        SYS_DICTIONARIES dic,
+        <if test="SCPROPERTY != null">SC_SCPROPERTY property,</if>
+        <if test="SUBJECTTYPE != null">SC_SUBJECTTYPE subjecttype,</if>
+        SC_SCHOOL sc LEFT JOIN SYS_DICTIONARIES dic2 ON sc.PROVINCE = dic2.DIC_ID
+        WHERE
+        dic.DIC_ID = mj.MAJOR_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND (mj.MINSCORE &gt;= (#{dianMin}) AND mj.MINSCORE &lt; (#{dianMax}))
+        AND sc.SCHOOL_ID = mj.SCHOOL_ID
+        AND ARRANGMENT_ID = #{ARRANGMENT_ID}
+        AND MAJORTYPE_ID = #{MAJORTYPE_ID}
+        <if test="PROVINCE != null">
+            AND sc.PROVINCE IN
+            <foreach collection="PROVINCE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="MAJOR != null">
+            AND dic.PARENT_ID IN
+            <foreach collection="MAJOR" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="SCPROPERTY != null">
+            AND property.DIC_ID IN
+            <foreach collection="SCPROPERTY" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND property.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        <if test="SUBJECTTYPE != null">
+            AND subjecttype.DIC_ID IN
+            <foreach collection="SUBJECTTYPE" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            AND subjecttype.SCHOOL_ID = sc.SCHOOL_ID
+        </if>
+        GROUP BY mj.MJSCORE_ID ORDER BY rand() LIMIT 10
+    </select>
+    <select id="getMjscoreBySchool" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS PROVINCE_VALUE, dic3.NAME AS YEAR_VALUE
+        FROM
+        SC_MJSCORE mj
+        LEFT JOIN SYS_DICTIONARIES dic3 ON mj.YEAR_ID = dic3.DIC_ID,
+        SC_SCHOOL sc
+        LEFT JOIN SYS_DICTIONARIES dic2 ON sc.PROVINCE = dic2.DIC_ID,
+        SYS_DICTIONARIES dic
+        WHERE
+        mj.SCHOOL_ID = #{SCHOOL_ID}
+        AND mj.MAJOR_ID = #{MAJOR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND mj.SCHOOL_ID = sc.SCHOOL_ID
+        AND mj.MAJOR_ID = dic.DIC_ID
+        AND mj.YEAR_ID = #{YEAR_ID}
+    </select>
+    <select id="getMjscoreBySchoolAndMajor" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        mj.*, sc.*, dic.NAME AS MJNAME, dic2.NAME AS YEAR_VALUE, dic3.NAME AS MAJORTYPE_VALUE
+        FROM
+        SC_MJSCORE mj
+        LEFT JOIN SYS_DICTIONARIES dic2 ON mj.YEAR_ID = dic2.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON mj.MAJORTYPE_ID = dic3.DIC_ID,
+        SC_SCHOOL sc,
+        SYS_DICTIONARIES dic
+        WHERE
+        mj.SCHOOL_ID = #{SCHOOL_ID}
+        AND mj.MAJOR_ID = #{MAJOR_ID}
+        AND mj.MAJORTYPE_ID = #{MAJORTYPE_ID}
+        AND mj.SCHOOL_ID = sc.SCHOOL_ID
+        AND mj.MAJOR_ID = dic.DIC_ID
+        AND mj.MAJOR_ID = #{MAJOR_ID}
+        ORDER BY YEAR_VALUE DESC
+        LIMIT 3
+    </select>
+
+    <!-- 获取院校录取分分页数据 -->
+    <!--<select id="getScscores" parameterType="Page" resultType="DataMap">
+        SELECT
+        scscore.SCSCORE_ID,
+        scscore.SCHOOL_ID,
+        scscore.YEAR_ID,
+            dic1.NAME AS YEAR_ID_VALUE,
+        scscore.ARRANGMENT_ID,
+            dic2.NAME AS ARRANGMENT_ID_VALUE,
+        scscore.MAJORTYPE_ID,
+            dic3.NAME AS MAJORTYPE_ID_VALUE,
+        scscore.MAXSCORE,
+        scscore.MINSCORE,
+        scscore.ENTERCOUNT,
+        scscore.MSORT
+        FROM
+        SC_SCSCORE scscore
+        LEFT JOIN SYS_DICTIONARIES dic1 ON dic1.DIC_ID = scscore.YEAR_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = scscore.ARRANGMENT_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = scscore.MAJORTYPE_ID
+        WHERE 1 = 1
+    </select>-->
+
+    <!-- 批量删除院校录取分 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+            SC_MJSCORE
+        WHERE
+            MJSCORE_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+        #{item}
+        </foreach>
+    </delete>
+
+    <delete id="removeMjscoresByScId" parameterType="DataMap">
+        DELETE FROM
+            SC_MJSCORE
+        WHERE SCHOOL_ID = #{SCHOOL_ID}
+    </delete>
+
+    <!-- 新增院校录取分 -->
+    <insert id="addMjscore" parameterType="DataMap">
+        INSERT INTO
+        SC_MJSCORE
+        (
+        MJSCORE_ID,
+        MAJOR_ID,
+        SCHOOL_ID,
+        YEAR_ID,
+        ARRANGMENT_ID,
+        MAJORTYPE_ID,
+        MAXSCORE,
+        MINSCORE,
+        ENTERCOUNT,
+        MSORT
+        )
+        VALUES
+        (
+        #{MJSCORE_ID},
+        #{MAJOR_ID},
+        #{SCHOOL_ID},
+        #{YEAR_ID},
+        #{ARRANGMENT_ID},
+        #{MAJORTYPE_ID},
+        #{MAXSCORE},
+        #{MINSCORE},
+        #{ENTERCOUNT},
+        #{MSORT}
+        )
+    </insert>
+    <!-- 编辑院校录取分 -->
+    <!--<update id="editScscore" parameterType="DataMap">
+        UPDATE
+            SC_SCSCORE
+        <set>
+            SCHOOL_ID = #{SCHOOL_ID},
+            YEAR_ID = #{YEAR_ID},
+            ARRANGMENT_ID = #{ARRANGMENT_ID},
+            MAJORTYPE_ID = #{MAJORTYPE_ID},
+            MAXSCORE = #{MAXSCORE},
+            MINSCORE = #{MINSCORE},
+            ENTERCOUNT = #{ENTERCOUNT},
+            <if test="MSORT != null">
+                MSORT = #{MSORT},
+            </if>
+        </set>
+        WHERE
+            SCSCORE_ID = #{SCSCORE_ID}
+    </update>-->
+    <delete id="removeMjscore" parameterType="DataMap">
+        DELETE FROM SC_MJSCORE WHERE MJSCORE_ID = #{MJSCORE_ID}
+    </delete>
+</mapper>

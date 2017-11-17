@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScInviteMapper">
+    <insert id="addScInvite" parameterType="DataMap">
+        INSERT INTO SC_INVITE (INVITE_ID, TEACHER_ID, STUDENT_ID, CONTENT, CREATETIME)
+        VALUES (#{INVITE_ID}, #{TEACHER_ID}, #{STUDENT_ID}, #{CONTENT}, #{CREATETIME})
+    </insert>
+
+    <select id="getScInvitesByTeacherId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_INVITE WHERE TEACHER_ID = #{TEACHER_ID} ORDER BY CREATETIME DESC
+    </select>
+
+    <select id="getScInvitesByStudentId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_INVITE WHERE STUDENT_ID = #{STUDENT_ID} ORDER BY CREATETIME DESC
+    </select>
+    
+    <update id="setRead" parameterType="DataMap">
+        UPDATE SC_INVITE SET ISREAD = true WHERE INVITE_ID = #{INVITE_ID}
+    </update>
+</mapper>

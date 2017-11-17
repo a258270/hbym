@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExamineeMapper">
+
+    <insert id="addExaminee" parameterType="DataMap">
+        INSERT INTO UR_EXAMINEE
+        (EXAMINEE_ID, USER_ID, MAJORTYPE, EXAMSCORE, GRADE, EXAMAREA, WISHAREA, WISHMAJOR, CREATEDATE, MODIFYDATE)
+        VALUES(#{EXAMINEE_ID}, #{USER_ID}, #{MAJORTYPE}, #{EXAMSCORE}, #{GRADE}, #{EXAMAREA}, #{WISHAREA}, #{WISHMAJOR}, #{CREATEDATE}, #{MODIFYDATE})
+    </insert>
+    <update id="editExaminee" parameterType="DataMap">
+        UPDATE UR_EXAMINEE
+        <set>
+            <if test="MAJORTYPE != null">
+                MAJORTYPE = #{MAJORTYPE},
+            </if>
+            <if test="EXAMSCORE != null">
+                EXAMSCORE = #{EXAMSCORE},
+            </if>
+            <if test="GRADE != null">
+                GRADE = #{GRADE},
+            </if>
+            <if test="EXAMAREA != null">
+                EXAMAREA = #{EXAMAREA},
+            </if>
+            <if test="WISHAREA != null">
+                WISHAREA = #{WISHAREA},
+            </if>
+            <if test="WISHMAJOR != null">
+                WISHMAJOR = #{WISHMAJOR},
+            </if>
+            <if test="MODIFYDATE != null">
+                MODIFYDATE = #{MODIFYDATE},
+            </if>
+                FIRSTMOCK = #{FIRSTMOCK},
+                SECONDMOCK = #{SECONDMOCK},
+                THIRDMOCK = #{THIRDMOCK},
+        </set>
+        WHERE USER_ID = #{USER_ID}
+    </update>
+    <select id="getExamineeByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT exam.*, dic1.NAME AS MAJORTYPE_VALUE, dic2.NAME AS EXAMAREA_VALUE, dic3.NAME AS WISHAREA_VALUE, dic4.NAME AS WISHMAJOR_VALUE FROM UR_EXAMINEE exam
+        LEFT JOIN SYS_DICTIONARIES dic1 ON exam.MAJORTYPE = dic1.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic2 ON exam.EXAMAREA = dic2.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic3 ON exam.WISHAREA = dic3.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic4 ON exam.WISHMAJOR = dic4.DIC_ID
+        WHERE USER_ID = #{USER_ID}
+    </select>
+    <select id="getExamineeById" parameterType="DataMap" resultType="DataMap">
+        SELECT exam.*, dic1.NAME AS MAJORTYPE_VALUE, dic2.NAME AS EXAMAREA_VALUE, dic3.NAME AS WISHAREA_VALUE, dic4.NAME AS WISHMAJOR_VALUE FROM UR_EXAMINEE exam
+        LEFT JOIN SYS_DICTIONARIES dic1 ON exam.MAJORTYPE = dic1.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic1 ON exam.EXAMAREA = dic2.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic1 ON exam.WISHAREA = dic3.DIC_ID
+        LEFT JOIN SYS_DICTIONARIES dic1 ON exam.WISHMAJOR = dic4.DIC_ID
+        WHERE EXAMINEE_ID = #{EXAMINEE_ID}
+    </select>
+</mapper>

@@ -17,8 +17,8 @@
             </p>
             <textarea name="textarea" id="input1" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"></textarea>
             <p style="text-align: center;">
-                <input class="kd-bafa" style="margin-right:80px;;" type="button" value="保存"/>
-                <#--<input class="kd-bafa" type="button" value="发送"/>-->
+                <#--<input class="kd-bafa" style="margin-right:80px;;" type="button" value="保存"/>-->
+                <input class="kd-bafa" type="button" value="发送"/>
             </p>
         </div>
     </div>

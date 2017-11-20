@@ -165,4 +165,8 @@ public class PlantUserService {
     public void setUserVip(DataMap dataMap) throws Exception {
         daoSupport.update("PlantUserMapper.setUserVip", dataMap);
     }
+
+    public List<DataMap> searchStus(Page page) throws Exception {
+        return (List<DataMap>) daoSupport.findForList("PlantUserMapper.searchStus", page);
+    }
 }

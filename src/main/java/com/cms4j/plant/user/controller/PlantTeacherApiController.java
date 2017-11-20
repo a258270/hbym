@@ -494,7 +494,8 @@ public class PlantTeacherApiController extends ApiBaseController {
         Page page = new Page();
         page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
         page.setPageSize(20);
-        List<DataMap> results = plantUserService.getExperts(page);
+        page.setParams(dataMap);
+        List<DataMap> results = plantUserService.searchStus(page);
         page.setResults(results);
 
         return InvokeResult.success(page);

@@ -363,6 +363,24 @@ public class PlantTeacherController extends PageBaseController {
             return modelAndView;
         }
 
+        DataMap province = new DataMap();
+        province.put("CODE", "PROVINCE");
+        province = dictionaryService.getDictionaryByCode(province);
+        List<DataMap> provinces = dictionaryService.getDictionariesByFatherId(province);
+        modelAndView.addObject("provinces", provinces);
+
+        DataMap majortype = new DataMap();
+        majortype.put("CODE", "MAJORTYPE");
+        majortype = dictionaryService.getDictionaryByCode(majortype);
+        List<DataMap> majortypes = dictionaryService.getDictionariesByFatherId(majortype);
+        modelAndView.addObject("majortypes", majortypes);
+
+        DataMap sex = new DataMap();
+        sex.put("CODE", "SEX");
+        sex = dictionaryService.getDictionaryByCode(sex);
+        List<DataMap> sexs = dictionaryService.getDictionariesByFatherId(sex);
+        modelAndView.addObject("sexs", sexs);
+
         modelAndView.setViewName("/plant/ymplant/center/teacher/search/search");
         return modelAndView;
     }

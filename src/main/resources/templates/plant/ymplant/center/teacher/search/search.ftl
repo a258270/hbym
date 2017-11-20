@@ -23,38 +23,36 @@
     </script>
 </head>
 <body>
+<#include "${ctxPath}/plant/ymplant/top.ftl">
     <div class="kd-pli">
         <div class="container">
             <!--导航 开始-->
             <div style="padding: 30px 15px;border-bottom: 1px solid #7F7F7F">
-                <input style="width: 80px;margin: 0;" class="kd-yshi" type="text" placeholder="最低分"/>
+                <input style="width: 80px;margin: 0;" class="kd-yshi" id="MINSCORE" type="text" placeholder="最低分"/>
                 <span>--</span>
-                <input style="width: 80px;" class="kd-yshi" type="text" placeholder="最高分"/>
-                <select style="width: 150px;" class="kd-yshi">
-                    <option value="">北京</option>--
-                    <option value="">天津</option>
-                    <option value="">河北</option>
-                    <option value="">河南</option>
+                <input style="width: 80px;" class="kd-yshi" id="MAXSCORE" type="text" placeholder="最高分"/>
+                地区:<select style="width: 150px;" class="kd-yshi" id="EXAMAREA">
+                    <option value="">不限</option>
+                    <#list provinces as province>
+                        <option value="${province.DIC_ID}">${province.NAME}</option>
+                    </#list>
                 </select>
-                <select style="width:80px;" class="kd-yshi">
-                    <option value="" selected disabled>文/理</option>
-                    <option value="">文科</option>
-                    <option value="">理科</option>
+                科类:<select style="width:80px;" class="kd-yshi" id="MAJORTYPE">
+                    <option value="">不限</option>
+                    <#list majortypes as majortype>
+                        <option value="${majortype.DIC_ID}">${majortype.NAME}</option>
+                    </#list>
                 </select>
-                <select class="kd-yshi">
-                    <option value="" selected disabled>年龄</option>
-                    <option value="">男</option>
-                    <option value="">女</option>
+                性别:<select class="kd-yshi" id="SEX">
+                    <option value="">不限</option>
+                    <#list sexs as sex>
+                        <option value="${sex.DIC_ID}">${sex.NAME}</option>
+                    </#list>
                 </select>
-                <select class="kd-yshi">
-                    <option value="" selected disabled>年龄</option>
-                    <option value="">18</option>
-                    <option value="">19</option>
-                    <option value="">20</option>
-                    <option value="">21</option>
+                年龄:<select class="kd-yshi" id="BIRTH">
+                    <option value="">不限</option>
                 </select>
-                <input class="kd-yshi" type="checkbox"/>在线
-                <input class="kd-cz" type="button" value="查找"/>
+                <input class="kd-cz" type="button" value="查找" onclick="searchStus()"/>
             </div>
             <!--导航 结束-->
             <!--查找到的学生 开始-->
@@ -148,32 +146,53 @@
                     </div>
                 </div>
                 <nav style="text-align: center">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div id="pagination" class="page_div"></div>
                 </nav>
             </div>
             <!--查找到的学生 结束-->
         </div>
     </div>
+    <#include "${ctxPath}/plant/ymplant/bottom.ftl">
 </body>
 <script language="JavaScript">
+    $(function(){
+        getDatas();
+    });
     function editTemplate() {
         showWindow("编辑模板", ctxPath + "/plant/teacher/template", 500, 395);
     }
+
+    var getDatas = function () {
+        sendRequest(ctxPath + "/plant/teacher/api/searchstus", {}, "POST", function (res) {
+            if(res.hasErrros){
+                showError(res.errorMessage);
+                return false;
+            }
+
+            setPage(res.data.results);
+            $("#pagination").pagination({
+                currentPage: (res.data.pageNumber + 1),
+                totalPage: res.data.totalPage,
+                callback: function (current) {
+                    var param = {};
+                    /*param.currentPage = current;
+
+                    if($("#BMAJOR").attr("class") == "active"){
+                        param.CODE = "BMAJOR";
+                    }
+                    if($("#ZMAJOR").attr("class") == "active"){
+                        param.CODE = "ZMAJOR";
+                    }*/
+                    sendRequest(ctxPath + "/plant/teacher/api/searchstus", param, "POST", function (res) {
+                        if(res.hasErrros){
+                            showError(res.errorMessage);
+                            return false;
+                        }
+                        setPage(res.data.results);
+                    });
+                }
+            });
+        });
+    };
 </script>
 </html>

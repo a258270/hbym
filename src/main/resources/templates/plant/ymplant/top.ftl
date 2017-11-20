@@ -86,7 +86,7 @@
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                                                    <h2>欢迎注册</h2>
+                                                    <h2>学生注册</h2>
                                                     <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
                                                 </div>
                                                 <form>

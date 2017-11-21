@@ -17,4 +17,15 @@
     <update id="setRead" parameterType="DataMap">
         UPDATE SC_INVITE SET ISREAD = true WHERE INVITE_ID = #{INVITE_ID}
     </update>
+    
+    <select id="getNoReadScInvites" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        invite.*
+        FROM
+        SC_INVITE invite
+        WHERE invite.STUDENT_ID = #{USER_ID}
+        AND ISREAD = FALSE
+        GROUP BY TEACHER_ID
+        ORDER BY CREATETIME DESC
+    </select>
 </mapper>

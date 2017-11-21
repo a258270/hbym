@@ -152,4 +152,14 @@ public class ChatService {
     public Integer getCountTeacherChatMapping(DataMap dataMap) throws Exception {
         return (Integer) daoSupport.findForObject("ChatMappingMapper.getCountTeacherChatMapping", dataMap);
     }
+
+    /**
+     * 获取未读信息
+     * @param dataMap
+     * @return
+     * @throws Exception
+     */
+    public List<DataMap> getNoReadMsgs(DataMap dataMap) throws Exception {
+        return (List<DataMap>) daoSupport.findForList("ChatMappingMapper.getNoReadMsgs", dataMap);
+    }
 }

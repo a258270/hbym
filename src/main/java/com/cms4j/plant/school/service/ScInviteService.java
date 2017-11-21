@@ -25,4 +25,16 @@ public class ScInviteService {
     public void setRead(DataMap dataMap) throws Exception {
         daoSupport.update("ScInviteMapper.setRead", dataMap);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void batchSend(DataMap dataMap) throws Exception {
+        String[] sends = dataMap.getString("batchSend").split(",");
+        for(String send: sends) {
+            DataMap invite = new DataMap();
+            invite.put("TEACHER_ID", dataMap.getString("TEACHER_ID"));
+            invite.put("STUDENT_ID", send);
+            invite.put("CONTENT", dataMap.getString("content"));
+            this.addScInvite(invite);
+        }
+    }
 }

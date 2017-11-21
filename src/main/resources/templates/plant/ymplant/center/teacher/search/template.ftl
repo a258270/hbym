@@ -11,36 +11,89 @@
     <p>
         <span>模版：</span>
         <select style="width: 150px;" id="selectTemplate">
-            <option value="0">默认</option>
-            <option value="1">模版一</option>
-            <option value="2">模版二</option>
+        <#if templates?? && (templates?size > 0)>
+            <#list templates as template>
+                <option value="${template.TEMPLATE_ID}" <#if template_index == 0>selected</#if>>${template.TITLE}</option>
+            </#list>
+        </#if>
         </select>
         <input class="kd-bafa" type="button" value="新增" style="margin-right: 10px;margin-left: 100px;" onclick="add();">
         <input class="kd-bafa" type="button" value="删除" onclick="remove();">
     </p>
-    <textarea name="textarea" id="input1" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"></textarea>
+    <textarea name="textarea" id="CONTENT" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"><#if templates?? && (templates?size > 0)><#list templates as template><#if template_index == 0 && template.CONTENT??>${template.CONTENT}</#if></#list></#if></textarea>
     <p style="text-align: center;">
-        <input class="kd-bafa" type="button" value="保存"/>
+        <input class="kd-bafa" type="button" value="保存" onclick="saveTemplate();"/>
         <#--<input class="kd-bafa" type="button" value="发送"/>-->
     </p>
 </div>
 <script language="JavaScript">
+    $(function () {
+       $("#selectTemplate").change(function () {
+           sendRequest(ctxPath + "/plant/teacher/api/detailstemplate", {TEMPLATE_ID: $(this).val()}, "POST", function (res) {
+               if(res.hasErrors) {
+                   showError(res.errorMessage);
+                   return false;
+               }
+               if(res.CONTENT) {
+                    $("#CONTENT").val(res.CONTENT);
+               }
+               else{
+                   $("#CONTENT").val("");
+               }
+           });
+       });
+    });
     function add() {
         layer.prompt({title: '请输入模板名', formType: 0, maxlength: 10}, function(text, index){
-            $("#selectTemplate").html($("#selectTemplate").html() + "<option value='22' selected>" + text + "</option>")
-            $("#selectTemplate").val("22");
-            layer.close(index);
+            sendRequest(ctxPath + "/plant/teacher/api/addtemplate", {TITLE: text}, "POST", function (res) {
+                if(res.hasErrors) {
+                    showError(res.errorMessage);
+                    return false;
+                }
+
+                $("#selectTemplate").html($("#selectTemplate").html() + "<option value='" + res.TEMPLATE_ID + "' selected>" + text + "</option>")
+                $("#selectTemplate").val(res.TEMPLATE_ID);
+                $("#CONTENT").val("");
+                layer.close(index);
+            });
+
         });
     }
 
     function remove() {
         var optionValue = $("#selectTemplate").find("option:selected").text();
         layer.confirm('是否确定删除 ' + optionValue + "？", function(index){
+            sendRequest(ctxPath + "/plant/teacher/api/removetemplate", {TEMPLATE_ID: $("#selectTemplate").val()}, "POST", function (res) {
+                if(res.hasErrors) {
+                    showError(res.errorMessage);
+                    return false;
+                }
 
-            var x=document.getElementById("selectTemplate")
-            x.remove(x.selectedIndex)
-            layer.close(index);
+                /*var x=document.getElementById("selectTemplate");
+                x.remove(x.selectedIndex);*/
+                layer.close(index);
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
         });
+    }
+
+    <#if !(templates?? && (templates?size > 0))>
+        showError("您当前无可用模板，请点击新增按钮以增加新的模板！");
+    </#if>
+
+    function saveTemplate() {
+        if($("#CONTENT").val() != "") {
+            sendRequest(ctxPath + "/plant/teacher/api/edittemplate", {TEMPLATE_ID: $("#selectTemplate").val(), CONTENT: $("#CONTENT").val()}, "POST", function (res) {
+                if(res.hasErrors) {
+                    showError(res.errorMessage);
+                    return false;
+                }
+
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
+        }
     }
 </script>
 </body>

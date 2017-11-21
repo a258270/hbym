@@ -7,20 +7,36 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/teacher/search/search.css?v=${v}"/>
 </head>
 <body>
-    <div class="container">
-        <div class="kd-dkua">
-            <p>
-                <span>内容：</span>
-                <select style="width: 150px;">
-                    <option value="">默认</option>
-                </select>
-            </p>
-            <textarea name="textarea" id="input1" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"></textarea>
-            <p style="text-align: center;">
-                <#--<input class="kd-bafa" style="margin-right:80px;;" type="button" value="保存"/>-->
-                <input class="kd-bafa" type="button" value="发送"/>
-            </p>
-        </div>
+    <div class="kd-dkua">
+        <p>
+            <span>模板：</span>
+            <select style="width: 150px;">
+                <#if templates?? && (templates?size > 0)>
+                    <#list templates as template>
+                        <option value="${template.TEMPLATE_ID}">${template.TITLE}</option>
+                    </#list>
+                </#if>
+            </select>
+        </p>
+        <textarea name="textarea" id="CONTENT" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"><#if templates?? && (templates?size > 0)><#list templates as template><#if template_index == 0 && template.CONTENT??>${template.CONTENT}</#if></#list></#if></textarea>
+        <p style="text-align: center;">
+            <#--<input class="kd-bafa" style="margin-right:80px;;" type="button" value="保存"/>-->
+            <input class="kd-bafa" type="button" value="发送" onclick="sendInvite();"/>
+        </p>
     </div>
+<script language="JavaScript">
+    function sendInvite() {
+        sendRequest(ctxPath + "/plant/teacher/api/sendinvite", {batchSend: parent.batchSend, content: $("#CONTENT").val()}, "POST", function (res) {
+            if(res.hasErrors){
+                showError(res.errorMessage);
+                return false;
+            }
+
+            parent.showSuccess("发送成功！");
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+        });
+    }
+</script>
 </body>
 </html>

@@ -123,6 +123,11 @@ public class ChatApiController extends ApiBaseController {
         return InvokeResult.success(false);
     }
 
+    /**
+     * 获取未读聊天信息数量
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getmsgcount")
     public InvokeResult getMsgCount() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();

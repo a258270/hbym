@@ -54,6 +54,11 @@ public class PlantTeacherController extends PageBaseController {
     @Autowired
     private ScArticleService scArticleService;
 
+    @Autowired
+    private ScInviteTemplateService scInviteTemplateService;
+    @Autowired
+    private ScInviteService scInviteService;
+
     @RequestMapping(value = "/basic")
     public ModelAndView basic() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
@@ -394,6 +399,9 @@ public class PlantTeacherController extends PageBaseController {
             return modelAndView;
         }
 
+        List<DataMap> templates = scInviteTemplateService.getScInviteTemplatesByUserId(curUser);
+        modelAndView.addObject("templates", templates);
+
         modelAndView.setViewName("/plant/ymplant/center/teacher/search/send");
         return modelAndView;
     }
@@ -407,7 +415,11 @@ public class PlantTeacherController extends PageBaseController {
             return modelAndView;
         }
 
+        List<DataMap> templates = scInviteTemplateService.getScInviteTemplatesByUserId(curUser);
+        modelAndView.addObject("templates", templates);
+
         modelAndView.setViewName("/plant/ymplant/center/teacher/search/template");
         return modelAndView;
     }
+
 }

@@ -109,7 +109,13 @@
     </update>
 
     <select id="searchStus" parameterType="Page" resultType="DataMap">
-        SELECT stu.NICKNAME, stu.SEX, exam.EXAMAREA, exam.EXAMSCORE FROM UR_USER user, UR_COMPLETE_STU stu, UR_EXAMINEE exam
+        SELECT
+        stu.USER_ID, stu.NICKNAME, stu.HEADURL, stu.SEX, dic.NAME AS EXAMAREA_VALUE, exam.EXAMSCORE
+        FROM
+        UR_USER user,
+        UR_COMPLETE_STU stu,
+        UR_EXAMINEE exam
+        LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = exam.EXAMAREA
         WHERE user.USER_ID = stu.USER_ID
         AND user.USER_ID = exam.USER_ID
         <if test="params.MAXSCORE != null">
@@ -125,13 +131,13 @@
             AND exam.MAJORTYPE = #{params.MAJORTYPE}
         </if>
         <if test="params.SEX != null">
-            stu.SEX = #{params.SEX}
+            AND stu.SEX = #{params.SEX}
         </if>
         <if test="params.MINBIRTH != null">
-            timestampdiff(YEAR,stu.BIRTHDAY,NOW()) &gt;= #{params.MINBIRTH}
+            AND timestampdiff(YEAR,stu.BIRTHDAY,NOW()) &gt;= #{params.MINBIRTH}
         </if>
         <if test="params.MAXBIRTH != null">
-            timestampdiff(YEAR,stu.BIRTHDAY,NOW()) &gt;= #{params.MAXBIRTH}
+            AND timestampdiff(YEAR,stu.BIRTHDAY,NOW()) &gt;= #{params.MAXBIRTH}
         </if>
         AND (SELECT COUNT(0) FROM SC_INVITE WHERE TEACHER_ID = #{params.TEACHER_ID} AND STUDENT_ID = user.USER_ID) &lt;=0
     </select>

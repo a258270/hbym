@@ -6,6 +6,8 @@ import com.cms4j.base.util.*;
 import com.cms4j.plant.chat.service.ChatScoreService;
 import com.cms4j.plant.chat.service.ChatService;
 import com.cms4j.plant.school.service.ScArticleService;
+import com.cms4j.plant.school.service.ScInviteService;
+import com.cms4j.plant.school.service.ScInviteTemplateService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.user.service.CompleteTeacherService;
 import com.cms4j.plant.user.service.PlantUserService;
@@ -47,6 +49,10 @@ public class PlantTeacherApiController extends ApiBaseController {
     private ChatScoreService chatScoreService;
     @Autowired
     private PlantUserService plantUserService;
+    @Autowired
+    private ScInviteTemplateService scInviteTemplateService;
+    @Autowired
+    private ScInviteService scInviteService;
 
     @RequestMapping(value = "/basic")
     public InvokeResult basic(@RequestParam(name = "HEADURL", required = false) MultipartFile file) throws Exception {
@@ -499,5 +505,74 @@ public class PlantTeacherApiController extends ApiBaseController {
         page.setResults(results);
 
         return InvokeResult.success(page);
+    }
+
+    @RequestMapping(value = "/addtemplate")
+    public InvokeResult addTemplate() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        dataMap.put("USER_ID", curUser.getString("USER_ID"));
+        dataMap.put("CONTENT", "");
+        scInviteTemplateService.addScInviteTemplate(dataMap);
+
+        return InvokeResult.success(dataMap);
+    }
+
+    @RequestMapping(value = "/detailstemplate")
+    public InvokeResult detailsTemplate() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        dataMap = scInviteTemplateService.getScInviteTemplateById(dataMap);
+
+        return InvokeResult.success(dataMap);
+    }
+
+    @RequestMapping(value = "/edittemplate")
+    public InvokeResult editTemplate() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        scInviteTemplateService.editScInviteTemplate(dataMap);
+
+        return InvokeResult.success();
+    }
+
+    @RequestMapping(value = "/removetemplate")
+    public InvokeResult removeTemplate() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        scInviteTemplateService.removeScInviteTemplate(dataMap);
+
+        return InvokeResult.success();
+    }
+
+    @RequestMapping(value = "/sendinvite")
+    public InvokeResult sendInvite() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("请登录账号！");
+
+        DataMap dataMap = this.getDataMap();
+        if(StringUtils.isBlank(dataMap.getString("batchSend")))
+            return InvokeResult.failure("请勾选学生再发送邀请！");
+
+        if(StringUtils.isBlank(dataMap.getString("content")))
+            return InvokeResult.failure("邀请信息不能为空！");
+
+        dataMap.put("TEACHER_ID", curUser.getString("USER_ID"));
+        scInviteService.batchSend(dataMap);
+
+        return InvokeResult.success();
     }
 }

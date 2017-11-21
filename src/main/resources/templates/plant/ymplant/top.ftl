@@ -66,7 +66,7 @@
                                 <a class="goldw" style="text-decoration: none;margin-top: 20px;" href="<#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>${ctxPath}/plant/user/center</#if><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>${ctxPath}/plant/teacher/center</#if>">个人中心</a>
                             </li>
                             <li class="col-md-12 col-sm-12 col-xs-12">
-                                <#if Session.session_user_key??><a class="goldwt" href="<#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>${ctxPath}/plant/chat/page/student</#if><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>${ctxPath}/plant/chat/page/teacher</#if>">消息(<span id="msgcount">0</span>)</a></#if>
+                                <#if Session.session_user_key?? && Session.session_user_key.USER_ID??><a class="goldwt" href="${ctxPath}/plant/message/index">消息(<span id="msgcount">0</span>)</a></#if>
                             </li>
                             <li class="col-md-12 col-sm-12 col-xs-12">
                                 <a class="goldwt" href="${ctxPath}/plant/api/toexit">安全退出</a>

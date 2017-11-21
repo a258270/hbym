@@ -59,4 +59,26 @@
     <select id="getCountTeacherChatMapping" parameterType="DataMap" resultType="java.lang.Integer">
         SELECT COUNT(0) FROM TB_CHATMAPPING WHERE RUSER_ID = #{RUSER_ID}
     </select>
+
+    <select id="getNoReadMsgs" parameterType="DataMap" resultType="DataMap">
+        SELECT obj.*, complete.NICKNAME FROM (
+        SELECT
+        chat.*, DATE_FORMAT(chat.CREATETIME, "%Y-%m-%d") AS CHATDATE, DATE_FORMAT(chat.CREATETIME, "%m月%d日") AS SHOWDATE,
+        (SELECT COUNT(0) FROM TB_CHAT tmp WHERE tmp.SUSER_ID = chat.SUSER_ID AND tmp.RUSER_ID = chat.RUSER_ID AND ISREAD = FALSE AND datediff ( tmp.CREATETIME , CHATDATE ) = 0 ) AS COUNT
+        FROM TB_CHAT chat
+        WHERE
+        chat.RUSER_ID = #{RUSER_ID}
+        AND chat.ISREAD = FALSE
+        AND timestampdiff(MONTH,chat.CREATETIME,NOW()) &lt;= 3
+        GROUP BY SUSER_ID, CHATDATE
+        ORDER BY CREATETIME DESC
+        ) AS obj,
+        <if test="isTeacher">
+            UR_COMPLETE_STU complete
+        </if>
+        <if test="isStudent">
+            UR_COMPLETE_TEA complete
+        </if>
+        WHERE complete.USER_ID = obj.SUSER_ID
+    </select>
 </mapper>

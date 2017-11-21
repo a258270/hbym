@@ -14,6 +14,7 @@ $(function () {
 
 function iFrameHeight() {
     var ifm= document.getElementById("information");
+    ifm.height = 0;
     var subWeb = document.frames ? document.frames["information"].document :
         ifm.contentDocument;
     if(ifm != null && subWeb != null) {

@@ -8,7 +8,7 @@
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/h-ui.admin/js/H-ui.admin.js?v=${v}"></script>
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/take_photo/takephoto.js?v=${v}"></script>
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/center.css?v=${v}">
-    <link href="${ctxPath}/static/plant/plugin/css/datepicker.css?v=${v}" rel="stylesheet">
+    <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/My97DatePicker/4.8/WdatePicker.js?v=${v}"></script>
 </head>
 <body>
 <div class="lan">
@@ -70,7 +70,7 @@
                 <input type="checkbox" name="SEXSECRET" <#if complete?? && complete.SEXSECRET?? && !complete.SEXSECRET>checked</#if>/>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
-                <span>出生日期：<input type="text" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd' })" placeholder="请选择出生日期" id="BIRTHDAY" name="BIRTHDAY" class="Wdate" value="<#if complete?? && complete.BIRTHDAY??>${complete.BIRTHDAY??}</#if>" readOnly></span>
+                <span>出生日期：<input type="text" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd' })" placeholder="请选择出生日期" id="BIRTHDAY" name="BIRTHDAY" class="Wdate" value="<#if complete?? && complete.BIRTHDAY??>${complete.BIRTHDAY}</#if>" readOnly></span>
                 <span style="margin-left: 30px">是否公开：</span>
                 <input type="checkbox" name="BIRTHDAYSECRET" <#if complete?? && complete.BIRTHDAYSECRET?? && !complete.BIRTHDAYSECRET>checked</#if>/>
             </p>

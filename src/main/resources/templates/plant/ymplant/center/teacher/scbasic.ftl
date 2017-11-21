@@ -123,7 +123,7 @@
 </head>
 <body>
 <form action="${ctxPath}/plant/teacher/api/management_edit" id="form" method="post" enctype="multipart/form-data">
-    <div class="lan" style="height: 100%;margin-left: 0">
+    <div class="lan" style="height: 1701px;margin-left: 0;overflow-y: auto;">
         <div class="row" style="padding: 0 15px;">
             <p class="zlan col-md-3 col-sm-3 col-xs-3" style="padding-top: 5px">基础资料管理</p>
             <div class="col-md-9 col-sm-9 col-xs-9">

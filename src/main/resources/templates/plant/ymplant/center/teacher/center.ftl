@@ -44,20 +44,20 @@
                 <input type="button" value="升级黄金会员" class="gol"/>
             </p>-->
                 <div class="kd-bkua">
-                    <input type="button" class="stration" value="后台管理"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster kd-lhtai" type="button" value="院校资料" data-href="${ctxPath}/plant/teacher/management"/>
-                        <input class="ster" type="button" value="文章管理" data-href="${ctxPath}/plant/teacher/article"/>
-                        <#--<input class="ster" type="button" value="图片管理" data-href="${ctxPath}/plant/teacher/picture"/>-->
-                        <#--<input class="ster" type="button" value="视频管理" data-href="${ctxPath}/plant/teacher/video"/>-->
-                    </div>
-                </div>
-                <div class="kd-bkua">
                     <input type="button" class="stration" value="个人资料"/>
                     <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
                     <div class="kd-jchu">
-                        <input class="ster" type="button" value="基础资料" data-href="${ctxPath}/plant/teacher/basic"/>
+                        <input class="ster  kd-lhtai" type="button" value="基础资料" data-href="${ctxPath}/plant/teacher/basic"/>
+                    </div>
+                </div>
+                <div class="kd-bkua">
+                    <input type="button" class="stration" value="后台管理"/>
+                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
+                    <div class="kd-jchu">
+                        <input class="ster" type="button" value="院校资料" data-href="${ctxPath}/plant/teacher/management"/>
+                        <input class="ster" type="button" value="文章管理" data-href="${ctxPath}/plant/teacher/article"/>
+                        <#--<input class="ster" type="button" value="图片管理" data-href="${ctxPath}/plant/teacher/picture"/>-->
+                        <#--<input class="ster" type="button" value="视频管理" data-href="${ctxPath}/plant/teacher/video"/>-->
                     </div>
                 </div>
                 <div class="kd-bkua">
@@ -81,7 +81,7 @@
             <!--左边栏 结束-->
             <div class="col-md-9 col-sm-9 col-xs-9">
 
-                <iframe id="information" scrolling="no" name="information" src="${ctxPath}/plant/teacher/basic" frameborder="0" onload="iFrameHeight()" style="border: 1px solid #1ECADA;width: 100%;">
+                <iframe id="information" scrolling="no" name="information" src="${ctxPath}/plant/teacher/basic" frameborder="0" onload="iFrameHeight()" style="border: 1px solid #1ECADA;width: 100%;min-height: 780px;">
 
                 </iframe>
             </div>

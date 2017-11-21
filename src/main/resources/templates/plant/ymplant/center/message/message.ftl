@@ -12,13 +12,13 @@
     <div class="container" style="padding: 30px 50px;">
         <ul class="nav nav-tabs" id="kd-lhx" role="tablist">
             <li role="presentation" class="active"><a href="#home" class="kd-shdi" aria-controls="home" role="tab" data-toggle="tab">联系人
-                <span class="kd-hdi"></span>
+                <#if noReadMsgs?? && (noReadMsgs?size > 0)><span class="kd-hdi"></span></#if>
             </a></li>
         <#if Session.session_user_key?? && Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><li role="presentation"><a href="#profile" class="kd-shdi" aria-controls="profile" role="tab" data-toggle="tab">邀请函
-            <span class="kd-hdi"></span>
+            <#if noReadInvites?? && (noReadInvites?size > 0)><span class="kd-hdi"></span></#if>
         </a></li></#if>
             <li role="presentation"><a href="#messages" class="kd-shdi" aria-controls="messages" role="tab" data-toggle="tab">系统
-                <span class="kd-hdi"></span>
+                <#--<span class="kd-hdi"></span>-->
             </a></li>
         </ul>
         <div class="tab-content" style="margin-top: 20px;">

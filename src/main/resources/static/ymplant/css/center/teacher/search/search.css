@@ -80,6 +80,15 @@ textarea{
     margin: 20px 0;
     resize:none;
 }
+.kd-yqi{
+    height: 200px;
+    width: 100%;
+    padding:20px;
+    font-size: 13px;
+    border: 1px solid #99D9EA;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
 .kd-bafa{
     background-color: #5BC0DE;
     padding: 2px 15px;

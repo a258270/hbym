@@ -101,3 +101,18 @@ ul{
     margin-top: 18px;
 }
 /*联系人 结束*/
+
+/*提示 红点 开始*/
+.kd-shdi{
+    position: relative;
+}
+.kd-hdi{
+    position: absolute;
+    top:5px;
+    right:5px;
+    width: 7px;
+    height:7px;
+    border-radius: 50%;
+    background-color: red;
+}
+/*提示 红点 结束*/

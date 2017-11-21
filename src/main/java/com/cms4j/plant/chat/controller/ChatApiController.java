@@ -7,6 +7,7 @@ import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.Page;
 import com.cms4j.base.util.SessionUtil;
 import com.cms4j.plant.chat.service.ChatService;
+import com.cms4j.plant.school.service.ScInviteService;
 import com.cms4j.plant.util.PlantConst;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class ChatApiController extends ApiBaseController {
 
     @Autowired
     private ChatService chatService;
+    @Autowired
+    private ScInviteService scInviteService;
 
     @RequestMapping(value = "/sendMessage")
     public InvokeResult sendMessage() throws Exception {
@@ -134,7 +137,9 @@ public class ChatApiController extends ApiBaseController {
         if(curUser != null) {
             DataMap param = new DataMap();
             param.put("RUSER_ID", curUser.getString("USER_ID"));
-            return InvokeResult.success(chatService.getNoReadMsgCount(param));
+            Integer iChat = chatService.getNoReadMsgCount(param);
+            Integer iInvite = scInviteService.getCountNoReadScInvites(curUser);
+            return InvokeResult.success(iChat + iInvite);
         }
 
         return InvokeResult.success(0);

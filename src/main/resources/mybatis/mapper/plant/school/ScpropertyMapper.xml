@@ -11,6 +11,7 @@
         FROM SC_SCPROPERTY property
         LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = property.DIC_ID
         WHERE property.SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY property.DIC_ID
     </select>
     <insert id="addScproperty" parameterType="DataMap">
         INSERT INTO SC_SCPROPERTY

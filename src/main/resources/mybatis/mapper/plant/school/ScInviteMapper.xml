@@ -20,12 +20,38 @@
     
     <select id="getNoReadScInvites" parameterType="DataMap" resultType="DataMap">
         SELECT
-        invite.*
+        invite.*, DATE_FORMAT(invite.CREATETIME, "%m月%d日") AS SHOWDATE
         FROM
         SC_INVITE invite
         WHERE invite.STUDENT_ID = #{USER_ID}
         AND ISREAD = FALSE
+        AND timestampdiff(MONTH,invite.CREATETIME,NOW()) &lt;= 3
         GROUP BY TEACHER_ID
         ORDER BY CREATETIME DESC
+    </select>
+    
+    <select id="getCountNoReadScInvites" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM
+        SC_INVITE invite
+        WHERE invite.STUDENT_ID = #{USER_ID}
+        AND ISREAD = FALSE
+        AND timestampdiff(MONTH,invite.CREATETIME,NOW()) &lt;= 3
+    </select>
+    
+    <select id="getScInviteByStudentIdAndTeacherId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM SC_INVITE WHERE STUDENT_ID = #{STUDENT_ID} AND TEACHER_ID = #{TEACHER_ID}
+    </select>
+
+    <select id="getScInviteById" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        invite.*, tea.HEADURL, tea.NICKNAME, school.NAME AS SCNAME,tea.USER_ID AS TEAUSER_ID
+        FROM
+        SC_INVITE invite,
+        UR_COMPLETE_TEA tea
+        LEFT JOIN SC_SCHOOL school ON tea.SCHOOL_ID = school.SCHOOL_ID
+        WHERE INVITE_ID = #{INVITE_ID}
+        AND invite.TEACHER_ID = tea.USER_ID
     </select>
 </mapper>

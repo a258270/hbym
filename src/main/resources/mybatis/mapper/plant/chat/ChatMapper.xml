@@ -22,6 +22,6 @@
         SELECT COUNT(0) FROM TB_CHAT WHERE SUSER_ID = #{SUSER_ID} AND RUSER_ID = #{RUSER_ID} AND ISREAD = false
     </select>
     <select id="getNoReadMsgCount" parameterType="DataMap" resultType="java.lang.Integer">
-        SELECT COUNT(0) FROM TB_CHAT WHERE RUSER_ID = #{RUSER_ID} AND ISREAD = false
+        SELECT COUNT(0) FROM TB_CHAT WHERE RUSER_ID = #{RUSER_ID} AND ISREAD = false AND timestampdiff(MONTH,CREATETIME,NOW()) &lt;= 3
     </select>
 </mapper>

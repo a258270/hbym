@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ScInviteService {
 
@@ -34,7 +36,24 @@ public class ScInviteService {
             invite.put("TEACHER_ID", dataMap.getString("TEACHER_ID"));
             invite.put("STUDENT_ID", send);
             invite.put("CONTENT", dataMap.getString("content"));
-            this.addScInvite(invite);
+            if(this.getScInviteByStudentIdAndTeacherId(invite) == null)
+                this.addScInvite(invite);
         }
+    }
+
+    public List<DataMap> getNoReadScInvites(DataMap dataMap) throws Exception {
+        return (List<DataMap>) daoSupport.findForList("ScInviteMapper.getNoReadScInvites", dataMap);
+    }
+
+    public DataMap getScInviteByStudentIdAndTeacherId(DataMap dataMap) throws Exception {
+        return (DataMap) daoSupport.findForObject("ScInviteMapper.getScInviteByStudentIdAndTeacherId", dataMap);
+    }
+
+    public DataMap getScInviteById(DataMap dataMap) throws Exception {
+        return (DataMap) daoSupport.findForObject("ScInviteMapper.getScInviteById", dataMap);
+    }
+
+    public Integer getCountNoReadScInvites(DataMap dataMap) throws Exception {
+        return (Integer) daoSupport.findForObject("ScInviteMapper.getCountNoReadScInvites", dataMap);
     }
 }

@@ -12,6 +12,7 @@
         FROM SC_SUBJECTTYPE subjecttype
         LEFT JOIN SYS_DICTIONARIES dic ON dic.DIC_ID = subjecttype.DIC_ID
         WHERE subjecttype.SCHOOL_ID = #{SCHOOL_ID}
+        ORDER BY subjecttype.DIC_ID
     </select>
     <insert id="addSubjecttype" parameterType="DataMap">
         INSERT INTO SC_SUBJECTTYPE

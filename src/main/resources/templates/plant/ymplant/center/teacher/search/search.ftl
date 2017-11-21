@@ -69,7 +69,7 @@
                     <input class="kd-yshi" id="tions" type="button" value="全选">
                     <input class="kd-yshi" id="tions2" type="button" value="全不选">
                     <input class="kd-yshi" type="button" value="批量邀请" onclick="send();">
-                <input class="kd-bji" type="button" value="编辑信息" onclick="editTemplate();"/>
+                <input class="kd-bji" type="button" value="编辑模板" onclick="editTemplate();"/>
                 <div class="row" style="padding: 15px 0;" id="page">
 
                 </div>
@@ -179,6 +179,11 @@
 
         batchSend = batchSend.substring(0, batchSend.length - 1);
 
+        showWindow("发送邀请", ctxPath + "/plant/teacher/send", 500, 395);
+    };
+
+    var invite = function (id) {
+        batchSend = id;
         showWindow("发送邀请", ctxPath + "/plant/teacher/send", 500, 395);
     };
 </script>

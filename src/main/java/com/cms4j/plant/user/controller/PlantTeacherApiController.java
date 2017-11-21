@@ -485,6 +485,8 @@ public class PlantTeacherApiController extends ApiBaseController {
             catch (Exception e) {}
         }
 
+        dataMap.put("TEACHER_ID", curUser.getString("USER_ID"));
+
         if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
         else{
             try{
@@ -540,6 +542,13 @@ public class PlantTeacherApiController extends ApiBaseController {
             return InvokeResult.failure("请登录账号！");
 
         DataMap dataMap = this.getDataMap();
+        if(StringUtils.isBlank(dataMap.getString("CONTENT"))) {
+            return InvokeResult.failure("模板信息不能为空！");
+        }
+
+        if(dataMap.getString("CONTENT").length() > 60) {
+            return InvokeResult.failure("模板信息不能超过60个字符！");
+        }
         scInviteTemplateService.editScInviteTemplate(dataMap);
 
         return InvokeResult.success();
@@ -569,6 +578,9 @@ public class PlantTeacherApiController extends ApiBaseController {
 
         if(StringUtils.isBlank(dataMap.getString("content")))
             return InvokeResult.failure("邀请信息不能为空！");
+
+        if(dataMap.getString("content").length() > 60)
+            return InvokeResult.failure("邀请信息不能超过60个字符！");
 
         dataMap.put("TEACHER_ID", curUser.getString("USER_ID"));
         scInviteService.batchSend(dataMap);

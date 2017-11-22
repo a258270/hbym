@@ -5,6 +5,18 @@
 <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/teacher/search/search.css?v=${v}"/>
+    <script language="JavaScript">
+        function checkLen(obj) {
+            var maxChars = 60;//最多字符数
+            if (obj.value.length > maxChars)  obj.value = obj.value.substring(0,maxChars);
+            var curr = maxChars - obj.value.length;
+            document.getElementById("count").innerHTML = curr.toString();
+        }
+
+        $(document).ready(function(){
+            checkLen(document.getElementById("CONTENT"));
+        });
+    </script>
 </head>
 <body>
     <div class="kd-dkua">
@@ -18,7 +30,8 @@
                 </#if>
             </select>
         </p>
-        <textarea name="textarea" id="CONTENT" onpropertychange="try{textCounter(this,1000)}catch(e){}" onkeypress="return keypress(event);" onkeydown="return keydown(event)"><#if templates?? && (templates?size > 0)><#list templates as template><#if template_index == 0 && template.CONTENT??>${template.CONTENT}</#if></#list></#if></textarea>
+        <textarea name="textarea" onkeyup="checkLen(this)" id="CONTENT" onpropertychange="try{checkLen(this)}catch(e){}"><#if templates?? && (templates?size > 0)><#list templates as template><#if template_index == 0 && template.CONTENT??>${template.CONTENT}</#if></#list></#if></textarea>
+        <div>您还可以输入 <span id="count">60</span> 个文字</div>
         <p style="text-align: center;">
             <#--<input class="kd-bafa" style="margin-right:80px;;" type="button" value="保存"/>-->
             <input class="kd-bafa" type="button" value="发送" onclick="sendInvite();"/>

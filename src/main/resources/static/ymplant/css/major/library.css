@@ -164,6 +164,7 @@ ul{
 
 .selectbox{
     color: #000000;
-    font-size: 16px;
+    font-size: 12px;
     margin-right: 10px;
+    font-weight: normal;
 }

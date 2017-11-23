@@ -37,7 +37,7 @@
                 <div class="round">
                     <img src="<#if complete?? && complete.HEADURL??>${complete.HEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width: 100%;height: 100%;border-radius: 50%;" alt=""/>
                 </div>
-                <p class="name"><#if Session?? && Session.session_user_key?? && Session.session_user_key.USERNAME??>${Session.session_user_key.USERNAME}<#else>暂无信息</#if></p>
+                <p class="name"><#if complete?? && complete.NICKNAME??>${complete.NICKNAME}<#else>暂无</#if></p>
                 <p style="color: #C3C3C3;font-weight: bold;text-align: center;padding-bottom: 20px;">教师</p>
             <#--<p style="color: #C3C3C3;font-weight: bold">会员类型：普通会员</p>
             <p style="text-align: center;margin: 15px 0">

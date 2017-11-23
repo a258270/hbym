@@ -182,6 +182,8 @@ public class PlantIndexController extends PageBaseController {
         page.setPageSize(8);
         List<DataMap> items = itemService.getAllSalingItems(page);
         modelAndView.addObject("items", items);*/
+
+        modelAndView.addObject("curPage", "index");
         return modelAndView;
     }
 

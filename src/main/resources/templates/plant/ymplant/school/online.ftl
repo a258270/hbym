@@ -494,6 +494,72 @@
                 var property = school.properties[j];
                 strHtml += "<span class='kd-" + property.DIC_ID + "' title='" + property.NAME + "'></span>";
             }
+            strHtml += "&nbsp;&nbsp;";
+
+
+            strHtml += "<span class='kd-yru'>";
+            strHtml += "<input class='kd-wlshi' type='button' value='在线咨询'>";
+            strHtml += "<ul class='kd-cxian'>";
+            strHtml += "<li class='kd-lshi'>入驻老师</li>";
+            strHtml += "<li class='formula'>";
+
+
+            for(var j = 0; j < school.teachers.length; j++) {
+                var teacher = school.teachers[j];
+                strHtml += "<div class='row' style='margin: 0;border-bottom:1px solid #e3e3e3;'>";
+                strHtml += "<div class='col-md-3 col-sm-3 col-xs-3' style='padding: 10px 10px 10px 25px;'>";
+                if(teacher.HEADURL) {
+                    strHtml += "<img src='" + teacher.HEADURL + "' class='portrai' alt=''>";
+                }
+                else{
+                    strHtml += "<img src='/static/ymplant/img/timg.png' class='portrai' alt=''>";
+                }
+                strHtml += "</div>";
+                strHtml += "<div class='col-md-5 col-sm-5 col-xs-5' style='padding: 0;text-align: left;padding-left: 10px;'>";
+                if(teacher.NICKNAME){
+                    strHtml += "<p style='color:#9EAAAA;font-size: 10px;margin-top: 10px'>" + teacher.NICKNAME + "</p>";
+                }
+                else{
+                    strHtml += "<p style='color:#9EAAAA;font-size: 10px;margin-top: 10px'>暂无</p>";
+                }
+                strHtml += "<p style='color:#9EAAAA;font-size: 10px'>";
+                if(teacher.JOBTYPE){
+                    strHtml += "<span>" + teacher.JOBTYPE + "</span>";
+                }
+                else{
+                    strHtml += "<span>暂无</span>";
+                }
+                strHtml += "</p>";
+                strHtml += "</div>";
+                strHtml += "<div class='col-md-3 col-sm-3 col-xs-3' style='padding: 0;'>";
+                strHtml += "<p style='padding: 17px 0;'>";
+                strHtml += "<a class='btn btn-info' href='<#if Session?? && Session.session_user_key??>${ctxPath}/plant/chat/page/student/" + teacher.USER_ID + "<#else>javascript:showError(\"请登录账号！\");</#if>'>咨 询</a>";
+                strHtml += "</p>";
+                strHtml += "</div>";
+                strHtml += "</div>";
+            }
+
+            strHtml += "<div class='row' style='margin: 0;border-bottom:1px solid #e3e3e3;'>";
+            strHtml += "<div class='col-md-3 col-sm-3 col-xs-3' style='padding: 10px 10px 10px 25px;'>";
+            strHtml += "<img src='/static/ymplant/images/tubiao3/service.png' class='portrai' alt=''>";
+            strHtml += "</div>";
+            strHtml += "<div class='col-md-5 col-sm-5 col-xs-5' style='padding: 0;text-align: left;padding-left: 10px;'>";
+            strHtml += "<p style='color:#9EAAAA;font-size: 10px;margin-top: 10px'>在线客服</p>";
+            strHtml += "<p style='color:#9EAAAA;font-size: 10px'>";
+            strHtml += "<span>院校咨询专员</span>";
+            strHtml += "</p>";
+            strHtml += "</div>";
+            strHtml += "<div class='col-md-3 col-sm-3 col-xs-3' style='padding: 0;'>";
+            strHtml += "<p style='padding: 17px 0;'>";
+            strHtml += "<a class='btn btn-info' href='<#if Session.session_user_key?? && Session.session_user_key.USER_ID??>javascript:showError(\"当前无客服人员在线！\");<#else>javascript:showError(\"请先登录账号\");</#if>'>咨 询</a>";
+            strHtml += "</p>";
+            strHtml += "</div>";
+            strHtml += "</div>";
+            strHtml += "</li>";
+            strHtml += "</ul>";
+            strHtml += "</span>";
+
+
             strHtml += "</li>";
             strHtml += "<li style='color: #636363'>";
             strHtml += "<ul class='property_table'>";

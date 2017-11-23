@@ -91,6 +91,7 @@ public class ReportController extends PageBaseController {
             modelAndView.addObject("schools", schools);*/
         }
 
+        modelAndView.addObject("curPage", "report");
         return modelAndView;
     }
 
@@ -139,6 +140,7 @@ public class ReportController extends PageBaseController {
             }
         }
 
+        modelAndView.addObject("curPage", "report");
         return modelAndView;
     }
 

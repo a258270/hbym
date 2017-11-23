@@ -58,6 +58,7 @@ public class SchoolPageController extends PageBaseController {
         List<DataMap> schools = schoolService.getSchoolsOrderByViewcount(page);
         modelAndView.addObject("topSchools", schools);
 
+        modelAndView.addObject("curPage", "online");
         return modelAndView;
     }
 
@@ -158,6 +159,7 @@ public class SchoolPageController extends PageBaseController {
             modelAndView.addObject("param", param);
         }
 
+        modelAndView.addObject("curPage", "library");
         return modelAndView;
     }
 }

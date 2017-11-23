@@ -51,7 +51,7 @@ $(function () {
                     if(typeof (data) == "undefined" || data == null){
                         return "";
                     }
-                    return data.substring(0, data.indexOf("."));
+                    return toLocalTime(data);
                 }
             },
             {

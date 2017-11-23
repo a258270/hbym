@@ -37,6 +37,7 @@ public class PlantExpertController extends PageBaseController {
         }
         modelAndView.addObject("experts", experts);
 
+        modelAndView.addObject("curPage", "pertde");
         return modelAndView;
     }
 }

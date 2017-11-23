@@ -140,5 +140,8 @@
             AND timestampdiff(YEAR,stu.BIRTHDAY,NOW()) &gt;= #{params.MAXBIRTH}
         </if>
         AND (SELECT COUNT(0) FROM SC_INVITE WHERE TEACHER_ID = #{params.TEACHER_ID} AND STUDENT_ID = user.USER_ID) &lt;=0
+        AND stu.NICKNAME IS NOT NULL
+        AND dic.NAME IS NOT NULL
+        AND exam.EXAMSCORE IS NOT NULL
     </select>
 </mapper>

@@ -159,6 +159,8 @@ public class NewsPageController extends PageBaseController {
         modelAndView.addObject("firstNewses_wjhd", firstNewses_wjhd);
 
         modelAndView.setViewName("/plant/ymplant/news/news");
+
+        modelAndView.addObject("curPage", "news");
         return modelAndView;
     }
 

@@ -81,6 +81,8 @@ public class MajorPageController extends PageBaseController {
         page.setParams(params);
         List<DataMap> ztopMajors = majorService.getTopMajors(page);
         modelAndView.addObject("ztopMajors", ztopMajors);
+
+        modelAndView.addObject("curPage", "library");
         return modelAndView;
     }
 

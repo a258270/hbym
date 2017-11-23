@@ -57,7 +57,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
             DataMap user = SessionUtil.getCurUser();
             if(user == null) {
-                interceptorWechat(request, response, Const.NOCOMPLETE_CODE);
+                interceptorWechat(request, response, Const.NOPLANTUSER_CODE);
                 return false;
             }
 

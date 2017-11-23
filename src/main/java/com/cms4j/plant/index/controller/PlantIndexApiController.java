@@ -67,7 +67,7 @@ public class PlantIndexApiController extends ApiBaseController {
         if(!Boolean.valueOf(dataMap.getString("STATUS")))
             return InvokeResult.failure("该用户不可用");
 
-        sessionService.kickUser(dataMap.getString("USER_ID"));
+        sessionService.kickPlantUser(dataMap.getString("USER_ID"));
         dataMap.put("LAST_LOGIN", DateUtil.getCurrentTime());
         dataMap.put("IP", this.getRequestIpAddress());
         plantUserService.editUserLoginInfo(dataMap);

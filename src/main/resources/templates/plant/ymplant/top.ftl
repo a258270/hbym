@@ -192,10 +192,10 @@
             <div class="col-md-7 col-sm-7 col-xs-7" style="padding: 15px;margin: -10px;">
                 <ul class="gation">
                     <li class="nal">
-                        <a class="colour" href="/">网站首页</a>
+                        <a class="colour<#if curPage?? && curPage == 'index'> nav-active</#if>" href="/">网站首页</a>
                     </li>
                     <li class="nalism">
-                        <a class="bse colour" href="javascript:void (0);">模拟填报</a>
+                        <a class="bse colour<#if curPage?? && curPage == 'report'> nav-active</#if>" href="javascript:void (0);">模拟填报</a>
                         <ul class="notice">
                             <li>
                                 <a href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/report<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">模拟填报</a>
@@ -206,14 +206,14 @@
                         </ul>
                     </li>
                     <li class="nal">
-                        <a class="colour" href="${ctxPath}/plant/school/online">院校咨询</a>
+                        <a class="colour<#if curPage?? && curPage == 'online'> nav-active</#if>" href="${ctxPath}/plant/school/online">院校咨询</a>
                     </li>
                     <li class="nal">
-                        <a class="colour" href="javascript:void(0);">名师指导</a>
+                        <a class="colour<#if curPage?? && curPage == 'pertde'> nav-active</#if>" href="javascript:void(0);">名师指导</a>
                     <#--${ctxPath}/plant/expert/index-->
                     </li>
                     <li class="nalism">
-                        <a class="bse colour" href="javascript:void (0);">信息库</a>
+                        <a class="bse colour<#if curPage?? && curPage == 'library'> nav-active</#if>" href="javascript:void (0);">信息库</a>
                         <ul class="notice">
                             <li>
                                 <a class="colour" href="${ctxPath}/plant/school/library">院校库</a>
@@ -246,7 +246,7 @@
                     </ul>
                 </li>-->
                     <li class="nal">
-                        <a class="colour" href="${ctxPath}/plant/news/core">新闻中心</a>
+                        <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                     </li>
                     <div class="clear"></div>
                 </ul>

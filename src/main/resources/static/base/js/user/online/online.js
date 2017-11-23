@@ -51,9 +51,7 @@ $(function () {
                     if(typeof (data) == "undefined" || data == null){
                         return "";
                     }
-                    var newDate = new Date();
-                    newDate.setTime(data);
-                    return newDate.toLocaleString();
+                    return toLocalTime(data);
                 }
             },
             {

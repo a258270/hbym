@@ -105,7 +105,7 @@
                 <span>院校名称：<#if complete?? && complete.SCNAME??>${complete.SCNAME}<#else>暂无</#if></span>
             </p>
             <p style="margin-bottom:20px;border-bottom:1px solid #CECECE;padding: 20px 10px">
-                <span>工作年限：</span>
+                <span>工作年限：<#if complete?? && complete.JOBDATE_VALUE??>${complete.JOBDATE_VALUE}<#else>暂无</#if></span>
             </p>
             <p class="baocun" style="margin-left:160px">
                 <input class="kd-xgai" type="submit" value="保存修改"/>

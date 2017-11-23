@@ -10,6 +10,7 @@ import com.cms4j.plant.school.service.ScStoreupService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.school.service.ScpropertyService;
 import com.cms4j.plant.school.service.SubjecttypeService;
+import com.cms4j.plant.user.service.CompleteTeacherService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,8 @@ public class SchoolPageApiController extends ApiBaseController {
     private SubjecttypeService subjecttypeService;
     @Autowired
     private ScscoreService scscoreService;
+    @Autowired
+    private CompleteTeacherService completeTeacherService;
 
     @RequestMapping(value = "/getschools")
     public InvokeResult getSchools() throws Exception {
@@ -96,6 +99,10 @@ public class SchoolPageApiController extends ApiBaseController {
                 List<DataMap> subjecttypes = subjecttypeService.getSubjecttypeByScId(school);
                 if(subjecttypes == null) subjecttypes = new ArrayList<DataMap>();
                 school.put("subjecttypes", subjecttypes);
+
+                List<DataMap> teachers = completeTeacherService.getCompleteTeacherByScId(school);
+                if(teachers == null) teachers = new ArrayList<>();
+                school.put("teachers", teachers);
             }
         }
         page.setResults(schools);

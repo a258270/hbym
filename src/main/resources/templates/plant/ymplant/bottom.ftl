@@ -72,9 +72,6 @@
                         <#--${baseSetting.email}-->
                         <#--</li>-->
                             <li class="bot_a">
-                                <img src="/static/ymplant/img/sye/tubiao/bot_qq_ico.png" alt="">
-                                3459957212&nbsp;&nbsp; 1716118622</li>
-                            <li class="bot_a">
                                 <i class="glyphicon glyphicon-earphone"></i>
                                 <span>0311-69053126</span>
                             </li>
@@ -82,6 +79,9 @@
                                 <i class="glyphicon glyphicon-envelope"></i>
                                 <span>mbgkzy@126.com</span>
                             </li>
+                            <li class="bot_a">
+                                <img src="/static/ymplant/img/sye/tubiao/bot_qq_ico.png" alt="">
+                                3459957212&nbsp;&nbsp; 1716118622</li>
                         </ul>
                     </div>
                 </div>

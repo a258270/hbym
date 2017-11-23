@@ -32,7 +32,7 @@ ul{
     color: #ffffff;
     position: relative;
     border:1px solid #33c9b5;
-    position: relative;
+    font-weight: bold;
 }
 .province2{
     position: absolute;

@@ -129,7 +129,7 @@
                     <img src="${firstNews_gkdt.IMGURL}" style="width: 345px;height: 265px;" alt="">
                 </a>
                 <p style="margin: 5px">
-                    <a href="${ctxPath}/plant/news/details/${firstNews_gkdt.NEWS_ID}" style="color: #000;" target="_blank">
+                    <a href="${ctxPath}/plant/news/details/${firstNews_gkdt.NEWS_ID}" style="color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
                         <p><#if firstNews_gkdt.TITLE??>${firstNews_gkdt.TITLE}<#else>暂无</#if></p>
                         <p style="color:#AFAFAF;">${firstNews_gkdt.CREATETIME?string("yyyy-MM-dd")}</p>
                     </a>

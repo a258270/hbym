@@ -91,6 +91,7 @@ ul{
     margin-top: 15px;
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
     /*text-align: center;*/
 }
 .kd-ydon{
@@ -190,6 +191,7 @@ ul{
     color: #fff;
     font-size: 16px;
     position: relative;
+    font-weight: bold;
 }
 
 /*.consulting>h4{*/

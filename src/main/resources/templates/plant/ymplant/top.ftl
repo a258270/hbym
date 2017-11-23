@@ -51,11 +51,17 @@
                         </div>
                         <ul class="eject row">
                             <li class="col-md-4 col-sm-4 col-xs-4">
-                                <img src="<#if Session.session_complete_key?? && Session.session_complete_key.HEADURL??>${Session.session_complete_key.HEADURL}<#else>/static/ymplant/img/timg.png</#if>" style="width: 50px;height: 50px;border-radius: 50%" alt=""/>
+                                <a href="<#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>${ctxPath}/plant/user/center</#if><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>${ctxPath}/plant/teacher/center</#if>">
+                                    <img src="<#if Session.session_complete_key?? && Session.session_complete_key.HEADURL??>${Session.session_complete_key.HEADURL}<#else>/static/ymplant/img/timg.png</#if>" style="width: 50px;height: 50px;border-radius: 50%" alt=""/>
+                                </a>
                             </li>
                             <li class="col-md-8 col-sm-8 col-xs-8">
-                                <p style="margin-bottom: 5px;font-weight: bold;"><#if Session.session_complete_key?? && Session.session_complete_key.NICKNAME??>${Session.session_complete_key.NICKNAME}<#else>暂无</#if></p>
-                                <input class="ordinary" type="button" style="font-size: 10px;background-color:<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>#FE7F2A;<#else>#2DC473;</#if>" value="<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>黄金会员<#else>普通会员</#if>"/>
+                                <a style="color:#333;" href="<#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>${ctxPath}/plant/user/center</#if><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>${ctxPath}/plant/teacher/center</#if>">
+                                    <p style="margin-bottom: 5px;font-weight: bold;"><#if Session.session_complete_key?? && Session.session_complete_key.NICKNAME??>${Session.session_complete_key.NICKNAME}<#else>暂无</#if></p>
+                                </a>
+                                <a href="${ctxPath}/plant/user/center?p=authority">
+                                    <input class="ordinary" type="button" style="font-size: 10px;background-color:<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>#FE7F2A;<#else>#2DC473;</#if>" value="<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>黄金会员<#else>普通会员</#if>"/>
+                                </a>
                             </li>
                         <#--<#if Session.session_user_key?? && !Session.session_user_key.OVERDUETIME?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
                         <li class="col-md-12 col-sm-12 col-xs-12"  style="margin-top: 20px">
@@ -186,34 +192,34 @@
             <div class="col-md-7 col-sm-7 col-xs-7" style="padding: 15px;margin: -10px;">
                 <ul class="gation">
                     <li class="nal">
-                        <a href="/">网站首页</a>
+                        <a class="colour" href="/">网站首页</a>
                     </li>
                     <li class="nalism left">
                         <a href="javascript:void (0);" style="color:#6B6262;">模拟填报</a>
                         <ul class="notice">
                             <li>
-                                <a href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/report<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">模拟填报</a>
+                                <a class="colour" href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/report<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">模拟填报</a>
                             </li>
                             <li>
-                                <a href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/index<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">智能推荐</a>
+                                <a class="colour" href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/index<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">智能推荐</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nal">
-                        <a href="${ctxPath}/plant/school/online">院校咨询</a>
+                        <a class="colour" href="${ctxPath}/plant/school/online">院校咨询</a>
                     </li>
                     <li class="nal">
-                        <a href="javascript:void(0);">名师指导</a>
+                        <a class="colour" href="javascript:void(0);">名师指导</a>
                     <#--${ctxPath}/plant/expert/index-->
                     </li>
                     <li class="nalism left">
-                        <a href="javascript:void (0);" style="color:#6B6262;">信息库</a>
+                        <a class="colour" href="javascript:void (0);" style="color:#6B6262;">信息库</a>
                         <ul class="notice">
                             <li>
-                                <a href="${ctxPath}/plant/school/library">院校库</a>
+                                <a class="colour" href="${ctxPath}/plant/school/library">院校库</a>
                             </li>
                             <li>
-                                <a href="${ctxPath}/plant/major/index">专业库</a>
+                                <a class="colour" href="${ctxPath}/plant/major/index">专业库</a>
                             </li>
                         </ul>
                     </li>
@@ -240,7 +246,7 @@
                     </ul>
                 </li>-->
                     <li class="nal">
-                        <a href="${ctxPath}/plant/news/core">新闻中心</a>
+                        <a class="colour" href="${ctxPath}/plant/news/core">新闻中心</a>
                     </li>
                     <div class="clear"></div>
                 </ul>

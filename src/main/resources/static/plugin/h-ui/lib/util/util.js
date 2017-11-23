@@ -6,7 +6,7 @@ var getCurrentTime = function () {
         "-" + myDate.getDate() +
         " " + myDate.getHours() +
         ":" + myDate.getMinutes() +
-        ":" + myDate.getSeconds();
+            ":" + myDate.getSeconds();
 };
 
 var toLocalTime = function (time) {
@@ -35,13 +35,13 @@ var toLocalTime = function (time) {
 var toLocalDate = function (time) {
     var myDate = new Date(time);
     var year = myDate.getFullYear();
-    var month = myDate.getMonth();
-    var day = myDate.getDay();
+    var month = myDate.getMonth() + 1;
+    var day = myDate.getDate();
 
     if(month < 10) month = "0" + month;
     if(day < 10) day = "0" + day;
 
-    return myDate.getFullYear() +
+    return year +
         "-" + month +
         "-" + day;
 }

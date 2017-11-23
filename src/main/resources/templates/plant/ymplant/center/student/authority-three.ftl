@@ -95,11 +95,11 @@
             </div>
         </div>
         <div class="row" style="padding: 10px 15px;margin-bottom: 10px;">
-            <div class="col-md-7 col-sm-7 col-xs-7">
-                <div style="font-size: 30px;color:#22B14C;font-weight: bold">更多精品功能，敬请期待！！！</div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div style="font-size: 30px;color:#22B14C;font-weight: bold;text-align: center;">更多精品功能，敬请期待！</div>
             </div>
-            <div class="col-md-5 col-sm-5 col-xs-5">
-                <div style="font-size: 10px;line-height: 3">（注：部分功能暂时内测阶段暂未开放，请您谅解。）</div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div style="font-size: 10px;line-height: 3;text-align: center;">（注：部分功能暂时内测阶段暂未开放，请您谅解。）</div>
             </div>
         </div>
     </div>

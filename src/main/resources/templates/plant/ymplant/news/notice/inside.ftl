@@ -12,6 +12,7 @@
             <div class="row">
                 <div class="col-md-9 col-sm-9 col-xs-9" style="padding-right: 50px;">
                     <div class="announcement">详情
+                        <img class="kd-dtai2" style="width: 22px" src="/static/ymplant/images/tubiao/details.png" alt="">
                     </div>
                     <div id="page"></div>
 
@@ -107,12 +108,12 @@
             strHtml += "<div class='notic'>标题</div>";
             strHtml += "</div>";
             strHtml += "<div class='col-md-8 col-ms-8 col-xs-8' style='padding: 0'>";
-            strHtml += "<a href='${ctxPath}/plant/news/details/" + obj.NEWS_ID + "' style='text-decoration: none;' target='_blank'>";
+            strHtml += "<a href='${ctxPath}/plant/news/details/" + obj.NEWS_ID + "' style='text-decoration: none;color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;' target='_blank'>";
             strHtml += "<span>" + obj.TITLE + "</span>";
             strHtml += "</a>";
             strHtml += "</div>";
             strHtml += "<div class='col-md-3 col-sm-3 col-xs-3' style='text-align: right'>";
-            strHtml += toLocalTime(obj.CREATETIME);
+            strHtml += toLocalDate(obj.CREATETIME);
             strHtml += "</div>";
             strHtml += "</div>";
             </#if>

@@ -25,7 +25,13 @@ ul{
     margin-top: 15px;
     color: #fff;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
+    position: relative;
+}
+.kd-pages .announcement>.kd-dtai2{
+    position: absolute;
+    top:6px;
+    left: 11px;
 }
 
 .kd-pages .announcement>h4{

@@ -46,8 +46,8 @@
                 <img id="imghead_HEADURL" border="0" src="<#if basicInfo?? && basicInfo.HEADURL??>${basicInfo.HEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" width="150" height="150" onclick="$('#IMGURL').click();">
             </div>
             <input type="file" onchange="previewImage(this,150,150)" style="display: none" id="HEADURL" name="HEADURL">
-            <input type="button" class="toxang " value="更换头像" width="90" height="90" onclick="$('#HEADURL').click()">
-            <#--<button style="padding: 2px 10px;background-color: #fff;border:1px solid #00C3D5;border-radius: 4px">更换头像</button>-->
+            <#--<input type="button" class="toxang " value="更换头像" width="90" height="90" onclick="$('#HEADURL').click()">-->
+                <input type="button" class="btn btn-info" style="margin-left: 30px;" value="更换头像" onclick="$('#HEADURL').click()">
         </div>
         <div class="col-md-9 col-xs-9" style="padding: 20px 100px 20px 20px">
             <div>

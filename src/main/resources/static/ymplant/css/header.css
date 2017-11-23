@@ -187,8 +187,11 @@ a:visited{
     border-radius: 5px;
 }
 .colour{
+    display: inline-block;
+    padding: 5px 20px;
     background-color: #F4F1F1;
     color: #6B6262;
+    border-radius: 5px;
 }
 .gation{
     width: 100%;
@@ -197,14 +200,10 @@ a:visited{
     background-color: #F46A06;
     color: #fff;
 }
-.d1{
-    background-color: #F46A06;
-    color: #fff;
- }
 .nalism{
     position: relative;
     float: left;
-    padding: 5px 20px;
+    /*padding: 5px 20px;*/
     background-color: #F4F1F1;
     font-weight: bold;
     border-radius: 5px;
@@ -241,11 +240,12 @@ a:visited{
     background-color: #F46A06;
     color: #fff;
 }
-.nalism:hover{
-    background-color: #F4F1F1;
-    color: #6B6262;
+.nalism:hover .bse{
+    background-color: #F46A06;
+    color: #fff;
 }
 .nalism:hover .notice{
+    background-color: #F4F1F1;
     display: block;
     color: #fff;
 }

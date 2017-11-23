@@ -194,14 +194,14 @@
                     <li class="nal">
                         <a class="colour" href="/">网站首页</a>
                     </li>
-                    <li class="nalism left">
-                        <a href="javascript:void (0);" style="color:#6B6262;">模拟填报</a>
+                    <li class="nalism">
+                        <a class="bse colour" href="javascript:void (0);">模拟填报</a>
                         <ul class="notice">
                             <li>
-                                <a class="colour" href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/report<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">模拟填报</a>
+                                <a href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/report<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">模拟填报</a>
                             </li>
                             <li>
-                                <a class="colour" href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/index<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">智能推荐</a>
+                                <a href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'><#if Session.session_user_key.OVERDUETIME??>${ctxPath}/plant/report/index<#else>javascript:showError('您当前不是黄金会员，点击确定前往激活页面', 'authority');</#if><#else>javascript:showError('请确认账号为学生身份');</#if></#if>">智能推荐</a>
                             </li>
                         </ul>
                     </li>
@@ -212,8 +212,8 @@
                         <a class="colour" href="javascript:void(0);">名师指导</a>
                     <#--${ctxPath}/plant/expert/index-->
                     </li>
-                    <li class="nalism left">
-                        <a class="colour" href="javascript:void (0);" style="color:#6B6262;">信息库</a>
+                    <li class="nalism">
+                        <a class="bse colour" href="javascript:void (0);">信息库</a>
                         <ul class="notice">
                             <li>
                                 <a class="colour" href="${ctxPath}/plant/school/library">院校库</a>

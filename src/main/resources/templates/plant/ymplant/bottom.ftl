@@ -80,7 +80,7 @@
                             </li>
                             <li class="bot_a">
                                 <i class="glyphicon glyphicon-envelope"></i>
-                                <span>yz_school@126.com</span>
+                                <span>mbgkzy@126.com</span>
                             </li>
                         </ul>
                     </div>

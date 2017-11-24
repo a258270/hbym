@@ -205,13 +205,13 @@ ul{
     float: left;
     padding: 0 15px;
 }
-.college{
+.colleges{
     margin: 10px 0;
     height: 150px;
     position: relative;
 }
 
-.college .gate{
+.colleges .gate{
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -310,6 +310,7 @@ ul{
     border:none;
     font-weight: bold;
     border-radius: 2px;
+    line-height: 2;
 }
 .kd-yru{
     display: inline-block;
@@ -317,7 +318,7 @@ ul{
 }
 .kd-cxian{
     width:300px;
-    height:330px;
+    /*height:330px;*/
     text-align: center;
     border:1px solid #ccc;
     border-radius: 10px;
@@ -351,7 +352,7 @@ ul{
     /*background-color: #fff;*/
 /*}*/
 .formula{
-    height:280px;
+    max-height:280px;
     overflow-y: scroll;
     /*overflow-x: hidden;*/
 }

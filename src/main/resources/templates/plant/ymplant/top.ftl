@@ -12,9 +12,9 @@
                         <span>我是高校丨我是专家</span>
                     </span>
                 </div>
-                <div class="colleges">
+                <#--<div class="colleges">-->
 
-                </div>
+                <#--</div>-->
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <form action="${ctxPath}/plant/news/search" method="post">

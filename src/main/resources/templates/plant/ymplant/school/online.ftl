@@ -6,6 +6,7 @@
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/school/online.css?v=${v}"/>
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/school/library.css?v=${v}"/>
+    <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/school/details.css?v=${v}"/>
     <style>
         .kd-hei{
             background-color: #ccc;
@@ -485,18 +486,65 @@
             strHtml += "<div class='col-xs-2 col-md-2 col-lg-2' style='min-width: 120px;' '>";
             strHtml += "<img style='width: 100px;height: 100px;' src='" + school.HEADURL + "' alt=''/>";
             strHtml += "</div>";
-            strHtml += "<div class='col-xs-9 col-md-9 col-lg-9'>";
+            strHtml += "</a>";
+            strHtml += "<div class='col-xs-8 col-md-8 col-lg-8'>";
             strHtml += "<ul>";
             strHtml += "<li class='table_title'>";
+            strHtml += "<a href='" + ctxPath + "/plant/school/details/" + school.SCHOOL_ID + "' target='_blank'>";
             strHtml += school.NAME;
             strHtml += "&nbsp;&nbsp;";
             for(var j = 0; j < school.properties.length; j++) {
                 var property = school.properties[j];
                 strHtml += "<span class='kd-" + property.DIC_ID + "' title='" + property.NAME + "'></span>";
             }
+            strHtml += "</a>";
             strHtml += "&nbsp;&nbsp;";
 
 
+
+
+
+            strHtml += "</li>";
+            strHtml += "<li style='color: #636363'>";
+            strHtml += "<a href='" + ctxPath + "/plant/school/details/" + school.SCHOOL_ID + "' target='_blank'>";
+            strHtml += "<ul class='property_table'>";
+
+            strHtml += "<li class='table_body' style='width: 20%'>";
+            strHtml += "入驻人数：" + school.TEACOUNT + "人";
+            strHtml += "</li>";
+
+            strHtml += "<li class='table_body' style='width: 20%'>";
+            strHtml += "地区：" + school.PROVINCE_VALUE;
+            strHtml += "</li>";
+
+            strHtml += "<li class='table_body' style='width: 20%'>";
+            if(school.SCTYPE_VALUE == null)
+                strHtml += "学校性质：暂无";
+            else
+                strHtml += "学校性质：" + school.SCTYPE_VALUE;
+            strHtml += "</li>";
+
+            strHtml += "<li class='table_body' style='width: 25%'>";
+            if(school.CREATEDATE == null)
+                strHtml += "创建时间：暂无";
+            else
+                strHtml += "创建时间：" + school.CREATEDATE + "年";
+            strHtml += "</li>";
+
+            strHtml += "<div class='clear'></div>";
+            strHtml += "</ul>";
+            strHtml += "</a>";
+            strHtml += "</li>";
+            strHtml += "<li>";
+
+            for(var j = 0; j < school.subjecttypes.length; j++) {
+                var subjecttype = school.subjecttypes[j];
+                strHtml += "<span class='kd-" + subjecttype.DIC_ID + "' title='" + subjecttype.NAME + "'></span>";
+            }
+            strHtml += "</li>";
+            strHtml += "</ul>";
+            strHtml += "</div>";
+            strHtml += "<div class='col-md-2 col-sm-2 col-xs-2' style='padding-top: 30px;'>";
             strHtml += "<span class='kd-yru'>";
             strHtml += "<input class='kd-wlshi' type='button' value='在线咨询'>";
             strHtml += "<ul class='kd-cxian'>";
@@ -558,45 +606,6 @@
             strHtml += "</li>";
             strHtml += "</ul>";
             strHtml += "</span>";
-
-
-            strHtml += "</li>";
-            strHtml += "<li style='color: #636363'>";
-            strHtml += "<ul class='property_table'>";
-
-            strHtml += "<li class='table_body' style='width: 20%'>";
-            strHtml += "入驻人数：" + school.TEACOUNT + "人";
-            strHtml += "</li>";
-
-            strHtml += "<li class='table_body' style='width: 20%'>";
-            strHtml += "地区：" + school.PROVINCE_VALUE;
-            strHtml += "</li>";
-
-            strHtml += "<li class='table_body' style='width: 20%'>";
-            if(school.SCTYPE_VALUE == null)
-                strHtml += "学校性质：暂无";
-            else
-                strHtml += "学校性质：" + school.SCTYPE_VALUE;
-            strHtml += "</li>";
-
-            strHtml += "<li class='table_body' style='width: 20%'>";
-            if(school.CREATEDATE == null)
-                strHtml += "创建时间：暂无";
-            else
-                strHtml += "创建时间：" + school.CREATEDATE + "年";
-            strHtml += "</li>";
-
-            strHtml += "<div class='clear'></div>";
-            strHtml += "</ul>";
-            strHtml += "</li>";
-            strHtml += "<li>";
-
-            for(var j = 0; j < school.subjecttypes.length; j++) {
-                var subjecttype = school.subjecttypes[j];
-                strHtml += "<span class='kd-" + subjecttype.DIC_ID + "' title='" + subjecttype.NAME + "'></span>";
-            }
-            strHtml += "</li>";
-            strHtml += "</ul>";
             strHtml += "</div>";
             strHtml += "</a>";
             strHtml += "</div>";

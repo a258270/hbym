@@ -179,28 +179,23 @@ ul,li{
     color: #B37D57;
 }
 .gation{
-    border-bottom: 2px solid #AF6936;
     padding: 0 25px;
 }
 .gation>.nal{
     float: left;
-    /*padding: 5px 20px;*/
     font-weight: bold;
-    border:1px solid #fff;
     margin: 0 auto;
 }
 .gation>.nal>a{
     text-decoration: none;
-    padding:5px 20px;
+    padding:10px 20px;
     display: block;
-    border-radius: 5px;
 }
 .colour{
     display: inline-block;
-    padding: 5px 20px;
-    background-color: #F4F1F1;
-    color: #6B6262;
-    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #33C9B5;
+    color: #FFF;
 }
 .colour:focus{
     color: #6B6262;
@@ -209,7 +204,7 @@ ul,li{
     width: 100%;
 }
 .gation>.nal:hover a{
-    background-color: #F46A06;
+    background-color: #46A096;
     color: #fff;
 }
 .nalism{
@@ -219,41 +214,36 @@ ul,li{
     background-color: #F4F1F1;
     font-weight: bold;
     border-radius: 5px;
-    border:1px solid #fff;
     margin: 0 auto;
     color: #6B6262;
 }
 .notice{
     display: none;
     position: absolute;
-    top: 30px;
-    left: 0;
     z-index: 5;
 }
 .notice>li{
-    background-color: #F4F1F1;
+    background-color: #33C9B5;
     font-weight: bold;
     /*border-radius: 5px;*/
-    border:1px solid #fff;
     margin: 0 auto;
 }
 .notice>li>a{
-    color: #6B6262;
-    padding: 5px 19px;
+    color: #FFF;
+    padding: 10px 20px;
     display: block;
-    border-radius: 5px;
 }
 .notice>li a:hover{
-    background-color: #F46A06;
+    background-color: #46A096;
     color: #fff;
     text-decoration: none;
 }
 .nav-active{
-    background-color: #F46A06;
+    background-color: #46A096;
     color: #fff;
 }
 .nalism:hover .bse{
-    background-color: #F46A06;
+    background-color: #46A096;
     color: #fff;
 }
 .nalism:hover .notice{

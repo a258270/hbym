@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/plant/major")
@@ -51,6 +48,17 @@ public class MajorPageController extends PageBaseController {
 
         List<DataMap> zmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_ZK, 2);//一级分类
         if(zmajors == null) zmajors = new ArrayList<>();
+
+        for(int i = 0; i < zmajors.size(); i++) {
+            Collections.sort(zmajors, new Comparator<DataMap>() {
+                @Override
+                public int compare(DataMap o1, DataMap o2) {
+                    if(StringUtils.isBlank(o1.getString("NAME")) || StringUtils.isBlank(o2.getString("NAME")))
+                        return 0;
+                    return o1.getString("NAME").length() - o2.getString("NAME").length();
+                }
+            });
+        }
 
         List zmajorsOut = new ArrayList();
         List zmajorsTmp = new ArrayList();

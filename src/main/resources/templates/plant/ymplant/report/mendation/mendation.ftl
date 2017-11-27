@@ -27,7 +27,7 @@
                 <p style="padding: 5px 0;">
                     <span style="font-weight: bold;color: #333">高考分数：</span>
                     <span><#if examinee?? && examinee.EXAMSCORE??>${examinee.EXAMSCORE}分<#else>暂无信息</#if></span>
-                    <span>（注：分数需要在个人中心修改）</span>
+                    <span>（注：高考分数如需改动，<a style="color: #3b8059" href="${ctxPath}/plant/user/center?p=examinee">点此修改</a>）</span>
                 </p>
                 <div class="gion">
                     <div class="row">

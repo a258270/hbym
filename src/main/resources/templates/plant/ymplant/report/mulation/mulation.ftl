@@ -47,7 +47,7 @@
                     </div>-->
                         <div class="row">
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <div style="padding: 10px 0;">高考分数：<#if examinee?? && examinee.EXAMSCORE??>${examinee.EXAMSCORE}分<#else>暂无信息</#if> （注：高考分数如需改动，<a href="${ctxPath}/plant/user/center?p=examinee">点此修改</a>）</div>
+                                <div style="padding: 10px 0;">高考分数：<#if examinee?? && examinee.EXAMSCORE??>${examinee.EXAMSCORE}分<#else>暂无信息</#if> （注：高考分数如需改动，<a style="color: #3b8059" href="${ctxPath}/plant/user/center?p=examinee">点此修改</a>）</div>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 <ul class="nav nav-tabs right" id="kd-xzhong" style="background-color: #D4F5F1;" role="tablist">

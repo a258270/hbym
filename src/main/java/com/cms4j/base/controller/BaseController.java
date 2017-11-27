@@ -1,8 +1,10 @@
 package com.cms4j.base.controller;
 
 import com.cms4j.base.util.DataMap;
+import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.LoggerUtil;
 import com.cms4j.base.util.ShortUUID;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -66,4 +68,30 @@ public class BaseController {
         return new DataMap(this.getRequest());
     }
 
+    public Boolean validParams(String[] params) {
+        if (params == null)
+            return false;
+
+        DataMap dataMap = this.getDataMap();
+        for(String param : params) {
+            if(StringUtils.isBlank(dataMap.getString(param))) return false;
+        }
+
+        return true;
+    }
+
+    public Boolean validParams(String[] params, DataMap dataMap) {
+        if (params == null || dataMap == null)
+            return false;
+
+        for(String param : params) {
+            if(StringUtils.isBlank(dataMap.getString(param))) return false;
+        }
+
+        return true;
+    }
+
+    public InvokeResult validFailure() {
+        return InvokeResult.failure("406", "缺少参数");
+    }
 }

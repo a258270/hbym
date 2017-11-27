@@ -3,15 +3,16 @@ package com.cms4j.plant.school.service;
 import com.cms4j.base.dao.DaoSupport;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.Page;
+import com.cms4j.base.util.SessionUtil;
 import com.cms4j.base.util.ShortUUID;
+import com.cms4j.plant.user.service.CompleteTeacherService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import javax.xml.crypto.Data;
+import java.util.*;
 
 /**
 * Description: SchoolService
@@ -35,6 +36,8 @@ public class SchoolService {
     private ScIntroductionService scIntroductionService;
     @Autowired
     private ScFacultyService scFacultyService;
+    @Autowired
+    private CompleteTeacherService completeTeacherService;
 
     /**
     * 根据SCHOOL_ID获取数据
@@ -479,5 +482,150 @@ public class SchoolService {
 
     public Integer getCountSchools() throws Exception {
         return (Integer) daoSupport.findForObject("SchoolMapper.getCountSchools");
+    }
+
+    public Page getHasTeachersSchools(DataMap dataMap) throws Exception {
+        Page page = new Page();
+        if(StringUtils.isBlank(dataMap.getString("NAME"))) {
+            dataMap.put("NAME", null);
+        }
+        if(StringUtils.isBlank(dataMap.getString("PROVINCE"))) {
+            dataMap.put("PROVINCE", null);
+        }
+        else{
+            dataMap.put("PROVINCE", Arrays.asList(dataMap.getString("PROVINCE").split(",")));
+        }
+        if(StringUtils.isBlank(dataMap.getString("ARRANGMENT"))) {
+            dataMap.put("ARRANGMENT", null);
+        }
+        else{
+            dataMap.put("ARRANGMENT", Arrays.asList(dataMap.getString("ARRANGMENT").split(",")));
+        }
+        if(StringUtils.isBlank(dataMap.getString("SUBJECTTYPE"))) {
+            dataMap.put("SUBJECTTYPE", null);
+        }
+        else{
+            dataMap.put("SUBJECTTYPE", Arrays.asList(dataMap.getString("SUBJECTTYPE").split(",")));
+        }
+        if(StringUtils.isBlank(dataMap.getString("PROPERTY"))) {
+            dataMap.put("PROPERTY", null);
+        }
+        else{
+            dataMap.put("PROPERTY", Arrays.asList(dataMap.getString("PROPERTY").split(",")));
+        }
+
+        page.setParams(dataMap);
+
+        if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
+        else{
+            try{
+                Integer currentPage = Integer.valueOf(dataMap.getString("currentPage"));
+                currentPage--;
+                if(currentPage < 0) currentPage = 0;
+                dataMap.put("currentPage", currentPage);
+            }
+            catch (Exception e) {
+                dataMap.put("currentPage", "0");
+            }
+        }
+        page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
+        page.setPageSize(10);
+
+        dataMap.put("pageBeginNumber", page.getPageNumber() * page.getPageSize());
+        dataMap.put("pageSize", page.getPageSize());
+
+        List<DataMap> schools = this.getSchoolsHasTeacher(dataMap);
+        Long totalCount = this.getCountSchoolsHasTeacher(dataMap);
+        if(schools != null && schools.size() > 0) {
+            for(DataMap school : schools) {
+                List<DataMap> properties = scpropertyService.getScpropertyByScId(school);
+                if(properties == null) properties = new ArrayList<DataMap>();
+                school.put("properties", properties);
+
+                List<DataMap> subjecttypes = subjecttypeService.getSubjecttypeByScId(school);
+                if(subjecttypes == null) subjecttypes = new ArrayList<DataMap>();
+                school.put("subjecttypes", subjecttypes);
+
+                List<DataMap> teachers = completeTeacherService.getCompleteTeacherByScId(school);
+                if(teachers == null) teachers = new ArrayList<>();
+                school.put("teachers", teachers);
+            }
+        }
+        page.setResults(schools);
+        page.setTotalRecord(totalCount);
+
+        return page;
+    }
+
+    public Page getLibraryOfSchools(DataMap dataMap) throws Exception {
+        Page page = new Page();
+        Map params = new HashMap();
+        params.put("NAME", dataMap.getString("NAME"));
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser != null) {
+            params.put("USER_ID", curUser.getString("USER_ID"));
+        }
+
+        if(!StringUtils.isBlank(dataMap.getString("provinces"))){
+            String[] provinces = dataMap.getString("provinces").split(",");
+            if(provinces.length > 0)
+                params.put("provinces", Arrays.asList(provinces));
+        }
+
+        if(!StringUtils.isBlank(dataMap.getString("properties"))){
+            String[] properties = dataMap.getString("properties").split(",");
+            if(properties.length > 0)
+                params.put("properties", Arrays.asList(properties));
+        }
+
+        if(!StringUtils.isBlank(dataMap.getString("arrangments"))){
+            String[] arrangments = dataMap.getString("arrangments").split(",");
+            if(arrangments.length > 0)
+                params.put("arrangments", Arrays.asList(arrangments));
+        }
+
+        if(!StringUtils.isBlank(dataMap.getString("subjecttypes"))){
+            String[] subjecttypes = dataMap.getString("subjecttypes").split(",");
+            if(subjecttypes.length > 0)
+                params.put("subjecttypes", Arrays.asList(subjecttypes));
+        }
+
+        page.setParams(params);
+
+        if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
+        else{
+            try{
+                Integer currentPage = Integer.valueOf(dataMap.getString("currentPage"));
+                currentPage--;
+                if(currentPage < 0) currentPage = 0;
+                dataMap.put("currentPage", currentPage);
+            }
+            catch (Exception e) {
+                dataMap.put("currentPage", "0");
+            }
+        }
+        page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
+        page.setPageSize(10);
+
+        params.put("pageBeginNumber", page.getPageNumber() * page.getPageSize());
+        params.put("pageSize", page.getPageSize());
+
+        List<DataMap> schools = this.getSchoolsInLibrary(params);
+        Long totalCount = this.getCountSchoolsInLibrary(params);
+        if(schools != null && schools.size() > 0) {
+            for(DataMap school : schools) {
+                List<DataMap> properties = scpropertyService.getScpropertyByScId(school);
+                if(properties == null) properties = new ArrayList<DataMap>();
+                school.put("properties", properties);
+
+                List<DataMap> subjecttypes = subjecttypeService.getSubjecttypeByScId(school);
+                if(subjecttypes == null) subjecttypes = new ArrayList<DataMap>();
+                school.put("subjecttypes", subjecttypes);
+            }
+        }
+        page.setResults(schools);
+        page.setTotalRecord(totalCount);
+
+        return page;
     }
 }

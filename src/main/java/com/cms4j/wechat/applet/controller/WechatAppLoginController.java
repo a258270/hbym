@@ -12,17 +12,17 @@ import com.cms4j.plant.user.service.CompleteStudentService;
 import com.cms4j.plant.user.service.CompleteTeacherService;
 import com.cms4j.plant.user.service.PlantUserService;
 import com.cms4j.plant.util.PlantConst;
-import com.cms4j.wechat.applet.service.WechatAppletLoginService;
 import com.cms4j.wechat.service.WechatUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping(value = "/wechat/applet/api")
-public class WechatAppletLoginController extends ApiBaseController {
-    @Autowired
-    private WechatAppletLoginService wechatAppletLoginService;
+@RequestMapping(value = "/wechat/applet/api", method = RequestMethod.POST)
+public class WechatAppLoginController extends ApiBaseController {
 
     @Autowired
     private WechatUserService wechatUserService;
@@ -42,24 +42,27 @@ public class WechatAppletLoginController extends ApiBaseController {
     @Autowired
     private CompleteProService completeProService;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public InvokeResult login() throws Exception {
         DataMap dataMap = this.getDataMap();
 
         String code = dataMap.getString("code");
-        JSONObject jsonObject = wechatAppletLoginService.login(code);
+        JSONObject jsonObject = wechatUserService.login(code);
         if(jsonObject.containsKey("openid") && jsonObject.containsKey("session_key")) {
             //请求成功
             DataMap wechatUser = new DataMap();
-            wechatUser.put("UNIONID", jsonObject.getString("unionid"));
-            wechatUser = wechatUserService.getWechatUserByUnionId(wechatUser);
+            /*wechatUser.put("UNIONID", jsonObject.getString("unionid"));
+            wechatUser = wechatUserService.getWechatUserByUnionId(wechatUser);*/
+            //未注册微信开放平台,用OPENID获取数据
+            wechatUser.put("WXAPPOPENID", jsonObject.getString("openid"));
+            wechatUser = wechatUserService.getWechatUserByWxAppOpenId(wechatUser);
 
             //新用户
             if(wechatUser == null) {
                 wechatUser = new DataMap();
                 wechatUser.put("USER_ID", ShortUUID.randomUUID());
                 wechatUser.put("WXAPPOPENID", jsonObject.getString("openid"));
-                wechatUser.put("UNIONID", jsonObject.getString("unionid"));
+                //wechatUser.put("UNIONID", jsonObject.getString("unionid"));//未注册微信开放平台,不会返回unionid
                 wechatUserService.addWechatUser(wechatUser);
             }
 
@@ -86,11 +89,14 @@ public class WechatAppletLoginController extends ApiBaseController {
                     SessionUtil.addComplete2Session(complete);
                 }
             }
-        }
-        else{
-            return InvokeResult.failure("读取用户信息失败，请重试");
+
+            DataMap returnMap = new DataMap();
+            returnMap.put("thirdSessionId", SessionUtil.getSession().getId());
+            returnMap.put("isCompleted", curUser != null);
+
+            return InvokeResult.success(returnMap);
         }
 
-        return InvokeResult.success();
+        return InvokeResult.failure("读取用户信息失败，请重试");
     }
 }

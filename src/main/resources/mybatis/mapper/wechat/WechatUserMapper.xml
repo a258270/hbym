@@ -5,6 +5,10 @@
     <select id="getWechatUserByUnionId" parameterType="DataMap" resultType="DataMap">
         SELECT * FROM UR_WECHAT_USER WHERE UNIONID = #{UNIONID}
     </select>
+
+    <select id="getWechatUserByWxAppOpenId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_WECHAT_USER WHERE WXAPPOPENID = #{WXAPPOPENID}
+    </select>
     
     <insert id="addWechatUser">
         INSERT INTO

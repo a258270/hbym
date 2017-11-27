@@ -3,10 +3,7 @@ package com.cms4j.wechat.applet.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.system.role.service.RoleService;
-import com.cms4j.base.util.DataMap;
-import com.cms4j.base.util.InvokeResult;
-import com.cms4j.base.util.SessionUtil;
-import com.cms4j.base.util.ShortUUID;
+import com.cms4j.base.util.*;
 import com.cms4j.plant.user.service.CompleteProService;
 import com.cms4j.plant.user.service.CompleteStudentService;
 import com.cms4j.plant.user.service.CompleteTeacherService;
@@ -41,6 +38,9 @@ public class WechatAppLoginController extends ApiBaseController {
 
     @Autowired
     private CompleteProService completeProService;
+
+    @Autowired
+    private PlantUserService plantUserService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public InvokeResult login() throws Exception {
@@ -98,5 +98,26 @@ public class WechatAppLoginController extends ApiBaseController {
         }
 
         return InvokeResult.failure("读取用户信息失败，请重试");
+    }
+
+    @RequestMapping(value = "relation", method = RequestMethod.POST)
+    public InvokeResult relation() throws Exception {
+        DataMap dataMap = this.getDataMap();
+        String[] params = {"USERNAME", "PASSWORD"};
+        if(!this.validParams(params, dataMap))
+            return this.validFailure();
+
+        DataMap wxUser = SessionUtil.getWechatFromSession();
+        if(wxUser == null)
+            return InvokeResult.failure(Const.NOLOGIN_CODE, "please relogin");
+
+        dataMap.put("PASSWORD", MD5Util.getMD5(dataMap.getString("PASSWORD")));
+        DataMap curUser = plantUserService.validUser(dataMap);
+        if(curUser == null)
+            return InvokeResult.failure("用户名或密码错误");
+
+        wxUser.put("USER_ID", curUser.getString("USER_ID"));
+        wechatUserService.editWechatUser(wxUser);
+        return InvokeResult.success();
     }
 }

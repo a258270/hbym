@@ -13,7 +13,7 @@ public class Const {
     public static final String REG_PLANT_URL = ".*/((plant)).*";//平台路径
     public static final String REG_PLANT_TERCEPTOR_URL = ".*/((tocomplete)|(upload)|(center)).*";//平台需拦截路径
     public static final String REG_WECHAT_URL = ".*/((wechat)).*";//微信端url
-    public static final String REG_WECHAT_NOTERCEPTOR_URL = ".*/((login)|(complete)).*";//微信端无需拦截url
+    public static final String REG_WECHAT_NOTERCEPTOR_URL = ".*/((login)|(complete)|(relation)).*";//微信端无需拦截url
     public static final String PROFILE_DEV = "dev";//开发环境
     public static final String PROFILE_PRO = "pro";//生产环境
 

@@ -25,9 +25,6 @@ public class WechatAppLoginController extends ApiBaseController {
     private WechatUserService wechatUserService;
 
     @Autowired
-    private PlantUserService plantUserService;
-
-    @Autowired
     private RoleService roleService;
 
     @Autowired
@@ -100,7 +97,7 @@ public class WechatAppLoginController extends ApiBaseController {
         return InvokeResult.failure("读取用户信息失败，请重试");
     }
 
-    @RequestMapping(value = "relation", method = RequestMethod.POST)
+    @RequestMapping(value = "/relation", method = RequestMethod.POST)
     public InvokeResult relation() throws Exception {
         DataMap dataMap = this.getDataMap();
         String[] params = {"USERNAME", "PASSWORD"};

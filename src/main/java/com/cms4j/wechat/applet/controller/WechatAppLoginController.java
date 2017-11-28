@@ -114,7 +114,8 @@ public class WechatAppLoginController extends ApiBaseController {
             return InvokeResult.failure("用户名或密码错误");
 
         wxUser.put("USER_ID", curUser.getString("USER_ID"));
-        wechatUserService.editWechatUser(wxUser);
+        wechatUserService.renewWechatUser(wxUser);
+
         return InvokeResult.success();
     }
 }

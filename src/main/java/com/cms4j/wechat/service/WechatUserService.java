@@ -47,4 +47,15 @@ public class WechatUserService {
     public void removeWechatUser(DataMap dataMap) throws Exception {
         daoSupport.delete("WechatUserMapper.removeWechatUser", dataMap);
     }
+
+    /**
+     * 关联账户
+     * @param dataMap
+     * @throws Exception
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void renewWechatUser(DataMap dataMap) throws Exception {
+        this.removeWechatUser(dataMap);
+        this.editWechatUser(dataMap);
+    }
 }

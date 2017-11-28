@@ -477,31 +477,31 @@
                                         <span style="padding: 5px 10px;">院校名称</span>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="school1b1" data-type="b1">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="school2b1" data-type="b1">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="school3b1" data-type="b1">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="school4b1" data-type="b1">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="school5b1" data-type="b1">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
@@ -510,31 +510,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 1</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major1b1_1" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major2b1_1" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major3b1_1" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major4b1_1" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major5b1_1" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -543,31 +543,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 2</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major1b1_2" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major2b1_2" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major3b1_2" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major4b1_2" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major5b1_2" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -576,31 +576,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 3</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major1b1_3" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major2b1_3" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major3b1_3" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major4b1_3" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major5b1_3" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -609,31 +609,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 4</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major1b1_4" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major2b1_4" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major3b1_4" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major4b1_4" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major5b1_4" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -642,31 +642,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 5</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major1b1_5" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major2b1_5" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" name="major3b1_5" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="" name="major4b1_5" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="" name="major5b1_5" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -675,31 +675,31 @@
                                 <tr class="a-line">
                                     <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="major1b1_6" name="major1b1_6" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="major2b1_6" name="major2b1_6" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="major3b1_6" name="major3b1_6" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="major4b1_6" name="major4b1_6" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk" id="major5b1_6" name="major5b1_6" data-type="b1">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -872,31 +872,31 @@
                                         <span style="padding: 5px 10px;">院校名称</span>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
@@ -905,31 +905,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 1</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -938,31 +938,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 2</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -971,31 +971,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 3</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1004,31 +1004,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 4</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1037,31 +1037,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 5</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1070,31 +1070,31 @@
                                 <tr class="a-line">
                                     <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1117,31 +1117,31 @@
                                         <span style="padding: 5px 10px;">院校名称</span>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>北京大学</option>
                                             <option>清华大学</option>
                                         </select>
@@ -1150,31 +1150,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 1</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1183,31 +1183,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 2</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1216,31 +1216,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 3</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1249,31 +1249,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 4</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1282,31 +1282,31 @@
                                 <tr class="a-line">
                                     <td class="stitution">专业 5</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
@@ -1315,31 +1315,31 @@
                                 <tr class="a-line">
                                     <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td class="dark">
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="slctk" name="">
+                                        <select class="slctk">
                                             <option>计算机</option>
                                             <option>会计学</option>
                                         </select>

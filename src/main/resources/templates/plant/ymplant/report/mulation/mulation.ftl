@@ -392,40 +392,40 @@
             <#--</div>-->
             <#--</div>-->
             <#--</div>-->
-            <#--<!--志愿 结束&ndash;&gt;-->
-            <#--</div>-->
-            <#--</div>-->
-            <#--<!--模拟填报结果 开始&ndash;&gt;-->
-            <#--<div id="reportresult" style="display: none;">-->
-            <#--<table id="page" style="width: 1140px;">-->
-            <#--<thead>-->
-            <#--<tr style='background-color: #33C9B5;color: #fff;text-align: center'>-->
-            <#--<td style='width: 290px' class='kd-namc' rowspan='2'>院校名称</td>-->
-            <#--<td style='width: 200px' class='kd-namc' rowspan='2'>专业名称</td>-->
-            <#--<td style='width: 124px' class='kd-namc' rowspan='2'>院校地区</td>-->
-            <#--<td style='width: 187px' class='kd-namc' rowspan='2'>院校类型</td>-->
-            <#--<td style='width: 285px' class='kd-namc' colspan='4'>院校历年的招生计划</td>-->
-            <#--<td style='width: 50px' class='kd-namc' rowspan='2'>概率</td>-->
+            <!--志愿 结束-->
+            </div>
+            </div>
+            <!--模拟填报结果 开始-->
+            <div id="reportresult" style="display: none;">
+            <table id="page" style="width: 1140px;">
+            <thead>
+            <tr style='background-color: #33C9B5;color: #fff;text-align: center'>
+            <td style='width: 290px' class='kd-namc' rowspan='2'>院校名称</td>
+            <td style='width: 200px' class='kd-namc' rowspan='2'>专业名称</td>
+            <td style='width: 124px' class='kd-namc' rowspan='2'>院校地区</td>
+            <td style='width: 187px' class='kd-namc' rowspan='2'>院校类型</td>
+            <td style='width: 285px' class='kd-namc' colspan='4'>院校历年的招生计划</td>
+            <td style='width: 50px' class='kd-namc' rowspan='2'>概率</td>
+            </tr>
+            <tr style='background-color: #33C9B5;color: #fff;text-align: center;border-top: 1px solid #fff'>
+            <td class='kd-namc'>年份</td>
+            <td class='kd-namc'>最高分</td>
+            <td class='kd-namc'>最低分</td>
+            <td class='kd-namc'>录取数</td>
+            </tr>
+            </thead>
+            </table>
+            <#--<table class="kd-bge">-->
+            <#--<tr>-->
+            <#--<td>院校名称</td>-->
+            <#--<td>专业名称</td>-->
+            <#--<td>成功概率</td>-->
             <#--</tr>-->
-            <#--<tr style='background-color: #33C9B5;color: #fff;text-align: center;border-top: 1px solid #fff'>-->
-            <#--<td class='kd-namc'>年份</td>-->
-            <#--<td class='kd-namc'>最高分</td>-->
-            <#--<td class='kd-namc'>最低分</td>-->
-            <#--<td class='kd-namc'>录取数</td>-->
-            <#--</tr>-->
-            <#--</thead>-->
+            <#--<div id="page"></div>-->
+            <#--<tr class="kd-mchen"></tr>-->
             <#--</table>-->
-            <#--&lt;#&ndash;<table class="kd-bge">&ndash;&gt;-->
-            <#--&lt;#&ndash;<tr>&ndash;&gt;-->
-            <#--&lt;#&ndash;<td>院校名称</td>&ndash;&gt;-->
-            <#--&lt;#&ndash;<td>专业名称</td>&ndash;&gt;-->
-            <#--&lt;#&ndash;<td>成功概率</td>&ndash;&gt;-->
-            <#--&lt;#&ndash;</tr>&ndash;&gt;-->
-            <#--&lt;#&ndash;<div id="page"></div>&ndash;&gt;-->
-            <#--&lt;#&ndash;<tr class="kd-mchen"></tr>&ndash;&gt;-->
-            <#--&lt;#&ndash;</table>&ndash;&gt;-->
 
-            <#--</div>-->
+            </div>
                 <!--模拟填报结果 结束-->
                 <!--重要提示 开始-->
                 <div class="kd-tshi">
@@ -454,648 +454,1047 @@
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-3">
                         <ul class="nav nav-tabs right" id="kd-xzhong" style="background-color: #D4F5F1;" role="tablist">
-                            <li role="presentation" class="active"><a href="#kd-kql" aria-controls="home" role="tab" data-toggle="tab">本一</a></li>
-                            <li role="presentation"><a href="#kd-kql2" aria-controls="profile" role="tab" data-toggle="tab">本二</a></li>
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">本一</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">本二</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="volunteer">
-                    <table style="width: 100%;text-align: center;border: 1px solid #33C9B5;">
-                        <tbody>
-                        <tr class="written">
-                            <td></td>
-                            <td>志愿 A</td>
-                            <td>志愿 B</td>
-                            <td>志愿 C</td>
-                            <td>志愿 D</td>
-                            <td>志愿 E</td>
-                        </tr>
-                        <tr class="a-line" style="background-color: #FAFAFA;">
-                            <td class="stitution" style="border-top: 1px solid #fff;border-bottom: 3px solid #fff;">
-                                <span style="padding: 5px 10px;">院校名称</span>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 1</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 2</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 3</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 4</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 5</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table style="width: 100%;text-align: center;border: 1px solid #33C9B5;">
-                        <tbody>
-                        <tr class="written">
-                            <td></td>
-                            <td>志愿 F</td>
-                            <td>志愿 G</td>
-                            <td>志愿 H</td>
-                            <td>志愿 I</td>
-                            <td>志愿 J</td>
-                        </tr>
-                        <tr class="a-line" style="background-color: #FAFAFA">
-                            <td class="stitution" style="border-top: 1px solid #fff;border-bottom: 3px solid #fff;">
-                                <span style="padding: 5px 10px;">院校名称</span>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>北京大学</option>
-                                    <option>清华大学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 1</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 2</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 3</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 4</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution">专业 5</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="a-line">
-                            <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td class="dark">
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="slctk" name="">
-                                    <option>计算机</option>
-                                    <option>会计学</option>
-                                </select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div style="text-align: center;margin: 15px;">
-                        <input class="lation" type="button" value="模拟填报"/>
-                    </div>
-                </div>
-                <div class="result">
-                    <table>
-                        <tbody>
-                        <tr style="background-color: #33C9B5;color: #fff;text-align: center">
-                            <td style="width: 200px" class="come" rowspan="2">专业名称</td>
-                            <td style="width: 124px" class="come" rowspan="2">院校地区</td>
-                            <td style="width: 187px" class="come" rowspan="2">院校类型</td>
-                            <td style="width: 290px" class="come" rowspan="2">院校名称</td>
-                            <td style="width: 285px" class="come" colspan="4">院校历年的招生计划</td>
-                            <td style="width: 50px" class="come" rowspan="2">概率</td>
-                        </tr>
-                        <tr style="background-color: #33C9B5;color: #fff;text-align: center;border-top: 1px solid #fff">
-                            <td class="come">年份</td>
-                            <td class="come">最高分</td>
-                            <td class="come">最低分</td>
-                            <td class="come">录取数</td>
-                        </tr>
-                        <tr class="simu">
-                            <td>
-                                <a href="javascript:void(0);" target="_blank">
-                                    <span style="font-weight: bold;font-size: 16px;">北京理工大学</span>
-                                    <div style="margin-top: 20px;">
-                                        <span class="kd-p7uuy9sza3" title="211"></span>
-                                        <span class="kd-p7uuy9sza3" title="985"></span>
+                <div class="tab-content">
+                    <div class="tab-pane active"  id="home">
+                        <div class="volunteer" role="tabpanel">
+                            <table style="width: 100%;text-align: center;border: 1px solid #33C9B5;">
+                                <tbody>
+                                <tr class="written">
+                                    <td></td>
+                                    <td>志愿 A</td>
+                                    <td>志愿 B</td>
+                                    <td>志愿 C</td>
+                                    <td>志愿 D</td>
+                                    <td>志愿 E</td>
+                                </tr>
+                                <tr class="a-line" style="background-color: #FAFAFA;">
+                                    <td class="stitution" style="border-top: 1px solid #fff;border-bottom: 3px solid #fff;">
+                                        <span style="padding: 5px 10px;">院校名称</span>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 1</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 2</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 3</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 4</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 5</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align: center;margin: 15px;">
+                                <input class="lation" type="button" value="模拟填报"/>
+                            </div>
+                        </div>
+                        <div  class="result">
+                            <table>
+                                <tbody>
+                                <tr style="background-color: #33C9B5;color: #fff;text-align: center">
+                                    <td style="width: 200px" class="come" rowspan="2">专业名称</td>
+                                    <td style="width: 124px" class="come" rowspan="2">院校地区</td>
+                                    <td style="width: 187px" class="come" rowspan="2">院校类型</td>
+                                    <td style="width: 290px" class="come" rowspan="2">院校名称</td>
+                                    <td style="width: 285px" class="come" colspan="4">院校历年的招生计划</td>
+                                    <td style="width: 50px" class="come" rowspan="2">概率</td>
+                                </tr>
+                                <tr style="background-color: #33C9B5;color: #fff;text-align: center;border-top: 1px solid #fff">
+                                    <td class="come">年份</td>
+                                    <td class="come">最高分</td>
+                                    <td class="come">最低分</td>
+                                    <td class="come">录取数</td>
+                                </tr>
+                                <tr class="simu">
+                                    <td>
+                                        <a href="javascript:void(0);" target="_blank">
+                                            <span style="font-weight: bold;font-size: 16px;">北京理工大学</span>
+                                            <div style="margin-top: 20px;">
+                                                <span class="kd-p7uuy9sza3" title="211"></span>
+                                                <span class="kd-p7uuy9sza3" title="985"></span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>北京市</td>
+                                    <td>
+                                        <span class="kd-np0yhn0ino" title="理工类"></span>
+                                    </td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <a class="absolutely" href="javascript:void(0);" data-class="result1">
+                                    <div class="d1" style="background-color: #5BC0DE;text-align: center;">
+                                        <img class=".bottom-bottom" src="/static/ymplant/images/tubiao4/button-bottom.png" style="width: 22px;height: 22px;" alt=""/>
                                     </div>
                                 </a>
-                            </td>
-                            <td>北京市</td>
-                            <td>
-                                <span class="kd-np0yhn0ino" title="理工类"></span>
-                            </td>
-                            <td>理科试验班（物理精英班）</td>
-                            <td>
-                                <div class="kd-jju">2016</div>
-                                <div class="kd-jju">2015</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td style="font-size: 18px;font-weight: bold;">90%</td>
-                        </tr>
-                        <tr class="simu result1">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>理科试验班（物理精英班）</td>
-                            <td>
-                                <div class="kd-jju">2016</div>
-                                <div class="kd-jju">2015</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td style="font-size: 18px;font-weight: bold;">90%</td>
-                        </tr>
-                        <tr class="simu result1">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>理科试验班（物理精英班）</td>
-                            <td>
-                                <div class="kd-jju">2016</div>
-                                <div class="kd-jju">2015</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td style="font-size: 18px;font-weight: bold;">90%</td>
-                        </tr>
-                        <tr class="simu result1">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>理科试验班（物理精英班）</td>
-                            <td>
-                                <div class="kd-jju">2016</div>
-                                <div class="kd-jju">2015</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">679</div>
-                                <div class="kd-jju">665</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">1</div>
-                                <div class="kd-jju">-</div>
-                            </td>
-                            <td style="font-size: 18px;font-weight: bold;">90%</td>
-                        </tr>
-                        <a class="absolutely" href="javascript:void(0);" data-class="result1">
-                            <div class="d1" style="background-color: #5BC0DE;text-align: center;">
-                                <img class=".bottom-bottom" src="/static/ymplant/images/tubiao4/button-bottom.png" style="width: 22px;height: 22px;" alt=""/>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div  role="tabpanel"  id="profile" class="result tab-pane">
+                        <div class="volunteer" role="tabpanel">
+                            <table style="width: 100%;text-align: center;border: 1px solid #33C9B5;">
+                                <tbody>
+                                <tr class="written">
+                                    <td></td>
+                                    <td>志愿 A</td>
+                                    <td>志愿 B</td>
+                                    <td>志愿 C</td>
+                                    <td>志愿 D</td>
+                                    <td>志愿 E</td>
+                                </tr>
+                                <tr class="a-line" style="background-color: #FAFAFA;">
+                                    <td class="stitution" style="border-top: 1px solid #fff;border-bottom: 3px solid #fff;">
+                                        <span style="padding: 5px 10px;">院校名称</span>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 1</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 2</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 3</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 4</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 5</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table style="width: 100%;text-align: center;border: 1px solid #33C9B5;">
+                                <tbody>
+                                <tr class="written">
+                                    <td></td>
+                                    <td>志愿 F</td>
+                                    <td>志愿 G</td>
+                                    <td>志愿 H</td>
+                                    <td>志愿 I</td>
+                                    <td>志愿 J</td>
+                                </tr>
+                                <tr class="a-line" style="background-color: #FAFAFA">
+                                    <td class="stitution" style="border-top: 1px solid #fff;border-bottom: 3px solid #fff;">
+                                        <span style="padding: 5px 10px;">院校名称</span>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>北京大学</option>
+                                            <option>清华大学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 1</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 2</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 3</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 4</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution">专业 5</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="a-line">
+                                    <td class="stitution" style="border-bottom: 1px solid #fff">专业 6</td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td class="dark">
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="slctk" name="">
+                                            <option>计算机</option>
+                                            <option>会计学</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align: center;margin: 15px;">
+                                <input class="lation" type="button" value="模拟填报"/>
                             </div>
-                        </a>
-                        </tbody>
-                    </table>
+                        </div>
+                        <div  class="result">
+                            <table>
+                                <tbody>
+                                <tr style="background-color: #33C9B5;color: #fff;text-align: center">
+                                    <td style="width: 200px" class="come" rowspan="2">专业名称</td>
+                                    <td style="width: 124px" class="come" rowspan="2">院校地区</td>
+                                    <td style="width: 187px" class="come" rowspan="2">院校类型</td>
+                                    <td style="width: 290px" class="come" rowspan="2">院校名称</td>
+                                    <td style="width: 285px" class="come" colspan="4">院校历年的招生计划</td>
+                                    <td style="width: 50px" class="come" rowspan="2">概率</td>
+                                </tr>
+                                <tr style="background-color: #33C9B5;color: #fff;text-align: center;border-top: 1px solid #fff">
+                                    <td class="come">年份</td>
+                                    <td class="come">最高分</td>
+                                    <td class="come">最低分</td>
+                                    <td class="come">录取数</td>
+                                </tr>
+                                <tr class="simu">
+                                    <td>
+                                        <a href="javascript:void(0);" target="_blank">
+                                            <span style="font-weight: bold;font-size: 16px;">北京理工大学</span>
+                                            <div style="margin-top: 20px;">
+                                                <span class="kd-p7uuy9sza3" title="211"></span>
+                                                <span class="kd-p7uuy9sza3" title="985"></span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>北京市</td>
+                                    <td>
+                                        <span class="kd-np0yhn0ino" title="理工类"></span>
+                                    </td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <tr class="simu result1">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>理科试验班（物理精英班）</td>
+                                    <td>
+                                        <div class="kd-jju">2016</div>
+                                        <div class="kd-jju">2015</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">679</div>
+                                        <div class="kd-jju">665</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">1</div>
+                                        <div class="kd-jju">-</div>
+                                    </td>
+                                    <td style="font-size: 18px;font-weight: bold;">90%</td>
+                                </tr>
+                                <a class="absolutely" href="javascript:void(0);" data-class="result1">
+                                    <div class="d1" style="background-color: #5BC0DE;text-align: center;">
+                                        <img class=".bottom-bottom" src="/static/ymplant/images/tubiao4/button-bottom.png" style="width: 22px;height: 22px;" alt=""/>
+                                    </div>
+                                </a>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             <#--模拟填报 结束-->
             </div>

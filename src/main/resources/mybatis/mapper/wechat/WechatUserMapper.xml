@@ -21,9 +21,6 @@
     <update id="editWechatUser">
         UPDATE UR_WECHAT_USER
         <set>
-            <if test="USER_ID != null">
-                USER_ID = #{USER_ID}
-            </if>
             <if test="WXOPENID != null">
                 WXOPENID = #{WXOPENID}
             </if>

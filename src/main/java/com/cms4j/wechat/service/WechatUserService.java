@@ -56,6 +56,6 @@ public class WechatUserService {
     @Transactional(rollbackFor = Exception.class)
     public void renewWechatUser(DataMap dataMap) throws Exception {
         this.removeWechatUser(dataMap);
-        this.editWechatUser(dataMap);
+        this.addWechatUser(dataMap);
     }
 }

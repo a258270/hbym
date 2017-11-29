@@ -836,9 +836,9 @@
             tableHead += "<thead>";
             tableHead += "<tr style='background-color: #33C9B5;color: #fff;text-align: center'>";
             tableHead += "<td style='width: 290px' class='kd-namc' rowspan='2'>院校名称</td>";
-            tableHead += "<td style='width: 200px' class='kd-namc' rowspan='2'>专业名称</td>";
             tableHead += "<td style='width: 124px' class='kd-namc' rowspan='2'>院校地区</td>";
             tableHead += "<td style='width: 187px' class='kd-namc' rowspan='2'>院校类型</td>";
+            tableHead += "<td style='width: 200px' class='kd-namc' rowspan='2'>专业名称</td>";
             tableHead += "<td style='width: 285px' class='kd-namc' colspan='4'>院校历年的招生计划</td>";
             tableHead += "<td style='width: 50px' class='kd-namc' rowspan='2'>概率</td>";
             tableHead += "</tr>";
@@ -1026,23 +1026,24 @@
                                     strHtml += "</a>";
                                 }
                                 strHtml += "</td>";
-                                if(j == 0)
-                                    strHtml += "<td>" + obj.MJNAME + "</td>";
-                                else
-                                    strHtml += "<td></td>";
+
                                 if(j == 0)
                                     strHtml += "<td>" + obj.PROVINCE_VALUE + "</td>";
                                 else
                                     strHtml += "<td></td>";
                                 strHtml += "<td>";
-                                if(obj.subjecttypes.length == 0){
-                                    strHtml += "--";
+                                if(j == 0){
+                                    if(obj.subjecttypes.length == 0){
+                                        strHtml += "--";
+                                    }
+                                    for(var x = 0; x < obj.subjecttypes.length; x++) {
+                                        var subjecttype = obj.subjecttypes[x];
+                                        strHtml += "<span class='kd-" + subjecttype.DIC_ID + "' title='" + subjecttype.NAME + "'></span>";
+                                    }
                                 }
-                                for(var x = 0; x < obj.subjecttypes.length; x++) {
-                                    var subjecttype = obj.subjecttypes[x];
-                                    strHtml += "<span class='kd-" + subjecttype.DIC_ID + "' title='" + subjecttype.NAME + "'></span>";
-                                }
+
                                 strHtml += "</td>";
+                                strHtml += "<td>" + obj.MJNAME + "</td>";
                                 strHtml += "<td>";
                                 for(var x = 0; x < 3; x++) {
                                     if(x < obj.scores.length) {

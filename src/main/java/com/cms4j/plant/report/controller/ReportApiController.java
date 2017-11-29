@@ -372,14 +372,32 @@ public class ReportApiController extends ApiBaseController {
 
         Integer iFlag = Integer.valueOf(flag);
 
-        Set<String> set = new HashSet<String>();
+
+        Set<String> setSchools = new HashSet<String>();
         for(int i = 1; i < (iFlag * 5 + 1); i++) {
+            Set<String> set = new HashSet<String>();
             String s_key = "school" + i;
             String zy_key = "zye" + i;
-            set.add(dataMap.getString(s_key) + dataMap.getString(zy_key));
+            if(StringUtils.isBlank(dataMap.getString(s_key))){
+                return InvokeResult.failure("志愿院校有未填项，请检查！");
+            }
+            String zy_info = dataMap.getString(zy_key);
+            if(zy_info == null) zy_info = "";
+            if(zy_info.isEmpty()) return InvokeResult.failure("志愿院校所选专业不能全部为空，请检查！");
+            if(!zy_info.isEmpty()){
+                String[] zy_infos = zy_info.split(",");
+                if(zy_infos.length <= 0){
+                    return InvokeResult.failure("志愿院校所选专业不能全部为空，请检查！");
+                }
+            }
+
+            setSchools.add(dataMap.getString(s_key));
         }
 
-        if(set.size() < 5 * iFlag) return InvokeResult.failure("志愿有重复项，请检查！");
+
+        if(setSchools.size() < (iFlag * 5)){
+            return InvokeResult.failure("志愿院校有重复项，请检查！");
+        }
 
         DataMap param = new DataMap();
         param.put("USER_ID", curUser.getString("USER_ID"));
@@ -418,9 +436,32 @@ public class ReportApiController extends ApiBaseController {
             resultObj.put("subjecttypes", subjecttypes);
         }
 
-        DataMap dataMapOut = new DataMap();
-        dataMapOut.put("result", result);
+        Set<String> setSchoolsTmp = new HashSet<String>();
+        for(DataMap mjscore : result) {
+            setSchoolsTmp.add(mjscore.getString("SCHOOL_ID"));
+        }
 
-        return InvokeResult.success(result);
+        List<List<DataMap>> listOut2 = new ArrayList<List<DataMap>>();
+        for(int i = 1; i < (iFlag * 5 + 1); i++) {
+            String s_key = "school" + i;
+            String school_id = dataMap.getString(s_key);
+            for (String setSchool : setSchoolsTmp) {
+                if(StringUtils.isBlank(school_id)) continue;
+                if(school_id.equals(setSchool)){
+                    List<DataMap> tmp = new ArrayList<DataMap>();
+                    for (DataMap mjscore : result) {
+                        if (setSchool.equals(mjscore.getString("SCHOOL_ID"))) {
+                            tmp.add(mjscore);
+                        }
+                    }
+                    if (tmp.size() > 0) {
+                        listOut2.add(tmp);
+                    }
+                }
+            }
+        }
+
+
+        return InvokeResult.success(listOut2);
     }
 }

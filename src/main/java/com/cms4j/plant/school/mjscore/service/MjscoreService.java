@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MjscoreService {
@@ -117,72 +114,76 @@ public class MjscoreService {
         Double score = Double.valueOf(dataMap.getString("score"));
         Integer iFlag = Integer.valueOf(dataMap.getString("flag"));
         iFlag = iFlag * 5 + 1;
-        for(int i = 1; i < iFlag; i++){
+        for(int i = 1; i < iFlag; i++) {
             String s_key = "school" + i;
-            String zy_key = "zye" + i;
-
-            if(StringUtils.isBlank(dataMap.getString(s_key)) || StringUtils.isBlank(dataMap.getString(zy_key))){
-                continue;
+            String zy_keys = "zye" + i;
+            String[] zy_keyinfos = dataMap.getString(zy_keys).split(",");
+            Set<String> setZy_infos = new HashSet<String>();
+            for(String zy_key : zy_keyinfos){
+                setZy_infos.add(zy_key);
             }
-
-            DataMap params = new DataMap();
-            params.put("SCHOOL_ID", dataMap.getString(s_key));
-            params.put("MAJOR_ID", dataMap.getString(zy_key));
-            params.put("MAJORTYPE_ID", dataMap.getString("MAJORTYPE_ID"));
-            /*Calendar a = Calendar.getInstance();
-            String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-            *//*DataMap YEAR = new DataMap();
-            YEAR.put("CODE", "YEAR");
-            YEAR = dictionaryService.getDictionaryByCode(YEAR);
-            List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
-            for(DataMap YEARTmp : YEARs) {
-                if(YEARTmp.getString("NAME").equals(lastYear)){
-                    params.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
+            for(String zy_key : setZy_infos){
+                if (StringUtils.isBlank(dataMap.getString(s_key)) || StringUtils.isBlank(zy_key)) {
+                    continue;
                 }
-            }*/
-            params.put("YEAR_ID", dataMap.getString("YEAR_ID"));
-            List<DataMap> mjscores = this.getMjscoreBySchool(params);
 
-            if(mjscores != null) {
-                for(DataMap mjscore: mjscores) {
-                    Double minscore = Double.valueOf(mjscore.getString("MINSCORE"));
-                    if(minscore > score + 2) {
-                        mjscore.put("level", "冲");
-                        mjscore.put("chance", "10%");
+                DataMap params = new DataMap();
+                params.put("SCHOOL_ID", dataMap.getString(s_key));
+                params.put("MAJOR_ID", zy_key);
+                params.put("MAJORTYPE_ID", dataMap.getString("MAJORTYPE_ID"));
+                /*Calendar a = Calendar.getInstance();
+                String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
+                *//*DataMap YEAR = new DataMap();
+                YEAR.put("CODE", "YEAR");
+                YEAR = dictionaryService.getDictionaryByCode(YEAR);
+                List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+                for(DataMap YEARTmp : YEARs) {
+                    if(YEARTmp.getString("NAME").equals(lastYear)){
+                        params.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
                     }
-                    else if((minscore >= score + 1) && score + 2 >= minscore){
-                        mjscore.put("level", "冲");
-                        mjscore.put("chance", "30%");
-                    }
-                    else if((minscore <= score) && (minscore >= score - 1)){
-                        mjscore.put("level", "稳");
-                        mjscore.put("chance", "50%");
-                    }
-                    else if((minscore <= score - 1) && (minscore >= score - 2)){
-                        mjscore.put("level", "保");
-                        mjscore.put("chance", "70%");
-                    }
-                    else if((minscore <= score - 2) && (minscore >= score - 5)){
-                        mjscore.put("level", "垫");
-                        mjscore.put("chance", "90%");
-                    }
-                    else if(minscore <= score - 5) {
-                        mjscore.put("level", "垫");
-                        mjscore.put("chance", "90%");
-                    }
+                }*/
+                params.put("YEAR_ID", dataMap.getString("YEAR_ID"));
+                List<DataMap> mjscores = this.getMjscoreBySchool(params);
 
-                    boolean flag = false;
-                    for(DataMap listOutObj: listOut) {
-                        if(listOutObj.getString("SCHOOL_ID").equals(mjscore.getString("SCHOOL_ID")) && listOutObj.getString("MAJOR_ID").equals(mjscore.getString("MAJOR_ID"))) {flag = true;break;}
-                    }
+                if (mjscores != null) {
+                    for (DataMap mjscore : mjscores) {
+                        Double minscore = Double.valueOf(mjscore.getString("MINSCORE"));
+                        if (minscore > score + 2) {
+                            mjscore.put("level", "冲");
+                            mjscore.put("chance", "10%");
+                        } else if ((minscore >= score + 1) && score + 2 >= minscore) {
+                            mjscore.put("level", "冲");
+                            mjscore.put("chance", "30%");
+                        } else if ((minscore <= score) && (minscore >= score - 1)) {
+                            mjscore.put("level", "稳");
+                            mjscore.put("chance", "50%");
+                        } else if ((minscore <= score - 1) && (minscore >= score - 2)) {
+                            mjscore.put("level", "保");
+                            mjscore.put("chance", "70%");
+                        } else if ((minscore <= score - 2) && (minscore >= score - 5)) {
+                            mjscore.put("level", "垫");
+                            mjscore.put("chance", "90%");
+                        } else if (minscore <= score - 5) {
+                            mjscore.put("level", "垫");
+                            mjscore.put("chance", "90%");
+                        }
 
-                    if(!flag){
-                        List<DataMap> scores = this.getMjscoreBySchoolAndMajor(mjscore);
-                        if(scores == null) scores = new ArrayList<>();
-                        mjscore.put("scores", scores);
-                        listOut.add(mjscore);
-                    }
+                        boolean flag = false;
+                        for (DataMap listOutObj : listOut) {
+                            if (listOutObj.getString("SCHOOL_ID").equals(mjscore.getString("SCHOOL_ID")) && listOutObj.getString("MAJOR_ID").equals(mjscore.getString("MAJOR_ID"))) {
+                                flag = true;
+                                break;
+                            }
+                        }
 
+                        if (!flag) {
+                            List<DataMap> scores = this.getMjscoreBySchoolAndMajor(mjscore);
+                            if (scores == null) scores = new ArrayList<>();
+                            mjscore.put("scores", scores);
+                            listOut.add(mjscore);
+                        }
+
+                    }
                 }
             }
         }

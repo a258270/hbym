@@ -1,4 +1,4 @@
-<#--<div class="topcontainer">-->
+<div class="topcontainer">
 <#--<script language="JavaScript">-->
     <#--if (window != top) {top.location.href = location.href;}-->
 <#--</script>-->

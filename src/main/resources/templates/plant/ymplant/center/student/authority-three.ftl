@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <div style="padding: 5px;color:#22B14C;font-weight: bold;line-height: 2">
-                    根据您的综合指标，在多条件下通过平台自主研发的只能职员推荐系统，给您推荐出最适合您的专业与院校，在不浪费分数，选择喜欢的专业前提下，保证您的录取成功率。
+                    根据您的综合指标，在多条件下通过平台自主研发的智能职员推荐系统，给您推荐出最适合您的专业与院校，在不浪费分数，选择喜欢的专业前提下，保证您的录取成功率。
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <div style="padding: 5px;color:#22B14C;font-weight: bold;line-height: 2">
-                    上百所大学院校招生办公室老师坐镇平台，为您答疑解惑，帮您解答本校招生政策，学校环境，师资力量等等您最关心的问题。
+                    上百所大学院校招生办公室老师入驻平台，为您答疑解惑，帮您解答本校招生政策，学校环境，师资力量等等您最关心的问题。
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <div style="padding: 5px;color:#22B14C;font-weight: bold;line-height: 2">
-                    数十位多年从事高考志愿规划的专家坐镇平台，为您层层把关，保证您顺利进入自己喜欢的学校，选择到自己喜欢的专业。
+                    数十位多年从事高考志愿规划的专家入驻平台，为您层层把关，保证您顺利进入自己喜欢的学校，选择到自己喜欢的专业。
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
         <div class="row" style="padding: 10px 15px;margin-bottom: 10px;">
             <div class="col-md-2 col-sm-2 col-xs-2" style="text-align: center">
                 <img src="/static/ymplant/images/tubiao2/9-6.png" style="width: 70%;height: 70%" alt=""/>
-                <div style="color:#BC7A76;font-weight: bold">才能测试</div>
+                <div style="color:#BC7A76;font-weight: bold">性格测试</div>
             </div>
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <div style="padding: 5px;color:#22B14C;font-weight: bold;line-height: 2">

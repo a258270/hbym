@@ -13,13 +13,13 @@
         <div class="container">
         <#if major??>
             <!--学科 专业代码 开始-->
-            <div class="quantity row" style="border-top: 2px solid #333;padding-top: 10px;margin-bottom: 20px">
-                <div class="col-md-8 col-sm-8 col-xs-8" style="color: #01C3D9;font-size: 35px;font-weight: bold">${major.NAME}</div>
-                <div class="col-md-2 col-sm-2 col-xs-2" style="color: #FB4F6A;">
+            <div class="quantity row" style="padding: 20px;margin: 0 0 20px 0;background-color: #FAFAFA">
+                <div class="col-md-8 col-sm-8 col-xs-8" style="color: #01C3D9;font-size: 35px;font-weight: bold;padding-left: 15px;">${major.NAME}</div>
+                <div class="col-md-2 col-sm-2 col-xs-2" >
                     <p style="font-size: 18px;margin-bottom: 7px;">专业代码:${major.CODE}</p>
-                    <p>
+                    <p style="color: #FB4F6A;display: flex;flex-direction: row;align-items: center;">
                         <img src="/static/ymplant/img/sye/tubiao/heat.png" style="width: 20px;height: 20px;" alt="">
-                        :${major.VIEWCOUNT}</p>
+                        : ${major.VIEWCOUNT}</p>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-2" style="color: #FB4F6A;padding-top: 30px;"></div>
             </div>

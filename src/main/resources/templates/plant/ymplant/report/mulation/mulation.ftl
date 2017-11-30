@@ -831,6 +831,7 @@
         </script>
 
         <script language="JavaScript">
+            var colors = ["#f5f5f5", "#dff0d8", "#d9edf7", "#fcf8e3", "#f2dede"];
             var tableHead = "";
             var tableFoot = "";
             tableHead += "<thead>";
@@ -1009,9 +1010,9 @@
                             for(var j = 0; j < objs.length; j++) {
                                 var obj = objs[j];
                                 if(j == 0)
-                                    strHtml += "<tr class='simu'>";
+                                    strHtml += "<tr class='simu' style='background-color: " + colors[i % 5] + ";'>";
                                 else
-                                    strHtml += "<tr class='simu result" + i + "' style='display: none;'>";
+                                    strHtml += "<tr class='simu result" + i + "' style='display: none;background-color: " + colors[i % 5] + "'>";
                                 strHtml += "<td>";
                                 if(j == 0) {
                                     strHtml += "<a href='/plant/school/details/" + obj.SCHOOL_ID + "' target='_blank'>";

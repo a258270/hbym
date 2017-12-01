@@ -4,6 +4,8 @@
     <!-- 公共引入 -->
 <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
+    <script src="/static/ymplant/js/center/jquery-accordion-menu.js" type="text/javascript"></script>
+    <link href="/static/ymplant/css/center/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/column.css?v=${v}"/>
     <script language="JavaScript" src="${ctxPath}/static/ymplant/js/center/center.js?v=${v}"></script>
     <script>
@@ -14,15 +16,12 @@
             });
         })
     </script>
-    <style>
-        .red{
-            border-right: 3px solid #88BFE6;
-        }
-        .kd-lhtai{
-            background-color: #83C0F7;
-            color: #fff;
-        }
-    </style>
+    <#--<style>-->
+        <#--.kd-lhtai{-->
+            <#--background-color: #83C0F7;-->
+            <#--color: #fff;-->
+        <#--}-->
+    <#--</style>-->
 </head>
 <body>
 <#include "${ctxPath}/plant/ymplant/top.ftl">
@@ -43,40 +42,79 @@
             <p style="text-align: center;margin: 15px 0">
                 <input type="button" value="升级黄金会员" class="gol"/>
             </p>-->
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="个人资料"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster  kd-lhtai" type="button" value="基础资料" data-href="${ctxPath}/plant/teacher/basic"/>
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="个人资料"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input class="ster  kd-lhtai" type="button" value="基础资料" data-href="${ctxPath}/plant/teacher/basic"/>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="后台管理"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input class="ster" type="button" value="院校资料" data-href="${ctxPath}/plant/teacher/management"/>-->
+                        <#--<input class="ster" type="button" value="文章管理" data-href="${ctxPath}/plant/teacher/article"/>-->
+                        <#--&lt;#&ndash;<input class="ster" type="button" value="图片管理" data-href="${ctxPath}/plant/teacher/picture"/>&ndash;&gt;-->
+                        <#--&lt;#&ndash;<input class="ster" type="button" value="视频管理" data-href="${ctxPath}/plant/teacher/video"/>&ndash;&gt;-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="账户信息"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input class="ster" type="button" value="我的物品" data-href="${ctxPath}/plant/user/pocket"/>-->
+                        <#--<input class="ster" type="button" value="账户安全" data-href="${ctxPath}/plant/user/account"/>-->
+                    <#--&lt;#&ndash;<input type="button" value="账户权限"/>&ndash;&gt;-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="信息中心"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input class="ster" type="button" value="联系人" data-href="${ctxPath}/plant/teacher/person"/>-->
+                    <#--&lt;#&ndash;<input type="button" value="消息记录"/>&ndash;&gt;-->
+                    <#--</div>-->
+                <#--</div>-->
+
+                <div class="content">
+                    <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+                        <div class="jquery-accordion-menu-header" id="form"></div>
+                        <ul id="demo-list">
+                            <li><a href="javascript:void(0);" class="personal">个人资料 </a>
+                                <img src="/static/ymplant/images/tubiao6/personal-data.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster  kd-lhtai" data-href="${ctxPath}/plant/teacher/basic">基础资料</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);" class="personal">后台管理</a>
+                                <img src="/static/ymplant/images/tubiao6/account.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster" data-href="${ctxPath}/plant/teacher/management">院校资料</a></li>
+                                    <li><a href="javascript:void(0);" class="ster" data-href="${ctxPath}/plant/teacher/article">文章管理</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);" class="personal">账户信息</a>
+                                <img src="/static/ymplant/images/tubiao6/back-stage.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster" data-href="${ctxPath}/plant/user/pocket">我的物品</a></li>
+                                    <li><a href="javascript:void(0);" class="ster" data-href="${ctxPath}/plant/user/account">账户安全</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);" class="personal">信息中心</a>
+                                <img src="/static/ymplant/images/tubiao6/information.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster" data-href="${ctxPath}/plant/teacher/person">联系人</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="后台管理"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster" type="button" value="院校资料" data-href="${ctxPath}/plant/teacher/management"/>
-                        <input class="ster" type="button" value="文章管理" data-href="${ctxPath}/plant/teacher/article"/>
-                        <#--<input class="ster" type="button" value="图片管理" data-href="${ctxPath}/plant/teacher/picture"/>-->
-                        <#--<input class="ster" type="button" value="视频管理" data-href="${ctxPath}/plant/teacher/video"/>-->
-                    </div>
-                </div>
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="账户信息"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster" type="button" value="我的物品" data-href="${ctxPath}/plant/user/pocket"/>
-                        <input class="ster" type="button" value="账户安全" data-href="${ctxPath}/plant/user/account"/>
-                    <#--<input type="button" value="账户权限"/>-->
-                    </div>
-                </div>
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="信息中心"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster" type="button" value="联系人" data-href="${ctxPath}/plant/teacher/person"/>
-                    <#--<input type="button" value="消息记录"/>-->
-                    </div>
-                </div>
+
+                <script type="text/javascript">
+                    jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+                </script>
+
             </div>
             <!--左边栏 结束-->
             <div class="col-md-9 col-sm-9 col-xs-9">

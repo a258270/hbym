@@ -4,6 +4,8 @@
     <!-- 公共引入 -->
     <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
+    <script src="/static/ymplant/js/center/jquery-accordion-menu.js" type="text/javascript"></script>
+    <link href="/static/ymplant/css/center/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/column.css?v=${v}"/>
     <script language="JavaScript" src="${ctxPath}/static/ymplant/js/center/center.js?v=${v}"></script>
     <script>
@@ -15,9 +17,6 @@
         })
     </script>
     <style>
-        .red{
-            border-right: 3px solid #88BFE6;
-        }
         .kd-lhtai{
             background-color: #83C0F7;
             color: #fff;
@@ -48,50 +47,51 @@
                     <input type="button" value="升级黄金会员" class="gol" onclick="$('#authority').click()"/>
                 </#if>
                 </p>
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="个人资料"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input class="ster <#if !url??>kd-lhtai</#if>" type="button" data-href="${ctxPath}/plant/user/basicinfo" value="基础信息"/>
-                        <input class="ster <#if url?? && url == 'examinee'>kd-lhtai</#if>" type="button" value="考生信息" data-href="${ctxPath}/plant/user/examinee"/>
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="个人资料"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input class="ster <#if !url??>kd-lhtai</#if>" type="button" data-href="${ctxPath}/plant/user/basicinfo" value="基础信息"/>-->
+                        <#--<input class="ster <#if url?? && url == 'examinee'>kd-lhtai</#if>" type="button" value="考生信息" data-href="${ctxPath}/plant/user/examinee"/>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="kd-bkua">-->
+                    <#--<input type="button" class="stration" value="账户信息"/>-->
+                    <#--<img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>-->
+                    <#--<div class="kd-jchu">-->
+                        <#--<input type="button" class="ster <#if url?? && url == 'pocket'>kd-lhtai</#if>" value="我的物品" data-href="${ctxPath}/plant/user/pocket"/>-->
+                        <#--<input type="button" class="ster <#if url?? && url == 'account'>kd-lhtai</#if>" value="账户安全" data-href="${ctxPath}/plant/user/account"/>-->
+                        <#--<input type="button" class="ster <#if url?? && url == 'authority'>kd-lhtai</#if>" value="账户权限" data-href="${ctxPath}/plant/user/authority" id="authority"/>-->
+                    <#--</div>-->
+                <#--</div>-->
+
+                <div class="content">
+                    <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+                        <div class="jquery-accordion-menu-header" id="form"></div>
+                        <ul id="demo-list">
+                            <li><a href="javascript:void(0);" class="personal">个人信息 </a>
+                                <img src="/static/ymplant/images/tubiao6/personal-data.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster <#if !url??>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/basicinfo">基础信息</a></li>
+                                    <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'examinee'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/examinee">考生信息 </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);" class="personal">账户信息</a>
+                                <img src="/static/ymplant/images/tubiao6/account.png" class="small" alt="">
+                                <ul class="submenu">
+                                    <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'pocket'>kd-lhtai</#if>"  data-href="${ctxPath}/plant/user/pocket">我的物品</a></li>
+                                    <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'account'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/account">账户安全</a></li>
+                                    <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'authority'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/authority" id="authority">账户权限</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="kd-bkua">
-                    <input type="button" class="stration" value="账户信息"/>
-                    <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                    <div class="kd-jchu">
-                        <input type="button" class="ster <#if url?? && url == 'pocket'>kd-lhtai</#if>" value="我的物品" data-href="${ctxPath}/plant/user/pocket"/>
-                        <input type="button" class="ster <#if url?? && url == 'account'>kd-lhtai</#if>" value="账户安全" data-href="${ctxPath}/plant/user/account"/>
-                        <input type="button" class="ster <#if url?? && url == 'authority'>kd-lhtai</#if>" value="账户权限" data-href="${ctxPath}/plant/user/authority" id="authority"/>
-                    </div>
-                </div>
-            <#--<div class="kd-bkua">
-                <input type="button" class="stration" value="信息中心"/>
-                <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                <div class="kd-jchu">
-                    <input type="button" value="联系人"/>
-                    <input type="button" value="消息记录"/>
-                    <input type="button" value="模拟填报历史信息"/>
-                    <input type="button" value="志愿推荐历史信息"/>
-                    <input type="button" value="院校咨询历史信息"/>
-                    <input type="button" value="订单查询"/>
-                </div>
-            </div>
-            <div class="kd-bkua">
-                <input type="button" class="stration" value="收藏管理"/>
-                <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                <div class="kd-jchu">
-                    <input type="button" value="收藏院校"/>
-                    <input type="button" value="收藏专家"/>
-                </div>
-            </div>
-            <div class="kd-bkua">
-                <input type="button" class="stration" value="评价管理"/>
-                <img class="xzhu" src="/static/ymplant/images/tubiao/xzhu.png" alt=""/>
-                <div class="kd-jchu">
-                    <input type="button" value="评价院校"/>
-                </div>
-            </div>-->
+
+                <script type="text/javascript">
+                    jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+                </script>
+
             </div>
             <!--左边栏 结束-->
             <div class="col-md-9 col-sm-9 col-xs-9">

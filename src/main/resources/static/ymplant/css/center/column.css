@@ -49,9 +49,6 @@ body{
     border-radius: 5px;
     text-align: center;
 }
-/*.kd-bkua{*/
-
-/*}*/
 .stration{
     width: 100%;
     border: 1px solid #EBEBEB;
@@ -79,7 +76,7 @@ body{
     color: #000;
     /*font-size: 19px;*/
     padding: 10px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 .kd-jchu .ster:hover{
     background-color: #83C0F7;
@@ -94,8 +91,18 @@ body{
     text-align: center;
     border-bottom: 2px solid #F8F8F8;
 }
+/*左边栏 小图标 开始*/
+.personal{
+    position: relative;
+}
+.small{
+    position: absolute;
+    top: 16px;
+    left: 17px;
+    width: 16px;
 
-
+}
+/*左边栏 小图标 结束*/
 
 
 

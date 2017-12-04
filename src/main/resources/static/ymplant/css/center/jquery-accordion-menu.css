@@ -107,7 +107,6 @@
 	background: #FFF;
 	border-top: none;
 	position: relative;
-	border-left: solid 6px transparent;
 	-o-transition: border .2s linear;
 	-moz-transition: border .2s linear;
 	-webkit-transition: border .2s linear;
@@ -115,7 +114,8 @@
 }
 
 .jquery-accordion-menu ul ul.submenu li:hover>a {
-	border-left-color: #414956
+	/*border-left-color: #414956*/
+	border-left: solid 6px #33C9B5;
 }
 
 .jquery-accordion-menu ul ul.submenu>li>a {

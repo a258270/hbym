@@ -267,9 +267,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nal">
+                        <#--<li class="nal">
                             <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">性格测试</a>
-                        </li>
+                        </li>-->
                         <li class="nal">
                             <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                         </li>
@@ -382,7 +382,7 @@
             <!--轮播图 开始-->
             <div class="row" style="margin: 0">
                 <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0">
-                    <div class="col-md-12" style="padding: 0;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
@@ -415,7 +415,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-12" style="padding: 0;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
                         <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">

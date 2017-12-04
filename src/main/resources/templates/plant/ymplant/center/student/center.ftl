@@ -16,12 +16,6 @@
             });
         })
     </script>
-    <style>
-        .kd-lhtai{
-            background-color: #83C0F7;
-            color: #fff;
-        }
-    </style>
 </head>
 <body>
 <#include "${ctxPath}/plant/ymplant/top.ftl">

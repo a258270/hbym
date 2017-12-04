@@ -69,9 +69,14 @@ body{
 /*.kd-jchu{*/
     /*display: none;*/
 /*}*/
+.kd-lhtai{
+    background-color: #83C0F7;
+    color: #fff;
+    border-left: solid 6px #33C9B5;
+}
 .ster{
     width: 100%;
-    border: 1px solid #F8F8F8;
+    /*border: 1px solid #F8F8F8;*/
     background-color: #fffbfb;
     color: #000;
     /*font-size: 19px;*/

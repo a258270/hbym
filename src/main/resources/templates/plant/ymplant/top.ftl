@@ -37,9 +37,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="home-page">
+                <#--<li class="home-page">
                     <a class="locking<#if curPage?? && curPage == 'news'> lockingt</#if>" href="${ctxPath}/plant/news/core">性格测试</a>
-                </li>
+                </li>-->
                 <li class="home-page">
                     <a class="locking<#if curPage?? && curPage == 'news'> lockingt</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                 </li>

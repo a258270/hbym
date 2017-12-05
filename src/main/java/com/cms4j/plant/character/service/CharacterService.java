@@ -12,6 +12,6 @@ public class CharacterService {
     private DaoSupport daoSupport;
 
     public DataMap getMbtiByIdAndType(DataMap dataMap) throws Exception {
-        return daoSupport.findForObject("")
+        return (DataMap) daoSupport.findForObject("ChatacterMapper.getMbtiByIdAndType", dataMap);
     }
 }

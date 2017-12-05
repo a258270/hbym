@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.cms4j.base.util.DateUtil;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Description: NewsService
@@ -122,5 +124,34 @@ public class NewsService {
 
     public void addViewCount(DataMap dataMap) throws Exception {
         daoSupport.update("NewsMapper.addViewCount", dataMap);
+    }
+
+    public Page getNewssForWechatApp(DataMap dataMap) throws Exception {
+        Page page = new Page();
+        Map params = new HashMap();
+        if(StringUtils.isBlank(dataMap.getString("TITLE"))) dataMap.put("TITLE", null);
+        page.setParams(dataMap);
+
+        if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
+        else{
+            try{
+                Integer currentPage = Integer.valueOf(dataMap.getString("currentPage"));
+                currentPage--;
+                if(currentPage < 0) currentPage = 0;
+                dataMap.put("currentPage", currentPage);
+            }
+            catch (Exception e) {
+                dataMap.put("currentPage", "0");
+            }
+        }
+        page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
+        if(StringUtils.isBlank(dataMap.getString("pageSize")))
+            page.setPageSize(10);
+        else
+            page.setPageSize(Integer.valueOf(dataMap.getString("pageSize")));
+
+        List<DataMap> news = this.getNewss(page);
+        page.setResults(news);
+        return page;
     }
 }

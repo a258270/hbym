@@ -5,6 +5,7 @@ import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.ShortUUID;
+import com.cms4j.plant.major.major.service.MajorService;
 import com.cms4j.plant.school.mjscore.service.MjscoreService;
 import com.cms4j.plant.school.scscore.service.ScscoreService;
 import com.cms4j.plant.school.service.ArrangmentService;
@@ -51,14 +52,36 @@ public class DRApiController extends ApiBaseController{
     private HasmajorService hasmajorService;
     @Autowired
     private ArrangmentService arrangmentService;
+    @Autowired
+    private MajorService majorService;
 
-    public static void main(String[] args) throws Exception {
-        DRApiController drApiController = new DRApiController();
-        drApiController.daoru();
-    }
     @RequestMapping(value = "/admin/daoru")
     public InvokeResult daoru() throws Exception {
 
+        List<DataMap> majors = majorService.getMajorsByLevel("BMAJOR", 4);
+        String mubanPath = "D:/a.xls";
+        Workbook wb = Workbook.getWorkbook(new File(mubanPath));
+        File targetFile = new File("D:/tar.xls");
+        WritableWorkbook wwb = Workbook.createWorkbook(targetFile, wb);
+        WritableSheet wws = wwb.getSheet(0);
+        for(int i = 0; i < wws.getRows(); i++){
+            String majorName = wws.getCell(0, i).getContents();
+            String info = "";
+            if(!StringUtils.isBlank(majorName)){
+                for(DataMap major : majors) {
+                    if(majorName.equals(major.getString("NAME"))){
+                        info += major.getString("DIC_ID") + ",";
+                    }
+                }
+            }
+
+            if(!info.isEmpty()) info = info.substring(0, info.length() - 1);
+            WritableCell cc = new Label(1, i, info);
+            wws.addCell(cc);
+        }
+
+        wwb.write();
+        wwb.close();
         /*DataMap arrangment = new DataMap();
         arrangment.put("CODE", "ARRANGMENT");
         arrangment = dictionaryService.getDictionaryByCode(arrangment);

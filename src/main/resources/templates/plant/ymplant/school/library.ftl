@@ -26,12 +26,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-lg-3">
-                <div class="provinces" style="margin-bottom: 30px">
+                <div class="provinces">
                     <div class="shengf">
-                        省份
-                        <img class="province2" src="/static/ymplant/img/sye/tubiao/province.png" style="width:22px;height: 22px;" alt="">
+                        条件
+                        <img class="province2" src="/static/ymplant/img/sye/tubiao/category.png" style="width:22px;height: 22px;" alt="">
                     </div>
-                    <table class="anhui">
+                    <table class="anhui" style="margin-top: 10px;">
                         <tr>
                             <td class="selected"><a href="javascript:void(0);" class="province" data-href="">不限</a></td>
                             <td><a href="javascript:void(0);" class="province" data-href="PROVINCE1">北京</a></td>
@@ -88,11 +88,11 @@
                     </table>
                 </div>
 
-                <div class="attribute" style="margin-bottom: 30px">
-                    <div class="shengf">
-                        属性
-                        <img class="province2" src="/static/ymplant/img/sye/tubiao/attribute.png" style="width:22px;height: 22px;" alt="">
-                    </div>
+                <div class="attribute">
+                    <#--<div class="shengf">-->
+                        <#--属性-->
+                        <#--<img class="province2" src="/static/ymplant/img/sye/tubiao/attribute.png" style="width:22px;height: 22px;" alt="">-->
+                    <#--</div>-->
                     <table class="anhui">
                         <tbody>
                             <tr>
@@ -111,12 +111,12 @@
                     </table>
                 </div>
 
-                <div class="batch" style="margin-bottom: 30px">
-                    <div class="shengf">
-                        批次
-                        <img class="province2" src="/static/ymplant/img/sye/tubiao/batch.png" style="width:22px;height: 22px;" alt="">
-                    </div>
-                    <table class="anhui">
+                <div class="batch" style="margin-top: 10px;">
+                    <#--<div class="shengf">-->
+                        <#--批次-->
+                        <#--<img class="province2" src="/static/ymplant/img/sye/tubiao/batch.png" style="width:22px;height: 22px;" alt="">-->
+                    <#--</div>-->
+                    <table class="anhui" style="margin-top: 10px;">
                         <tbody>
                         <tr>
                             <td class="selected"><a href="javascript:void(0);" class="arrangment" data-href="">不限</a></td>
@@ -128,11 +128,11 @@
                     </table>
                 </div>
 
-                <div class="sort" style="margin-bottom: 30px">
-                    <div class="shengf">
-                        类别
-                        <img class="province2" src="/static/ymplant/img/sye/tubiao/category.png" style="width:22px;height: 22px;" alt="">
-                    </div>
+                <div class="sort" style="margin-bottom: 30px;margin-top: 10px;">
+                    <#--<div class="shengf">-->
+                        <#--类别-->
+                        <#--<img class="province2" src="/static/ymplant/img/sye/tubiao/category.png" style="width:22px;height: 22px;" alt="">-->
+                    <#--</div>-->
                     <table class="anhui">
                         <tbody>
                         <tr>

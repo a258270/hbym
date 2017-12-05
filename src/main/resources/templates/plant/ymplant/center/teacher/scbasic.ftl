@@ -113,7 +113,16 @@
                         }
 
                         parent.showSuccess("修改成功！");
-                        window.location.href = ctxPath + "/plant/teacher/basic";
+//                        window.location.href = ctxPath + "/plant/teacher/basic";
+                        parent.$(".ster").each(function(){
+                            if($(this).attr("data-href") == "${ctxPath}/plant/teacher/basic"){
+                                $(this).addClass("kd-lhtai");
+                                window.location.href = ctxPath + "/plant/teacher/basic";
+                            }
+                            else{
+                                $(this).removeClass("kd-lhtai");
+                            }
+                        });
                     });
                 }
             });

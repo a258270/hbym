@@ -132,7 +132,6 @@
                                         <a class="btn btn-lg" data-toggle="modal" data-target="#myModala">
                                             注册
                                         </a>
-                                        <span style="color: #fff">丨</span>
                                         <div class="modal fade" id="myModala" tabindex="-1" role="dialog">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content" style="width: 500px;">
@@ -182,6 +181,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li>丨</li>
 
                                     <li class="c1" style="margin: 0">
                                         <a class="btn btn-lg" data-toggle="modal" data-target="#myModal">
@@ -233,7 +233,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-4" style="margin: -10px;padding-left: 25px;">
                     <p class="plan"><img src="${ctxPath}/static/ymplant/images/logo.png" style="height: 100%; width: auto;" /></p>
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-8" style="padding: 15px;margin: -10px;">
+                <div class="col-md-8 col-sm-8 col-xs-8" style="padding: 20px 15px 10px 15px;margin: -10px;">
                     <ul class="gation">
                         <li class="nal">
                             <a class="colour<#if curPage?? && curPage == 'index'> nav-active</#if>" href="/">网站首页</a>
@@ -267,9 +267,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nal">
-                            <a class="colour<#if curPage?? && curPage == 'character'> nav-active</#if>" href="${ctxPath}/plant/character/index">性格测试</a>
-                        </li>
+                    <#--<li class="nal">-->
+                    <#--<a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">性格测试</a>-->
+                    <#--</li>-->
                         <li class="nal">
                             <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                         </li>
@@ -380,9 +380,9 @@
         <#--</div>-->
             <!--专家团 结束-->
             <!--轮播图 开始-->
-            <div class="row" style="margin: 0">
+            <div class="row" style="margin:  0">
                 <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0">
-                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0;margin-bottom: 20px;">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
@@ -466,7 +466,7 @@
                                         <p style="padding-top:2px;">
                                             <span class="kd-yc">${newsObj.TITLE}</span>
                                         </p>
-                                        <p style="color: #8D8C8A;">
+                                        <p style="color: #8D8C8A;font-size: 10px;">
                                             <span>${newsObj.CREATETIME?string("yyyy-MM-dd")}</span>
                                         </p>
                                     </a>
@@ -713,7 +713,7 @@
                         <a class="kd-gduo" href="${ctxPath}/plant/news/more/news/23wtostpu8" style="text-decoration: none;" target="_blank">更多>>></a>
                         <img class="kd-dtai2" src="/static/ymplant/img/sye/tubiao/xianxia.png" alt="">
                     </div>
-                    <div class="row" style="padding: 27px 0;border: 1px solid #ccc;margin: 0;">
+                    <div class="row" style="padding: 30px 0;border: 1px solid #ccc;margin: 0;">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                         <#if news?? && (news?size > 0)>
                             <#list news as newsObj>
@@ -723,7 +723,7 @@
                                         <p style="padding: 10px;font-size: 25px;">
                                             <span class="kd-yc">${newsObj.TITLE}</span>
                                         </p>
-                                        <p style="color: #8D8C8A;padding: 0 10px;">
+                                        <p style="color: #8D8C8A;padding: 0 10px;font-size: 10px;">
                                         <#--<i class="glyphicon glyphicon-time"></i>-->
                                             <span>${newsObj.CREATETIME?string("yyyy-MM-dd")}</span>
                                         <#--<i class="glyphicon glyphicon-eye-open"></i>-->

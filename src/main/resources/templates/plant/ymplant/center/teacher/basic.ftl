@@ -33,50 +33,67 @@
             </div>
             <p style="padding-left: 30px;">
                 <span style="margin-right: 20px">
-                    <img src="${ctxPath}/static/ymplant/images/<#if isRealName == 'true'>1<#else>2</#if>.png" style="width:4%;" alt=""/>
+                    <img src="${ctxPath}/static/ymplant/images/<#if isRealName == 'true'>2<#else>1</#if>.png" style="width:4%;" alt=""/>
                     实名<#if isRealName == 'true'>已<#else>未</#if>认证
                 </span>
                 <span style="margin-right: 20px">
-                    <img src="${ctxPath}/static/ymplant/images/<#if isPhone == 'true'>3<#else>4</#if>.png" style="width:3%;" alt=""/>
+                    <img src="${ctxPath}/static/ymplant/images/<#if isPhone == 'true'>4<#else>3</#if>.png" style="width:3%;" alt=""/>
                     手机<#if isPhone == 'true'>已<#else>未</#if>绑定
                 </span>
                 <span style="margin-right: 20px">
-                    <img src="${ctxPath}/static/ymplant/images/<#if isEmail == 'true'>8<#else>9</#if>.png" style="width:4%;" alt=""/>
+                    <img src="${ctxPath}/static/ymplant/images/<#if isEmail == 'true'>6<#else>5</#if>.png" style="width:4%;" alt=""/>
                     邮箱<#if isEmail == 'true'>已<#else>未</#if>绑定
                 </span>
                 <span>
-                    <img src="${ctxPath}/static/ymplant/images/<#if isTrade == 'true'>6<#else>5</#if>.png" style="width:4%;" alt=""/>
+                    <img src="${ctxPath}/static/ymplant/images/<#if isTrade == 'true'>8<#else>7</#if>.png" style="width:4%;" alt=""/>
                     交易密码<#if isTrade == 'true'>已<#else>未</#if>设置
                 </span>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>昵称：</span>
-                <input style="outline: none;border-radius: 5px;border:1px solid #CECECE" type="text" name="NICKNAME" value="<#if complete?? && complete.NICKNAME??>${complete.NICKNAME}</#if>"/>
+                <input style="outline: none;width:100px;border-radius: 5px;border:1px solid #CECECE;margin-left: 24px;" type="text" name="NICKNAME" value="<#if complete?? && complete.NICKNAME??>${complete.NICKNAME}</#if>"/>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>真实姓名：<#if complete?? && complete.NAME??>${complete.NAME}<#else>暂无</#if></span>
-                <span style="margin-left: 30px">是否公开：</span>
-                <input type="checkbox" name="NAMESECRET" <#if complete?? && complete.NAMESECRET?? && !complete.NAMESECRET>checked</#if>/>
+                <span style="float: right;">
+                    <span style="margin-left: 30px">是否公开：</span>
+                    <input type="checkbox" name="NAMESECRET" <#if complete?? && complete.NAMESECRET?? && !complete.NAMESECRET>checked</#if>/>
+                </span>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
-                <span>性别:</span>
-                <label class="radio-inline">
-                    <input type="radio" name="SEX" id="SEX1" value="11" <#if complete?? && complete.SEX?? && complete.SEX == '11'>checked</#if>> 男
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="SEX" id="SEX2" value="12" <#if complete?? && complete.SEX?? && complete.SEX == '12'>checked</#if>> 女
-                </label>
-                <span style="margin-left: 30px">是否公开：</span>
-                <input type="checkbox" name="SEXSECRET" <#if complete?? && complete.SEXSECRET?? && !complete.SEXSECRET>checked</#if>/>
+                <span>性别：</span>
+                <#--<label class="radio-inline">-->
+                    <#--<input type="radio" name="SEX" id="SEX1" value="11" <#if complete?? && complete.SEX?? && complete.SEX == '11'>checked</#if>> 男-->
+                <#--</label>-->
+                <#--<label class="radio-inline">-->
+                    <#--<input type="radio" name="SEX" id="SEX2" value="12" <#if complete?? && complete.SEX?? && complete.SEX == '12'>checked</#if>> 女-->
+                <#--</label>-->
+                <#if complete?? && complete.SEX??>
+                <select class="radio-inline" name="SEX" style="padding: 0 10px;width: 100px;margin-left: 24px;">
+                    <option value="11" <#if complete.SEX == '11'>selected</#if>>男</option>
+                    <option value="12" <#if complete.SEX == '12'>selected</#if>>女</option>
+                </select>
+                <#else>
+                <select name="SEX" class="radio-inline" style="padding: 0 10px;">
+                    <option value="11" selected>男</option>
+                    <option value="12">女</option>
+                </select>
+                </#if>
+                <span style="float: right;">
+                    <span style="margin-left: 30px">是否公开：</span>
+                    <input type="checkbox" name="SEXSECRET" <#if complete?? && complete.SEXSECRET?? && !complete.SEXSECRET>checked</#if>/>
+                </span>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
-                <span>出生日期：<input type="text" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd' })" placeholder="请选择出生日期" id="BIRTHDAY" name="BIRTHDAY" class="Wdate" value="<#if complete?? && complete.BIRTHDAY??>${complete.BIRTHDAY}</#if>" readOnly></span>
-                <span style="margin-left: 30px">是否公开：</span>
-                <input type="checkbox" name="BIRTHDAYSECRET" <#if complete?? && complete.BIRTHDAYSECRET?? && !complete.BIRTHDAYSECRET>checked</#if>/>
+                <span>出生日期：<input style="width: 120px;" type="text" onClick="WdatePicker({ dateFmt:'yyyy-MM-dd' })" placeholder="请选择出生日期" id="BIRTHDAY" name="BIRTHDAY" class="Wdate" value="<#if complete?? && complete.BIRTHDAY??>${complete.BIRTHDAY}</#if>" readOnly></span>
+                <span style="float: right;">
+                    <span style="margin-left: 30px">是否公开：</span>
+                    <input type="checkbox" name="BIRTHDAYSECRET" <#if complete?? && complete.BIRTHDAYSECRET?? && !complete.BIRTHDAYSECRET>checked</#if>/>
+                </span>
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>邮箱：</span>
-                <span><#if isEmail == 'true'>已<#else>未</#if>设置</span>
+                <span style="margin-left: 24px;"><#if isEmail == 'true'>已<#else>未</#if>设置</span>
             <#if isEmail != 'true'>
                 <span style="margin-left: 30px">
                     <a href="${ctxPath}/plant/user/binding/email" style="color: #4B33ED">立即设置</a>

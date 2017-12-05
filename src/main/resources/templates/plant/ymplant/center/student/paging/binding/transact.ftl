@@ -58,10 +58,28 @@
 
                     parent.showSuccess("修改成功！");
                 <#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
-                    window.location.href = ctxPath + "/plant/user/basicinfo";
+//                    window.location.href = ctxPath + "/plant/user/basicinfo";
+                    parent.$(".ster").each(function(){
+                        if($(this).attr("data-href") == "${ctxPath}/plant/user/basicinfo"){
+                            $(this).addClass("kd-lhtai");
+                            window.location.href = ctxPath + "/plant/user/basicinfo";
+                        }
+                        else{
+                            $(this).removeClass("kd-lhtai");
+                        }
+                    });
                 </#if>
                 <#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>
-                    window.location.href = ctxPath + "/plant/teacher/basic";
+//                    window.location.href = ctxPath + "/plant/teacher/basic";
+                    parent.$(".ster").each(function(){
+                        if($(this).attr("data-href") == "${ctxPath}/plant/teacher/basic"){
+                            $(this).addClass("kd-lhtai");
+                            window.location.href = ctxPath + "/plant/teacher/basic";
+                        }
+                        else{
+                            $(this).removeClass("kd-lhtai");
+                        }
+                    });
                 </#if>
                 });
             }

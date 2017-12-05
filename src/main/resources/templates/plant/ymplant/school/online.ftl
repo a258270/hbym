@@ -38,7 +38,7 @@
                 <div class="region">
                     <div class="gion">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding-right: 0;">
+                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 3px 0 7px 15px;">
                                 <div class="kd-dqu">地区</div>
                             </div>
                             <div class="col-md-11 col-sm-11 col-xs-11">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="gion">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding-right: 0;">
+                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 3px 0 7px 15px;">
                                 <div class="kd-dqu">批次</div>
                             </div>
                             <div class="col-md-11 col-sm-11 col-xs-11">
@@ -104,7 +104,7 @@
                     </div>
                     <div class="gion">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding-right: 0;">
+                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 3px 0 7px 15px;">
                                 <div class="kd-dqu">类型</div>
                             </div>
                             <div class="col-md-11 col-sm-11 col-xs-11">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="gion">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding-right: 0;">
+                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 3px 0 7px 15px;">
                                 <div class="kd-dqu">属性</div>
                             </div>
                             <div class="col-md-11 col-sm-11 col-xs-11 kd-zdia">

@@ -267,9 +267,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <#--<li class="nal">
-                            <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">性格测试</a>
-                        </li>-->
+                        <li class="nal">
+                            <a class="colour<#if curPage?? && curPage == 'character'> nav-active</#if>" href="${ctxPath}/plant/character/index">性格测试</a>
+                        </li>
                         <li class="nal">
                             <a class="colour<#if curPage?? && curPage == 'news'> nav-active</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                         </li>

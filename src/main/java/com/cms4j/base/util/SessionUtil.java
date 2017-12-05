@@ -43,6 +43,25 @@ public class SessionUtil {
     public static final String SESSION_SMSVERIFYCODE_KEY = "SMSCODE";
 
     /**
+     * session中性格测试信息存放的key值
+     */
+    public static final String SESSION_CHARACTER_E = "session_character_E";
+
+    public static final String SESSION_CHARACTER_I = "session_character_I";
+
+    public static final String SESSION_CHARACTER_S = "session_character_S";
+
+    public static final String SESSION_CHARACTER_N = "session_character_N";
+
+    public static final String SESSION_CHARACTER_T = "session_character_T";
+
+    public static final String SESSION_CHARACTER_F = "session_character_F";
+
+    public static final String SESSION_CHARACTER_J = "session_character_J";
+
+    public static final String SESSION_CHARACTER_P = "session_character_P";
+
+    /**
      * session中邮箱验证码信息存放的key值
      */
     public static final String SESSION_EMAILVERIFYCODE_KEY = "EMAILCODE";
@@ -261,5 +280,21 @@ public class SessionUtil {
      */
     public static void removeInfoFromSession(Object key) {
         SessionUtil.getSession().removeAttribute(key);
+    }
+
+    public static Integer getNextCharacterNumber() {
+        Integer iE = getInfoFromSession(SESSION_CHARACTER_E) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_E);
+        Integer iI = getInfoFromSession(SESSION_CHARACTER_I) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_I);
+
+        Integer iS = getInfoFromSession(SESSION_CHARACTER_S) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_S);
+        Integer iN = getInfoFromSession(SESSION_CHARACTER_N) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_N);
+
+        Integer iT = getInfoFromSession(SESSION_CHARACTER_T) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_T);
+        Integer iF = getInfoFromSession(SESSION_CHARACTER_F) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_F);
+
+        Integer iJ = getInfoFromSession(SESSION_CHARACTER_J) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_J);
+        Integer iP = getInfoFromSession(SESSION_CHARACTER_P) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_P);
+
+        return iE + iI + iS + iN + iT + iF + iJ + iP + 1;
     }
 }

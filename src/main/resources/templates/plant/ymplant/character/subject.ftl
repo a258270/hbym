@@ -11,7 +11,7 @@
 <div class="container">
     <img src="/static/ymplant/img/chaeacter.png" style="width: 100%;" alt=""/>
     <div class="mbti">
-        <h3 style="margin-bottom: 50px;">MBTI职业性格测试题--专业版</h3>
+        <h3 style="margin-bottom: 50px;">MBTI职业性格测试题--<#if flag == 'simple'>简单版</#if><#if flag == 'pro'>专业版</#if></h3>
         <div class="problem">
             <p style="font-size: 18px;">哪一个答案能最贴切的描绘你一般的感受或行为？</p>
             <div>

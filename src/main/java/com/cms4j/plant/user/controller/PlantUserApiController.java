@@ -395,7 +395,7 @@ public class PlantUserApiController extends ApiBaseController {
             if(!PlantValidUtil.isMail(dataMap.getString("EMAIL")))
                 return InvokeResult.failure(PlantValidUtil.ERROR_MSG_MAIL);
 
-            SessionUtil.removeEMAILCodeFromSession();
+            SessionUtil.removeSMSCodeFromSession();
             complete.put("EMAIL", dataMap.getString("EMAIL"));
             completeStudentService.editCompleteStudent(complete);
 
@@ -413,12 +413,12 @@ public class PlantUserApiController extends ApiBaseController {
             DataMap dataMap = this.getDataMap();
             if (StringUtils.isBlank(dataMap.getString("EMAIL"))) return InvokeResult.failure("请填写邮箱地址！");
             if (StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("请填写验证码！");
-            if(!dataMap.getString("CODE").equals(SessionUtil.getEMAILCodeFromSession())) return InvokeResult.failure("邮箱验证码不正确！");
+            if(!dataMap.getString("CODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("短信验证码不正确！");
 
             if(!PlantValidUtil.isMail(dataMap.getString("EMAIL")))
                 return InvokeResult.failure(PlantValidUtil.ERROR_MSG_MAIL);
 
-            SessionUtil.removeEMAILCodeFromSession();
+            SessionUtil.removeSMSCodeFromSession();
             complete.put("EMAIL", dataMap.getString("EMAIL"));
             completeTeacherService.editCompleteTeacher(complete);
 

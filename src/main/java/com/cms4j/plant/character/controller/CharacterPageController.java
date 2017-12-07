@@ -26,6 +26,8 @@ public class CharacterPageController extends PageBaseController {
     public ModelAndView index() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
 
+        modelAndView.addObject("curPage", "character");
+
         SessionUtil.removeCharacterInfo();
         modelAndView.setViewName("/plant/ymplant/character/index");
 
@@ -35,6 +37,8 @@ public class CharacterPageController extends PageBaseController {
     @RequestMapping(value = "/simple")
     public ModelAndView simple() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
+
+        modelAndView.addObject("curPage", "character");
 
         Integer nextNumber = SessionUtil.getNextCharacterNumber();
         DataMap param = new DataMap();
@@ -61,6 +65,8 @@ public class CharacterPageController extends PageBaseController {
     public ModelAndView pro() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
 
+        modelAndView.addObject("curPage", "character");
+
         Integer nextNumber = SessionUtil.getNextCharacterNumber();
         DataMap param = new DataMap();
         param.put("MBTI_ID", nextNumber);
@@ -86,6 +92,8 @@ public class CharacterPageController extends PageBaseController {
     public ModelAndView result(@PathVariable String flag) throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
 
+        modelAndView.addObject("curPage", "character");
+        
         DataMap param = new DataMap();
         param.put("MBTI_TYPE", flag);
         Integer count = characterService.getCountByMbtiType(param);

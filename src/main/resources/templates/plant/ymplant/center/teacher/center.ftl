@@ -37,7 +37,7 @@
                     <img src="<#if complete?? && complete.HEADURL??>${complete.HEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width: 100%;height: 100%;border-radius: 50%;" alt=""/>
                 </div>
                 <p class="name"><#if complete?? && complete.NICKNAME??>${complete.NICKNAME}<#else>暂无</#if></p>
-                <p style="color: #7F7F7F;font-weight: bold;text-align: center;padding-bottom: 20px;">教师</p>
+                <p style="color: #7F7F7F;font-weight: bold;text-align: center;padding-bottom: 20px;"></p>
             <#--<p style="color: #C3C3C3;font-weight: bold">会员类型：普通会员</p>
             <p style="text-align: center;margin: 15px 0">
                 <input type="button" value="升级黄金会员" class="gol"/>

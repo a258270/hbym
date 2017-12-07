@@ -11,11 +11,11 @@
     <div class="row" style="margin-left: 30px;">
         <div style="padding: 20px">
             <#--<p>您当前的安全等级：<span style="color: red;font-weight: bold">${completeLevel}</span></p>-->
-                <p style="padding:0 0 15px 20px;border-bottom: 1px solid #C3C3C3">
+                <p style="padding:0 0 10px 20px;border-bottom: 1px solid #C3C3C3">
                     <img src="/static/ymplant/images/tubiao5/prompt.png" style="width: 35px;" alt="">
                     <span style="padding-left: 15px;">您的账号存在安全风险，建议立即优化以下<span style="color: red;font-weight: bold;padding: 0 5px;">5</span>项</span>
                 </p>
-            <div class="security row" style="margin-bottom: 20px">
+            <div class="security row" style="margin-bottom: 20px;margin-top: 30px;">
                 <div class="col-md-1 col-sm-1 col-xs-1">
                     <img src="/static/ymplant/img/antu/03.png" alt=""/>
                 </div>

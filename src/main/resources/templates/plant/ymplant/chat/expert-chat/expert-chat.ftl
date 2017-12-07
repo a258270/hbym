@@ -30,7 +30,7 @@
 <div class="container2">
     <div class="student row">
         <div class="col-md-2 col-sm-2 col-xs-2"></div>
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding: 0;">
+        <div class="col-md-2 col-sm-2 col-xs-2" style="padding: 0;width: 260px;">
             <div class="kd-hse">
             <#--<input type="text" placeholder="搜索"/>-->
                 <div style="color:#fff;font-weight: bold;">联系人列表</div>
@@ -61,7 +61,7 @@
             </#if>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right:0;height: 100%;">
+        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right:0;height: 100%;width: 730px;">
             <div class="kd-mzi row">
                 <div class="col-md-2 col-sm-2 col-xs-2"style="text-align: right">
                 <#if student??>

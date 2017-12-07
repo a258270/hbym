@@ -79,7 +79,9 @@
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 15px;">高考成绩：</span>
-                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="EXAMSCORE" name="EXAMSCORE" <#if examinee?? && examinee.EXAMSCORE??>value="${examinee.EXAMSCORE}" </#if> /> <span style="color: #ab0000">该成绩用于模拟填报、智能推荐等相关功能</span>
+                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="EXAMSCORE" name="EXAMSCORE" <#if examinee?? && examinee.EXAMSCORE??>value="${examinee.EXAMSCORE}" </#if> />
+                    <span>（预估）</span>
+                    <span style="color: #ab0000;margin-left: 40px;">该成绩用于模拟填报、智能推荐等相关功能</span>
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 55px;">年级:</span>
@@ -95,15 +97,15 @@
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 17px;">一模成绩：</span>
-                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="FIRSTMOCK" name="FIRSTMOCK" <#if examinee?? && examinee.FIRSTMOCK??>value="${examinee.FIRSTMOCK}" </#if> /> <span style="color: #ab0000">该成绩用于高校检索查询</span>
+                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="FIRSTMOCK" name="FIRSTMOCK" <#if examinee?? && examinee.FIRSTMOCK??>value="${examinee.FIRSTMOCK}" </#if> /> <span style="color: #ab0000;margin-left: 100px;">该成绩用于高校检索查询</span>
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 17px;">二模成绩：</span>
-                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="SECONDMOCK" name="SECONDMOCK" <#if examinee?? && examinee.SECONDMOCK??>value="${examinee.SECONDMOCK}" </#if> /> <span style="color: #ab0000">该成绩用于高校检索查询</span>
+                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="SECONDMOCK" name="SECONDMOCK" <#if examinee?? && examinee.SECONDMOCK??>value="${examinee.SECONDMOCK}" </#if> /> <span style="color: #ab0000;margin-left: 100px;">该成绩用于高校检索查询</span>
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 17px;">三模成绩：</span>
-                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="THIRDMOCK" name="THIRDMOCK" <#if examinee?? && examinee.THIRDMOCK??>value="${examinee.THIRDMOCK}" </#if> /> <span style="color: #ab0000">该成绩用于高校检索查询</span>
+                    <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="THIRDMOCK" name="THIRDMOCK" <#if examinee?? && examinee.THIRDMOCK??>value="${examinee.THIRDMOCK}" </#if> /> <span style="color: #ab0000;margin-left: 100px;">该成绩用于高校检索查询</span>
                 </p>
                 <p class="baocun" style="margin-top:20px">
                     <input class="kd-xgai" style="margin: 0 auto" type="submit" value="保存修改" />

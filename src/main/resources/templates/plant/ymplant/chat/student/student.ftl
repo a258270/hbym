@@ -47,7 +47,7 @@
 <div class="container2">
     <div class="student row">
         <div class="col-md-2 col-sm-2 col-xs-2"></div>
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding: 0">
+        <div class="col-md-2 col-sm-2 col-xs-2" style="padding: 0;width: 260px;">
             <div class="kd-hse">
                 <#--<input type="text" placeholder="搜索"/>-->
                 联系人列表
@@ -57,9 +57,9 @@
                 <#list teachers as teacher>
                     <div class="row kd-yse<#if complete_tea?? && teacher?? && complete_tea.USER_ID?? && teacher.RUSER_ID?? && (teacher.RUSER_ID == complete_tea.USER_ID)> active</#if>">
                         <a href="${ctxPath}/plant/chat/student/${teacher.RUSER_ID}">
-                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 30px;">
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 20px;">
                                 <div class="kd-tpi">
-                                    <img src="<#if teacher.TEAHEADURL??>${teacher.TEAHEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width:45px;height: 45px;" alt=""/>
+                                    <img src="<#if teacher.TEAHEADURL??>${teacher.TEAHEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width:40px;height: 40px;" alt=""/>
                                 </div>
                             </div>
                             <div class="col-md-7 col-sm-7 col-xs-7">
@@ -75,7 +75,7 @@
             </#if>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right: 0;">
+        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right: 0;width: 723px;">
             <div class="kd-mzi row">
                 <div class="col-md-2 col-sm-2 col-xs-2"style="text-align: right">
                     <img src="<#if complete_tea?? && complete_tea.HEADURL??>${complete_tea.HEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width: 50px;height:50px;border-radius: 50%" alt=""/>

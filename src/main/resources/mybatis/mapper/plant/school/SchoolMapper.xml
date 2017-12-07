@@ -245,6 +245,7 @@
             (SELECT COUNT(0) > 0 FROM SC_STOREUP store WHERE store.SCHOOL_ID = school.SCHOOL_ID AND USER_ID = #{params.USER_ID}) AS STOREUP
             FROM
             UR_COMPLETE_TEA tea,
+            UR_USER user,
             SC_SCHOOL school
             LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
             LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
@@ -293,6 +294,8 @@
                 </foreach>
             </if>
             AND school.SCHOOL_ID = tea.SCHOOL_ID
+            AND tea.USER_ID = user.USER_ID
+            AND user.STATUS = 1
             GROUP BY school.SCHOOL_ID
             ORDER BY school.MSORT
         ) tmp_count
@@ -323,6 +326,7 @@
         (SELECT COUNT(0) FROM UR_COMPLETE_TEA teacher WHERE teacher.SCHOOL_ID = school.SCHOOL_ID) AS TEACOUNT
         FROM
         UR_COMPLETE_TEA tea,
+        UR_USER user,
         SC_SCHOOL school
         LEFT JOIN SYS_DICTIONARIES dic2 ON dic2.DIC_ID = school.PROVINCE
         LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = school.SCTYPE
@@ -371,6 +375,8 @@
             </foreach>
         </if>
         AND school.SCHOOL_ID = tea.SCHOOL_ID
+        AND tea.USER_ID = user.USER_ID
+        AND user.STATUS = 1
         GROUP BY school.SCHOOL_ID
         ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
 

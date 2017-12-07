@@ -1,8 +1,11 @@
 package com.cms4j.base.util;
 
+import org.apache.commons.collections.list.TreeList;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+
+import java.util.*;
 
 /**
  * description: Session工具类
@@ -296,5 +299,45 @@ public class SessionUtil {
         Integer iP = getInfoFromSession(SESSION_CHARACTER_P) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_P);
 
         return iE + iI + iS + iN + iT + iF + iJ + iP + 1;
+    }
+
+    public static void removeCharacterInfo() {
+        removeInfoFromSession(SESSION_CHARACTER_E);
+        removeInfoFromSession(SESSION_CHARACTER_I);
+
+        removeInfoFromSession(SESSION_CHARACTER_S);
+        removeInfoFromSession(SESSION_CHARACTER_N);
+
+        removeInfoFromSession(SESSION_CHARACTER_T);
+        removeInfoFromSession(SESSION_CHARACTER_F);
+
+        removeInfoFromSession(SESSION_CHARACTER_J);
+        removeInfoFromSession(SESSION_CHARACTER_P);
+    }
+
+    public static Integer getCharacterInfo(String key) {
+        return getInfoFromSession(key) == null ? 0 : (Integer) getInfoFromSession(key);
+    }
+
+    public static String getCharacterResult() {
+        Integer iE = getInfoFromSession(SESSION_CHARACTER_E) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_E);
+        Integer iI = getInfoFromSession(SESSION_CHARACTER_I) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_I);
+
+        Integer iS = getInfoFromSession(SESSION_CHARACTER_S) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_S);
+        Integer iN = getInfoFromSession(SESSION_CHARACTER_N) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_N);
+
+        Integer iT = getInfoFromSession(SESSION_CHARACTER_T) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_T);
+        Integer iF = getInfoFromSession(SESSION_CHARACTER_F) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_F);
+
+        Integer iJ = getInfoFromSession(SESSION_CHARACTER_J) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_J);
+        Integer iP = getInfoFromSession(SESSION_CHARACTER_P) == null ? 0 : (Integer) getInfoFromSession(SESSION_CHARACTER_P);
+
+        String result = "";
+        result += (iE > iI? "E" : "I");
+        result += (iS > iN? "S" : "N");
+        result += (iT > iF? "T" : "F");
+        result += (iJ > iP? "J" : "P");
+
+        return result;
     }
 }

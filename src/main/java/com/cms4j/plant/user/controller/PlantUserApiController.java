@@ -524,7 +524,16 @@ public class PlantUserApiController extends ApiBaseController {
         if(curUser == null)
             return InvokeResult.failure("请登录您的账号！");
 
-        DataMap complete = completeStudentService.getCompleteStudentByUserId(curUser);
+        DataMap complete = null;
+        if(PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID"))){
+            complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        }
+        else if(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+            complete = completeStudentService.getCompleteStudentByUserId(curUser);
+        }
+        else if(PlantConst.ROLE_EXPERT.equals(curUser.getString("ROLE_ID"))) {
+            complete = completeProService.getCompleteProByUserId(curUser);
+        }
         if(complete == null){
             completeStudentService.addCompleteStudent(new DataMap());
             complete = completeStudentService.getCompleteStudentByUserId(curUser);

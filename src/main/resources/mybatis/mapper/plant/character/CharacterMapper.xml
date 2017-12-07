@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CharacterMapper">
+    
+    <select id="getMbtiByIdAndType" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_MBTI WHERE MBTI_ID = #{MBTI_ID} AND MBTI_TYPE = #{MBTI_TYPE}
+    </select>
+
+    <select id="getCountByMbtiType" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM TB_MBTI WHERE MBTI_TYPE = #{MBTI_TYPE}
+    </select>
+    
+    <select id="getMbtiResultById" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM TB_MBTI_RESULT WHERE RESULT_ID = #{RESULT_ID}
+    </select>
+    
+    <select id="getMajorsByResultId" parameterType="DataMap" resultType="DataMap">
+        SELECT major.*, dic.NAME FROM TB_MBTI_MAJOR major, SYS_DICTIONARIES dic
+        WHERE dic.DIC_ID = major.MAJOR_ID AND major.RESULT_ID = #{RESULT_ID} AND major.ARRANGMENT = #{ARRANGMENT}
+    </select>
 </mapper>

@@ -260,7 +260,7 @@
             </if>
             WHERE 1 = 1
             <if test='NAME != null'>
-                AND school.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+                AND school.NAME LIKE CONCAT(CONCAT('%', #{NAME}), '%')
             </if>
             <if test="PROPERTY != null">
                 AND school.SCHOOL_ID = property.SCHOOL_ID
@@ -301,7 +301,7 @@
         ) tmp_count
     </select>
 
-    <select id="getSchoolsHasTeacher" parameterType="Page" resultType="DataMap">
+    <select id="getSchoolsHasTeacher" parameterType="DataMap" resultType="DataMap">
         SELECT
         school.SCHOOL_ID,
         school.HEADURL,
@@ -341,7 +341,7 @@
         </if>
         WHERE 1 = 1
         <if test='NAME != null'>
-            AND school.NAME LIKE CONCAT(CONCAT('%', #{params.NAME}), '%')
+            AND school.NAME LIKE CONCAT(CONCAT('%', #{NAME}), '%')
         </if>
         <if test="PROPERTY != null">
             AND school.SCHOOL_ID = property.SCHOOL_ID

@@ -253,7 +253,7 @@
                             <a class="colour<#if curPage?? && curPage == 'online'> nav-active</#if>" href="${ctxPath}/plant/school/online">院校咨询</a>
                         </li>
                         <li class="nal">
-                            <a class="colour<#if curPage?? && curPage == 'pertde'> nav-active</#if>" href="javascript:void(0);">名师指导</a>
+                            <a class="colour<#if curPage?? && curPage == 'pertde'> nav-active</#if>" href="${ctxPath}/plant/expert/index">名师指导</a>
                         <#--${ctxPath}/plant/expert/index-->
                         </li>
                         <li class="nalism">

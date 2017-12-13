@@ -24,7 +24,7 @@
                     <a class="locking<#if curPage?? && curPage == 'online'> lockingt</#if>" href="${ctxPath}/plant/school/online">院校咨询</a>
                 </li>
                 <li class="home-page">
-                    <a class="locking<#if curPage?? && curPage == 'pertde'> lockingt</#if>" href="javascript:void(0);">名师指导</a>
+                    <a class="locking<#if curPage?? && curPage == 'pertde'> lockingt</#if>" href="${ctxPath}/plant/expert/index">名师指导</a>
                 </li>
                 <li class="home-page">
                     <a class="locking<#if curPage?? && curPage == 'library'> lockingt</#if>" href="javascript:void(0);">信息库</a>

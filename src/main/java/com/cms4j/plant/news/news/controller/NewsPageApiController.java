@@ -44,7 +44,7 @@ public class NewsPageApiController extends ApiBaseController {
             }
         }
         page.setPageNumber(Integer.valueOf(dataMap.getString("currentPage")));
-        page.setPageSize(10);
+        page.setPageSize(15);
 
         List<DataMap> news = newsService.getNewss(page);
         page.setResults(news);

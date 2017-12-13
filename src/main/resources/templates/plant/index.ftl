@@ -377,41 +377,41 @@
             </div>
             <!--重要公告 结束-->
             <!--专家团 开始-->
-        <#--<div class="group">-->
-        <#--<div class="gdui">-->
-        <#--<span style="font-weight: bold;color: #BD2B2C;">专 &nbsp;家 &nbsp;团</span>-->
-        <#--</div>-->
-        <#--<ul style="padding: 10px 30px">-->
-        <#--<#if experts?? && (experts?size > 0)>-->
-        <#--<#list experts as expert>-->
-        <#--<li class="formula">-->
-        <#--<div class="row" style="margin: 0">-->
-        <#--<div class="col-md-4 col-sm-4 col-xs-4" style="padding: 0;">-->
-        <#--<img src="<#if expert.HEADURL??>${expert.HEADURL}<#else>/static/ymplant/img/timg.png</#if>" class="portrai" alt=""/>-->
-        <#--</div>-->
-        <#--<div class="col-md-5 col-sm-5 col-xs-5" style="padding: 0">-->
-        <#--<p style="color:#9EAAAA;font-size: 10px;margin-bottom: 10px"><#if expert.NICKNAME??>${expert.NICKNAME}<#else>暂无</#if></p>-->
-        <#--<p style="color:#9EAAAA;font-size: 10px">-->
-        <#--<span><#if expert.JOBDATE_VALUE??>${expert.JOBDATE_VALUE}</#if></span>&lt;#&ndash;丨&ndash;&gt;-->
-        <#--&lt;#&ndash;<img src="/static/ymplant/images/tubiao/yhu.png" style="width: 20%" alt=""/>-->
-        <#--<span>32</span>&ndash;&gt;-->
-        <#--</p>-->
-        <#--</div>-->
-        <#--<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0;">-->
-        <#--<p style="color:#A53D3C;font-family: 微软雅黑;font-weight: bold">￥<span>${expert.PRICE?c}</span></p>-->
-        <#--<p>-->
-        <#--<a class="make" href="${ctxPath}/plant/expert/index" target="_blank">预 约</a>-->
-        <#--</p>-->
-        <#--</div>-->
-        <#--</div>-->
-        <#--</li>-->
-        <#--</#list>-->
-        <#--<#else>-->
-        <#--暂无专家入驻-->
-        <#--</#if>-->
-        <#--<div class="clear"></div>-->
-        <#--</ul>-->
-        <#--</div>-->
+            <div class="group">
+                <div class="gdui">
+                    <span style="font-weight: bold;color: #BD2B2C;">专 &nbsp;家 &nbsp;团</span>
+                </div>
+                <ul style="padding: 10px 30px">
+                <#if experts?? && (experts?size > 0)>
+                <#list experts as expert>
+                <li class="formula">
+                    <div class="row" style="margin: 0">
+                        <div class="col-md-4 col-sm-4 col-xs-4" style="padding: 0;">
+                            <img src="<#if expert.HEADURL??>${expert.HEADURL}<#else>/static/ymplant/img/timg.png</#if>" class="portrai" alt=""/>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5" style="padding: 0">
+                            <p style="color:#9EAAAA;font-size: 10px;margin-bottom: 10px"><#if expert.NICKNAME??>${expert.NICKNAME}<#else>暂无</#if></p>
+                            <p style="color:#9EAAAA;font-size: 10px">
+                                <span><#if expert.JOBDATE_VALUE??>${expert.JOBDATE_VALUE}</#if></span><#--丨-->
+                            <#--<img src="/static/ymplant/images/tubiao/yhu.png" style="width: 20%" alt=""/>
+                            <span>32</span>-->
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0;">
+                            <p style="color:#A53D3C;font-family: 微软雅黑;font-weight: bold">￥<span>${expert.PRICE?c}</span></p>
+                            <p>
+                                <a class="make" href="${ctxPath}/plant/expert/index" target="_blank">预 约</a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                </#list>
+                <#else>
+                暂无专家入驻
+                </#if>
+                <div class="clear"></div>
+                </ul>
+            </div>
             <!--专家团 结束-->
             <!--轮播图 开始-->
             <div class="row" style="margin:  0">

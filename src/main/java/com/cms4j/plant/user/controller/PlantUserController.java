@@ -371,19 +371,13 @@ public class PlantUserController extends PageBaseController {
         DataMap pocket = pocketService.getPocketByUserId(curUser);
         modelAndView.addObject("pocket", pocket);
 
-        DataMap params = new DataMap();
-        params.put("USER_ID", curUser.getString("USER_ID"));
-        params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-        Integer yxzxk = itemBelongService.getValItemBelongCountByUserIdAndItemType(params);
-        modelAndView.addObject("yxzxk", yxzxk);
+        DataMap result = itemBelongService.getAllValItemsByUser(curUser);
 
-        params.put("ITEMTYPE", PlantConst.ITEMTYPE_MNTBK);
-        Integer mntbk = itemBelongService.getValItemBelongCountByUserIdAndItemType(params);
-        modelAndView.addObject("mntbk", mntbk);
+        modelAndView.addObject("yxzxk", result.get("result"));
 
-        params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
-        Integer zntjk = itemBelongService.getValItemBelongCountByUserIdAndItemType(params);
-        modelAndView.addObject("zntjk", zntjk);
+        modelAndView.addObject("mntbk", result.get("mntbk"));
+
+        modelAndView.addObject("zntjk", result.get("zntjk"));
 
         modelAndView.setViewName("/plant/ymplant/center/student/belongings");
         return modelAndView;

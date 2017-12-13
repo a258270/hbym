@@ -4,6 +4,7 @@ import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
+import com.cms4j.plant.item.item.service.ItemBelongService;
 import com.cms4j.plant.user.pocket.service.PocketService;
 import com.cms4j.plant.user.service.*;
 import com.cms4j.plant.util.PlantConst;
@@ -30,6 +31,8 @@ public class WechatAppUserController extends ApiBaseController {
     private ExamineeService examineeService;
     @Autowired
     private PocketService pocketService;
+    @Autowired
+    private ItemBelongService itemBelongService;
 
     @RequestMapping(value = "/basic_student", method = RequestMethod.POST)
     public InvokeResult basic() throws Exception {
@@ -92,5 +95,18 @@ public class WechatAppUserController extends ApiBaseController {
 
         DataMap examinee = examineeService.getExamineeByUserId(curUser);
         return InvokeResult.success(examinee);
+    }
+
+    @RequestMapping(value = "/getbelongitems")
+    public InvokeResult getBelongItems() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        DataMap pocket = pocketService.getPocketByUserId(curUser);
+        if(pocket == null) pocket = new DataMap();
+
+        DataMap result = itemBelongService.getAllValItemsByUser(curUser);
+        result.putAll(pocket);
+
+        return InvokeResult.success(result);
     }
 }

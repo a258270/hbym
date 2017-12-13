@@ -4,6 +4,7 @@ import com.cms4j.base.dao.DaoSupport;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.ShortUUID;
+import com.cms4j.plant.util.PlantConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,5 +47,25 @@ public class ItemBelongService {
         for(int i = 0; i < count; i++) {
             this.addItemBelong(dataMap);
         }
+    }
+
+    public DataMap getAllValItemsByUser(DataMap user) throws Exception {
+        DataMap dataMap = new DataMap();
+
+        DataMap params = new DataMap();
+        params.put("USER_ID", user.getString("USER_ID"));
+        params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
+        Integer yxzxk = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("yxzxk", yxzxk);
+
+        params.put("ITEMTYPE", PlantConst.ITEMTYPE_MNTBK);
+        Integer mntbk = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("mntbk", mntbk);
+
+        params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
+        Integer zntjk = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("zntjk", zntjk);
+
+        return dataMap;
     }
 }

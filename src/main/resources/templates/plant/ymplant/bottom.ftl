@@ -3,18 +3,18 @@
         <div style="background-color: #5AB4AA;text-align: center;">
             <div class="container">
                 <div class="row" style="margin-bottom: 10px;">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="kd-widget-title">
                             <h4>友情链接</h4>
                         <#--<p style="font-size: 1em">${baseSetting.aboutus}</p>-->
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="kd-widget-title">
                             <h4>法律条款</h4>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="kd-widget-title">
                             <h4>联系我们</h4>
                         </div>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="row" style="color:#767676;">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <ul class="youqinga">
                             <li>
                             <#--<a href="#" class="glyphicon glyphicon-home">-->
@@ -52,12 +52,12 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <p style="font-weight: bold;padding: 5px 0;"><a class="bot_a" href="${ctxPath}/plant/statement" target="_blank">法律声明</a></p>
                         <p style="font-weight: bold;padding: 5px 0;"><a class="bot_a" href="${ctxPath}/plant/clause" target="_blank">会员服务协议</a></p>
                         <p style="font-weight: bold;padding: 5px 0;"><a class="bot_a" href="${ctxPath}/plant/disclaimer" target="_blank">免责声明</a></p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
                         <ul class="lianxi">
                         <#--<li>-->
                         <#--<i class="glyphicon glyphicon-map-marker"></i>-->

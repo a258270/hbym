@@ -29,10 +29,14 @@ ul{
 /*banner 开始*/
 .bakg{
     background: url("/static/ymplant/img/sye/banner4.jpg") no-repeat;
-    padding: 30px 50px 30px 50px;
+    padding: 30px 0;
     /*background-color: #2DC473;*/
     background-position: center;
+    background-size: 100% 100%;
+    /*position: relative;*/
+    /*height: 273px;*/
 }
+
 .juxing{
     position: relative;
     width: 455px;
@@ -85,12 +89,19 @@ ul{
     top: 160px;
     right: 1076px;
 }
-
+/*.ofdays{*/
+    /*position: relative;*/
+/*}*/
 .distance{
     /*background-color: #8DDFB3;*/
     padding: 20px 10px;
     border-radius: 5px;
     background: rgba(0,0,0,0.1);
+    /*width: 360px;*/
+    /*height: 213px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
 }
 .also{
     font-size: 2.5em;

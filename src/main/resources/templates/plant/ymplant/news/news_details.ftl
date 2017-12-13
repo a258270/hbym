@@ -11,7 +11,7 @@
 
 <section class="kd-pagesection" style="padding-top: 30px;">
     <div class="container">
-        <div class="col-md-8" style="margin-right: 30px">
+        <div class="col-md-8 col-sm-8 col-xs-8" style="margin-right: 30px">
             <div class="kd-blog-detail">
 
                 <div class="inn-detail">
@@ -33,7 +33,7 @@
 
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3 col-xs-3">
 
             <div class="widget widget-blogpost">
                 <div class="kd-widget-title2">
@@ -135,7 +135,7 @@
             <div class="row asdf" style="margin: 0">
                 <#if news_wjhd?? && (news_wjhd?size > 0)>
                     <#list news_wjhd as new_wjhd>
-                        <div class="col-md-3" style="padding: 10px 0 0 0; ">
+                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding: 10px 0 0 0; ">
                             <a href="${ctxPath}/plant/news/details/${new_wjhd.NEWS_ID}" target="_blank">
                                 <img src="${new_wjhd.IMGURL}" style="width: 55px;height:55px;padding-left:0;margin-bottom: 5px;" alt="">
                             </a>

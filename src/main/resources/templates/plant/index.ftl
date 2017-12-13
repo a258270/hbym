@@ -282,12 +282,10 @@
             </div>
         </div>
     </div>
-    <div class="kd-map bakg">
+    <div class="bakg">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6"></div>
-                <div class="col-md-2 col-sm-2 col-xs-2" style="padding: 0">
-                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8"></div>
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="distance">
                         <p class="also"><#if distanceExam == 0>高考进行中<#else>距离高考还有<span>${distanceExam}</span>天</#if></p>
@@ -323,6 +321,39 @@
                 </div>
             </div>
         </div>
+            <#--<div class="container ofdays">-->
+                <#--<div class="distance">-->
+                    <#--<p class="also"><#if distanceExam == 0>高考进行中<#else>距离高考还有<span>${distanceExam}</span>天</#if></p>-->
+                    <#--<div class="row" style="margin: 0;font-size: 12px;">-->
+                        <#--<div class="col-md-6 col-sm-6 col-xs-6">-->
+                            <#--<span style="color: #fff;font-size: 1.5em">分数：<#if exam?? && exam.EXAMSCORE??>${exam.EXAMSCORE}分<#else>暂无</#if></span>-->
+                        <#--</div>-->
+                        <#--<div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0;">-->
+                            <#--<span style="color: #fff;font-size: 1.5em">科类：<#if exam?? && exam.MAJORTYPE_VALUE??>${exam.MAJORTYPE_VALUE}<#else>暂无</#if></span>-->
+                        <#--</div>-->
+                        <#--<div class="col-md-6 col-sm-6 col-xs-6" style="margin: 15px 0;">-->
+                            <#--<span style="color: #fff;font-size: 1.5em">批次：</span>-->
+                            <#--<select style="width:60px;border: #fff;padding: 3px 0;" id="arrangment">-->
+                                <#--<option value="hjj4e5vr0c">本一</option>-->
+                                <#--<option value="bdhsl11qtb">本二</option>-->
+                            <#--</select>-->
+                        <#--</div>-->
+                        <#--<div class="col-md-6 col-sm-6 col-xs-6" style="margin: 15px 0;padding: 0;">-->
+                            <#--<span style="color: #fff;font-size: 1.5em;">院校地区：</span>-->
+                            <#--<select style="border: #fff;padding: 3px 0;" id="province">-->
+                            <#--<#if provinces?? && (provinces?size > 0)>-->
+                                <#--<#list provinces as province>-->
+                                    <#--<option value="${province.DIC_ID}">${province.NAME}</option>-->
+                                <#--</#list>-->
+                            <#--</#if>-->
+                            <#--</select>-->
+                        <#--</div>-->
+                        <#--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                            <#--<a class="paper" href="<#if Session.session_user_key?? && Session.session_user_key.ROLE_ID??><#if Session.session_user_key.ROLE_ID == 'sja4gc59bg'>javascript:toReport();<#else>javascript:showError('请确认账号为学生身份');</#if><#else>javascript:showError('请先登录账号');</#if>">智能推荐</a>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
     </div>
     <div class="mportant">
         <div class="container">

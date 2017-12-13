@@ -25,7 +25,7 @@
 <div class="kd-base" style="margin-top: 5px;">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-lg-3">
+            <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="provinces">
                     <div class="shengf">
                         条件
@@ -164,7 +164,7 @@
                 <button style="width: 100%;background-color: #5BC0DE;color: #fff;border-radius: 4px;border: none;padding: 5px 10px; height: 33px;" onclick="searchScs();">搜 索</button>
 
             </div>
-            <div class="col-md-9 col-lg-9">
+            <div class="col-md-9 col-sm-9 col-xs-9">
                 <div class="youbian">
                     <div class="xnae">
                         <input type="text" placeholder="请输入院校名称" id="NAME"/>

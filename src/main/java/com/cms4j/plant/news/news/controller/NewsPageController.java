@@ -51,7 +51,7 @@ public class NewsPageController extends PageBaseController {
                 firstNews_gg = news_gg.get(0);
                 secondNews_gg = news_gg.get(1);
                 news_gg.remove(0);
-                news_gg.remove(1);
+                news_gg.remove(0);
             }
             else{
                 //就一条

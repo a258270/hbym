@@ -35,7 +35,7 @@ import java.util.List;
  * @create: 2017/7/5
  */
 @RestController
-@RequestMapping(value = "/plant/user/api")
+@RequestMapping(value = {"/plant/user/api", "/wechat/applet/user"})
 public class PlantUserApiController extends ApiBaseController {
     @Autowired
     private CompleteStudentService completeStudentService;

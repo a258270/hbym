@@ -236,6 +236,8 @@ public class PlantUserController extends PageBaseController {
         List<DataMap> GRADEs = dictionaryService.getDictionariesByFatherId(GRADE);
         modelAndView.addObject("GRADEs", GRADEs);
 
+        modelAndView.addObject("canupdatescore", DateUtil.canUpdateExam(examinee));
+
         modelAndView.setViewName("/plant/ymplant/center/student/paging/examinee");
         return modelAndView;
     }

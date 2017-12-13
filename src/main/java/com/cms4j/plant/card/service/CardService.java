@@ -147,7 +147,7 @@ public class CardService {
      * @throws Exception
      */
     @Transactional(rollbackFor = Exception.class)
-    public Integer activeVip(DataMap dataMap) throws Exception {
+    public synchronized Integer activeVip(DataMap dataMap) throws Exception {
         String number = dataMap.getString("NUMBER");
         String password = dataMap.getString("PASSWORD");
 
@@ -161,6 +161,8 @@ public class CardService {
         dataMap.put("PURPOSE_ID", purpose);
         dataMap.put("NUMBER", number);
 
+        DataMap curUser = SessionUtil.getCurUser();
+
         DataMap card = this.getCardByParams(dataMap);
 
         if(card == null)
@@ -172,10 +174,10 @@ public class CardService {
         if(Boolean.valueOf(card.getString("ISUSED")))
             return -3;
 
-        DataMap curUser = SessionUtil.getCurUser();
         curUser.put("CARD_ID", card.getString("CARD_ID"));
         plantUserService.setUserVip(curUser);
         this.setCardUsed(card);
+
 
         DataMap pocket = pocketService.getPocketByUserId(curUser);
 

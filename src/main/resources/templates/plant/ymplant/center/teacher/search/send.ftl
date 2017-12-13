@@ -22,7 +22,7 @@
     <div class="kd-dkua">
         <p>
             <span>模板：</span>
-            <select style="width: 150px;">
+            <select style="width: 150px;" id="selectTemplate">
                 <#if templates?? && (templates?size > 0)>
                     <#list templates as template>
                         <option value="${template.TEMPLATE_ID}">${template.TITLE}</option>
@@ -50,6 +50,23 @@
             parent.layer.close(index);
         });
     }
+
+    $(function() {
+        $("#selectTemplate").change(function () {
+            sendRequest(ctxPath + "/plant/teacher/api/detailstemplate", {TEMPLATE_ID: $(this).val()}, "POST", function (res) {
+                if(res.hasErrors) {
+                    showError(res.errorMessage);
+                    return false;
+                }
+                if(res.CONTENT) {
+                    $("#CONTENT").val(res.CONTENT);
+                }
+                else{
+                    $("#CONTENT").val("");
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>

@@ -93,7 +93,7 @@ public class CharacterPageController extends PageBaseController {
         ModelAndView modelAndView = this.getModelAndView();
 
         modelAndView.addObject("curPage", "character");
-        
+
         DataMap param = new DataMap();
         param.put("MBTI_TYPE", flag);
         Integer count = characterService.getCountByMbtiType(param);

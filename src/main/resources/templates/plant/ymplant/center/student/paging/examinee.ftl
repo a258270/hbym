@@ -80,7 +80,7 @@
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                     <span style="margin-right: 15px;">高考成绩：</span>
                     <input type="number" style="outline: none;border-radius: 5px;border: 1px solid #CECECE;width: 100px;" min="0" id="EXAMSCORE" name="EXAMSCORE" <#if examinee?? && examinee.EXAMSCORE??>value="${examinee.EXAMSCORE}" </#if> />
-                    <span>（预估）</span>
+                    <#if canupdatescore><span>（预估）</span></#if>
                     <span style="color: #ab0000;margin-left: 40px;">该成绩用于模拟填报、智能推荐等相关功能</span>
                 </p>
                 <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">

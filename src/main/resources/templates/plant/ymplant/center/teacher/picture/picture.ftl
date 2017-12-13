@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/plugin/h-ui/lib/chosen.jquery/chosen.min.css?v=${v}"/>
     <script src="/static/plugin/h-ui/lib/chosen.jquery/chosen.jquery.min.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
 <div class="lan" style="height: 875px">
     <p>文章管理</p>
     <div class="row online">

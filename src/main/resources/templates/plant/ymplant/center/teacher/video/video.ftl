@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/teacher/scbaisc.css?v=${v}"/>
     <script type="text/javascript" src="${ctxPath}/static/plant/user/video/video.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
     <div class="lan" style="height: 100%">
     <p>视频管理</p>
     <div class="row">

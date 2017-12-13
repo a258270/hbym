@@ -680,4 +680,9 @@ ul,li{
         width: 1170px;
     }
 }
+/*个人中心 body 开始*/
+.corresponding{
+    width: 100%;
+}
+/*个人中心 body 结束*/
 /*响应式 结束*/

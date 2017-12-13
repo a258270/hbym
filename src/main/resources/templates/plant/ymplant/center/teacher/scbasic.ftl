@@ -130,7 +130,7 @@
         });
     </script>
 </head>
-<body>
+<body class="corresponding">
 <form action="${ctxPath}/plant/teacher/api/management_edit" id="form" method="post" enctype="multipart/form-data">
     <div class="lan" style="height: 1701px;margin-left: 0;overflow-y: auto;">
         <div class="row" style="padding: 0 15px;">

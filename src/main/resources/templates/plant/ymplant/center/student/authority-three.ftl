@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/drag/drag.css?v=${v}"/>
     <script src="${ctxPath}/static/ymplant/js/drag/drag.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
 <div class="lan" style="height: 100%">
     <p>账户权限</p>
     <div class="zxng">

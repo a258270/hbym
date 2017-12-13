@@ -9,7 +9,7 @@
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/util/util.js?v=${v}"></script>
     <script src="${ctxPath}/static/ymplant/js/starscore/starScore.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
 
 <div class="lan" style="height: 875px">
     <p>联系人</p>

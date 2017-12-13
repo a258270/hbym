@@ -43,7 +43,7 @@
         });
     });
 </script>
-<body>
+<body class="corresponding">
     <div class="lan" style="height: 854px">
     <p>考生信息</p>
     <form action="${ctxPath}/plant/user/api/examinee" method="post" id="examineeForm">

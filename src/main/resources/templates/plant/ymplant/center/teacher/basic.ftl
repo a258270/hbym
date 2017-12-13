@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/center.css?v=${v}">
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/My97DatePicker/4.8/WdatePicker.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
 <div class="lan">
     <p>基础信息</p>
     <div class="row">

@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/h-ui/js/H-ui.min.js?v=${v}"></script>
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/h-ui.admin/js/H-ui.admin.js?v=${v}"></script>
 </head>
-<body>
+<body class="corresponding">
 <form id="form" action="${ctxPath}/plant/user/api/vip" method="post">
 <div class="lan" style="height: 854px">
     <p>账户权限</p>

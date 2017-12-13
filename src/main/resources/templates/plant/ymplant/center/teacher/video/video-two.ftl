@@ -71,7 +71,7 @@
         });
     });
 </script>
-<body>
+<body class="corresponding">
 <#--<div class="lan" style="height: 100%">
     <p>视频上传</p>
     <form action="${ctxPath}/admin/menu/api/add" method="post" class="form form-horizontal" id="form">

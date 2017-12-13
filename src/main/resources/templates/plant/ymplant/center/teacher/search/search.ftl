@@ -22,7 +22,7 @@
         });
     </script>
 </head>
-<body>
+<body class="corresponding">
 <#include "${ctxPath}/plant/ymplant/top.ftl">
     <div class="kd-pli">
         <div class="container">

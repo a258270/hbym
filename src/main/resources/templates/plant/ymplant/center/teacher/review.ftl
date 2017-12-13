@@ -6,7 +6,7 @@
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/teacher/center.css?v=${v}">
 </head>
-<body>
+<body class="corresponding">
 <div class="lan">
     <p>资料审核</p>
     <div class="row">

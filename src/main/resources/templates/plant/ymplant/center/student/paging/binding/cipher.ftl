@@ -7,7 +7,7 @@
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/h-ui.admin/js/H-ui.admin.js?v=${v}"></script>
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/center.css?v=${v}"/>
 </head>
-<body>
+<body class="corresponding">
     <div class="lan" style="height: 854px">
     <p>登录密码修改</p>
     <form action="${ctxPath}/plant/user/api/updatepass" method="post" id="form">

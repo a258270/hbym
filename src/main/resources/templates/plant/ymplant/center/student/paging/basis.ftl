@@ -34,7 +34,7 @@
         });
     });
 </script>
-<body>
+<body class="corresponding">
 
 <div class="lan">
     <p>基础信息</p>

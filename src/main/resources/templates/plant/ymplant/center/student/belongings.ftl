@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/center.css?v=${v}"/>
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/student/belongings.css?v=${v}"/>
 </head>
-<body>
+<body class="corresponding">
 <div class="lan" style="height: 854px">
     <p>我的物品</p>
     <div class="row" style="margin-left: 30px;">

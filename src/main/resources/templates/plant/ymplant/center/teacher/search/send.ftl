@@ -18,7 +18,7 @@
         });
     </script>
 </head>
-<body>
+<body class="corresponding">
     <div class="kd-dkua">
         <p>
             <span>模板：</span>

@@ -5,7 +5,7 @@
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/center/center.css?v=${v}"/>
 </head>
-<body>
+<body class="corresponding">
     <div class="lan" style="height: 854px">
     <p>专家咨询历史信息</p>
     <div class="row" style="margin-left: 30px;margin-top: 30px;">

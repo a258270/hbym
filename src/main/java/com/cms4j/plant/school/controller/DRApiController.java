@@ -58,7 +58,7 @@ public class DRApiController extends ApiBaseController{
     @RequestMapping(value = "/admin/daoru")
     public InvokeResult daoru() throws Exception {
 
-        List<DataMap> majors = majorService.getMajorsByLevel("ZMAJOR", 5);
+        //List<DataMap> majors = majorService.getMajorsByLevel("ZMAJOR", 4);
         String mubanPath = "D:/a.xls";
         Workbook wb = Workbook.getWorkbook(new File(mubanPath));
         File targetFile = new File("D:/tar.xls");
@@ -66,7 +66,13 @@ public class DRApiController extends ApiBaseController{
         WritableSheet wws = wwb.getSheet(0);
         for(int i = 1; i < wws.getRows(); i++){
 
-            WritableCell cc = new Label(0, i, ShortUUID.randomUUID());
+            String dic = wws.getCell(1, i).getContents();
+            DataMap dicDataMap = new DataMap();
+            dicDataMap.put("DIC_ID", dic);
+            dicDataMap = dictionaryService.getDictionaryById(dicDataMap);
+            dicDataMap.put("CODE", dicDataMap.getString("CODE") + "f");
+            dicDataMap = dictionaryService.getDictionaryByCode(dicDataMap);
+            WritableCell cc = new Label(4, i, dicDataMap.getString("DIC_ID"));
             wws.addCell(cc);
         }
 

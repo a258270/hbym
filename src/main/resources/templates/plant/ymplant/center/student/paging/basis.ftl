@@ -108,7 +108,7 @@
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>邮箱：</span>
-                <span style="margin-left: 39px;"><#if isEmail == 'true'>已<#else>未</#if>设置</span>
+                <span style="margin-left: 39px;"><#if isEmail == 'true'><#if basicInfo?? && basicInfo.EMAIL??>${basicInfo.EMAIL?substring(0,2)}*******</#if><#else>未设置</#if></span>
                 <#if isEmail != 'true'>
                 <span style="margin-left: 30px">
                     <a href="${ctxPath}/plant/user/binding/email" style="color: #4B33ED">立即设置</a>
@@ -117,7 +117,7 @@
             </p>
             <p style="border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>手机号码：</span>
-                <span style="margin-left: 15px;"><#if isPhone == 'true'>已<#else>未</#if>设置</span>
+                <span style="margin-left: 15px;"><#if isPhone == 'true'><#if basicInfo?? && basicInfo.PHONE??>${basicInfo.PHONE?substring(0, 3)}****${basicInfo.PHONE?substring(7, 11)}</#if><#else>未设置</#if></span>
 
                 <span style="margin-left: 30px">
                     <a href="${ctxPath}/plant/user/binding/phone" style="color: #4B33ED"><#if isPhone != 'true'>立即<#else>更改</#if>设置</a>
@@ -126,7 +126,7 @@
             </p>
             <p style="margin-bottom:20px;border-bottom:1px solid #CECECE;padding: 20px 10px">
                 <span>身份证号：</span>
-                <span style="margin-left: 15px;"><#if isRealName == 'true'>已<#else>未</#if>设置</span>
+                <span style="margin-left: 15px;"><#if isRealName == 'true'><#if basicInfo?? && basicInfo.IDCARD??>${basicInfo.IDCARD?substring(0, 3)}***********${basicInfo.IDCARD?substring(15, 18)}</#if><#else>未设置</#if></span>
                 <#if isRealName != 'true'>
                 <span style="margin-left: 30px">
                     <a href="${ctxPath}/plant/user/binding/idcard" style="color: #4B33ED">立即设置</a>

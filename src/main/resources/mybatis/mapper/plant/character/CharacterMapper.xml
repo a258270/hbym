@@ -15,7 +15,7 @@
     </select>
     
     <select id="getMajorsByResultId" parameterType="DataMap" resultType="DataMap">
-        SELECT major.*, dic.NAME FROM TB_MBTI_MAJOR major, SYS_DICTIONARIES dic
+        SELECT major.*, dic.DIC_ID, dic.NAME FROM TB_MBTI_MAJOR major, SYS_DICTIONARIES dic
         WHERE dic.DIC_ID = major.MAJOR_ID AND major.RESULT_ID = #{RESULT_ID} AND major.ARRANGMENT = #{ARRANGMENT}
     </select>
 </mapper>

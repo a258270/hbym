@@ -70,7 +70,7 @@
                         <#list bmajors as bmajor>
                             <tr>
                                 <#list bmajor as bmajorObj>
-                                    <td style="text-align: center;">${bmajorObj.NAME}</td>
+                                    <td style="text-align: center;"><a href="${ctxPath}/plant/major/details/${bmajorObj.DIC_ID}" target="_blank">${bmajorObj.NAME}</a></td>
                                 </#list>
                             </tr>
                         </#list>
@@ -81,7 +81,7 @@
                     <#list zmajors as zmajor>
                         <tr>
                             <#list zmajor as zmajorObj>
-                                <td style="text-align: center;">${zmajorObj.NAME}</td>
+                                <td style="text-align: center;"><a href="${ctxPath}/plant/major/details/${zmajorObj.DIC_ID}" target="_blank">${zmajorObj.NAME}</a></td>
                             </#list>
                         </tr>
                     </#list>

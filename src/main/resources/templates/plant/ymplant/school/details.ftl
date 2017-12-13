@@ -200,7 +200,7 @@
                     <div class="yxjs_nei">
                         <#if introduce??>${introduce.CONTENT}<#else>暂无信息</#if>
                     </div>
-                    <a class="zhanbtn" style="color: #39A3E2;" href="javascript:void (0);">（展开全部）</a>
+                    <a class="zhanbtn" style="color: #39A3E2;" href="#">（展开全部）</a>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left: 0;">

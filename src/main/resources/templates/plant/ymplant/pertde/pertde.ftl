@@ -30,9 +30,9 @@
                                         <div class="kd-yse row" style="margin: 0">
                                             <div class="col-md-4 col-sm-4 col-xs-4" style="padding: 0">指导方向：</div>
                                             <div class="col-md-8 col-sm-8 col-xs-8" style="padding: 0;font-size: 14px;line-height: 1.7">
-                                                <span class="kd-fx" style="background: #F1823A;">职业规划</span>
-                                                <span class="kd-fx" style="background: #F1823A;">心理咨询</span>
-                                                <span class="kd-fx" style="background: #00A1E2;">志愿填报</span>
+                                                <span class="plan"></span>
+                                                <span class="report"></span>
+                                                <span class="psychological"></span>
                                             </div>
                                         </div>
                                         <p class="kd-yse">

@@ -77,11 +77,6 @@ ul{
 .kd-yse{
     color:#7D8079;
 }
-.kd-fx{
-    color:#fff;
-    padding: 2px;
-    margin-bottom: 5px;
-}
 .kd-jjie{
     background-color: #C3C3C3;
     color:#fff;
@@ -90,6 +85,29 @@ ul{
     font-size: 14px;
 }
 /*背景图 结束*/
+/*小图标 开始*/
+.plan{
+    width: 62px;
+    height: 20px;
+    display: inline-block;
+    background: url("/static/ymplant/images/tubiao6/plan.png") no-repeat;
+    margin-right: 5px;
+}
+.psychological{
+    width: 62px;
+    height: 20px;
+    display: inline-block;
+    background: url("/static/ymplant/images/tubiao6/psychological.png") no-repeat;
+    margin-right: 5px;
+}
+.report{
+    width: 62px;
+    height: 20px;
+    display: inline-block;
+    background: url("/static/ymplant/images/tubiao6/report.png") no-repeat;
+    margin-right: 5px;
+}
+/*小图标 结束*/
 
 
 

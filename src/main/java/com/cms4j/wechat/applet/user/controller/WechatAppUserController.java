@@ -1,18 +1,22 @@
 package com.cms4j.wechat.applet.user.controller;
 
 import com.cms4j.base.controller.ApiBaseController;
-import com.cms4j.base.util.DataMap;
-import com.cms4j.base.util.InvokeResult;
-import com.cms4j.base.util.SessionUtil;
+import com.cms4j.base.plugin.BaseSetting;
+import com.cms4j.base.util.*;
 import com.cms4j.plant.item.item.service.ItemBelongService;
 import com.cms4j.plant.user.pocket.service.PocketService;
 import com.cms4j.plant.user.service.*;
 import com.cms4j.plant.util.PlantConst;
+import com.cms4j.plant.util.PlantValidUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @RestController
 @RequestMapping(value = "/wechat/applet/user")
@@ -27,6 +31,8 @@ public class WechatAppUserController extends ApiBaseController {
     @Autowired
     private CompleteProService completeProService;
 
+    @Autowired
+    private BaseSetting baseSetting;
     @Autowired
     private ExamineeService examineeService;
     @Autowired
@@ -108,5 +114,52 @@ public class WechatAppUserController extends ApiBaseController {
         result.putAll(pocket);
 
         return InvokeResult.success(result);
+    }
+
+    @RequestMapping(value = "/uploadhead")
+    public InvokeResult uploadHead(@RequestParam(name = "HEADURL") MultipartFile file) throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        DataMap dataMap = null;
+        if(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+            dataMap = completeStudentService.getCompleteStudentByUserId(curUser);
+        }
+        else if(PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID"))) {
+            dataMap = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        }
+        else{
+            dataMap = completeProService.getCompleteProByUserId(curUser);
+        }
+
+        if(dataMap == null) return InvokeResult.failure(Const.NOLOGIN_CODE, "please relogin");
+        if(file != null) {
+            String fileName = file.getOriginalFilename();
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            if (!PlantValidUtil.isImgSuffix(suffixName)) {
+                return InvokeResult.failure(PlantValidUtil.ERROR_MSG_IMGSUFFIX);
+            }
+            String s = ShortUUID.randomUUID() + suffixName;
+            String path = baseSetting.getUpload_path() + "/" + s;
+            File dest = new File(path);
+            // 检测是否存在目录
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
+
+            file.transferTo(dest);
+
+            dataMap.put("HEADURL", "/plant/file/download/" + s);
+            if(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+                completeStudentService.editCompleteStudent(dataMap);
+            }
+            else if(PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID"))) {
+                completeTeacherService.editCompleteTeacher(curUser);
+            }
+            else{
+                completeProService.editCompletePro(curUser);
+            }
+        }
+
+        return InvokeResult.success();
     }
 }

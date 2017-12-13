@@ -338,6 +338,9 @@ public class KindFileUploadController extends ApiBaseController {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
 
+            response.setHeader("Accept-Ranges", "bytes");
+            response.setHeader("Content-Length", String.valueOf(file.length()));
+            response.setHeader("Content-Range", "0-" + String.valueOf(file.length() - 1) + "/" + String.valueOf(file.length()));
             os = new BufferedOutputStream(response.getOutputStream());
             os.write(buffer);
             os.flush();

@@ -48,6 +48,10 @@
     };
     
     var getSMSCode = function () {
+        if($("#PHONE").val() == "") {
+            showError("请填写新的手机号！");
+            return false;
+        }
         sendRequest(ctxPath + "/plant/user/api/getsmscode", {PHONE: $("#PHONE").val()}, "POST", function (res) {
             if(res.hasErrors){
                 showError(res.errorMessage);

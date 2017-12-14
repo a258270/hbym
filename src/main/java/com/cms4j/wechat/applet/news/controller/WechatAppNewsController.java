@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,12 @@ public class WechatAppNewsController extends ApiBaseController {
 
 
         return InvokeResult.success(newsService.getNewssForWechatApp(dataMap));
+    }
+
+    @RequestMapping(value = "/getnewsbyid")
+    public InvokeResult getNewsById() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        return InvokeResult.success(newsService.getNewsById(dataMap));
     }
 }

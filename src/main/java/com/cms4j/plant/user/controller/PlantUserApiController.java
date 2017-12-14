@@ -504,7 +504,9 @@ public class PlantUserApiController extends ApiBaseController {
         if(StringUtils.isBlank(dataMap.getString("PASSWORD"))) return InvokeResult.failure("原密码不能为空！");
         if(StringUtils.isBlank(dataMap.getString("NEWPASSWORD"))) return InvokeResult.failure("新密码不能为空！");
         if(StringUtils.isBlank(dataMap.getString("RENEWPASSWORD"))) return InvokeResult.failure("确认密码不能为空！");
-
+        if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("验证码不能为空！");
+        if(!dataMap.getString("CODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("验证码不正确！");
+        SessionUtil.removeSMSCodeFromSession();
         if(!dataMap.getString("NEWPASSWORD").equals(dataMap.getString("RENEWPASSWORD"))) return InvokeResult.failure("新密码和确认密码不一致！");
 
         if(!MD5Util.getMD5(dataMap.getString("PASSWORD")).equals(curUser.getString("PASSWORD"))) return InvokeResult.failure("原密码输入不正确！");
@@ -541,17 +543,23 @@ public class PlantUserApiController extends ApiBaseController {
 
         DataMap dataMap = this.getDataMap();
 
-        if(!StringUtils.isBlank(complete.getString("TRADEPASSWORD")) && StringUtils.isBlank(dataMap.getString("PASSWORD"))) return InvokeResult.failure("原密码不能为空！");
+        if(!StringUtils.isBlank(complete.getString("TRADEPASSWORD"))) {
+            if(StringUtils.isBlank(dataMap.getString("PASSWORD"))) return InvokeResult.failure("原密码不能为空！");
+        }
+        else{
+            if(!StringUtils.isBlank(dataMap.getString("PASSWORD"))) return InvokeResult.failure("原密码输入不正确！");
+        }
         if(StringUtils.isBlank(dataMap.getString("NEWPASSWORD"))) return InvokeResult.failure("新密码不能为空！");
         if(StringUtils.isBlank(dataMap.getString("RENEWPASSWORD"))) return InvokeResult.failure("确认密码不能为空！");
         if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("验证码不能为空！");
+        if(!dataMap.getString("CODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("验证码不正确！");
+        SessionUtil.removeSMSCodeFromSession();
+        if(!MD5Util.getMD5(dataMap.getString("PASSWORD")).equals(complete.getString("TRADEPASSWORD"))) return InvokeResult.failure("原密码输入不正确！");
         if(!dataMap.getString("NEWPASSWORD").equals(dataMap.getString("RENEWPASSWORD"))) return InvokeResult.failure("两次密码输入不一致！");
 
-        if(!dataMap.getString("CODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("验证码不正确！");
         if(!PlantValidUtil.isPwd(dataMap.getString("NEWPASSWORD")))
             return InvokeResult.failure(PlantValidUtil.ERROR_MSG_PWD);
 
-        SessionUtil.removeSMSCodeFromSession();
         complete.put("TRADEPASSWORD", MD5Util.getMD5(dataMap.getString("NEWPASSWORD")));
         completeStudentService.editCompleteStudent(complete);
         return InvokeResult.success();

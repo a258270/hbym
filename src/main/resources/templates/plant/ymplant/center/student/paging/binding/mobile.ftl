@@ -18,11 +18,11 @@
                 <span>更改手机号码：</span>
                 <input type="text" style="margin-left:29px;background-color: #F6F6F6;border: 1px solid #000;border-radius: 5px" id="PHONE"/>
             </p>
-            <p style="margin:20px 0">
+            <#--<p style="margin:20px 0">
                 <span>输入验证码：</span>
                 <input type="text" style="margin-left:42px;background-color: #F6F6F6;border: 1px solid #000;border-radius: 5px" id="CODE"/>
                 <img style="padding:5px 10px;" src="" id="validCode" onclick="getCode();"/>
-            </p>
+            </p>-->
             <p>
                 <span>短信验证码：</span>
                 <input type="text" style="margin-left:42px;background-color: #F6F6F6;border: 1px solid #000;border-radius: 5px" id="SMSCODE"/>
@@ -80,7 +80,7 @@
     };
 
     var savePhone = function () {
-        sendRequest(ctxPath + "/plant/user/api/binding/phone", {PHONE: $("#PHONE").val(), CODE: $("#CODE").val(), SMSCODE: $("#SMSCODE").val()}, "POST", function (res) {
+        sendRequest(ctxPath + "/plant/user/api/binding/phone", {PHONE: $("#PHONE").val()/*, CODE: $("#CODE").val()*/, SMSCODE: $("#SMSCODE").val()}, "POST", function (res) {
             if(res.hasErrors){
                 showError(res.errorMessage);
                 return false;

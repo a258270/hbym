@@ -87,6 +87,53 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(dataMapOut);
     }
 
+    @RequestMapping(value = "/getsecurityinfo")
+    public InvokeResult getSecurityInfo() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        boolean isRealName = false;
+        boolean isPhone = false;
+        boolean isEmail = false;
+        boolean isTrade = false;
+
+        DataMap complete = null;
+        if(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))){
+            complete = completeStudentService.getCompleteStudentByUserId(curUser);
+        }
+        else if(PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID"))) {
+            complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        }
+        else if(PlantConst.ROLE_EXPERT.equals(curUser.getString("ROLE_ID"))) {
+            complete = completeProService.getCompleteProByUserId(curUser);
+        }
+
+        if(complete != null){
+            if (!StringUtils.isBlank(complete.getString("IDCARD"))){
+                isRealName = true;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("PHONE"))){
+                isPhone = true;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("EMAIL"))){
+                isEmail = true;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("TRADEPASSWORD"))){
+                isTrade = true;
+            }
+        }
+
+        DataMap outDataMap = new DataMap();
+        outDataMap.put("isRealName", isRealName);
+        outDataMap.put("isPhone", isPhone);
+        outDataMap.put("isEmail", isEmail);
+        outDataMap.put("isTrade", isTrade);
+
+        return InvokeResult.success(outDataMap);
+    }
+
     @RequestMapping(value = "/getstudentcomplete")
     public InvokeResult getStudentComplete() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();

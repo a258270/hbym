@@ -317,16 +317,16 @@ public class PlantUserApiController extends ApiBaseController {
 
             DataMap dataMap = this.getDataMap();
             if(StringUtils.isBlank(dataMap.getString("PHONE"))) return InvokeResult.failure("请填写手机号！");
-            if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("请填写验证码！");
+            //if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("请填写验证码！");
             if(StringUtils.isBlank(dataMap.getString("SMSCODE"))) return InvokeResult.failure("请填写短信验证码！");
 
             //验证手机号
             if(!PlantValidUtil.isPhone(dataMap.getString("PHONE")))
                 return InvokeResult.failure(PlantValidUtil.ERROR_MSG_PHONE);
-            if(!dataMap.getString("CODE").equals(SessionUtil.getCodeFromSession())) return InvokeResult.failure("验证码不正确！");
+            //if(!dataMap.getString("CODE").equals(SessionUtil.getCodeFromSession())) return InvokeResult.failure("验证码不正确！");
             if(!dataMap.getString("SMSCODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("短信验证码不正确！");
 
-            SessionUtil.removeCodeFromSession();
+            //SessionUtil.removeCodeFromSession();
             SessionUtil.removeSMSCodeFromSession();
 
             if(completeStudentService.isHasPhoneInCompleteStudent(dataMap) || completeTeacherService.isHasPhoneInCompleteTeacher(dataMap) || completeProService.isHasPhoneInCompletePro(dataMap))
@@ -347,17 +347,17 @@ public class PlantUserApiController extends ApiBaseController {
 
             DataMap dataMap = this.getDataMap();
             if(StringUtils.isBlank(dataMap.getString("PHONE"))) return InvokeResult.failure("请填写手机号！");
-            if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("请填写验证码！");
+            //if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("请填写验证码！");
             if(StringUtils.isBlank(dataMap.getString("SMSCODE"))) return InvokeResult.failure("请填写短信验证码！");
 
             if(!PlantValidUtil.isPhone(dataMap.getString("PHONE")))
                 return InvokeResult.failure(PlantValidUtil.ERROR_MSG_PHONE);
 
             //验证手机号
-            if(!dataMap.getString("CODE").equals(SessionUtil.getCodeFromSession())) return InvokeResult.failure("验证码不正确！");
+            //if(!dataMap.getString("CODE").equals(SessionUtil.getCodeFromSession())) return InvokeResult.failure("验证码不正确！");
             if(!dataMap.getString("SMSCODE").equals(SessionUtil.getSMSCodeFromSession())) return InvokeResult.failure("短信验证码不正确！");
 
-            SessionUtil.removeCodeFromSession();
+            //SessionUtil.removeCodeFromSession();
             SessionUtil.removeSMSCodeFromSession();
 
             if(completeStudentService.isHasPhoneInCompleteStudent(dataMap) || completeTeacherService.isHasPhoneInCompleteTeacher(dataMap) || completeProService.isHasPhoneInCompletePro(dataMap))

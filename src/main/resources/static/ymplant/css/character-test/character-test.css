@@ -52,12 +52,20 @@ ul{
 }
 .choice{
     width: 100%;
-    background-color: #C3C3C3;
-    color: #fff;
-    border: none;
+    /*background-color: #C3C3C3;*/
+    color: #666;
+    /*border: none;*/
     padding: 5px 20px;
     margin: 5px 0;
-    text-align: left;
+    /*text-align: left;*/
+    display: block;
+}
+.choice:hover{
+    color: #D9534F;
+    /*background-color: #ccc;*/
+}
+.choice:focus{
+    color: #666;
 }
 .progress{
     width: 80%;

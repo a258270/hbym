@@ -46,7 +46,7 @@
         </div>
         <div class="hengxian">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <figure class="experts col-md-4">
                         <#if firstNews_gg??>
                         <a href="${ctxPath}/plant/news/details/${firstNews_gg.NEWS_ID}" title="${firstNews_gg.TITLE}" style="color: #333;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
@@ -65,17 +65,17 @@
                             <#if firstNewses_gg?? && (firstNewses_gg?size > 0)>
                                 <#list firstNewses_gg as firstNews_gg>
                             <li class="row"">
-                                <p class="col-md-9">
+                                <p class="col-md-9 col-sm-9 col-xs-9">
                                     <a href="${ctxPath}/plant/news/details/${firstNews_gg.NEWS_ID}" style="color: #000" target="_blank">${firstNews_gg.TITLE}</a>
                                 </p>
-                                <span class="col-md-3">${firstNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
+                                <span class="col-md-3 col-sm-3 col-xs-3">${firstNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
                             </li>
                                 </#list>
                             </#if>
                         </ul>
                     </div>
                  </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <figure class="experts col-md-4">
                         <#if secondNews??>
                             <a href="${ctxPath}/plant/news/details/${secondNews_gg.NEWS_ID}" target="_blank">
@@ -89,10 +89,10 @@
                         <#if secondNewses_gg?? && (secondNewses_gg?size > 0)>
                             <#list secondNewses_gg as secondNews_gg>
                                 <li class="row"">
-                                <h4 class="col-md-9">
+                                <h4 class="col-md-9 col-sm-9 col-xs-9">
                                     <a href="${ctxPath}/plant/news/details/${secondNews_gg.NEWS_ID}" style="color: #000" target="_blank">${secondNews_gg.TITLE}</a>
                                 </h4>
-                                <span class="col-md-3">${secondNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
+                                <span class="col-md-3 col-sm-3 col-xs-3">${secondNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
                                 </li>
                             </#list>
                         </#if>
@@ -112,7 +112,7 @@
 <div class="kd-pagesection" id="consulting">
     <div class="container"  style="position: relative">
         <div class="row" style="margin: 0 -2px 0 0;">
-            <div class="consulting col-md-3">
+            <div class="consulting col-md-3 col-sm-3 col-xs-3">
                 高考动态
                 <img class="noticet" style="width: 22px;height: 22px;" src="/static/ymplant/img/sye/tubiao/dongtai.png" alt="">
             </div>
@@ -123,7 +123,7 @@
             </a>
         </div>
         <div class="hengxian row">
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <#if firstNews_gkdt??>
                 <a href="${ctxPath}/plant/news/details/${firstNews_gkdt.NEWS_ID}" style="overflow: hidden;ext-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
                     <img src="${firstNews_gkdt.IMGURL}" style="width: 345px;height: 265px;" alt="">
@@ -145,7 +145,7 @@
                 </p>
                 </#if>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <ul>
                     <#if firstNewses_gkdt?? && (firstNewses_gkdt?size > 0)>
                         <#list firstNewses_gkdt as firstNews_gkdt>
@@ -170,7 +170,7 @@
                     </#if>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <#if secondNews_gkdt??>
                 <#--<p style="margin-bottom: 18px">-->
                     <#--<a href="${ctxPath}/plant/news/details/${secondNews_gkdt.NEWS_ID}" style="color: #333;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">${secondNews_gkdt.TITLE}</a>-->
@@ -181,10 +181,10 @@
                         <#list secondNewses_gkdt as secondNews_gkdt>
                     <li class="row kd-jju">
 
-                        <p class="col-md-8">
+                        <p class="col-md-8 col-sm-8 col-xs-8">
                             <a href="${ctxPath}/plant/news/details/${secondNews_gkdt.NEWS_ID}" style="color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">${secondNews_gkdt.TITLE}</a>
                         </p>
-                        <span class="col-md-4" style="text-align: right">${secondNews_gkdt.CREATETIME?string("yyyy-MM-dd")}</span>
+                        <span class="col-md-4 col-sm-4 col-xs-4" style="text-align: right">${secondNews_gkdt.CREATETIME?string("yyyy-MM-dd")}</span>
                     </li>
                         </#list>
                     </#if>
@@ -200,11 +200,11 @@
 <div class="kd-pagesection" id="consulting">
     <div class="container"  style="position: relative">
         <div class="row" style="margin: 0">
-            <div class="consulting col-md-3">
+            <div class="consulting col-md-3 col-sm-3 col-xs-3">
                 线下活动
                 <img class="noticet" src="/static/ymplant/img/sye/tubiao/xianxia.png" alt="">
             </div>
-            <div class="more col-md-1" style="position: absolute;top: 26px; right: -10px">
+            <div class="more col-md-1 col-sm-1 col-xs-1" style="position: absolute;top: 26px; right: -10px">
                 <a href="${ctxPath}/plant/news/more/news/x8jfplc17d" target="_blank">
                     <h4>更多>></h4>
                 </a>
@@ -216,7 +216,7 @@
             <#--</a>-->
         <#--</div>-->
         <div class="hengxian row">
-            <div class="col-md-5">
+            <div class="col-md-5 col-sm-5 col-xs-5">
                 <#if firstNews_wjhd??>
                 <a href="${ctxPath}/plant/news/details/${firstNews_wjhd.NEWS_ID}" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
                     <img src="${firstNews_wjhd.IMGURL}" style="width: 440px;height:300px;margin-bottom: 10px;" alt="">
@@ -229,11 +229,11 @@
                 </a>
                 </#if>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 col-sm-7 col-xs-7">
                 <div class="row">
                     <#if firstNewses_wjhd?? && (firstNewses_wjhd?size > 0)>
                         <#list firstNewses_wjhd as firstNews_wjhd>
-                    <div class="col-md-4" style="margin-bottom: 10px">
+                    <div class="col-md-4 col-sm-4 col-xs-4" style="margin-bottom: 10px">
                         <a href="${ctxPath}/plant/news/details/${firstNews_wjhd.NEWS_ID}" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
                             <img src="${firstNews_wjhd.IMGURL}" style="width: 190px;height: 130px; margin-bottom: 10px" alt="">
                             <p style="color: #333;">${firstNews_wjhd.TITLE}</p>

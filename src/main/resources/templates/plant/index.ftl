@@ -253,7 +253,7 @@
                             <a class="colour<#if curPage?? && curPage == 'online'> nav-active</#if>" href="${ctxPath}/plant/school/online">院校咨询</a>
                         </li>
                         <li class="nal">
-                            <a class="colour<#if curPage?? && curPage == 'pertde'> nav-active</#if>" href="${ctxPath}/plant/expert/index">名师指导</a>
+                            <a class="colour<#if curPage?? && curPage == 'pertde'> nav-active</#if>" href="${ctxPath}/plant/school/online">名师指导</a>
                         <#--${ctxPath}/plant/expert/index-->
                         </li>
                         <li class="nalism">
@@ -377,7 +377,7 @@
             </div>
             <!--重要公告 结束-->
             <!--专家团 开始-->
-            <div class="group">
+            <#--<div class="group">
                 <div class="gdui">
                     <span style="font-weight: bold;color: #BD2B2C;">专 &nbsp;家 &nbsp;团</span>
                 </div>
@@ -392,9 +392,9 @@
                         <div class="col-md-5 col-sm-5 col-xs-5" style="padding: 0">
                             <p style="color:#9EAAAA;font-size: 10px;margin-bottom: 10px"><#if expert.NICKNAME??>${expert.NICKNAME}<#else>暂无</#if></p>
                             <p style="color:#9EAAAA;font-size: 10px">
-                                <span><#if expert.JOBDATE_VALUE??>${expert.JOBDATE_VALUE}</#if></span><#--丨-->
-                            <#--<img src="/static/ymplant/images/tubiao/yhu.png" style="width: 20%" alt=""/>
-                            <span>32</span>-->
+                                <span><#if expert.JOBDATE_VALUE??>${expert.JOBDATE_VALUE}</#if></span>&lt;#&ndash;丨&ndash;&gt;
+                            &lt;#&ndash;<img src="/static/ymplant/images/tubiao/yhu.png" style="width: 20%" alt=""/>
+                            <span>32</span>&ndash;&gt;
                             </p>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0;">
@@ -411,7 +411,7 @@
                 </#if>
                 <div class="clear"></div>
                 </ul>
-            </div>
+            </div>-->
             <!--专家团 结束-->
             <!--轮播图 开始-->
             <div class="row" style="margin:  0">

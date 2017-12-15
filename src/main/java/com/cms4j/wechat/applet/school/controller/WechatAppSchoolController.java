@@ -29,4 +29,13 @@ public class WechatAppSchoolController extends ApiBaseController {
 
         return InvokeResult.success(schoolService.getHasTeachersSchools(dataMap));
     }
+    /*
+     *根据school_id获取院校库中对应单条数据
+     */
+    @RequestMapping(value = "/getschoolinfo",method = RequestMethod.POST)
+    public InvokeResult getSchoolInformationsById() throws Exception {
+        DataMap dataMap =this.getDataMap();
+    return  InvokeResult.success( schoolService.getSchoolById(dataMap));
+    }
+
 }

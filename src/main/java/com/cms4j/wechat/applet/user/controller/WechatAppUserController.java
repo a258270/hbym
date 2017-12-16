@@ -158,6 +158,19 @@ public class WechatAppUserController extends ApiBaseController {
     }
 
     /**
+     * 获取老师基本信息
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getteachercomplete")
+    public InvokeResult getTeacherComplete() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        DataMap complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        return InvokeResult.success(complete);
+    }
+
+    /**
      * 获取学生考生信息
      * @return
      * @throws Exception

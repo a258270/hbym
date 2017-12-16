@@ -105,10 +105,10 @@ public class ReportController extends PageBaseController {
         PROVINCE = dictionaryService.getDictionaryByCode(PROVINCE);
         List<DataMap> PROVINCEs = dictionaryService.getDictionariesByFatherId(PROVINCE);
         modelAndView.addObject("PROVINCEs", PROVINCEs);*/
-        List<DataMap> bmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_BK, 4);
+        /*List<DataMap> bmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_BK, 4);
         List<DataMap> zmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_ZK, 4);
         modelAndView.addObject("bmajors", bmajors);
-        modelAndView.addObject("zmajors", zmajors);
+        modelAndView.addObject("zmajors", zmajors);*/
         DataMap curUser = SessionUtil.getCurUser();
         if(curUser != null) {
             DataMap examinee = examineeService.getExamineeByUserId(curUser);

@@ -40,6 +40,11 @@ public class WechatAppUserController extends ApiBaseController {
     @Autowired
     private ItemBelongService itemBelongService;
 
+    /**
+     * 获取学生基本信息（个人中心展示）
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/basic_student", method = RequestMethod.POST)
     public InvokeResult basic() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -87,6 +92,11 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(dataMapOut);
     }
 
+    /**
+     * 获取账户安全信息的是否设置
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getsecurityinfo")
     public InvokeResult getSecurityInfo() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -134,6 +144,11 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(outDataMap);
     }
 
+    /**
+     * 获取学生基本信息
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getstudentcomplete")
     public InvokeResult getStudentComplete() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -142,6 +157,11 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(complete);
     }
 
+    /**
+     * 获取学生考生信息
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getstudentexaminee")
     public InvokeResult getStudentExaminee() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -150,6 +170,11 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(examinee);
     }
 
+    /**
+     * 我的物品
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getbelongitems")
     public InvokeResult getBelongItems() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -163,6 +188,12 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(result);
     }
 
+    /**
+     * 上传头像
+     * @param file
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/uploadhead")
     public InvokeResult uploadHead(@RequestParam(name = "HEADURL") MultipartFile file) throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -208,5 +239,47 @@ public class WechatAppUserController extends ApiBaseController {
         }
 
         return InvokeResult.success();
+    }
+
+    /**
+     * 获取学生考生信息
+     */
+    @RequestMapping(value = "/isexamed")
+    public InvokeResult isExamed() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        DataMap examinee = examineeService.getExamineeByUserId(curUser);
+
+        return InvokeResult.success((examinee != null) && (!StringUtils.isBlank(examinee.getString("EXAMSCORE"))));
+    }
+
+    @RequestMapping(value = "/isvip")
+    public InvokeResult isVip() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        return InvokeResult.success(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID")) && !StringUtils.isBlank(curUser.getString("VIP")));
+    }
+
+    /**
+     * 获取角色标志
+     * @return 1学生 2老师 3专家 0暂无信息
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getrole")
+    public InvokeResult isStudent() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+        switch (curUser.getString("ROLE_ID")) {
+            case PlantConst.ROLE_STUDENT : {
+                return InvokeResult.success(1);
+            }
+            case PlantConst.ROLE_TEACHER : {
+                return InvokeResult.success(2);
+            }
+            case PlantConst.ROLE_EXPERT : {
+                return InvokeResult.success(3);
+            }
+            default : {
+                return InvokeResult.success(0);
+            }
+        }
     }
 }

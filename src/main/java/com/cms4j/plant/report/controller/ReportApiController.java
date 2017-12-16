@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 
 @RestController
-@RequestMapping(value = "/plant/report/api")
+@RequestMapping(value = {"/plant/report/api", "/wechat/applet/report"})
 public class ReportApiController extends ApiBaseController {
 
     /*@RequestMapping(value = "/reporting")
@@ -82,6 +82,11 @@ public class ReportApiController extends ApiBaseController {
         return InvokeResult.success("majors", majors);
     }
 
+    /**
+     * 智能推荐
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/reporting")
     public InvokeResult reporting() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
@@ -303,6 +308,11 @@ public class ReportApiController extends ApiBaseController {
         return false;
     }
 
+    /**
+     * 模拟填报
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/zy")
     public InvokeResult zy() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();

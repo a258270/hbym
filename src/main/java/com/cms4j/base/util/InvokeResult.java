@@ -45,12 +45,14 @@ public class InvokeResult extends JSONObject {
 
     public static InvokeResult success(Map map) {
         InvokeResult invokeResult = new InvokeResult();
-        Iterator<Entry<String, Integer>> it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Integer> entry = it.next();
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            invokeResult.put(key, value);
+        if(map != null) {
+            Iterator<Entry<String, Integer>> it = map.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, Integer> entry = it.next();
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                invokeResult.put(key, value);
+            }
         }
 
         invokeResult.put("errorCode", "0");

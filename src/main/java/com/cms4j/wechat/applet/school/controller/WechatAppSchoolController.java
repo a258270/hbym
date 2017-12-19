@@ -5,6 +5,7 @@ import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.plant.school.scscore.service.ScscoreService;
 import com.cms4j.plant.school.service.ScFacultyService;
+import com.cms4j.plant.school.service.ScIntroductionService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.user.service.ExamineeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class WechatAppSchoolController extends ApiBaseController {
     private ScscoreService scscoreService;
     @Autowired
     private ScFacultyService scFacultyService;
+    @Autowired
+    private ScIntroductionService scIntroductionService;
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     public InvokeResult getSchools() throws Exception {
@@ -67,6 +70,13 @@ public class WechatAppSchoolController extends ApiBaseController {
         DataMap dataMap = this.getDataMap();
 
         return InvokeResult.success(scFacultyService.getScFacultyByScId(dataMap));
+    }
+
+    @RequestMapping(value = "/getintroduction")
+    public InvokeResult getIntroduction() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        return InvokeResult.success(scIntroductionService.getScIntroductionByScId(dataMap));
     }
 
 }

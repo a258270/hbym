@@ -49,12 +49,12 @@ public class WechatAppMajorController extends ApiBaseController {
         return InvokeResult.success(mjscoreService.getMjscoreBySchoolAndMajor(dataMap));
     }
     //专业库本科
-    @RequestMapping(value = "/getbmajor")
+   /* @RequestMapping(value = "/getbmajor")
     public InvokeResult getbmajor() throws Exception {
         //  ModelAndView modelAndView = this.getModelAndView();
         //  modelAndView.setViewName("/plant/ymplant/major/library");
         //majorService.getMajorsByLevel(PlantConst.MAJOR_BK, 2);//一级分类
-        /*if(bmajors == null) bmajors = new ArrayList<>();
+        *//*if(bmajors == null) bmajors = new ArrayList<>();
         List bmajorsOut = new ArrayList();
         List bmajorsTmp = new ArrayList();
         for(int i = 0; i < bmajors.size(); i++) {
@@ -69,14 +69,14 @@ public class WechatAppMajorController extends ApiBaseController {
             if(i == bmajors.size() - 1)
                 bmajorsOut.add(bmajorsTmp);
         }
-        modelAndView.addObject("bmajors", bmajorsOut);*/
+        modelAndView.addObject("bmajors", bmajorsOut);*//*
         return InvokeResult.success(majorService.getMajorsByLevel(PlantConst.MAJOR_BK, 2));
      }
     //专业库专科
     public InvokeResult getzmajor() throws Exception {
        // List<DataMap> zmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_ZK, 2);
         return InvokeResult.success(majorService.getMajorsByLevel(PlantConst.MAJOR_ZK, 2));
-    }
+    }*/
        /* List<DataMap> zmajors = majorService.getMajorsByLevel(PlantConst.MAJOR_ZK, 2);//一级分类
         if(zmajors == null) zmajors = new ArrayList<>();
 

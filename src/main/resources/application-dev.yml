@@ -1,9 +1,13 @@
 server:
-  port: 80
+  port: 443
   session:
     timeout: 43200
   tomcat:
     basedir: c:/tomcat_tmp
+  ssl:
+    key-store: classpath:web.jks
+    key-store-password: Mb123456
+    key-password: Mb123456
 
 spring:
     session:

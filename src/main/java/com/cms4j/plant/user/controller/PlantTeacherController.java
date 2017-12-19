@@ -9,7 +9,6 @@ import com.cms4j.plant.school.service.*;
 import com.cms4j.plant.user.service.CompleteTeacherService;
 import com.cms4j.plant.user.service.ScVideoService;
 import com.cms4j.plant.util.PlantConst;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

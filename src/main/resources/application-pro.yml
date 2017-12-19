@@ -1,10 +1,13 @@
 server:
-  port: 8080
+  port: 8443
   session:
     timeout: 43200
   tomcat:
     basedir: /home/ubuntu/tomcat_tmp
-
+  ssl:
+    key-store: classpath:www.gaokgh.com.cn.jks
+    key-store-password: Mb123456
+    key-password: Mb123456
 spring:
     session:
     datasource:

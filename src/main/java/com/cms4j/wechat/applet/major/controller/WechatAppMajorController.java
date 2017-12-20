@@ -1,6 +1,7 @@
 package com.cms4j.wechat.applet.major.controller;
 
 import com.cms4j.base.controller.ApiBaseController;
+import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.Page;
@@ -30,6 +31,8 @@ public class WechatAppMajorController extends ApiBaseController {
     private ExamineeService examineeService;
     @Autowired
     private MajorService majorService;
+    @Autowired
+    private DictionaryService dictionaryService;
 
     @RequestMapping(value = "/get")
     public InvokeResult get() throws Exception {
@@ -38,6 +41,11 @@ public class WechatAppMajorController extends ApiBaseController {
         return InvokeResult.success(hasmajorService.getHasmajorByScId(dataMap));
     }
 
+    /**
+     * 按照院校和专业id获取历史分数
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getmajorbyschool")
     public InvokeResult getMajorBySchool() throws Exception {
         DataMap dataMap = this.getDataMap();
@@ -47,6 +55,76 @@ public class WechatAppMajorController extends ApiBaseController {
         dataMap.put("MAJORTYPE_ID", examinee.getString("MAJORTYPE"));
 
         return InvokeResult.success(mjscoreService.getMjscoreBySchoolAndMajor(dataMap));
+    }
+
+    /**
+     * 获取专业库所有2级专业信息
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getmajorlibrary")
+    public InvokeResult getMajorLibrary() throws Exception {
+        DataMap dataMap = this.getDataMap();
+        String[] param = {"CODE"};
+        if(!this.validParams(param)) {
+            return this.validFailure();
+        }
+
+        //level为3，由于1级专业信息有标志父节点，所以在字典表中2级专业信息属第3级
+        List<DataMap> majors = majorService.getMajorsByLevel(dataMap.getString("CODE"), 3);
+
+        return InvokeResult.success(majors);
+    }
+
+    /**
+     * 根据父级专业节点获取子节点
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getmajorbyfatherid")
+    public InvokeResult getMajorByFatherId() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        String[] param = {"MAJOR_ID"};
+        if(!this.validParams(param)) {
+            return this.validFailure();
+        }
+
+        dataMap.put("DIC_ID", dataMap.getString("MAJOR_ID"));
+        List<DataMap> majors = dictionaryService.getDictionariesByFatherId(dataMap);
+        return InvokeResult.success(majors);
+    }
+
+    /**
+     * 获取专业详细信息
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getmajordetails")
+    public InvokeResult getMajorDetails() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        String[] param = {"MAJOR_ID"};
+        if(!this.validParams(param)) {
+            return this.validFailure();
+        }
+
+        dataMap.put("DIC_ID", dataMap.getString("MAJOR_ID"));
+        dataMap = majorService.getMajorById(dataMap);
+
+        if(dataMap != null) {
+            if(!StringUtils.isBlank(dataMap.getString("CODE"))){
+                DataMap classes = new DataMap();
+                classes.put("CODE", dataMap.getString("CODE").substring(0, dataMap.getString("CODE").length() - 1));
+
+                classes = dictionaryService.getDictionaryByCode(classes);
+                List<DataMap> classesList = dictionaryService.getDictionariesByFatherId(classes);
+                if(classesList != null && classesList.size() > 0)
+                    dataMap.put("hasClasses", classesList.get(0).getString("NAME"));
+            }
+        }
+
+        return InvokeResult.success(dataMap);
     }
     //专业库本科
    /* @RequestMapping(value = "/getbmajor")

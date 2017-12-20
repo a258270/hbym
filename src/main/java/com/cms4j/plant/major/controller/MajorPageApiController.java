@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = {"/plant/major/api", "/wechat/applet/major"})
+@RequestMapping(value = "/plant/major/api")
 public class MajorPageApiController extends ApiBaseController {
 
     @Autowired

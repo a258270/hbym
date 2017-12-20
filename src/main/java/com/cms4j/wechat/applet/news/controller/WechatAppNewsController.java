@@ -33,7 +33,8 @@ public class WechatAppNewsController extends ApiBaseController {
     @RequestMapping(value = "/getnewsbyid")
     public InvokeResult getNewsById() throws Exception {
         DataMap dataMap = this.getDataMap();
-
-        return InvokeResult.success(newsService.getNewsById(dataMap));
+        dataMap = newsService.getNewsById(dataMap);
+        newsService.addViewCount(dataMap);
+        return InvokeResult.success(dataMap);
     }
 }

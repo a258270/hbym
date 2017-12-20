@@ -110,6 +110,7 @@ public class WechatAppMajorController extends ApiBaseController {
         }
 
         dataMap.put("DIC_ID", dataMap.getString("MAJOR_ID"));
+        majorService.viewMajor(dataMap);
         dataMap = majorService.getMajorById(dataMap);
 
         if(dataMap != null) {

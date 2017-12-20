@@ -71,6 +71,11 @@ public class WechatAppSchoolController extends ApiBaseController {
         return InvokeResult.success(scFacultyService.getScFacultyByScId(dataMap));
     }
 
+    /**
+     * 获取院校介绍
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getintroduction")
     public InvokeResult getIntroduction() throws Exception {
         DataMap dataMap = this.getDataMap();

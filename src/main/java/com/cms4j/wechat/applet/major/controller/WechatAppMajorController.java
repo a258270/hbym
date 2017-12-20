@@ -70,8 +70,14 @@ public class WechatAppMajorController extends ApiBaseController {
             return this.validFailure();
         }
 
-        //level为3，由于1级专业信息有标志父节点，所以在字典表中2级专业信息属第3级
-        List<DataMap> majors = majorService.getMajorsByLevel(dataMap.getString("CODE"), 3);
+        //level为2，由于1级专业信息有标志父节点，所以在字典表中1级专业信息属第2级
+        List<DataMap> majors = majorService.getMajorsByLevel(dataMap.getString("CODE"), 1);
+        if(majors == null) majors = new ArrayList<DataMap>();
+        for(DataMap major : majors) {
+            List<DataMap> childs = dictionaryService.getDictionariesByFatherId(major);
+            if(childs == null) childs = new ArrayList<DataMap>();
+            major.put("childs", childs);
+        }
 
         return InvokeResult.success(majors);
     }

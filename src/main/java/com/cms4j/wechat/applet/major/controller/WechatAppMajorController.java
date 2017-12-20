@@ -71,7 +71,7 @@ public class WechatAppMajorController extends ApiBaseController {
         }
 
         //level为2，由于1级专业信息有标志父节点，所以在字典表中1级专业信息属第2级
-        List<DataMap> majors = majorService.getMajorsByLevel(dataMap.getString("CODE"), 1);
+        List<DataMap> majors = majorService.getMajorsByLevel(dataMap.getString("CODE"), 2);
         if(majors == null) majors = new ArrayList<DataMap>();
         for(DataMap major : majors) {
             List<DataMap> childs = dictionaryService.getDictionariesByFatherId(major);

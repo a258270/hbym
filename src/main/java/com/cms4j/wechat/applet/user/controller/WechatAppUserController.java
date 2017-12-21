@@ -295,4 +295,13 @@ public class WechatAppUserController extends ApiBaseController {
             }
         }
     }
+
+    @RequestMapping(value = "/getuserfromsession")
+    public InvokeResult getUserFromSession() throws Exception {
+        DataMap dataMap = new DataMap();
+        dataMap.put("user_id", SessionUtil.getCurUser().getString("USER_ID"));
+        //dataMap.put("complete", SessionUtil.getCompleteFromSession());
+
+        return InvokeResult.success(dataMap);
+    }
 }

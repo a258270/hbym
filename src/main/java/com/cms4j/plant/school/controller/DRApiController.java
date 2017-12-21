@@ -10,6 +10,7 @@ import com.cms4j.plant.school.mjscore.service.MjscoreService;
 import com.cms4j.plant.school.scscore.service.ScscoreService;
 import com.cms4j.plant.school.service.ArrangmentService;
 import com.cms4j.plant.school.service.HasmajorService;
+import com.cms4j.plant.school.service.ScIntroductionService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.util.PlantConst;
 import jxl.Cell;
@@ -54,12 +55,14 @@ public class DRApiController extends ApiBaseController{
     private ArrangmentService arrangmentService;
     @Autowired
     private MajorService majorService;
+    @Autowired
+    private ScIntroductionService scIntroductionService;
 
     @RequestMapping(value = "/admin/daoru")
     public InvokeResult daoru() throws Exception {
 
         //List<DataMap> majors = majorService.getMajorsByLevel("ZMAJOR", 4);
-        String mubanPath = "D:/a.xls";
+        /*String mubanPath = "D:/a.xls";
         Workbook wb = Workbook.getWorkbook(new File(mubanPath));
         File targetFile = new File("D:/tar.xls");
         WritableWorkbook wwb = Workbook.createWorkbook(targetFile, wb);
@@ -78,7 +81,18 @@ public class DRApiController extends ApiBaseController{
 
 
         wwb.write();
-        wwb.close();
+        wwb.close();*/
+        List<DataMap> schools = schoolService.getAllSchools();
+        for(DataMap school : schools) {
+            DataMap introduction = scIntroductionService.getScIntroductionByScId(school);
+            if(introduction == null) continue;
+
+            String abc = introduction.getString("CONTENT").replace("\"font-family:\"", "\"font-family:");
+            abc = abc.replace("\"=\"\"", "\"");
+            introduction.put("CONTENT", abc);
+            scIntroductionService.editScIntroduction(introduction);
+        }
+
         /*DataMap arrangment = new DataMap();
         arrangment.put("CODE", "ARRANGMENT");
         arrangment = dictionaryService.getDictionaryByCode(arrangment);

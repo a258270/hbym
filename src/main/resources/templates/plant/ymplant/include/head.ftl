@@ -78,7 +78,7 @@
 <#if Session?? && Session.session_user_key?? && Session.session_user_key.USER_ID??>
     var socket;
     if(window.WebSocket){
-        socket = new WebSocket('ws://www.gaokgh.com.cn/plant/chat/${Session.session_user_key.USER_ID}');
+        socket = new WebSocket('wss://www.gaokgh.com.cn/plant/chat/${Session.session_user_key.USER_ID}');
     }else{
         showError("您的浏览器版本过低，在线咨询功能会受限，请更换浏览器！");
     }

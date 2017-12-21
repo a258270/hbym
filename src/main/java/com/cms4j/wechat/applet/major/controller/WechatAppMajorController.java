@@ -133,6 +133,24 @@ public class WechatAppMajorController extends ApiBaseController {
 
         return InvokeResult.success(dataMap);
     }
+
+    /**
+     * 根据学历层次获取专业
+     * 所需传入CODE，CODE只有本科专科区分
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getmajorsbyarrangment")
+    public InvokeResult getMajorsByArrangment() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        String[] param = {"CODE"};
+        if(!this.validParams(param)) {
+            return this.validFailure();
+        }
+
+        return InvokeResult.success(majorService.getMajorsByLevel(dataMap.getString("CODE"), 4));
+    }
     //专业库本科
    /* @RequestMapping(value = "/getbmajor")
     public InvokeResult getbmajor() throws Exception {

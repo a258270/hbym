@@ -12,6 +12,7 @@ import java.util.Map;
  * @author: zmj
  * @create: 2017/5/31
  */
+//封装执行结果类 继承 JSONObject  实现将结果集以json 数据格式呈现
 public class InvokeResult extends JSONObject {
 
     public static InvokeResult success() {

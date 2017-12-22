@@ -39,8 +39,8 @@ public class PlantConst {
     public static final String MAJOR_BK = "BMAJOR";//本科专业
     public static final String MAJOR_ZK = "ZMAJOR";//专科专业
 
-    public static final String MAJORTYPE_W = "gjv044girc";
-    public static final String MAJORTYPE_L = "r6j4mh69be";
+    public static final String MAJORTYPE_W = "gjv044girc";//专业类型  文科
+    public static final String MAJORTYPE_L = "r6j4mh69be";//专业类型  理科
 
     public static final String MBTI_TYPE_PRO = "1tt3euq8ij";//专业版
     public static final String MBTI_TYPE_SIMPLE = "g57h70o2c8";//简易版

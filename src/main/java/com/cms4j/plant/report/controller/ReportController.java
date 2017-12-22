@@ -46,10 +46,11 @@ public class ReportController extends PageBaseController {
 
     @Autowired
     private MjscoreService mjscoreService;
-
+//智能推荐
     @RequestMapping(value = "/index")
     public ModelAndView index() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
+        //设定视图页面（freemarker静态页面动态取值）
         modelAndView.setViewName("/plant/ymplant/report/mendation/mendation");
 
         DataMap dataMap = this.getDataMap();

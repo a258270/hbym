@@ -90,7 +90,7 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(dataMapOut);
     }
 
-    @RequestMapping(value = "/base_teacher")
+    @RequestMapping(value = "/basic_teacher")
     public InvokeResult base_teacher() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
 

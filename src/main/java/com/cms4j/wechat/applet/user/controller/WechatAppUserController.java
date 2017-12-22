@@ -87,7 +87,44 @@ public class WechatAppUserController extends ApiBaseController {
         DataMap pocket = pocketService.getPocketByUserId(curUser);
         dataMapOut.put("pocket", pocket);
 
+        return InvokeResult.success(dataMapOut);
+    }
 
+    @RequestMapping(value = "/base_teacher")
+    public InvokeResult base_teacher() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        if(!PlantConst.ROLE_TEACHER.equals(curUser.getString("ROLE_ID")))
+            return InvokeResult.failure("获取用户信息失败！");
+
+        DataMap complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+
+        Integer completeCount = 0;
+        /*String isRealName = "false";
+        String isPhone = "false";
+        String isEmail = "false";
+        String isTrade = "false";*/
+        if(complete != null){
+            if (!StringUtils.isBlank(complete.getString("IDCARD"))){
+                completeCount += 25;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("PHONE"))){
+                completeCount += 25;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("EMAIL"))){
+                completeCount += 25;
+            }
+
+            if (!StringUtils.isBlank(complete.getString("TRADEPASSWORD"))){
+                completeCount += 25;
+            }
+        }
+
+        DataMap dataMapOut = new DataMap();
+        dataMapOut.put("completeCount", completeCount);
+        dataMapOut.put("complete", complete);
 
         return InvokeResult.success(dataMapOut);
     }

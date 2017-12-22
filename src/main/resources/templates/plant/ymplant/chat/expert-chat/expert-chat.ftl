@@ -397,7 +397,7 @@
             strHtml += "<span style='font-weight: bold'><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if></span>";
             strHtml += "<span style='font-weight: bold'>(" + getCurrentTime() + ")</span>";
             strHtml += "</p>";
-            strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" +  + evt.data.substring(evt.data.indexOf("----") + 4) +  + "</p>";
+            strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" + evt.data.substring(evt.data.indexOf("----") + 4) + "</p>";
             strHtml += "</div>";
             strHtml += "<div class='clear'></div>";
             strHtml += "</div>";

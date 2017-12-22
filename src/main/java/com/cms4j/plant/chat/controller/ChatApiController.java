@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/plant/chat/api")
+@RequestMapping(value = {"/plant/chat/api", "/wechat/applet/chat"})
 public class ChatApiController extends ApiBaseController {
 
     @Autowired

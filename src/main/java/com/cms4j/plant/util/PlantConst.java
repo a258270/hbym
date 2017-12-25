@@ -33,6 +33,9 @@ public class PlantConst {
     public static final String ITEMTYPE_ZJK = "wd94ptzvcy";//专家资讯卡
     public static final String ITEMTYPE_MNTBK = "itdis0m28e";//模拟填报卡
     public static final String ITEMTYPE_ZNTJK = "rkups02m6o";//智能推荐卡
+    //ls:需求增加-->性格测试卡
+    public static final String ITEMTYPE_XGCSK ="1qhdv6udj4";//性格测试卡
+
 
     public static final String URL_NOLOGIN = "redirect:/plant/index";
 
@@ -44,4 +47,6 @@ public class PlantConst {
 
     public static final String MBTI_TYPE_PRO = "1tt3euq8ij";//专业版
     public static final String MBTI_TYPE_SIMPLE = "g57h70o2c8";//简易版
+
+
 }

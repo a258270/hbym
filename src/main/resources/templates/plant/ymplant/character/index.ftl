@@ -18,7 +18,9 @@
             <p>4、本测试分为四部分，共93题；需时约18分钟。所有题目没有对错之分，请根据自己的实际情况选择。只要你是认真、真实地填写了测试问卷，那么通常情况下你都能得到一个确实和你的性格相匹配的类型。希望你能从中或多或少地获得一些有益的信息。</p>
             <div style="text-align: center;margin-top: 50px;margin-bottom: 100px;">
                 <a class="simple-but" href="${ctxPath}/plant/character/simple">简单版</a>
+
                 <a class="simple-but" href="${ctxPath}/plant/character/pro">专业版</a>
+
             </div>
             <h3>MBTI职业性格测试简介</h3>
             <p>心理学中，性格指一个人在一定情况下所作行为反应的特质，即人们在生活、工作中独特的行为表现，包括思考方式、决策方式等。</p>

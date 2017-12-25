@@ -8,8 +8,11 @@ public class CardUtil {
     public static String CARD_TYPE_VIP_G1 = "CA";
     public static String CARD_TYPE_VIP_G2 = "CB";
     public static String CARD_TYPE_VIP_G3 = "CC";
-
+    //UA代表是 截取激活码的字段 白银会员
     public static String CARD_PURPOSE_VIP = "UA";
+    //ls:加入CARD_PURPOSE_VIP2与CARD_PURPOSE_VIP3分别 代表 黄金 与 钻石  截取激活码的字段
+    public static  String CARD_PURPOSE_VIP2 = "UB";
+    public static  String CARD_PURPOSE_VIP3 = "UC";
 
     /**
      * 卡号是36进制递增

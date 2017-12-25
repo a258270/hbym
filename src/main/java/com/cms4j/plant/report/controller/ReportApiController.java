@@ -125,6 +125,9 @@ public class ReportApiController extends ApiBaseController {
         DataMap param = new DataMap();
         param.put("USER_ID", curUser.getString("USER_ID"));
         param.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
+        //ls：经过商议 item_belong表 修改字段 isval 为 count 或者sum  后台 逻辑修改
+        //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
+            //次数
         List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(param);
         if(cards != null && cards.size() > 0){
             Calendar a = Calendar.getInstance();
@@ -408,7 +411,9 @@ public class ReportApiController extends ApiBaseController {
         if(setSchools.size() < (iFlag * 5)){
             return InvokeResult.failure("志愿院校有重复项，请检查！");
         }
-
+        //ls:此处是模拟填报  卡次数 逻辑   修改item_belong表需要 修改此处代码 及 sevice层 代码
+        //ls：数据库 取值  设计到 mapper.xml  的改动。
+        //ls：后台代码修改 完毕后需要检查  对应的.ftl 文件代码
         DataMap param = new DataMap();
         param.put("USER_ID", curUser.getString("USER_ID"));
         param.put("ITEMTYPE", PlantConst.ITEMTYPE_MNTBK);

@@ -599,6 +599,8 @@ public class PlantUserApiController extends ApiBaseController {
 
     @RequestMapping(value = "/vip")
     public InvokeResult vip() throws Exception {
+        
+
         DataMap curUser = SessionUtil.getCurUser();
         if(curUser == null)
             return InvokeResult.failure("请登录账号！");
@@ -630,6 +632,7 @@ public class PlantUserApiController extends ApiBaseController {
 
         if(flag.equals(-3))
             return InvokeResult.failure("卡号已使用！");
+
 
         DataMap user = plantUserService.getUserByUserId(curUser);
         SessionUtil.addUser2Session(user);

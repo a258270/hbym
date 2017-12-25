@@ -82,7 +82,8 @@ public class CardService {
             Date curDate = DateUtil.getCurrentDate();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(curDate);
-            if(CardUtil.CARD_PURPOSE_VIP.equals(dataMap.getString("PURPOSE_ID"))) {
+            //ls：判断 加入||CARD_PURPOSE_VIP2||CARD_PURPOSE_VIP3的判断，
+            if(CardUtil.CARD_PURPOSE_VIP.equals(dataMap.getString("PURPOSE_ID"))||CardUtil.CARD_PURPOSE_VIP2.equals(dataMap.getString("PURPOSE_ID"))||CardUtil.CARD_PURPOSE_VIP3.equals(dataMap.getString("PURPOSE_ID"))) {
                 if(CardUtil.CARD_TYPE_VIP_G1.equals(dataMap.getString("TYPE_ID"))){
                     calendar.add(Calendar.YEAR, 3);
                     calendar.set(Calendar.MONTH, 8);
@@ -153,7 +154,7 @@ public class CardService {
 
         String province = number.substring(0, 5);//地区标志
         String type = number.substring(5,7);//类型标志
-        String purpose = number.substring(7, 9);
+        String purpose = number.substring(7, 9);//截取激活码中的  UA/UB/UC  会员种类
         number = number.substring(9, 15);//卡号
 
         dataMap.put("PROVINCE_ID", province);
@@ -180,7 +181,72 @@ public class CardService {
 
 
         DataMap pocket = pocketService.getPocketByUserId(curUser);
+        //ls:从dataMap中获取 升级会员后截取的 UA(白银会员)/UB(黄金会员)/UC(钻石会员)
+        DataMap pocketParam = new DataMap();
+        if("UA".equals(purpose)){
+            pocketParam.put("PRICE",100);
+            pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
+            //更新钱包
+            pocketService.recharge(pocketParam);
+            //用户ID放入DataMap----->pocketParam 中
+            pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));
+            //智能推荐：20次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZNTJK);
+            itemBelongService.reChargeItemBelong(20,pocketParam);
+            //模拟填报：10次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_MNTBK);
+            itemBelongService.reChargeItemBelong(10,pocketParam);
+            //院校咨询：20次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
+            itemBelongService.reChargeItemBelong(20,pocketParam);
+            //性格测试：3次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+            itemBelongService.reChargeItemBelong(3,pocketParam);
+        }else if ("UB".equals(purpose)){
+            pocketParam.put("PRICE",1000);
+            pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
+            //更新钱包
+            pocketService.recharge(pocketParam);
+            //用户ID放入DataMap----->pocketParam 中
+            pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));
+            //智能推荐：200次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZNTJK);
+            itemBelongService.reChargeItemBelong(200,pocketParam);
+            //模拟填报：100次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_MNTBK);
+            itemBelongService.reChargeItemBelong(100,pocketParam);
+            //院校咨询：20次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
+            itemBelongService.reChargeItemBelong(20,pocketParam);
+            //性格测试：10次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+            itemBelongService.reChargeItemBelong(10,pocketParam);
+        }else if("UC".equals(purpose)){
+            pocketParam.put("PRICE",5000);
+            pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
+            //更新钱包 5000金币
+            pocketService.recharge(pocketParam);
+            //用户ID放入DataMap----->pocketParam 中
+            pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));
+            //智能推荐：无限次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZNTJK);
+            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //模拟填报：无限次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_MNTBK);
+            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //院校咨询：无限次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
+            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //性格测试：无限次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+            itemBelongService.reChargeItemBelong(-1,pocketParam);
+             // 2017/12/22 18:25
+        }
 
+       /*
+       //原来的代码，500金币，2000次。现在需求改动，需要根据 白银/黄金/钻石会员的身份 赋予不同
+        //金币和模拟智能推荐等等 使用次数；
+        //注掉重新逻辑
         DataMap pocketParam = new DataMap();
         pocketParam.put("PRICE", 500);
         pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
@@ -195,7 +261,7 @@ public class CardService {
         itemBelongService.reChargeItemBelong(2000, pocketParam);
 
         pocketParam.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-        itemBelongService.reChargeItemBelong(20, pocketParam);
+        itemBelongService.reChargeItemBelong(20, pocketParam);*/
 
         return 1;
     }

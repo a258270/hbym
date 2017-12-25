@@ -38,7 +38,13 @@
                 </p>
                 <p style="text-align: center;margin: 15px 0">
                 <#if Session.session_user_key?? && !Session.session_user_key.OVERDUETIME?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
-                    <input type="button" value="升级黄金会员" class="gol" onclick="$('#authority').click()"/>
+                    <input type="button" value="升级黄金会员"  class="gol" onclick="$('#authority').click()"/><br/>
+                <#--ls:需求更改
+                    <input/><br/>
+                    <input type="button" value="升级钻石会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
+                     <input/><br/>
+                    <input type="button" value="升级白银会员" style="background-color:green" class="gol" onclick="$('#authority').click()"/>-->
+
                 </#if>
                 </p>
                 <#--<div class="kd-bkua">-->

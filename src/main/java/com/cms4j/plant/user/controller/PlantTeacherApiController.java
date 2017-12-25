@@ -399,7 +399,9 @@ public class PlantTeacherApiController extends ApiBaseController {
             file.transferTo(dest);
             dataMap.put("IMGURL", "/plant/file/download/" + s);
         }
-        dataMap.put("AUTHOR", curUser.getString("USER_ID"));
+
+        DataMap complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        dataMap.put("SCHOOL_ID", complete.getString("SCHOOL_ID"));
 
         scArticleService.addArticle(dataMap);
         return InvokeResult.success();

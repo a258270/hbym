@@ -15,7 +15,7 @@
         IMGURL,
         MSORT,
         CONTENT,
-        AUTHOR,
+        SCHOOL_ID,
         CREATETIME,
         MODIFYTIME,
         VIEWCOUNT
@@ -47,7 +47,7 @@
         UPDATE SC_ARTICLE SET TITLE = #{TITLE}, SUBTITLE = #{SUBTITLE}, IMGURL = #{IMGURL}, MSORT = #{MSORT}, CONTENT = #{CONTENT}, MODIFYTIME = #{MODIFYTIME} WHERE ARTICLE_ID = #{ARTICLE_ID}
     </update>
     <select id="getArticlesByScId" parameterType="Page" resultType="DataMap">
-        SELECT article.* FROM SC_ARTICLE article, UR_COMPLETE_TEA tea WHERE article.AUTHOR = tea.USER_ID AND tea.SCHOOL_ID = #{params.SCHOOL_ID} ORDER BY article.MSORT DESC
+        SELECT * FROM SC_ARTICLE WHERE SCHOOL_ID = #{params.SCHOOL_ID} ORDER BY MSORT DESC
     </select>
     <update id="addViewCount" parameterType="DataMap">
         UPDATE SC_ARTICLE SET VIEWCOUNT = VIEWCOUNT + 1 WHERE ARTICLE_ID = #{ARTICLE_ID}

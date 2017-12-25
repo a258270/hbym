@@ -38,3 +38,5 @@ wechat:
   applet:
     appId: wx1b06cc20dbfe8314
     secret: e574eaddbafe863e6b6325aa25a49042
+    mch_id: 1480092162
+    mch_password: 839012

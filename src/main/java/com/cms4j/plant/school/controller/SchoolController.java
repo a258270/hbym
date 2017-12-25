@@ -7,6 +7,7 @@ import com.cms4j.plant.school.service.*;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.JurisdictionUtil;
 import com.cms4j.base.util.LoggerUtil;
+import com.cms4j.plant.user.service.ExamineeService;
 import com.cms4j.plant.util.PlantConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -228,6 +229,17 @@ public class SchoolController extends PageBaseController {
         modelAndView.addObject("assets", assets);
 
         this.setJurisdictionInfo(modelAndView, JurisdictionUtil.EDIT_QX);
+        logger.end();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addarticle")
+    public ModelAndView addArticle() throws Exception {
+        logger.begin("加载编辑院校信息页面");
+        ModelAndView modelAndView = this.getModelAndView();
+        modelAndView.setViewName("plant/school/article/add");
+
+        this.setJurisdictionInfo(modelAndView, JurisdictionUtil.ADD_QX);
         logger.end();
         return modelAndView;
     }

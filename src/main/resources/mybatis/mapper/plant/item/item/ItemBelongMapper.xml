@@ -12,12 +12,23 @@
     <select id="getValItemBelongCountByUserIdAndItemType" parameterType="DataMap" resultType="java.lang.Integer">
         SELECT COUNT(0) FROM ITEM_BELONG WHERE USER_ID = #{USER_ID} AND ITEMTYPE = #{ITEMTYPE} AND ISVAL = true
     </select>
+    <!--ls：新增方法 itme_belong  根据条件取出count-->
+    <select id="getItmeBelongCountByUserIdAndItemType" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT COUNT FROM ITEM_BELONG WHERE USER_ID = #{USER_ID} AND ITEMTYPE = #{ITEMTYPE}
+    </select>
 
     <insert id="addItemBelong" parameterType="DataMap">
-        INSERT INTO ITEM_BELONG (BELONG_ID, USER_ID, ITEMTYPE, CREATETIME, ISVAL) VALUES (#{BELONG_ID}, #{USER_ID}, #{ITEMTYPE}, #{CREATETIME}, #{ISVAL})
+        <!--INSERT INTO ITEM_BELONG (BELONG_ID, USER_ID, ITEMTYPE, CREATETIME, ISVAL) VALUES (#{BELONG_ID}, #{USER_ID}, #{ITEMTYPE}, #{CREATETIME}, #{ISVAL})-->
+        INSERT INTO ITEM_BELONG (BELONG_ID, USER_ID, ITEMTYPE, CREATETIME, COUNT) VALUES (#{BELONG_ID}, #{USER_ID}, #{ITEMTYPE}, #{CREATETIME}, #{COUNT})
+    </insert>
+    <!--ls:新添加 更新用户的 所属物品的 信息  根据 user_id 和-->
+    <insert id="updatItemBelong" parameterType="DataMap">
+        UPDATE ITEM_BELONG SET COUNT= #{COUNT} WHERE USER_ID= #{USER_ID} AND ITEMTYPE= #{ITEMTYPE}
     </insert>
 
-    <update id="useItem" parameterType="DataMap">
-        UPDATE ITEM_BELONG SET ISVAL = false, USETIME = #{USETIME} WHERE BELONG_ID = #{BELONG_ID}
-    </update>
+    <!--此处 的  updata 还需修改-->
+
+    <!--<update id="useItem" parameterType="DataMap">
+        UPDATE ITEM_BELONG SET COUNT = COUNT - 1 WHERE BELONG_ID = #{BELONG_ID} AND COUNT > 0
+    </update>-->
 </mapper>

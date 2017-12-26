@@ -358,7 +358,7 @@ public class PlantUserController extends PageBaseController {
         modelAndView.setViewName("/plant/ymplant/center/student/paging/binding/transact");
         return modelAndView;
     }
-
+    //ls:获取数据库中 院校咨询卡和 智能推荐 模拟填报的 次数
     @RequestMapping(value = "/pocket")
     public ModelAndView pocket() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
@@ -373,7 +373,7 @@ public class PlantUserController extends PageBaseController {
 
         DataMap result = itemBelongService.getAllValItemsByUser(curUser);
 
-        modelAndView.addObject("yxzxk", result.get("result"));
+        modelAndView.addObject("yxzxk", result.get("yxzxk"));
 
         modelAndView.addObject("mntbk", result.get("mntbk"));
 

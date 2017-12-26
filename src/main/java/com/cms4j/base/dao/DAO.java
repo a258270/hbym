@@ -47,6 +47,19 @@ public interface DAO {
 	 */
 	public Object findForList(String str, Object obj) throws Exception;
 
+
+
+   //ls： 新增方法
+	/**
+	 * 查找对象
+	 * @param str
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public Object findForInt(String str, Object obj) throws Exception;
+
+
 	/**
 	 * 查找对象
 	 * @param str

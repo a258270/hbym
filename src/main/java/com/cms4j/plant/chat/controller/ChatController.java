@@ -127,9 +127,17 @@ public class ChatController extends PageBaseController {
                     DataMap cardParam = new DataMap();
                     cardParam.put("USER_ID", curUser.getString("USER_ID"));
                     cardParam.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-                    List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
-                    if(cards != null && cards.size() > 0){
-                        itemBelongService.useItem(cards.get(0));
+                    //获取 院校咨询卡 次数
+                    //ls: 注掉方法：List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
+                    int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
+                   //确保咨询卡有可用次数  并且扣除一次 后建立双方映射链接
+                    if(cards != 0 && cards > 0){
+                        int cards_used = cards - 1;
+                        cardParam.put("COUNT",cards_used);
+                        //
+                        itemBelongService.reduceItemBelong(cardParam);
+
+                      //  itemBelongService.useItem(cards.get(0));
                         chatService.addChatMapping(curUser.getString("USER_ID"), recId);
                     }
                     else{

@@ -141,9 +141,14 @@ public class WeAppChatController extends ApiBaseController {
                         DataMap cardParam = new DataMap();
                         cardParam.put("USER_ID", curUser.getString("USER_ID"));
                         cardParam.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-                        List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
-                        if(cards != null && cards.size() > 0){
-                            itemBelongService.useItem(cards.get(0));
+                        int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
+
+                       //ls:注掉原方法： List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
+                        if(cards != 0 && cards > 0){
+                            int cards_used = cards - 1;
+                            cardParam.put("COUNT",cards_used);
+                            itemBelongService.reduceItemBelong(cardParam);
+                           // ls:注掉原方法 itemBelongService.useItem(cards.get(0));
                             chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
                         }
                         else{

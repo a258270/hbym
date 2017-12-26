@@ -127,11 +127,34 @@ public class DaoSupport implements DAO {
 	public Object findForList(String str, Object obj) throws Exception {
 		return sqlSessionTemplate.selectList(str, obj);
 	}
-	
+
+
+	/**
+	 * 查找对象
+	 * @param str
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	//ls：重写方法 返回值为int
+	@Override
+	public Object findForInt(String str, Object obj) throws Exception {
+		return sqlSessionTemplate.selectOne(str,obj);
+	}
+
 	@Override
 	public Object findForMap(String str, Object obj, String key, String value) throws Exception {
 		return sqlSessionTemplate.selectMap(str, obj, key);
 	}
+	//ls:查找 item_belong 中 对用的 count 字段的 数值
+	/*查找对象
+	 * @param str
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+
+
 
 	/**
 	 * 查找对象
@@ -140,7 +163,7 @@ public class DaoSupport implements DAO {
 	 * @throws Exception
 	 */
 	@Override
-	public Object findForObject(String str) throws Exception {
+	public Object findForObject( String str) throws Exception {
 		return sqlSessionTemplate.selectOne(str);
 	}
 

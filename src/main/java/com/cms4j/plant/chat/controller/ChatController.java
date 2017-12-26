@@ -199,9 +199,10 @@ public class ChatController extends PageBaseController {
             modelAndView.addObject("expecters", expecters);
         }
 
-        param.put("RUSER_ID", recId);
-        List<DataMap> chatRecords = chatService.getChatRecBySRUserId(param);
-        modelAndView.addObject("chatRecords", chatRecords);
+        //不通过后台渲染显示聊天记录，通过ajax异步加载
+        //param.put("RUSER_ID", recId);
+        //List<DataMap> chatRecords = chatService.getChatRecBySRUserId(param);
+        //modelAndView.addObject("chatRecords", chatRecords);
 
         return modelAndView;
     }
@@ -265,9 +266,11 @@ public class ChatController extends PageBaseController {
             }
         }
         modelAndView.addObject("chatUsers", chatUsers);
-        param.put("RUSER_ID", recId);
-        List<DataMap> chatRecords = chatService.getChatRecBySRUserId(param);
-        modelAndView.addObject("chatRecords", chatRecords);
+
+        //不通过后台渲染显示聊天记录，通过ajax异步加载
+        //param.put("RUSER_ID", recId);
+        //List<DataMap> chatRecords = chatService.getChatRecBySRUserId(param);
+        //modelAndView.addObject("chatRecords", chatRecords);
 
         return modelAndView;
     }

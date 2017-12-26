@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,9 +74,16 @@ public class ChatApiController extends ApiBaseController {
         if(curUser == null)
             return InvokeResult.failure("请登录您的账号！");
 
+        //dataMap中包含所需RUSER_ID参数
         DataMap dataMap = this.getDataMap();
 
-        Map params = new HashMap();
+        dataMap.put("SUSER_ID", curUser.getString("USER_ID"));
+        List<DataMap> chatRecords = chatService.getChatRecBySRUserId(dataMap);
+
+
+        return InvokeResult.success(chatRecords == null ? new ArrayList() : chatRecords);
+
+        /*Map params = new HashMap();
         params.put("RUSER_ID", dataMap.getString("RUSER_ID"));
         params.put("SUSER_ID", curUser.getString("USER_ID"));
         Page page = new Page();
@@ -97,9 +105,8 @@ public class ChatApiController extends ApiBaseController {
         page.setPageSize(10);
 
         List<DataMap> records = chatService.listChatRecords(page);
-        page.setResults(records);
+        page.setResults(records);*/
 
-        return InvokeResult.success(page);
     }
 
     @RequestMapping(value = "/setread")

@@ -78,16 +78,19 @@ public class ItemBelongService {
     public  void  reChargeItemBelong(Integer count, DataMap dataMap)throws Exception {
         //ls:取出升级会员之前 对应的 商品卡的 可用次数
 
+        //zmj:将sum_before提出来，减少一次库的交互
+        Integer sum_before = (Integer) daoSupport.findForInt("ItemBelongMapper.getItmeBelongCountByUserIdAndItemType",dataMap);
         //:ls 007 此处有问题 如果count 为null 需要判断 并插入进数据库
-        if(daoSupport.findForInt("ItemBelongMapper.getItmeBelongCountByUserIdAndItemType",dataMap) == null ){
+        if(sum_before == null ){
             //insert 进数据库
+
+            dataMap.put("COUNT", count);
             this.addItemBelong(dataMap);
 
         }else {
             //ls:如果不为空值 说明 有值。无论是不是 0  运算后  更新进数据库
-            int   sum_before = (int)daoSupport.findForInt("ItemBelongMapper.getItmeBelongCountByUserIdAndItemType",dataMap);
             //ls:升级后的次数就是 sum_after  ，把sum_after 放到 dataMap 中 键 “COUNT”对应的位置上
-            int   sum_after = count + sum_before;
+            Integer sum_after = count + sum_before;
             dataMap.put("COUNT",sum_after);
             daoSupport.update("ItemBelongMapper.updatItemBelong",dataMap);
         }

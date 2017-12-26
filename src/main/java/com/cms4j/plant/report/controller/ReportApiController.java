@@ -129,7 +129,7 @@ public class ReportApiController extends ApiBaseController {
         //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
             //次数
         int cards =  itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
-        if( cards != 0 && cards > 0){
+        if(cards > 0){
             Calendar a = Calendar.getInstance();
             String year = String.valueOf(a.get(Calendar.YEAR));
             String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);

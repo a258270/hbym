@@ -99,16 +99,17 @@
     };
 
     function setPage(list) {
+        console.log(list);
         var strHtml = "";
         for(var i = 0; i < list.length; i++){
             var obj = list[i];
-            <#if flag?? && (flag == 'news')>
             strHtml += "<div class='row' style='margin-bottom:10px;border-bottom: 1px dashed #DADADA'>";
             strHtml += "<div class='col-md-1 col-sm-1 col-xs-1' style='margin-bottom: 2px'>";
             strHtml += "<div class='notic'>标题</div>";
             strHtml += "</div>";
             strHtml += "<div class='col-md-8 col-ms-8 col-xs-8' style='padding: 0'>";
-            strHtml += "<a href='${ctxPath}/plant/news/details/" + obj.NEWS_ID + "' style='text-decoration: none;color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;' target='_blank'>";
+            <#if flag?? && (flag == 'news')>strHtml += "<a href='${ctxPath}/plant/news/details/" + obj.NEWS_ID + "' style='text-decoration: none;color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;' target='_blank'>";</#if>
+            <#if flag?? && (flag == 'article')>strHtml += "<a href='${ctxPath}/plant/article/details/" + obj.ARTICLE_ID + "' style='text-decoration: none;color: #000;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;' target='_blank'>";</#if>
             strHtml += "<span>" + obj.TITLE + "</span>";
             strHtml += "</a>";
             strHtml += "</div>";
@@ -116,7 +117,6 @@
             strHtml += toLocalDate(obj.CREATETIME);
             strHtml += "</div>";
             strHtml += "</div>";
-            </#if>
         }
 
         $("#page").html(strHtml);

@@ -290,7 +290,7 @@
                     <#list articles as article>
                         <#if (article_index == 0)>
                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                <a href="${ctxPath}/plant/news/details/${article.ARTICLE_ID}">
+                                <a href="${ctxPath}/plant/article/details/${article.ARTICLE_ID}" target="_blank">
                                     <img src="<#if article.IMGURL??>${article.IMGURL}<#else>/static/ymplant/img/timg.png</#if>" style="width:216px;height: 162px;" alt=""/>
                                     <p style="text-align: center;font-weight: bold">
                                     ${article.TITLE}
@@ -316,7 +316,7 @@
                             <#if (article_index > 0)>
                                 <div class="row kd-jjin">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <a href="${ctxPath}/plant/article/details/${article.ARTICLE_ID}" class="kd-kao"style="text-decoration: none">${article.TITLE}</a>
+                                        <a href="${ctxPath}/plant/article/details/${article.ARTICLE_ID}" class="kd-kao"style="text-decoration: none" target="_blank">${article.TITLE}</a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6" style="color: #939393;text-align: right">
                                         <i class="glyphicon glyphicon-time"></i>

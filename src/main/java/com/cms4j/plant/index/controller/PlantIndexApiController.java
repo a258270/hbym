@@ -46,7 +46,7 @@ public class PlantIndexApiController extends ApiBaseController {
     public PlantIndexApiController() {
         this.logger = LoggerUtil.getLogger(this.getClass());
     }
-
+    //ls:登录
     @RequestMapping(value = "/tologin", method = RequestMethod.POST)
     public InvokeResult toLogin() throws Exception {
         DataMap dataMap = this.getDataMap();
@@ -92,7 +92,7 @@ public class PlantIndexApiController extends ApiBaseController {
 
         return InvokeResult.success();
     }
-
+    //注册
     @RequestMapping(value = "/toregist", method = RequestMethod.POST)
     public InvokeResult toRegist() throws Exception {
         DataMap dataMap = this.getDataMap();

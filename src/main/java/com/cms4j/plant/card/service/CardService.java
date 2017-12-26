@@ -181,7 +181,7 @@ public class CardService {
 
 
         DataMap pocket = pocketService.getPocketByUserId(curUser);
-        //ls:从dataMap中获取 升级会员后截取的 UA(白银会员)/UB(黄金会员)/UC(钻石会员)
+        //ls:从dataMap中获取 升级会员后截取的 UA(白银会员)/UB(黄金会员)/UC(黑钻会员)
         DataMap pocketParam = new DataMap();
         if("UA".equals(purpose)){
             pocketParam.put("PRICE",100);
@@ -203,7 +203,9 @@ public class CardService {
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
             itemBelongService.reChargeItemBelong(3,pocketParam);
         }else if ("UB".equals(purpose)){
-            pocketParam.put("PRICE",1000);
+            //ls:需求由 1000——>500
+
+            pocketParam.put("PRICE",500);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
             //更新钱包
             pocketService.recharge(pocketParam);
@@ -222,7 +224,7 @@ public class CardService {
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
             itemBelongService.reChargeItemBelong(10,pocketParam);
         }else if("UC".equals(purpose)){
-            pocketParam.put("PRICE",5000);
+            pocketParam.put("PRICE",2000);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
             //更新钱包 5000金币
             pocketService.recharge(pocketParam);
@@ -244,7 +246,7 @@ public class CardService {
         }
 
        /*
-       //原来的代码，500金币，2000次。现在需求改动，需要根据 白银/黄金/钻石会员的身份 赋予不同
+       //原来的代码，500金币，2000次。现在需求改动，需要根据 白银/黄金/黑钻会员的身份 赋予不同
         //金币和模拟智能推荐等等 使用次数；
         //注掉重新逻辑
         DataMap pocketParam = new DataMap();

@@ -129,7 +129,23 @@ public class ReportApiController extends ApiBaseController {
         //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
             //次数
         int cards =  itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
-        if(cards > 0){
+       //ls：因黑钻会员使用次数为无限 ，并设置count 的初始值为-1    做反向判断： 因cards =0为分界线， cards >0 和 cards <0 都能使用
+       if(curUser.getString("CARD_PUOPSE")!="UC"){
+
+            if( cards > 0) {
+               //ls: 使用一次 智能推荐 减一次
+                int cards_used = cards - 1;
+                param.put("COUNT",cards_used);
+
+                itemBelongService.reduceItemBelong(param);
+
+            }else{
+                return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");}
+
+
+
+            //注掉原方法： itemBelongService.useItem(cards.get(0));
+
             Calendar a = Calendar.getInstance();
             String year = String.valueOf(a.get(Calendar.YEAR));
             String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
@@ -177,16 +193,12 @@ public class ReportApiController extends ApiBaseController {
                     break;
                 }
             }
-            //ls: 使用一次 智能推荐 减一次
-            int cards_used = cards - 1;
-            param.put("COUNT",cards_used);
+        }else {
+           return InvokeResult.success();
+       }
 
-            itemBelongService.reduceItemBelong(param);
-
-           //注掉原方法： itemBelongService.useItem(cards.get(0));
-        }
-        else
-            return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");
+       /* else
+            return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");*/
         /*modelAndView.addObject("exam", exam);*/
         dataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
 
@@ -428,20 +440,25 @@ public class ReportApiController extends ApiBaseController {
       //原方法：  List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(param);
        //使用 模拟填报卡
         int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
-        //使用一次 减一次
-        if(cards!=0 && cards>0){
-            int cards_used= cards - 1;
-            param.put("COUNT",cards_used);
 
-            itemBelongService.reduceItemBelong(param);
+        //ls：因黑钻会员使用次数为无限 ， 做反向判断 如果是黑钻会员直接放行
+        if(curUser.getString("CARD_PUOPSE")!= "UC"){
+            if( cards>0 ){ //使用一次 减一次
+                int cards_used= cards - 1;
+                param.put("COUNT",cards_used);
+                itemBelongService.reduceItemBelong(param);
+            }
+                    //注掉原 卡 list 集合 的 判断
+                /*if(cards != null && cards.size() > 0){
+                    itemBelongService.useItem(cards.get(0));
+                }*/
+            else
+                return InvokeResult.failure("模拟填报卡数量不足，无法进行模拟填报！");
+            }else
+                return InvokeResult.success();
 
-        }
-        //注掉原 卡 list 集合 的 判断
-        /*if(cards != null && cards.size() > 0){
-            itemBelongService.useItem(cards.get(0));
-        }*/
-        else
-            return InvokeResult.failure("模拟填报卡数量不足，无法进行模拟填报！");
+
+
 
         dataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
         DataMap score = reportService.getScore(Double.valueOf(exam.getString("EXAMSCORE")), exam.getString("MAJORTYPE"));

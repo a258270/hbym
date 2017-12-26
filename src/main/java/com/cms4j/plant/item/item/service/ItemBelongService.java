@@ -88,11 +88,17 @@ public class ItemBelongService {
             this.addItemBelong(dataMap);
 
         }else {
-            //ls:如果不为空值 说明 有值。无论是不是 0  运算后  更新进数据库
-            //ls:升级后的次数就是 sum_after  ，把sum_after 放到 dataMap 中 键 “COUNT”对应的位置上
-            Integer sum_after = count + sum_before;
-            dataMap.put("COUNT",sum_after);
-            daoSupport.update("ItemBelongMapper.updatItemBelong",dataMap);
+            // 升级黑钻会员：判断count 是否为-1 如果为-1 则说明是升级为 黑钻会员 直接将原来的 count 值 更新为-1
+            if(count == -1){
+                dataMap.put("COUNT",count);
+                daoSupport.update("ItemBelongMapper.updatItemBelong",dataMap);
+
+            }else{
+                //ls:如果不为空值 说明 有值。无论是不是 0  运算后  更新进数据库
+                //ls:升级后的次数就是 sum_after  ，把sum_after 放到 dataMap 中 键 “COUNT”对应的位置上
+                Integer sum_after = count + sum_before;
+                dataMap.put("COUNT",sum_after);
+                daoSupport.update("ItemBelongMapper.updatItemBelong",dataMap);}
         }
     }
 

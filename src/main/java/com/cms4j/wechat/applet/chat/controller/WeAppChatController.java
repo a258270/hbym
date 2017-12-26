@@ -144,20 +144,28 @@ public class WeAppChatController extends ApiBaseController {
                         int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
 
                        //ls:注掉原方法： List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
-                        if(cards != 0 && cards > 0){
-                            int cards_used = cards - 1;
-                            cardParam.put("COUNT",cards_used);
-                            itemBelongService.reduceItemBelong(cardParam);
-                           // ls:注掉原方法 itemBelongService.useItem(cards.get(0));
-                            chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
-                        }
-                        else{
+                       if(curUser.getString("CARD_PUOPSE")!="UC"){
+                           if(cards > 0){
+                               int cards_used = cards - 1;
+                               cardParam.put("COUNT",cards_used);
+                               itemBelongService.reduceItemBelong(cardParam);
+                               // ls:注掉原方法 itemBelongService.useItem(cards.get(0));
+                               chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
+                           } else{
 
-                            return InvokeResult.failure("院校咨询卡数量不足，无法开启新会话！");
-                        }
+                               return InvokeResult.failure("院校咨询卡数量不足，无法开启新会话！");
+                           }
+
+                       }else {
+                           chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
+                           return  InvokeResult.success();
+                       }
+
+
 
                     }
                     else if(count > 2) {
+
                         chatService.deleteChatMappingBySRUserId(param);
                         chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
                     }

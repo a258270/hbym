@@ -41,7 +41,7 @@
                     <input type="button" value="升级黄金会员"  class="gol" onclick="$('#authority').click()"/><br/>
                 <#--ls:需求更改
                     <input/><br/>
-                    <input type="button" value="升级钻石会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
+                    <input type="button" value="升级黑钻会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
                      <input/><br/>
                     <input type="button" value="升级白银会员" style="background-color:green" class="gol" onclick="$('#authority').click()"/>-->
 

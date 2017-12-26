@@ -34,7 +34,7 @@ public class ScArticlePageController extends PageBaseController {
     @RequestMapping(value = "/details/{id}")
     public ModelAndView details(@PathVariable String id) throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
-        modelAndView.setViewName("/plant/ymplant/news/news_details");
+        modelAndView.setViewName("/plant/ymplant/news/article_details");
 
         DataMap article = new DataMap();
         article.put("ARTICLE_ID", id);
@@ -44,13 +44,6 @@ public class ScArticlePageController extends PageBaseController {
 
         if(article != null) {
             scArticleService.addViewCount(article);//增加浏览量
-
-            DataMap user = new DataMap();
-            user.put("USER_ID", article.getString("AUTHOR"));
-            user = completeTeacherService.getCompleteTeacherByUserId(user);
-            if(StringUtils.isBlank(user.getString("NAME")))
-                user.put("NAME", user.getString("NICKNAME"));
-            modelAndView.addObject("author", user);
         }
 
         Page page = new Page();

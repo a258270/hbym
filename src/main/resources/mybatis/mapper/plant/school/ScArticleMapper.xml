@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ScArticleMapper">
     <select id="getArticlesByUserId" parameterType="Page" resultType="DataMap">
-        SELECT * FROM SC_ARTICLE WHERE AUTHOR = #{params.USER_ID} ORDER BY MSORT DESC
+        SELECT * FROM SC_ARTICLE WHERE AUTHOR = #{params.USER_ID} ORDER BY MSORT ASC, CREATETIME DESC
     </select>
 
     <insert id="addArticle" parameterType="DataMap">
@@ -28,7 +28,7 @@
         #{IMGURL},
         #{MSORT},
         #{CONTENT},
-        #{AUTHOR},
+        #{SCHOOL_ID},
         #{CREATETIME},
         #{MODIFYTIME},
         #{VIEWCOUNT}
@@ -52,4 +52,41 @@
     <update id="addViewCount" parameterType="DataMap">
         UPDATE SC_ARTICLE SET VIEWCOUNT = VIEWCOUNT + 1 WHERE ARTICLE_ID = #{ARTICLE_ID}
     </update>
+
+    <!-- 获取院校资料分页数据 -->
+    <select id="getArticles" parameterType="Page" resultType="DataMap">
+        SELECT
+        article.ARTICLE_ID,
+        article.TITLE,
+        article.SUBTITLE,
+        article.IMGURL,
+        article.MSORT,
+        article.CONTENT,
+        article.SCHOOL_ID,
+        article.CREATETIME,
+        article.MODIFYTIME,
+        article.VIEWCOUNT,
+        school.NAME AS SCNAME
+        FROM
+        SC_ARTICLE article,
+        SC_SCHOOL school
+        WHERE 1 = 1
+        <if test='params.SCHOOL_ID != null'>
+            AND article.SCHOOL_ID = #{params.SCHOOL_ID}
+        </if>
+        AND school.SCHOOL_ID = article.SCHOOL_ID
+        ORDER BY article.MSORT ASC, article.CREATETIME DESC
+    </select>
+
+    <!-- 批量删除院校资料 -->
+    <delete id="batchRemoves" parameterType="java.util.List">
+        DELETE FROM
+        SC_ARTICLE
+        WHERE
+        ARTICLE_ID
+        IN
+        <foreach item='item' index='index' collection='list' open='(' separator=',' close=')'>
+            #{item}
+        </foreach>
+    </delete>
 </mapper>

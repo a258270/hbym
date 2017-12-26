@@ -25,4 +25,14 @@ public class WechatAppAccount {
     public void setSecret(String secret) {
         this.secret = secret;
     }
+
+    private PayAccount payAccount;
+
+    public PayAccount getPayAccount() {
+        return payAccount;
+    }
+
+    public void setPayAccount(PayAccount payAccount) {
+        this.payAccount = payAccount;
+    }
 }

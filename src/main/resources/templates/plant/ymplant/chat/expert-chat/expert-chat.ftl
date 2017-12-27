@@ -5,15 +5,14 @@
     <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/chat/chat.css?v=${v}"/>
+    <script src="${ctxPath}/static/ymplant/js/chat/chat.js?v=${v}"></script>
     <script>
         $(document).ready(function(){
             $(".kd-jlu").click(function(){
                 $(".kd-spz").toggle();
                 $("#record").toggle();
+                document.getElementById('records_right').scrollTop = document.getElementById('records_right').scrollHeight;
             });
-
-            var div = document.getElementById('records');
-            div.scrollTop = div.scrollHeight;
 
             $(".kd-dji1").click(function(){
                 $(".kd-jh2").hide();
@@ -23,6 +22,9 @@
                 $(".kd-jh1").hide();
                 $(".kd-jh2").show();
             });
+            $(".emoticon").click(function(){
+                $(".expression").toggle();
+            })
         });
     </script>
 </head>
@@ -88,47 +90,32 @@
                 </p>-->
                 </div>
             </div>
-            <div class="kd-ltck" id="records">
-            <#if chatRecords?? && (chatRecords?size > 0) && Session?? && Session.session_user_key??>
-                <#list chatRecords as chatRecord>
-                    <#if chatRecord.SUSER_ID == Session.session_user_key.USER_ID>
-                        <div style="margin-bottom: 10px;">
-                            <div class="kd-bset" style="word-break:break-all">
-                                <p style="color:#FC7F26;margin-bottom: 5px;">
-                                    <span style="font-weight: bold;">我</span>
-                                    <span style="font-weight: bold;">(${chatRecord.CREATETIME})</span>
-                                </p>
-                                <p style="margin-bottom: 5px;word-break: break-word;">${chatRecord.CONTENT}</p>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </#if>
-                    <#if chatRecord.RUSER_ID == Session.session_user_key.USER_ID>
-                        <div style="margin-bottom: 10px;">
-                            <div class="kd-bse" style="word-break:break-all">
-                                <p style="color:#FC7F26;margin-bottom: 5px;">
-                                    <span style="font-weight: bold;"><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if></span>
-                                    <span style="font-weight: bold;">(${chatRecord.CREATETIME})</span>
-                                </p>
-                                <p style="margin-bottom: 5px;word-break: break-word;">${chatRecord.CONTENT}</p>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </#if>
-                </#list>
-            </#if>
-            </div>
+            <div class="kd-ltck" id="records"></div>
             <div class="row" style="border-bottom: 2px solid #EEDEDF;padding: 5px 0;">
                 <div class="col-md-2 col-sm-2 col-xs-2">
-                <#--<a href="#">
+                    <a href="javascript:void (0);" class="emoticon">
                         <img style="margin-right: 10px" src="/static/ymplant/images/tubiao2/8.1.png" alt=""/>
+                        <div class="expression">
+                            <div class="classic">经典表情</div>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="b-spacing">
+                                        <a href="javascript:void(0);" class="dd1">
+                                            <img class="put" src="" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </a>
-                    <a href="#">
-                        <img style="margin-right: 10px" src="/static/ymplant/images/tubiao2/8.2.png" alt=""/>
-                    </a>
-                    <a href="#">
-                        <img src="/static/ymplant/images/tubiao2/8.3.png" alt=""/>
-                    </a>-->
+                    <#--<a href="#">-->
+                        <#--<img style="margin-right: 10px" src="/static/ymplant/images/tubiao2/8.2.png" alt=""/>-->
+                    <#--</a>-->
+                    <#--<a href="#">-->
+                        <#--<img src="/static/ymplant/images/tubiao2/8.3.png" alt=""/>-->
+                    <#--</a>-->
                 </div>
                 <div class="col-md-10 col-sm-10 col-xs-10" style="text-align: right">
                     <a class="kd-jlu" style="text-decoration: none;" href="javascript:void (0);">消息记录</a>
@@ -139,7 +126,7 @@
             </div>
             <div class="kd-fsong">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger kd-fann" id="send">发送</button>
+                    <button type="button" class="btn btn-danger kd-fann" id="send" style="background-color: #FF7F28">发送</button>
                     <button style="color: #fff" type="button" class="btn dropdown-toggle kd-fann" id="kd-fannt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -269,25 +256,7 @@
                     与<#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if>的聊天记录
                 </span>
             </div>
-            <div class="strong">
-        <#if chatRecords?? && (chatRecords?size > 0) && Session?? && Session.session_user_key??>
-            <#list chatRecords as chatRecord>
-                <#if chatRecord.SUSER_ID == Session.session_user_key.USER_ID>
-                    <div class="heah">
-                        <span style="font-weight: bold;">我</span>
-                        <span style="font-weight: bold;">${chatRecord.CREATETIME}</span>
-                        <p class="nhao" style="word-break: break-word;">${chatRecord.CONTENT}</p>
-                    </div>
-                </#if>
-                <#if chatRecord.RUSER_ID == Session.session_user_key.USER_ID>
-                    <div class="heah">
-                        <span style="font-weight: bold;"><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if></span>
-                        <span style="font-weight: bold;">${chatRecord.CREATETIME}</span>
-                        <p class="nhao" style="word-break: break-word;">${chatRecord.CONTENT}</p>
-                    </div>
-                </#if>
-            </#list>
-        </#if>
+            <div class="strong" id="records_right">
             </div>
         <#--<div class="fye">
             <a href="#">
@@ -346,9 +315,62 @@
     var recId = "${student.USER_ID}";
 
     $(function () {
+    <#if Session?? && Session.session_user_key?? && Session.session_user_key.USER_ID??>
+        //请求聊天记录
+    sendRequest("/plant/chat/api/getrecs",{RUSER_ID: recId},"POST",function (obj) {
+        var strHtml = "";
+        var strHtml_right = "";
+        console.log(obj);
+        for(var i = 0; i < obj.data.length; i++){
+            var record = obj.data[i];
+            if(record.SUSER_ID == "${Session.session_user_key.USER_ID}"){
+                strHtml +="<div style='margin-bottom: 10px;'>";
+                strHtml +="<div class='kd-bset' style='word-break:break-all'>";
+                strHtml +="<p style='color:#FC7F26;margin-bottom: 5px;'>";
+                strHtml +="<span style='font-weight: bold;'>我：</span>";
+                strHtml +="<span style='font-weight: bold;'>(" + toLocalTime(record.CREATETIME) + ")</span>";
+                strHtml +="</p>";
+                strHtml += "<p style='margin-bottom: 5px;word-break: break-word;'>" + parseContent(parseEmoji(record.CONTENT)) + "</p>";
+                strHtml +="</div>";
+                strHtml +="<div class='clear'></div>";
+                strHtml +="</div>";
+//                右侧聊天记录拼接
+                strHtml_right += "<div class='heah'>";
+                strHtml_right += "<span style='font-weight: bold;'>我：</span>";
+                strHtml_right += "<span style='font-weight: bold;'>" + toLocalTime(record.CREATETIME) + "</span>";
+                strHtml_right += "<p class='nhao' style='word-break: break-word;'>" + parseContent(parseEmoji(record.CONTENT)) + "</p>";
+                strHtml_right += "</div>";
+            }
+            if(record.RUSER_ID == "${Session.session_user_key.USER_ID}"){
+                strHtml +="<div style='margin-bottom: 10px;'>";
+                strHtml +="<div class='kd-bse' style='word-break:break-all'>";
+                strHtml +="<p style='color:#FC7F26;margin-bottom: 5px;'>";
+                strHtml +="<span style='font-weight: bold;'><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if>：</span>";
+                strHtml +="<span style='font-weight: bold;'>(" + toLocalTime(record.CREATETIME) + ")</span>";
+                strHtml +="</p>";
+                strHtml +="<p style='margin-bottom: 5px;word-break: break-word;'>" + parseContent(parseEmoji(record.CONTENT)) + "</p>";
+                strHtml +="</div>";
+                strHtml +="<div class='clear'></div>";
+                strHtml +="</div>";
+                //                右侧聊天记录拼接
+                strHtml_right += "<div class='heah'>";
+                strHtml_right += "<span style='font-weight: bold;'><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if>：</span>";
+                strHtml_right += "<span style='font-weight: bold;'>" + toLocalTime(record.CREATETIME) + "</span>";
+                strHtml_right += "<p class='nhao' style='word-break: break-word;'>" + parseContent(parseEmoji(record.CONTENT)) + "</p>";
+                strHtml_right += "</div>";
+            }
+        }
+        $("#records").html(strHtml);
+        $("#records_right").html(strHtml_right);
+
+        document.getElementById('records').scrollTop = document.getElementById('records').scrollHeight;
+
         sendRequest(ctxPath + "/plant/chat/api/setread", {SUSER_ID: recId}, "POST", function (res) {
             sendRequest(ctxPath + "/plant/chat/api/getmsgcount", {}, "POST", parent.setMsg);
         });
+    });
+    </#if>
+
 
         $("#send").click(function () {
             if(recId == "") {showError("请选择聊天对象！");return false;}
@@ -369,10 +391,10 @@
                 strHtml += "<div style='margin-bottom: 10px;'>";
                 strHtml += "<div class='kd-bset' style='word-break:break-all'>";
                 strHtml += "<p style='color:#FC7F26;margin-bottom: 5px;'>";
-                strHtml += "<span style='font-weight: bold;'>我</span>";
-                strHtml += "<span>(" + getCurrentTime() + ")</span>";
+                strHtml += "<span style='font-weight: bold;'>我：</span>";
+                strHtml += "<span style='font-weight: bold;'>(" + getCurrentTime() + ")</span>";
                 strHtml += "</p>";
-                strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" + $("#message").val() + "</p>";
+                strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" + parseContent(parseEmoji($("#message").val())) + "</p>";
                 strHtml += "</div>";
                 strHtml += "<div class='clear'></div>";
                 strHtml += "</div>";
@@ -381,8 +403,7 @@
 
                 $("#message").val("");
 
-                var div = document.getElementById('records');
-                div.scrollTop = div.scrollHeight;
+                document.getElementById('records').scrollTop = document.getElementById('records').scrollHeight;
             });
         });
     });
@@ -397,14 +418,13 @@
             strHtml += "<span style='font-weight: bold'><#if complete_stu?? && complete_stu.NICKNAME??>${complete_stu.NICKNAME}<#else>暂无</#if></span>";
             strHtml += "<span style='font-weight: bold'>(" + getCurrentTime() + ")</span>";
             strHtml += "</p>";
-            strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" + evt.data.substring(evt.data.indexOf("----") + 4) + "</p>";
+            strHtml += "<p style='margin-bottom: 5px;word-break: break-word'>" + parseContent(parseEmoji(evt.data.substring(evt.data.indexOf("----") + 4)))  + "</p>";
             strHtml += "</div>";
             strHtml += "<div class='clear'></div>";
             strHtml += "</div>";
 
             $("#records").html($("#records").html() + strHtml);
-            var div = document.getElementById('records');
-            div.scrollTop = div.scrollHeight;
+            document.getElementById('records').scrollTop = document.getElementById('records').scrollHeight;
             sendRequest(ctxPath + "/plant/chat/api/setread", {SUSER_ID: recId}, "POST");
         }else{
             var targetObj = $("#" + recId);
@@ -418,6 +438,21 @@
             targetObj.show();
         }
     };
+
+    function parseContent(list) {
+        var strHtmlTmp = "";
+        for(var j = 0; j < list.length; j++) {
+            var element = list[j];
+            if(element.type == "txt") {
+                strHtmlTmp += element.data;
+            }
+            else if(element.type == "emoji") {
+                strHtmlTmp += "<img class='put' src='/static/ymplant/images/expression/" + element.data + "'>";
+            }
+        }
+
+        return strHtmlTmp;
+    }
 </script>
 <#else>
 <script language="JavaScript">

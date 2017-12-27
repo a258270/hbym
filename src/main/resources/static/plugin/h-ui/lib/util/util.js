@@ -1,12 +1,5 @@
 var getCurrentTime = function () {
-    var myDate = new Date();
-
-    return myDate.getFullYear() +
-        "-" + (myDate.getMonth() + 1) +
-        "-" + myDate.getDate() +
-        " " + myDate.getHours() +
-        ":" + myDate.getMinutes() +
-            ":" + myDate.getSeconds();
+    return toLocalTime(new Date());
 };
 
 var toLocalTime = function (time) {

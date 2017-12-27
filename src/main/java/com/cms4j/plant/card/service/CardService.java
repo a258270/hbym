@@ -226,7 +226,7 @@ public class CardService {
         }else if("UC".equals(purpose)){
             pocketParam.put("PRICE",2000);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
-            //更新钱包 5000金币
+            //更新钱包 2000金币
             pocketService.recharge(pocketParam);
             //用户ID放入DataMap----->pocketParam 中
             pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));

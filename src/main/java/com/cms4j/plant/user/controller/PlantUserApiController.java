@@ -596,7 +596,7 @@ public class PlantUserApiController extends ApiBaseController {
         page.setResults(recs);
         return page;
     }
-
+    //ls:此处是验证是否登录。录入激活码和密码 升级会员
     @RequestMapping(value = "/vip")
     public InvokeResult vip() throws Exception {
         
@@ -621,7 +621,7 @@ public class PlantUserApiController extends ApiBaseController {
 
         dataMap.put("NUMBER", dataMap.getString("NUMBER").trim().toUpperCase());
         dataMap.put("PASSWORD", dataMap.getString("PASSWORD").trim().toLowerCase());
-
+        //根据输入的卡号 后台逻辑 给学生相应的VIP等级 添加不同的 使用卡 次数
         Integer flag = cardService.activeVip(dataMap);
 
         if(flag.equals(-1))
@@ -633,8 +633,14 @@ public class PlantUserApiController extends ApiBaseController {
         if(flag.equals(-3))
             return InvokeResult.failure("卡号已使用！");
 
-
+        //ls:登录的时候已经获取了 curUser 放进了 session 中， 升级之后 等级不同  session 应该
+        //更新（key值 put 进 session 中） 此处应该获取出 会员的等级身份
         DataMap user = plantUserService.getUserByUserId(curUser);
+
+      // String cardSessionUtil.addUser2Session(user);_purpose_value =userPur.getString("CARD_PURPOSE");
+        //ls：向user中放入 CARD_PURPOSE = UA/UB/UC
+        //curUser.put("CARD_PURPOSE",plantUserService.validUser(curUser).getString("CARD_PURPOSE"));
+
         SessionUtil.addUser2Session(user);
 
         return InvokeResult.success();

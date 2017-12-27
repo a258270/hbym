@@ -18,11 +18,11 @@
                 <p>${subject.MBTI_ID}、${subject.TITLE}</p>
                 <form>
                     <#--<input class="choice btnA" type="submit" value="A ${subject.OPTION_A}"/>-->
-                    <a href="javascript:void (0);" class="choice btnA">A ${subject.OPTION_A}</a>
+                    <a href="javascript:void (0);" class="choice btnA">A&nbsp;&nbsp; ${subject.OPTION_A}</a>
                 </form>
                 <form>
                     <#--<input class="choice btnB" type="submit" value="B ${subject.OPTION_B}"/>-->
-                    <a href="javascript:void (0);" class="choice btnB">B ${subject.OPTION_B}</a>
+                    <a href="javascript:void (0);" class="choice btnB">B &nbsp;&nbsp;${subject.OPTION_B}</a>
                 </form>
                 <!--进度条 开始-->
                 <div style="margin-top: 100px;">

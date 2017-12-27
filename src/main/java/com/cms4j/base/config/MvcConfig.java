@@ -4,6 +4,9 @@ import com.cms4j.base.interceptor.LoginInterceptor;
 import com.cms4j.base.interceptor.VersionInterceptor;
 import com.cms4j.base.plugin.BaseSetting;
 import com.cms4j.helper.WechatAppProxy;
+import com.cms4j.helper.account.PayAccount;
+import com.cms4j.helper.account.WechatAppAccount;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +34,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private String appId;
     @Value("${wechat.applet.secret}")
     private String secret;
+    @Value("${wechat.applet.mch_id")
+    private String mch_id;
+    @Value("${wechat.applet.mch_password")
+    private String mch_password;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -47,6 +54,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public WechatAppProxy getWechatAppProxy() {
-        return new WechatAppProxy(appId, secret);
+        WechatAppAccount wechatAppAccount = new WechatAppAccount(appId, secret);
+        if(StringUtils.isBlank(mch_id) || StringUtils.isBlank(mch_password)) {
+            wechatAppAccount.setPayAccount(null);
+        }
+        else{
+            wechatAppAccount.setPayAccount(new PayAccount(mch_id, mch_password));
+        }
+
+        return new WechatAppProxy(wechatAppAccount);
     }
 }

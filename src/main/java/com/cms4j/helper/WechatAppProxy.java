@@ -2,21 +2,23 @@ package com.cms4j.helper;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cms4j.helper.account.WechatAppAccount;
+import com.cms4j.helper.api.pay.PayApi;
 import com.cms4j.helper.api.user.UserApi;
 
 public class WechatAppProxy {
     public WechatAppProxy(WechatAppAccount wechatAppAccount) {
         this.wechatAppAccount = wechatAppAccount;
-        this.initProxy(this.wechatAppAccount);
+        this.initProxy();
     }
 
-    public WechatAppProxy(String appId, String secret) {
+    /*public WechatAppProxy(String appId, String secret) {
         this.wechatAppAccount = new WechatAppAccount(appId, secret);
-        this.initProxy(this.wechatAppAccount);
-    }
+        this.initProxy();
+    }*/
 
-    private void initProxy(WechatAppAccount wechatAppAccount) {
+    private void initProxy() {
         this.userApi = new UserApi();
+        this.payApi = new PayApi(wechatAppAccount.getPayAccount());
     }
 
     /**
@@ -55,4 +57,20 @@ public class WechatAppProxy {
         return userApi.getJsCode2Session(this.getWechatAppAccount().getAppId(), this.getWechatAppAccount().getSecret(), code);
     }
 
+    /**
+     * 关于微信支付的相关api操作
+     */
+    private PayApi payApi;
+
+    public PayApi getPayApi() {
+        return payApi;
+    }
+
+    public void setPayApi(PayApi payApi) {
+        this.payApi = payApi;
+    }
+
+    public void unifiedorder() {
+
+    }
 }

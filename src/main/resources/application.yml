@@ -22,7 +22,7 @@ spring:
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
     profiles:
-        active: pro
+        active: dev
         version: 1.0.1
     http:
       encoding:

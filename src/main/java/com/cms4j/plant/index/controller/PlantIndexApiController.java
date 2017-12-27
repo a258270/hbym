@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create: 2017/6/28
  */
 @RestController
-@RequestMapping(value = "/plant/api")
+@RequestMapping(value = {"/plant/api", "/wechat/applet/api"})
 public class PlantIndexApiController extends ApiBaseController {
 
     @Autowired

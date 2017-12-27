@@ -41,8 +41,8 @@
                      value= "<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑钻会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>"/>
                 </p>
                 <p style="text-align: center;margin: 15px 0">
-                <#if Session.session_user_key?? && !Session.session_user_key.OVERDUETIME?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
-                    <input type="button" value="升级黄金会员"  class="gol" onclick="$('#authority').click()"/><br/>
+                <#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
+                    <input type="button" value="激活会员卡"  class="gol" onclick="$('#activecard').click()"/><br/>
                 <#--ls:需求更改
                     <input/><br/>
                     <input type="button" value="升级黑钻会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
@@ -87,6 +87,9 @@
                                     <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'pocket'>kd-lhtai</#if>"  data-href="${ctxPath}/plant/user/pocket">我的物品</a></li>
                                     <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'account'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/account">账户安全</a></li>
                                     <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'authority'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/authority" id="authority">账户权限</a></li>
+                                    <#if Session.session_user_key?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
+                                        <li><a href="javascript:void(0);" class="ster <#if url?? && url == 'activecard'>kd-lhtai</#if>" data-href="${ctxPath}/plant/user/activecard" id="activecard">激活会员卡</a></li>
+                                    </#if>
                                 </ul>
                             </li>
                         </ul>

@@ -80,7 +80,7 @@
             </#if>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right: 0;width: 723px;">
+        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right: 0;width: 37.8%;">
             <div class="kd-mzi row">
                 <div class="col-md-2 col-sm-2 col-xs-2"style="text-align: right">
                     <img src="<#if complete_tea?? && complete_tea.HEADURL??>${complete_tea.HEADURL}<#else>${ctxPath}/static/ymplant/img/timg.png</#if>" style="width: 50px;height:50px;border-radius: 50%" alt=""/>

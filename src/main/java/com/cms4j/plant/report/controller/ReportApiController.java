@@ -5,6 +5,7 @@ import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
+import com.cms4j.plant.card.util.CardUtil;
 import com.cms4j.plant.item.item.service.ItemBelongService;
 import com.cms4j.plant.report.service.ReportService;
 import com.cms4j.plant.report.service.ScorelineService;
@@ -125,77 +126,73 @@ public class ReportApiController extends ApiBaseController {
         DataMap param = new DataMap();
         param.put("USER_ID", curUser.getString("USER_ID"));
         param.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
-        //ls：经过商议 item_belong表 修改字段 isval 为 count 或者sum  后台 逻辑修改
-        //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
+
+        Calendar a = Calendar.getInstance();
+        String year = String.valueOf(a.get(Calendar.YEAR));
+        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
+        String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);
+        DataMap YEAR = new DataMap();
+        YEAR.put("CODE", "YEAR");
+        YEAR = dictionaryService.getDictionaryByCode(YEAR);
+        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+        DataMap curDataMap = new DataMap();
+        DataMap lastDataMap = new DataMap();
+        DataMap last2DataMap = new DataMap();
+        for(DataMap YEARTmp : YEARs) {
+            if(YEARTmp.getString("NAME").equals(lastYear)){
+                lastDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
+            }
+
+            if(YEARTmp.getString("NAME").equals(year)){
+                curDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
+            }
+
+            if(YEARTmp.getString("NAME").equals(last2Year)) {
+                last2DataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
+            }
+        }
+        curDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        lastDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        //获取分数线
+        List<DataMap> lines = scorelineService.getScorelineByYear(curDataMap);
+        if(lines == null) {
+            scorelineService.getScorelineByYear(lastDataMap);
+        }
+
+        for(DataMap line : lines) {
+            if(PlantConst.ARRANGMENT_B1.equals(dataMap.getString("ARRANGMENT_ID")) && PlantConst.ARRANGMENT_B1.equals(line.getString("ARRANGMENT_ID"))) {
+                if(Double.valueOf(line.getString("SCORE")) > Double.valueOf(exam.getString("EXAMSCORE"))) {
+                    return InvokeResult.failure("高考分数与批次不符合");
+                }
+                break;
+            }
+            if(PlantConst.ARRANGMENT_B2.equals(dataMap.getString("ARRANGMENT_ID")) && PlantConst.ARRANGMENT_B3.equals(line.getString("ARRANGMENT_ID"))) {
+                if(Double.valueOf(line.getString("SCORE")) > Double.valueOf(exam.getString("EXAMSCORE"))) {
+                    return InvokeResult.failure("高考分数与批次不符合");
+                }
+                break;
+            }
+        }
+        if(!CardUtil.CARD_PURPOSE_VIP3.equals(curUser.getString("CARD_PURPOSE"))){
+
+            //ls：经过商议 item_belong表 修改字段 isval 为 count 或者sum  后台 逻辑修改
+            //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
             //次数
-        int cards =  itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
-       //ls：因黑钻会员使用次数为无限 ，并设置count 的初始值为-1    做反向判断： 因cards =0为分界线， cards >0 和 cards <0 都能使用
-       if(curUser.getString("CARD_PUOPSE")!="UC"){
-
-            if( cards > 0) {
-               //ls: 使用一次 智能推荐 减一次
-                int cards_used = cards - 1;
-                param.put("COUNT",cards_used);
-
-                itemBelongService.reduceItemBelong(param);
-
-            }else{
-                return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");}
-
-
-
+            int cards =  itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
+            //ls：因黑钻会员使用次数为无限 ，并设置count 的初始值为-1    做反向判断： 因cards =0为分界线， cards >0 和 cards <0 都能使用
             //注掉原方法： itemBelongService.useItem(cards.get(0));
+           if( cards > 0) {
+               //ls: 使用一次 智能推荐 减一次
+               int cards_used = cards - 1;
+               param.put("COUNT",cards_used);
 
-            Calendar a = Calendar.getInstance();
-            String year = String.valueOf(a.get(Calendar.YEAR));
-            String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-            String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);
-            DataMap YEAR = new DataMap();
-            YEAR.put("CODE", "YEAR");
-            YEAR = dictionaryService.getDictionaryByCode(YEAR);
-            List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
-            DataMap curDataMap = new DataMap();
-            DataMap lastDataMap = new DataMap();
-            DataMap last2DataMap = new DataMap();
-            for(DataMap YEARTmp : YEARs) {
-                if(YEARTmp.getString("NAME").equals(lastYear)){
-                    lastDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
-                }
+               itemBelongService.reduceItemBelong(param);
 
-                if(YEARTmp.getString("NAME").equals(year)){
-                    curDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
-                }
-
-                if(YEARTmp.getString("NAME").equals(last2Year)) {
-                    last2DataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
-                }
-            }
-            curDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-            lastDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-            last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-            //获取分数线
-            List<DataMap> lines = scorelineService.getScorelineByYear(curDataMap);
-            if(lines == null) {
-                scorelineService.getScorelineByYear(lastDataMap);
-            }
-
-            for(DataMap line : lines) {
-                if(PlantConst.ARRANGMENT_B1.equals(dataMap.getString("ARRANGMENT_ID")) && PlantConst.ARRANGMENT_B1.equals(line.getString("ARRANGMENT_ID"))) {
-                    if(Double.valueOf(line.getString("SCORE")) > Double.valueOf(exam.getString("EXAMSCORE"))) {
-                        return InvokeResult.failure("高考分数与批次不符合");
-                    }
-                    break;
-                }
-                if(PlantConst.ARRANGMENT_B2.equals(dataMap.getString("ARRANGMENT_ID")) && PlantConst.ARRANGMENT_B3.equals(line.getString("ARRANGMENT_ID"))) {
-                    if(Double.valueOf(line.getString("SCORE")) > Double.valueOf(exam.getString("EXAMSCORE"))) {
-                        return InvokeResult.failure("高考分数与批次不符合");
-                    }
-                    break;
-                }
-            }
-        }else {
-           return InvokeResult.success();
-       }
+           }else{
+               return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");
+           }
+        }
 
        /* else
             return InvokeResult.failure("智能推荐卡数量不足，无法进行智能推荐！");*/
@@ -204,9 +201,9 @@ public class ReportApiController extends ApiBaseController {
 
         DataMap score = reportService.getScore(Double.valueOf(exam.getString("EXAMSCORE")), dataMap.getString("MAJORTYPE_ID"));
 
-        Calendar a = Calendar.getInstance();
+        /*Calendar a = Calendar.getInstance();
         String year = String.valueOf(a.get(Calendar.YEAR));
-        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
+        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);*/
         /*DataMap YEAR = new DataMap();
         YEAR.put("CODE", "YEAR");
         YEAR = dictionaryService.getDictionaryByCode(YEAR);
@@ -442,7 +439,7 @@ public class ReportApiController extends ApiBaseController {
         int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
 
         //ls：因黑钻会员使用次数为无限 ， 做反向判断 如果是黑钻会员直接放行
-        if(curUser.getString("CARD_PUOPSE")!= "UC"){
+        if(!CardUtil.CARD_PURPOSE_VIP3.equals(curUser.getString("CARD_PURPOSE"))){
             if( cards>0 ){ //使用一次 减一次
                 int cards_used= cards - 1;
                 param.put("COUNT",cards_used);
@@ -454,11 +451,7 @@ public class ReportApiController extends ApiBaseController {
                 }*/
             else
                 return InvokeResult.failure("模拟填报卡数量不足，无法进行模拟填报！");
-            }else
-                return InvokeResult.success();
-
-
-
+        }
 
         dataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
         DataMap score = reportService.getScore(Double.valueOf(exam.getString("EXAMSCORE")), exam.getString("MAJORTYPE"));

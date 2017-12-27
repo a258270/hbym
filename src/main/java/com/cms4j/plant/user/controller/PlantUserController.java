@@ -383,6 +383,24 @@ public class PlantUserController extends PageBaseController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/activecard")
+    public ModelAndView activeCard() throws Exception {
+        ModelAndView modelAndView = this.getModelAndView();
+        DataMap curUser = SessionUtil.getCurUser();
+        if(curUser == null || !PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+            modelAndView.setViewName(PlantConst.URL_NOLOGIN);
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("/plant/ymplant/center/student/authority");
+        return modelAndView;
+    }
+
+    /**
+     * 用户权限页面
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/authority")
     public ModelAndView authority() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();

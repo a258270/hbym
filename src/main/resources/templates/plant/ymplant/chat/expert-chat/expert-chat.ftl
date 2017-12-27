@@ -63,7 +63,7 @@
             </#if>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right:0;height: 100%;width: 730px;">
+        <div class="col-md-4 col-sm-4 col-xs-4" style="background-color: #fff;padding-right:0;height: 100%;width: 37.8%;">
             <div class="kd-mzi row">
                 <div class="col-md-2 col-sm-2 col-xs-2"style="text-align: right">
                 <#if student??>

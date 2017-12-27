@@ -18,7 +18,7 @@ public class WechatAppProxy {
 
     private void initProxy() {
         this.userApi = new UserApi();
-        this.payApi = new PayApi(wechatAppAccount.getPayAccount());
+        this.payApi = new PayApi();
     }
 
     /**
@@ -54,7 +54,7 @@ public class WechatAppProxy {
      * @return
      */
     public JSONObject getJsCode2Session(String code) {
-        return userApi.getJsCode2Session(this.getWechatAppAccount().getAppId(), this.getWechatAppAccount().getSecret(), code);
+        return userApi.getJsCode2Session(this.wechatAppAccount, code);
     }
 
     /**

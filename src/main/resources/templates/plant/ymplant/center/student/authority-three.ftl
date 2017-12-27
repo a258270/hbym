@@ -15,7 +15,7 @@
     <p>账户权限</p>
     <div class="zxng">
         <div style="font-weight: bold;margin-bottom: 20px;">
-            尊敬的<span style="color:#FFC90E;"> 黄金用户 </span>，您可享受到如下服务：
+            尊敬的<span style="color:#FFC90E;"> <#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑钻会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if> </span>，您可享受到如下服务：
         </div>
         <div class="row" style="padding: 10px 15px;margin-bottom: 10px;">
             <div class="col-md-2 col-sm-2 col-xs-2" style="text-align: center">

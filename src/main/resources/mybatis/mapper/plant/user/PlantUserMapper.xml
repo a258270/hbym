@@ -6,7 +6,7 @@
             user.*, card.TYPE_ID AS CARD_TYPE, card.PURPOSE_ID AS CARD_PURPOSE, card.OVERDUETIME AS OVERDUETIME
         FROM
         UR_USER user
-        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID
+        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID AND timestampdiff(DAY,NOW(),card.OVERDUETIME) &gt;= 0
         LEFT JOIN UR_COMPLETE_STU stu ON user.USER_ID = stu.USER_ID
         LEFT JOIN UR_COMPLETE_TEA tea ON user.USER_ID = tea.USER_ID
         LEFT JOIN UR_COMPLETE_PRO pro ON user.USER_ID = pro.USER_ID
@@ -35,8 +35,8 @@
         WHERE USERNAME = #{USERNAME}
     </update>
     <select id="getUserByUserId" parameterType="DataMap" resultType="DataMap">
-        SELECT user.*, card.OVERDUETIME AS OVERDUETIME FROM UR_USER user
-        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID
+        SELECT user.*, card.TYPE_ID AS CARD_TYPE, card.PURPOSE_ID AS CARD_PURPOSE, card.OVERDUETIME AS OVERDUETIME FROM UR_USER user
+        LEFT JOIN TB_CARD card ON user.VIP = card.CARD_ID AND timestampdiff(DAY,NOW(),card.OVERDUETIME) &gt;= 0
         WHERE user.USER_ID = #{USER_ID}
     </select>
     <update id="updatePassword" parameterType="DataMap">

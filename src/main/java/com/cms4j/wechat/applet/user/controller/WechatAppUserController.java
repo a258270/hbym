@@ -309,6 +309,13 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID")) && !StringUtils.isBlank(curUser.getString("VIP")));
     }
 
+    @RequestMapping(value = "/getvip")
+    public InvokeResult getVip() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        return InvokeResult.success(curUser.getString("CARD_PURPOSE") == null ? "" : curUser.getString("CARD_PURPOSE"));
+    }
+
     /**
      * 获取角色标志
      * @return 1学生 2老师 3专家 0暂无信息

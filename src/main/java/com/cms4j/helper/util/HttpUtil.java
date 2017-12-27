@@ -2,8 +2,14 @@ package com.cms4j.helper.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cms4j.helper.entity.Entity;
+import com.cms4j.helper.entity.UrlEntity;
+import com.cms4j.helper.entity.XmlEntity;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +27,8 @@ public class HttpUtil {
         return JSON.parseObject(sendGet(url));
     }
 
-    public static JSONObject sendGetForJSONObject(String url, Map<String, String> parameters) {
-        return JSON.parseObject(sendGet(url, parameters));
+    public static JSONObject sendGetForJSONObject(String url, UrlEntity urlEntity) {
+        return JSON.parseObject(sendGet(url, urlEntity));
     }
 
     /**
@@ -41,37 +47,23 @@ public class HttpUtil {
      *
      * @param url
      *            目的地址
-     * @param parameters
-     *            请求参数，Map类型。
+     * @param urlEntity
+     *            请求参数，UrlEntity类型。
      * @return 远程响应结果
      */
-    public static String sendGet(String url, Map<String, String> parameters) {
+    public static String sendGet(String url, UrlEntity urlEntity) {
         String result="";
         BufferedReader in = null;// 读取响应输入流
-        StringBuffer sb = new StringBuffer();// 存储参数
-        String params = "";// 编码之后的参数
 
-        String full_url = "";//全URL
+        String full_url = url;//全URL
         try {
-            if(parameters != null && parameters.size() > 0) {
+            if(urlEntity != null) {
                 // 编码请求参数
-                params = encodeParam(parameters);
-
-                full_url = url + "?" + params;
+                full_url += urlEntity;
             }
-            else{
-                full_url = url;
-            }
-            // 创建URL对象
-            java.net.URL connURL = new java.net.URL(full_url);
             // 打开URL连接
-            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) connURL
-                    .openConnection();
-            // 设置通用属性
-            httpConn.setRequestProperty("Accept", "*/*");
-            httpConn.setRequestProperty("Connection", "Keep-Alive");
-            httpConn.setRequestProperty("User-Agent",
-                    "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+            HttpURLConnection httpConn = createConnection(full_url, urlEntity);
+            httpConn.setRequestMethod("GET");
             // 建立实际的连接
             httpConn.connect();
             // 响应头部获取
@@ -99,7 +91,7 @@ public class HttpUtil {
                 ex.printStackTrace();
             }
         }
-        return result ;
+        return result;
     }
 
     /**
@@ -114,8 +106,8 @@ public class HttpUtil {
         return JSON.parseObject(sendPost(url));
     }
 
-    public static JSONObject sendPostForJSONObject(String url, Map<String, String> parameters) {
-        return JSON.parseObject(sendPost(url, parameters));
+    public static JSONObject sendPostForJSONObject(String url, Entity entity) {
+        return JSON.parseObject(sendPost(url, entity));
     }
 
     /**
@@ -134,11 +126,11 @@ public class HttpUtil {
      *
      * @param url
      *            目的地址
-     * @param parameters
-     *            请求参数，Map类型。
+     * @param entity
+     *            请求参数，Entity类型。
      * @return 远程响应结果
      */
-    public static String sendPost(String url, Map<String, String> parameters) {
+    public static String sendPost(String url, Entity entity) {
         String result = "";// 返回的结果
         BufferedReader in = null;// 读取响应输入流
         PrintWriter out = null;
@@ -146,18 +138,12 @@ public class HttpUtil {
         String params = "";// 编码之后的参数
         try {
             // 编码请求参数
-            if(parameters != null && parameters.size() > 0)
-                params = encodeParam(parameters);
-            // 创建URL对象
-            java.net.URL connURL = new java.net.URL(url);
-            // 打开URL连接
-            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) connURL
-                    .openConnection();
-            // 设置通用属性
-            httpConn.setRequestProperty("Accept", "*/*");
-            httpConn.setRequestProperty("Connection", "Keep-Alive");
-            httpConn.setRequestProperty("User-Agent",
-                    "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+            if(!(entity instanceof XmlEntity))
+                params = encodeParam(entity.getFieldsMap());
+            else
+                params += entity;
+            //获取http连接
+            HttpURLConnection httpConn = createConnection(url, entity);
             // 设置POST方式
             httpConn.setDoInput(true);
             httpConn.setDoOutput(true);
@@ -193,6 +179,26 @@ public class HttpUtil {
         return result;
     }
 
+    private static HttpURLConnection createConnection(String url, Entity entity) throws IOException {
+        // 创建URL对象
+        URL connURL = new URL(url);
+        // 打开URL连接
+        HttpURLConnection httpConn = (HttpURLConnection) connURL
+                .openConnection();
+        // 设置通用属性
+        httpConn.setRequestProperty("Accept", "*/*");
+        httpConn.setRequestProperty("Connection", "Keep-Alive");
+        httpConn.setRequestProperty("User-Agent",
+                "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+
+        if(entity instanceof XmlEntity) {
+            httpConn.setRequestProperty("Content-Type","text/xml");
+            httpConn.setRequestProperty("charset","utf-8");
+        }
+
+
+        return httpConn;
+    }
     /**
      * 构造params字符串
      * @param parameters
@@ -204,14 +210,14 @@ public class HttpUtil {
         if(parameters.size()==1){
             for(String name:parameters.keySet()){
                 sb.append(name).append("=").append(
-                        java.net.URLEncoder.encode(parameters.get(name),
+                        URLEncoder.encode(parameters.get(name),
                                 "UTF-8"));
             }
             return sb.toString();
         }else{
             for (String name : parameters.keySet()) {
                 sb.append(name).append("=").append(
-                        java.net.URLEncoder.encode(parameters.get(name),
+                        URLEncoder.encode(parameters.get(name),
                                 "UTF-8")).append("&");
             }
             String temp_params = sb.toString();

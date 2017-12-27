@@ -28,6 +28,9 @@ public class CardService {
     @Autowired
     private PocketService pocketService;
 
+    @Autowired
+    private CardService cardService;
+
     public String getMaxCodeByParams(DataMap dataMap) throws Exception {
         String maxCode = (String) daoSupport.findForObject("CardMapper.getMaxCodeByParams", dataMap);
         if(StringUtils.isBlank(maxCode))
@@ -175,15 +178,26 @@ public class CardService {
         if(Boolean.valueOf(card.getString("ISUSED")))
             return -3;
 
-        curUser.put("CARD_ID", card.getString("CARD_ID"));
-        plantUserService.setUserVip(curUser);
+        if(!StringUtils.isBlank(curUser.getString("CARD_PURPOSE"))) {
+            //该用户本身就是会员
+            if(curUser.getString("CARD_PURPOSE").compareTo(card.getString("PURPOSE_ID")) < 0) {
+                curUser.put("CARD_ID", card.getString("CARD_ID"));
+                plantUserService.setUserVip(curUser);
+            }
+        }
+        else{
+            curUser.put("CARD_ID", card.getString("CARD_ID"));
+            plantUserService.setUserVip(curUser);
+        }
+
+        //使用掉会员卡
         this.setCardUsed(card);
 
 
         DataMap pocket = pocketService.getPocketByUserId(curUser);
         //ls:从dataMap中获取 升级会员后截取的 UA(白银会员)/UB(黄金会员)/UC(黑钻会员)
         DataMap pocketParam = new DataMap();
-        if("UA".equals(purpose)){
+        if(CardUtil.CARD_PURPOSE_VIP.equals(purpose)){
             pocketParam.put("PRICE",100);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
             //更新钱包
@@ -202,7 +216,7 @@ public class CardService {
             //性格测试：3次
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
             itemBelongService.reChargeItemBelong(3,pocketParam);
-        }else if ("UB".equals(purpose)){
+        }else if (CardUtil.CARD_PURPOSE_VIP2.equals(purpose)){
             //ls:需求由 1000——>500
 
             pocketParam.put("PRICE",500);
@@ -223,25 +237,25 @@ public class CardService {
             //性格测试：10次
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
             itemBelongService.reChargeItemBelong(10,pocketParam);
-        }else if("UC".equals(purpose)){
+        }else if(CardUtil.CARD_PURPOSE_VIP3.equals(purpose)){
             pocketParam.put("PRICE",2000);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
             //更新钱包 2000金币
             pocketService.recharge(pocketParam);
             //用户ID放入DataMap----->pocketParam 中
-            pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));
+            //pocketParam.put("USER_ID",SessionUtil.getCurUser().getString("USER_ID"));
             //智能推荐：无限次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZNTJK);
-            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZNTJK);
+            //itemBelongService.reChargeItemBelong(-1,pocketParam);
             //模拟填报：无限次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_MNTBK);
-            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_MNTBK);
+            //itemBelongService.reChargeItemBelong(-1,pocketParam);
             //院校咨询：无限次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
-            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
+            //itemBelongService.reChargeItemBelong(-1,pocketParam);
             //性格测试：无限次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
-            itemBelongService.reChargeItemBelong(-1,pocketParam);
+            //pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+            //itemBelongService.reChargeItemBelong(-1,pocketParam);
              // 2017/12/22 18:25
         }
 

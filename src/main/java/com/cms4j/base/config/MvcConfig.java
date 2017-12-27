@@ -34,9 +34,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private String appId;
     @Value("${wechat.applet.secret}")
     private String secret;
-    @Value("${wechat.applet.mch_id")
+    @Value("${wechat.applet.mch_id}")
     private String mch_id;
-    @Value("${wechat.applet.mch_password")
+    @Value("${wechat.applet.mch_password}")
     private String mch_password;
 
     @Override
@@ -54,12 +54,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public WechatAppProxy getWechatAppProxy() {
-        WechatAppAccount wechatAppAccount = new WechatAppAccount(appId, secret);
+        WechatAppAccount wechatAppAccount = null;
         if(StringUtils.isBlank(mch_id) || StringUtils.isBlank(mch_password)) {
-            wechatAppAccount.setPayAccount(null);
+            wechatAppAccount = new WechatAppAccount(appId, secret);
         }
         else{
-            wechatAppAccount.setPayAccount(new PayAccount(mch_id, mch_password));
+            wechatAppAccount = new PayAccount(appId, secret, mch_id, mch_password);
         }
 
         return new WechatAppProxy(wechatAppAccount);

@@ -5,6 +5,7 @@ import com.cms4j.base.system.user.online.service.SessionService;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
+import com.cms4j.plant.card.util.CardUtil;
 import com.cms4j.plant.chat.service.ChatScoreService;
 import com.cms4j.plant.chat.service.ChatService;
 import com.cms4j.plant.item.item.service.ItemBelongService;
@@ -141,26 +142,23 @@ public class WeAppChatController extends ApiBaseController {
                         DataMap cardParam = new DataMap();
                         cardParam.put("USER_ID", curUser.getString("USER_ID"));
                         cardParam.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-                        int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
 
                        //ls:注掉原方法： List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
-                       if(curUser.getString("CARD_PUOPSE")!="UC"){
+                       if(!CardUtil.CARD_PURPOSE_VIP3.equals(curUser.getString("CARD_PURPOSE"))){
+                           int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
                            if(cards > 0){
                                int cards_used = cards - 1;
                                cardParam.put("COUNT",cards_used);
                                itemBelongService.reduceItemBelong(cardParam);
-                               // ls:注掉原方法 itemBelongService.useItem(cards.get(0));
-                               chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
+
                            } else{
 
                                return InvokeResult.failure("院校咨询卡数量不足，无法开启新会话！");
                            }
 
-                       }else {
-                           chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
-                           return  InvokeResult.success();
                        }
-
+                        // ls:注掉原方法 itemBelongService.useItem(cards.get(0));
+                        chatService.addChatMapping(curUser.getString("USER_ID"), dataMap.getString("USER_ID"));
 
 
                     }

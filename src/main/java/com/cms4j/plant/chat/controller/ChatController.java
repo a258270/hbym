@@ -4,6 +4,7 @@ import com.cms4j.base.controller.PageBaseController;
 import com.cms4j.base.system.user.online.service.SessionService;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.SessionUtil;
+import com.cms4j.plant.card.util.CardUtil;
 import com.cms4j.plant.chat.service.ChatScoreService;
 import com.cms4j.plant.chat.service.ChatService;
 import com.cms4j.plant.item.item.service.ItemBelongService;
@@ -91,7 +92,7 @@ public class ChatController extends PageBaseController {
         modelAndView.setViewName("/plant/ymplant/chat/student/student");
 
         if(StringUtils.isBlank(curUser.getString("OVERDUETIME"))) {
-            modelAndView.addObject("error", "您当前不是黄金会员，点击确定前往激活页面");
+            modelAndView.addObject("error", "当前会员身份无此权限，点击确定前往激活页面");
             modelAndView.addObject("url", "authority");
             return modelAndView;
         }
@@ -127,24 +128,28 @@ public class ChatController extends PageBaseController {
                     DataMap cardParam = new DataMap();
                     cardParam.put("USER_ID", curUser.getString("USER_ID"));
                     cardParam.put("ITEMTYPE", PlantConst.ITEMTYPE_ZXK);
-                    //获取 院校咨询卡 次数
-                    //ls: 注掉方法：List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
-                    int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
-                   //确保咨询卡有可用次数  并且扣除一次 后建立双方映射链接
-                    if(cards != 0 && cards > 0){
-                        int cards_used = cards - 1;
-                        cardParam.put("COUNT",cards_used);
-                        //
-                        itemBelongService.reduceItemBelong(cardParam);
 
-                      //  itemBelongService.useItem(cards.get(0));
-                        chatService.addChatMapping(curUser.getString("USER_ID"), recId);
-                    }
-                    else{
-                        modelAndView.addObject("error", "院校咨询卡数量不足，无法开启新会话！");
-                        flag = false;
+                    if(!CardUtil.CARD_PURPOSE_VIP3.equals(curUser.getString("CARD_PURPOSE"))){
+                        //获取 院校咨询卡 次数
+                        //ls: 注掉方法：List<DataMap> cards = itemBelongService.getValItemBelongByUserIdAndItemType(cardParam);
+                        int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(cardParam);
+                        //确保咨询卡有可用次数  并且扣除一次 后建立双方映射链接
+                        if(cards != 0 && cards > 0){
+                            int cards_used = cards - 1;
+                            cardParam.put("COUNT",cards_used);
+                            //
+                            itemBelongService.reduceItemBelong(cardParam);
+
+
+                        }
+                        else{
+                            modelAndView.addObject("error", "院校咨询卡数量不足，无法开启新会话！");
+                            flag = false;
+                        }
                     }
 
+                    //  itemBelongService.useItem(cards.get(0));
+                    chatService.addChatMapping(curUser.getString("USER_ID"), recId);
                 }
                 else if(count > 2) {
                     chatService.deleteChatMappingBySRUserId(param);

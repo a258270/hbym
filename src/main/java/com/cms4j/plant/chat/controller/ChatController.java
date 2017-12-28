@@ -148,8 +148,11 @@ public class ChatController extends PageBaseController {
                         }
                     }
 
+                    if(flag){
+                        chatService.addChatMapping(curUser.getString("USER_ID"), recId);
+                    }
                     //  itemBelongService.useItem(cards.get(0));
-                    chatService.addChatMapping(curUser.getString("USER_ID"), recId);
+
                 }
                 else if(count > 2) {
                     chatService.deleteChatMappingBySRUserId(param);

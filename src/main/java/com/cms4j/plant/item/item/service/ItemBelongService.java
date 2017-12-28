@@ -118,6 +118,15 @@ public class ItemBelongService {
         params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
         Integer zntjk = this.getValItemBelongCountByUserIdAndItemType(params);
         dataMap.put("zntjk", zntjk);
+        //12.28 ls：性格测试卡
+        params.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+        Integer xgcsk = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("xgcsk",xgcsk);
+       /* //12.28 ls:改分卡  (注：目前只有黑钻有 1 张改分卡  商城可充值购买  后台暂无扣卡逻辑)
+        params.put("ITEMTYPE",PlantConst.ITEMTYPE_GFK);
+        Integer gfk = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("gfk",gfk);*/
+
 
         return dataMap;
     }

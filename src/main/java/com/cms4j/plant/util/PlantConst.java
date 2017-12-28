@@ -35,6 +35,8 @@ public class PlantConst {
     public static final String ITEMTYPE_ZNTJK = "rkups02m6o";//智能推荐卡
     //ls:需求增加-->性格测试卡
     public static final String ITEMTYPE_XGCSK ="1qhdv6udj4";//性格测试卡
+    //12、28ls: 增加 -->改分卡
+    public static final String ITEMTYPE_GFK = "71n37af5e5";//改分卡
 
 
     public static final String URL_NOLOGIN = "redirect:/plant/index";

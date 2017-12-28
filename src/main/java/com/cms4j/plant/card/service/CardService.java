@@ -257,6 +257,10 @@ public class CardService {
             //pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
             //itemBelongService.reChargeItemBelong(-1,pocketParam);
              // 2017/12/22 18:25
+            //12.28 ls: 增加改分卡  黑钻1张
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_GFK);
+            itemBelongService.reChargeItemBelong(1,pocketParam);
+
         }
 
        /*

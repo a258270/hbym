@@ -4,13 +4,14 @@ import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.plant.school.scscore.service.ScscoreService;
-import com.cms4j.plant.school.service.ScFacultyService;
-import com.cms4j.plant.school.service.ScIntroductionService;
-import com.cms4j.plant.school.service.SchoolService;
+import com.cms4j.plant.school.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/wechat/applet/school")
@@ -24,6 +25,10 @@ public class WechatAppSchoolController extends ApiBaseController {
     private ScFacultyService scFacultyService;
     @Autowired
     private ScIntroductionService scIntroductionService;
+    @Autowired
+    private ScpropertyService scpropertyService;
+    @Autowired
+    private SubjecttypeService subjecttypeService;
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     public InvokeResult getSchools() throws Exception {
@@ -44,7 +49,18 @@ public class WechatAppSchoolController extends ApiBaseController {
     @RequestMapping(value = "/getschoolinfo",method = RequestMethod.POST)
     public InvokeResult getSchoolInformationsById() throws Exception {
         DataMap dataMap =this.getDataMap();
-        return  InvokeResult.success( schoolService.getSchoolById(dataMap));
+        dataMap = schoolService.getSchoolById(dataMap);
+        if(dataMap != null) {
+            List<DataMap> properties = scpropertyService.getScpropertyByScId(dataMap);
+            if(properties == null) properties = new ArrayList<DataMap>();
+            dataMap.put("properties", properties);
+
+            List<DataMap> subjecttypes = subjecttypeService.getSubjecttypeByScId(dataMap);
+            if(subjecttypes == null) subjecttypes = new ArrayList<DataMap>();
+            dataMap.put("subjecttypes", subjecttypes);
+        }
+
+        return  InvokeResult.success(dataMap);
     }
 
     /**

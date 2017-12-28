@@ -378,8 +378,10 @@ public class PlantUserController extends PageBaseController {
         modelAndView.addObject("mntbk", result.get("mntbk"));
 
         modelAndView.addObject("zntjk", result.get("zntjk"));
-        //12.28 ls:获取 性格测试卡数据  返回给前台
-        modelAndView.addObject("xgcsk",result.get("xgcsk"));
+        //12.28 ls:获取 性格测试A卡(简单版)数据  返回给前台
+        modelAndView.addObject("xgcska",result.get("xgcska"));
+        //12.28 ls:获取 性格测试B卡(专业版)数据  返回给前台
+        modelAndView.addObject("xgcskb",result.get("xgcskb"));
 
         modelAndView.setViewName("/plant/ymplant/center/student/belongings");
         return modelAndView;

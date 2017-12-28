@@ -5,7 +5,9 @@ import com.cms4j.base.util.Const;
 import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
+import com.cms4j.plant.card.service.CardService;
 import com.cms4j.plant.character.service.CharacterService;
+import com.cms4j.plant.item.item.service.ItemBelongService;
 import com.cms4j.plant.util.PlantConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,11 @@ public class CharacterPageController extends PageBaseController {
 
     @Autowired
     private CharacterService characterService;
+    @Autowired
+    private CardService cardService;
+    @Autowired
+    private ItemBelongService itemBelongService;
+
     @RequestMapping(value = "/index")
     public ModelAndView index() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
@@ -36,6 +43,17 @@ public class CharacterPageController extends PageBaseController {
 
     @RequestMapping(value = "/simple")
     public ModelAndView simple() throws Exception {
+        //12.28 ls：获取当前 登录用户的信息
+        DataMap curUser = SessionUtil.getCurUser();
+        //12.28 ls:增加后台校验  判断 是否能使用此功能
+         InvokeResult resultYN = new InvokeResult();
+         DataMap dataMap =new DataMap();
+         dataMap.put("USER_ID",curUser.getString("USER_ID"));
+         dataMap.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKA);
+        //12.28 ls:获取 性格测试卡  简单版的  可用次数
+         int  cards = (int)itemBelongService.getValItemBelongCountByUserIdAndItemType(dataMap);
+         //未完待续12.28   16：54
+
         ModelAndView modelAndView = this.getModelAndView();
 
         modelAndView.addObject("curPage", "character");

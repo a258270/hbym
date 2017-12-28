@@ -88,16 +88,32 @@
                         </p>
                     </div>
                 </div>
-            <#--//12.28ls:性格测试卡-->
+            <#--//12.28ls:性格测试A卡（简单版）-->
             <div class="row" style="border-top: 1px solid #CECECE;border-bottom: 1px solid #CECECE;padding: 10px;">
                     <div class="col-md-2 col-sm-2 col-xs-2">
                         <img src="/static/ymplant/images/tubiao5/telligen.jpg" style="width: 88px;height: 88px;" alt="">
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-9" style="line-height: 30px;">
-                        <p style="font-size: 16px;font-weight: bold;">性格测试卡</p>
+                        <p style="font-size: 16px;font-weight: bold;">性格测试A卡(简单版)</p>
                         <p>
-                            <span>性格测试卡：</span>
-                            <span><#if xgcsk??>${xgcsk?c}<#else>0</#if></span><span>张</span>
+                            <span>性格测试A卡：</span>
+                            <span><#if xgcska??>${xgcska?c}<#else>0</#if></span><span>张</span>
+                        </p>
+                        <p>
+                            <a style="color:#999;" href="javascript:void (0)">历史交易记录</a>
+                        </p>
+                    </div>
+                </div>
+                <#--//12.28ls:性格测试B卡（专业版）-->
+            <div class="row" style="border-top: 1px solid #CECECE;border-bottom: 1px solid #CECECE;padding: 10px;">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <img src="/static/ymplant/images/tubiao5/telligen.jpg" style="width: 88px;height: 88px;" alt="">
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-9" style="line-height: 30px;">
+                        <p style="font-size: 16px;font-weight: bold;">性格测试B卡(专业版)</p>
+                        <p>
+                            <span>性格测试B卡：</span>
+                            <span><#if xgcskb??>${xgcskb?c}<#else>0</#if></span><span>张</span>
                         </p>
                         <p>
                             <a style="color:#999;" href="javascript:void (0)">历史交易记录</a>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.Data;
+
 /**
  * description:
  *
@@ -88,6 +90,25 @@ public class PocketService {
 
         return false;
     }
+
+    /**
+     * 充值转换
+     * @param dataMap
+     * @return
+     * @throws Exception
+     */
+
+    //12.28 ls:充值需求更改  1元-->10金币
+    //此方法 直接将 充值的 RMB 转换为 金币 再把金币 叠加 更新进 数据库中
+    public boolean chongzhi(DataMap dataMap ) throws  Exception{
+        int price = (int)dataMap.get("PRICE") * 10;
+        dataMap.put("PRICE",price);
+        int i= (int)daoSupport.update("PocketMapper.recharge",dataMap);
+        if(i>0)
+            return true;
+        return  false;
+    }
+
 
     /**
      * 禁用钱包

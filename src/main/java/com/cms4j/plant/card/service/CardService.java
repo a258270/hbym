@@ -53,6 +53,7 @@ public class CardService {
     public void addCard(DataMap dataMap) throws Exception {
         daoSupport.save("CardMapper.addCard", dataMap);
     }
+    //12.28 ls:购买单种卡 充值 次数
 
     public List<DataMap> getCards(Page page) throws Exception {
         return (List<DataMap>) daoSupport.findForList("CardMapper.getCards", page);
@@ -213,12 +214,12 @@ public class CardService {
             //院校咨询：20次
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
             itemBelongService.reChargeItemBelong(20,pocketParam);
-            //性格测试：3次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
+            //性格测试A：3次
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKA);
             itemBelongService.reChargeItemBelong(3,pocketParam);
         }else if (CardUtil.CARD_PURPOSE_VIP2.equals(purpose)){
-            //ls:需求由 1000——>500
 
+            //ls:需求由 1000——>500
             pocketParam.put("PRICE",500);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));
             //更新钱包
@@ -234,9 +235,12 @@ public class CardService {
             //院校咨询：20次
             pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_ZXK);
             itemBelongService.reChargeItemBelong(20,pocketParam);
-            //性格测试：10次
-            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
-            itemBelongService.reChargeItemBelong(10,pocketParam);
+            //性格测试A卡：5次（简单版）
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKA);
+            itemBelongService.reChargeItemBelong(5,pocketParam);
+            //性格测试B卡：5次（专业版）
+            pocketParam.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKB);
+            itemBelongService.reChargeItemBelong(5,pocketParam);
         }else if(CardUtil.CARD_PURPOSE_VIP3.equals(purpose)){
             pocketParam.put("PRICE",2000);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));

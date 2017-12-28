@@ -34,9 +34,19 @@ public class PlantConst {
     public static final String ITEMTYPE_MNTBK = "itdis0m28e";//模拟填报卡
     public static final String ITEMTYPE_ZNTJK = "rkups02m6o";//智能推荐卡
     //ls:需求增加-->性格测试卡
-    public static final String ITEMTYPE_XGCSK ="1qhdv6udj4";//性格测试卡
+    //ls：性格测试卡 分为 A/B卡
+    public static final String ITEMTYPE_XGCSKA ="1qhdv6udj4";//性格测试A卡
+    public static final  String ITEMTYPE_XGCSKB ="aavwpmo1t2";//性格测试B卡
+
     //12、28ls: 增加 -->改分卡
     public static final String ITEMTYPE_GFK = "71n37af5e5";//改分卡
+    //ls:增加系列 定额金币消费 参数
+    //单 购卡种 卡次  类比淘宝购物
+    public  static  final int PRICE_MNTBK = 10;// 单张模拟填报卡 价值 10 个金币  （折合1元人民币）
+    public  static  final int PRICE_ZNTJK = 10;// 单张智能推荐卡 价值 10 个金币  （折合1元人民币）
+    public  static  final int PRICE_YXZXK = 5 ;// 单张院校咨询卡 价值 5 个金币   （折合0.5元人民币）
+    public  static  final int PRICE_XGCSKA = 50;//单张性格测试A卡  价值50个金币  （折合5元人民币）
+    public  static  final int PRICE_XGCSKB = 100;//单张性格测试B卡  价值100个金币  （折合10元人民币）
 
 
     public static final String URL_NOLOGIN = "redirect:/plant/index";

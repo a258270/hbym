@@ -85,6 +85,7 @@ public class ItemBelongService {
             //insert 进数据库
 
             dataMap.put("COUNT", count);
+
             this.addItemBelong(dataMap);
 
         }else {
@@ -118,10 +119,14 @@ public class ItemBelongService {
         params.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
         Integer zntjk = this.getValItemBelongCountByUserIdAndItemType(params);
         dataMap.put("zntjk", zntjk);
-        //12.28 ls：性格测试卡
-        params.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSK);
-        Integer xgcsk = this.getValItemBelongCountByUserIdAndItemType(params);
-        dataMap.put("xgcsk",xgcsk);
+        //12.28 ls：性格测试卡 A卡 （简单版）
+        params.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKA);
+        Integer xgcska = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("xgcska",xgcska);
+        //12.28 ls: 性格测试卡 B 卡  （专业版）
+        params.put("ITEMTYPE",PlantConst.ITEMTYPE_XGCSKB);
+        Integer xgcskb = this.getValItemBelongCountByUserIdAndItemType(params);
+        dataMap.put("xgcskb",xgcskb);
        /* //12.28 ls:改分卡  (注：目前只有黑钻有 1 张改分卡  商城可充值购买  后台暂无扣卡逻辑)
         params.put("ITEMTYPE",PlantConst.ITEMTYPE_GFK);
         Integer gfk = this.getValItemBelongCountByUserIdAndItemType(params);

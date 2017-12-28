@@ -41,7 +41,7 @@
                      value= "<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑钻会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>"/>
                 </p>
                 <p style="text-align: center;margin: 15px 0">
-                <#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
+                <#if Session.session_user_key?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
                     <input type="button" value="激活会员卡"  class="gol" onclick="$('#activecard').click()"/><br/>
                 <#--ls:需求更改
                     <input/><br/>

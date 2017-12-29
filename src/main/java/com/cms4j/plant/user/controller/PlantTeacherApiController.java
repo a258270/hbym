@@ -353,7 +353,9 @@ public class PlantTeacherApiController extends ApiBaseController {
         DataMap dataMap = this.getDataMap();
         Page page = new Page();
         DataMap params = new DataMap();
-        params.put("USER_ID", curUser.getString("USER_ID"));
+
+        DataMap complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
+        params.put("SCHOOL_ID", complete.getString("SCHOOL_ID"));
         page.setParams(params);
 
         if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");

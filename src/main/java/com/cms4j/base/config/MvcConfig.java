@@ -38,6 +38,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private String mch_id;
     @Value("${wechat.applet.mch_password}")
     private String mch_password;
+    @Value("${wechat.applet.api_password}")
+    private String api_password;
+    @Value("${wechat.applet.notify_url}")
+    private String notify_url;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -59,7 +63,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
             wechatAppAccount = new WechatAppAccount(appId, secret);
         }
         else{
-            wechatAppAccount = new PayAccount(appId, secret, mch_id, mch_password);
+            wechatAppAccount = new PayAccount(appId, secret, mch_id, mch_password, api_password, notify_url);
         }
 
         return new WechatAppProxy(wechatAppAccount);

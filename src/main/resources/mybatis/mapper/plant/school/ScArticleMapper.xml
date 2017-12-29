@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ScArticleMapper">
     <select id="getArticlesByUserId" parameterType="Page" resultType="DataMap">
-        SELECT * FROM SC_ARTICLE WHERE AUTHOR = #{params.USER_ID} ORDER BY MSORT ASC, CREATETIME DESC
+        SELECT * FROM SC_ARTICLE WHERE SCHOOL_ID = #{params.SCHOOL_ID} ORDER BY MSORT ASC, CREATETIME DESC
     </select>
 
     <insert id="addArticle" parameterType="DataMap">

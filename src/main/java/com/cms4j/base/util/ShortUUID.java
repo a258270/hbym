@@ -1,5 +1,6 @@
 package com.cms4j.base.util;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -16,6 +17,23 @@ public class ShortUUID {
     private static String toShortString(UUID u) {
         return UUIDtoString(u);
     }
+
+
+    //生成唯一订单号   专用方法orderUUID  32位
+    private static  String orderUUID(){
+        //保证订单号 唯一
+        StringBuilder sb = new StringBuilder();
+        String date = DateUtil.date2Str(new Date(), "yyMMddHHmmss");
+        String uuid = ShortUUID.randomUUID();
+        //统一转化成大写字母，保证是订单长度统一  32 位
+        String UpUuid = uuid.toUpperCase();
+        char[] chars = UpUuid.toCharArray();
+        for(int m :chars){sb.append(m);}
+        String orderUuid = sb + date;
+        return  orderUuid ;
+    };
+
+
 
     private static String UUIDtoString(UUID u) {
         long mostSigBits = u.getMostSignificantBits();

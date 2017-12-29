@@ -5,7 +5,7 @@
 <#include "${ctxPath}/plant/ymplant/include/head.ftl">
     <!-- 单独引入 -->
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/school/details.css?v=${v}"/>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UC4yLW5tsNC9fgL5Y0CQaomei9VSe1Zo"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=UC4yLW5tsNC9fgL5Y0CQaomei9VSe1Zo&s=1"></script>
     <script>
         $(document).ready(function(e) {
             /***不需要自动滚动，去掉即可***/

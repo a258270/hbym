@@ -24,7 +24,7 @@
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/jquery.validation/1.14.0/jquery.validate.js?v=${v}"></script>
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/jquery.validation/1.14.0/validate-methods.js?v=${v}"></script>
     <script type="text/javascript" src="${ctxPath}/static/plugin/h-ui/lib/jquery.validation/1.14.0/messages_zh.js?v=${v}"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UC4yLW5tsNC9fgL5Y0CQaomei9VSe1Zo"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=UC4yLW5tsNC9fgL5Y0CQaomei9VSe1Zo&s=1"></script>
     <script>
         $(function () {
             var editorINTRODUCTION;

@@ -12,11 +12,11 @@ public class SignUtil {
     public static String makeSign(PayAccount payAccount, Entity entity) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(entity.toUrlString());
-        stringBuilder.append("&");
+        stringBuilder.append("&key=");
         stringBuilder.append(payAccount.getApi_password());
 
         String str = stringBuilder.toString();
 
-        return MD5Util.getMD5(str.substring(1, str.length() - 1));
+        return MD5Util.getMD5(str.substring(1, str.length())).toUpperCase();
     }
 }

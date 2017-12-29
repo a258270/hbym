@@ -3,6 +3,7 @@ package com.cms4j.wechat.applet.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.system.role.service.RoleService;
+import com.cms4j.base.system.user.online.service.SessionService;
 import com.cms4j.base.util.*;
 import com.cms4j.plant.user.service.CompleteProService;
 import com.cms4j.plant.user.service.CompleteStudentService;
@@ -37,6 +38,9 @@ public class WechatAppLoginController extends ApiBaseController {
     @Autowired
     private PlantUserService plantUserService;
 
+    @Autowired
+    private SessionService sessionService;
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public InvokeResult login() throws Exception {
         DataMap dataMap = this.getDataMap();
@@ -65,6 +69,7 @@ public class WechatAppLoginController extends ApiBaseController {
 
             DataMap curUser = plantUserService.getUserByUserId(wechatUser);
             if(curUser != null){
+                sessionService.kickPlantUser(curUser.getString("USER_ID"));
                 SessionUtil.addUser2Session(curUser);
 
                 //角色信息

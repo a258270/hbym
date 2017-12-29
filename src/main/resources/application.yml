@@ -40,3 +40,5 @@ wechat:
     secret: e574eaddbafe863e6b6325aa25a49042
     mch_id: 1480092162
     mch_password: 839012
+    api_password: mingbanggk12345678901234567890mb
+    notify_url: https://www.gaokgh.com.cn

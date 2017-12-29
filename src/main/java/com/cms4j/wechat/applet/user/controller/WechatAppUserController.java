@@ -292,6 +292,14 @@ public class WechatAppUserController extends ApiBaseController {
     }
 
     /**
+     * 获取是否登录
+     */
+    @RequestMapping(value = "/checklogin")
+    public InvokeResult checkLogin() throws Exception {
+        return InvokeResult.success(SessionUtil.getCurUser() != null);
+    }
+
+    /**
      * 获取学生考生信息
      */
     @RequestMapping(value = "/isexamed")

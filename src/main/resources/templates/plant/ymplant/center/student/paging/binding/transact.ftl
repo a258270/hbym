@@ -19,6 +19,7 @@
                 <p style="margin:20px 0">
                     <span style="margin-right: 30px">原密码：</span>
                     <input type="password" style="background-color: #F6F6F6;border: 1px solid #000;border-radius: 5px" name="PASSWORD"/>
+                    <span style="color: #ff0000;">注：新注册用户此项不需要填写</span>
                 </p>
                 <p style="margin:20px 0">
                     <span style="margin-right: 30px">验证码：</span>

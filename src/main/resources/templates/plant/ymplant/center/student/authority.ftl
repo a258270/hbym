@@ -28,8 +28,8 @@
 
     <div style="padding: 20px 80px;text-align: center">
         <!--<input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />-->
-        激活码：<input class="activation" name="NUMBER" id="NUMBER" placeholder="请输入15位激活码" type="text"><br><br>
-        密 &nbsp;&nbsp;码：<input class="activation" name="PASSWORD" id="PASSWORD" placeholder="请输入10位密码" type="password">
+        卡号：<input class="activation" name="NUMBER" id="NUMBER" placeholder="请输入15位卡号" type="text"><br><br>
+        激活码：<input class="activation" name="PASSWORD" id="PASSWORD" placeholder="请输入10位激活码" type="password">
     </div>
     <!--滑动验证 开始-->
         <div style=" margin-bottom:30px;">

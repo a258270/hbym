@@ -50,6 +50,8 @@ public class PlantIndexApiController extends ApiBaseController {
     @RequestMapping(value = "/tologin", method = RequestMethod.POST)
     public InvokeResult toLogin() throws Exception {
         DataMap dataMap = this.getDataMap();
+        if(StringUtils.isBlank(dataMap.getString("CODE"))) return InvokeResult.failure("验证码不能为空！");
+        if(!dataMap.getString("CODE").equals(SessionUtil.getCodeFromSession())) return InvokeResult.failure("验证码不正确！");
         if(StringUtils.isBlank(dataMap.getString("USERNAME")))
             return InvokeResult.failure("用户名不能为空！");
         if(StringUtils.isBlank(dataMap.getString("PASSWORD")))
@@ -67,6 +69,7 @@ public class PlantIndexApiController extends ApiBaseController {
         if(!Boolean.valueOf(dataMap.getString("STATUS")))
             return InvokeResult.failure("该用户不可用");
 
+        SessionUtil.removeCodeFromSession();
         sessionService.kickPlantUser(dataMap.getString("USER_ID"));
         dataMap.put("LAST_LOGIN", DateUtil.getCurrentTime());
         dataMap.put("IP", this.getRequestIpAddress());

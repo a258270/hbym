@@ -52,7 +52,7 @@
 
         });
         $("#logBtn").click(function () {
-            if(document.getElementById("drag").innerText != "验证通过") {showError("请进行滑动验证！");return false;}
+            //if(document.getElementById("drag").innerText != "验证通过") {showError("请进行滑动验证！");return false;}
             sendRequest(ctxPath + "/plant/api/tologin", {USERNAME: $("#LOG_USERNAME").val(), PASSWORD: $("#LOG_PASSWORD").val(), CODE: $("#LOG_CODE").val()}, "POST", function (res) {
                 if(res.hasErrors){
                     showError(res.errorMessage);
@@ -72,6 +72,12 @@
                 window.location.href = ctxPath + "/plant/index";
             });
         });*/
+
+        $("#codeImg").attr("src", ctxPath + "/plant/user/getcode?r=" + Math.random());
+        
+        $("#codeImg").click(function () {
+            $("#codeImg").attr("src", ctxPath + "/plant/user/getcode?r=" + Math.random());
+        });
     });
 
 

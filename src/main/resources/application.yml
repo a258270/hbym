@@ -23,7 +23,7 @@ spring:
       maxOpenPreparedStatements: 20
     profiles:
         active: dev
-        version: 1.0.1
+        version: 1.0.2
     http:
       encoding:
         force: true

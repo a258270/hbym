@@ -162,12 +162,18 @@
                                                     </i>
                                                 </p>
                                             <#--滑动验证 开始-->
-                                                <div style=" margin-bottom:30px;">
+                                                <#--<div style=" margin-bottom:30px;">
                                                     <div id="drag" style="margin: 0 auto"></div></div>
                                                 <script type="text/javascript">
                                                     $('#drag').drag();
-                                                </script>
+                                                </script>-->
                                             <#--滑动验证 结束-->
+                                                <p style="margin: 0 auto;width: 300px;">
+                                                    <i class="glyphicon glyphicon-picture huahao">
+                                                        <input class="kd-kdu" style="width: 50%" type="text" placeholder="请输入验证码" name="CODE" id="LOG_CODE"/>
+                                                        <img src="${ctxPath}/plant/user/getcode?r=" id="codeImg"/>
+                                                    </i>
+                                                </p>
                                                 <p class="wangjimima" style="text-align: center">
                                                     <a href="${ctxPath}/plant/user/forget" class="queren">忘记密码？</a>
                                                     <input type="button" value="确 定" id="logBtn" class="queren"/>

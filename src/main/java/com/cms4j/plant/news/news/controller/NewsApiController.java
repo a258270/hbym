@@ -109,6 +109,11 @@ public class NewsApiController extends ApiBaseController {
             dataMap.put("IMGURL", "/plant/file/download/" + s);
         }
         dataMap.put("AUTHOR", SessionUtil.getCurAdminUser().getString("USERNAME"));
+        if(!StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            if(dataMap.getString("ABSTRACT").length() > 230) {
+                return InvokeResult.failure("摘要至多230个字符！");
+            }
+        }
         newsService.addNews(dataMap);
         logger.end();
         return InvokeResult.success();
@@ -142,6 +147,12 @@ public class NewsApiController extends ApiBaseController {
             }
             file.transferTo(dest);
             dataMap.put("IMGURL", "/plant/file/download/" + s);
+        }
+
+        if(!StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            if(dataMap.getString("ABSTRACT").length() > 230) {
+                return InvokeResult.failure("摘要至多230个字符！");
+            }
         }
         newsService.editNews(dataMap);
         logger.end();

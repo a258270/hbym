@@ -405,6 +405,11 @@ public class PlantTeacherApiController extends ApiBaseController {
         DataMap complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
         dataMap.put("SCHOOL_ID", complete.getString("SCHOOL_ID"));
 
+        if(!StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            if(dataMap.getString("ABSTRACT").length() > 230) {
+                return InvokeResult.failure("摘要至多230个字符！");
+            }
+        }
         scArticleService.addArticle(dataMap);
         return InvokeResult.success();
     }
@@ -449,6 +454,12 @@ public class PlantTeacherApiController extends ApiBaseController {
         }
 
         dataMap.put("ARTICLE_ID", id);
+
+        if(!StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            if(dataMap.getString("ABSTRACT").length() > 230) {
+                return InvokeResult.failure("摘要至多230个字符！");
+            }
+        }
         scArticleService.editArticle(dataMap);
 
         return InvokeResult.success();

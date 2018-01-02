@@ -108,10 +108,10 @@
                 strHtml += "<a href='#'>" + obj.TITLE + "</a>";
                 strHtml += "</p>";
                 strHtml += "</div>";
-                strHtml += "<div class='col-md-3 col-sm-3 col-xs-3'>";
+                strHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>";
                 strHtml += "<p style='text-align: center'><span>" + toLocalDate(obj.CREATETIME) + "</span></p>";
                 strHtml += "</div>";
-                strHtml += "<div class='col-md-1 col-sm-1 col-xs-1'>";
+                strHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>";
                 strHtml += "<span style='margin-right: 10px;color: #9D9797;font-size: 10px;text-align: center'><i class='glyphicon glyphicon-eye-open'></i>" + obj.VIEWCOUNT + "</span>";
                 strHtml += "</div>";
                 strHtml += "<div class='col-md-2 col-sm-2 col-xs-2'>";

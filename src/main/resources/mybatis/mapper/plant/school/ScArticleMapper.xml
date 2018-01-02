@@ -18,7 +18,8 @@
         SCHOOL_ID,
         CREATETIME,
         MODIFYTIME,
-        VIEWCOUNT
+        VIEWCOUNT,
+        ABSTRACT
         )
         VALUES
         (
@@ -31,7 +32,8 @@
         #{SCHOOL_ID},
         #{CREATETIME},
         #{MODIFYTIME},
-        #{VIEWCOUNT}
+        #{VIEWCOUNT},
+        #{ABSTRACT}
         )
     </insert>
 
@@ -44,7 +46,17 @@
     </select>
 
     <update id="editArticle" parameterType="DataMap">
-        UPDATE SC_ARTICLE SET TITLE = #{TITLE}, SUBTITLE = #{SUBTITLE}, IMGURL = #{IMGURL}, MSORT = #{MSORT}, CONTENT = #{CONTENT}, MODIFYTIME = #{MODIFYTIME} WHERE ARTICLE_ID = #{ARTICLE_ID}
+        UPDATE
+            SC_ARTICLE
+        SET
+            TITLE = #{TITLE},
+            SUBTITLE = #{SUBTITLE},
+            IMGURL = #{IMGURL},
+            MSORT = #{MSORT},
+            CONTENT = #{CONTENT},
+            MODIFYTIME = #{MODIFYTIME},
+            ABSTRACT = #{ABSTRACT}
+        WHERE ARTICLE_ID = #{ARTICLE_ID}
     </update>
     <select id="getArticlesByScId" parameterType="Page" resultType="DataMap">
         SELECT * FROM SC_ARTICLE WHERE SCHOOL_ID = #{params.SCHOOL_ID} ORDER BY MSORT DESC
@@ -66,7 +78,8 @@
         article.CREATETIME,
         article.MODIFYTIME,
         article.VIEWCOUNT,
-        school.NAME AS SCNAME
+        school.NAME AS SCNAME,
+        school.ABSTRACT
         FROM
         SC_ARTICLE article,
         SC_SCHOOL school

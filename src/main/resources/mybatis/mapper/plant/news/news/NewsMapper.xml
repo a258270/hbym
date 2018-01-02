@@ -15,7 +15,8 @@
             news.AUTHOR,
             news.CREATETIME,
             news.MODIFYTIME,
-            news.VIEWCOUNT
+            news.VIEWCOUNT,
+            news.ABSTRACT
         FROM
         NEWS_NEWS news
         LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = news.NEWSTYPE
@@ -37,7 +38,8 @@
         news.AUTHOR,
         news.CREATETIME,
         news.MODIFYTIME,
-        news.VIEWCOUNT
+        news.VIEWCOUNT,
+        news.ABSTRACT
         FROM
         NEWS_NEWS news
         LEFT JOIN SYS_DICTIONARIES dic3 ON dic3.DIC_ID = news.NEWSTYPE
@@ -78,7 +80,8 @@
         AUTHOR,
         CREATETIME,
         MODIFYTIME,
-        VIEWCOUNT
+        VIEWCOUNT,
+        ABSTRACT
         )
         VALUES
         (
@@ -92,7 +95,8 @@
         #{AUTHOR},
         #{CREATETIME},
         #{MODIFYTIME},
-        #{VIEWCOUNT}
+        #{VIEWCOUNT},
+        #{ABSTRACT}
         )
     </insert>
 
@@ -107,6 +111,7 @@
             NEWSTYPE = #{NEWSTYPE},
             MSORT = #{MSORT},
             CONTENT = #{CONTENT},
+            ABSTRACT = #{ABSTRACT}
         </set>
         WHERE
             NEWS_ID = #{NEWS_ID}

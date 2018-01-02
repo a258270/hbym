@@ -107,15 +107,21 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">排序序号：</label>
+            <label class="form-label col-xs-4 col-sm-3">摘要：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入排序序号" id="MSORT" name="MSORT">
+                <textarea id="ABSTRACT" name="ABSTRACT" class="textarea" cols="100" rows="8"></textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea id="CONTENT" name="CONTENT" class="textarea" cols="100" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">排序序号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="请输入排序序号" id="MSORT" name="MSORT">
             </div>
         </div>
         <div class="row cl">

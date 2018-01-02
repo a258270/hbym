@@ -39,6 +39,11 @@ public class ScArticleService {
         dataMap.put("CREATETIME", DateUtil.getCurrentTime());
         dataMap.put("MODIFYTIME", DateUtil.getCurrentTime());
         dataMap.put("VIEWCOUNT", 0);
+
+        if(StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            dataMap.put("ABSTRACT", null);
+        }
+
         daoSupport.save("ScArticleMapper.addArticle", dataMap);
     }
 
@@ -64,6 +69,13 @@ public class ScArticleService {
         article.put("MSORT", dataMap.getString("MSORT"));
         article.put("CONTENT", dataMap.getString("CONTENT"));
         article.put("MODIFYTIME", DateUtil.getCurrentTime());
+        if(StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            article.put("ABSTRACT", null);
+        }
+        else{
+            article.put("ABSTRACT", dataMap.getString("ABSTRACT"));
+        }
+
 
         daoSupport.update("ScArticleMapper.editArticle", article);
     }

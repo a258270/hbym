@@ -87,8 +87,13 @@ public class DRApiController extends ApiBaseController{
             DataMap introduction = scIntroductionService.getScIntroductionByScId(school);
             if(introduction == null) continue;
 
-            String abc = introduction.getString("CONTENT").replace("\"font-family:\"", "\"font-family:");
-            abc = abc.replace("\"=\"\"", "\"");
+            String abc = introduction.getString("CONTENT").replaceAll("style=\"font-family:.*?\".*?>", ">");
+            abc = abc.replaceAll("style=.*?\"=\"\">", ">");
+            abc = abc.replaceAll("style=.*?\"=\"\" >", ">");
+            abc = abc.replace("font-size:16px;\"=\"\"", "");
+            //abc = abc.replace("font-family: \"", "font-family:;");
+            //abc = abc.replace(" microsoft=\"\" yahei\";=\"\" font-size:=\"\" 16px;\" font-size:16px;", "");
+            //abc = abc.replace("microsoft=\"\" yahei\";=\"\" font-size:=\"\" 16px;\" font-size:12px;", "");
             introduction.put("CONTENT", abc);
             scIntroductionService.editScIntroduction(introduction);
         }

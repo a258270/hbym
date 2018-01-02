@@ -74,6 +74,9 @@ public class NewsService {
         dataMap.put("CREATETIME", DateUtil.getCurrentTime());
         dataMap.put("MODIFYTIME", DateUtil.getCurrentTime());
         dataMap.put("VIEWCOUNT", 0);
+        if(StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            dataMap.put("ABSTRACT", null);
+        }
         daoSupport.save("NewsMapper.addNews", dataMap);
     }
 
@@ -97,6 +100,10 @@ public class NewsService {
             dataMap.put("SUBTITLE", null);
         if(StringUtils.isBlank(dataMap.getString("MSORT")))
             dataMap.put("MSORT", 0);
+
+        if(StringUtils.isBlank(dataMap.getString("ABSTRACT"))) {
+            dataMap.put("ABSTRACT", null);
+        }
         daoSupport.update("NewsMapper.editNews", dataMap);
     }
 

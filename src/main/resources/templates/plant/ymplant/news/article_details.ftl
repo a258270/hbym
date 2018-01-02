@@ -21,6 +21,7 @@
                         <#--<span class="new">NEW</span>-->
                             <span style="font-size: 2em;font-weight: bold;font-family:楷体;"><#if article.TITLE??>${article.TITLE}<#else>暂无信息</#if></span>
                         </div>
+                        <#if article.ABSTRACT??><p class="kd-detailpost-option">摘要：<span class="color-black">${article.ABSTRACT}</span></p></#if>
                         <p></p>
                     ${article.CONTENT}
                         <p></p>

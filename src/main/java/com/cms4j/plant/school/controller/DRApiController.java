@@ -82,7 +82,7 @@ public class DRApiController extends ApiBaseController{
 
         wwb.write();
         wwb.close();*/
-        List<DataMap> schools = schoolService.getAllSchools();
+        /*List<DataMap> schools = schoolService.getAllSchools();
         for(DataMap school : schools) {
             DataMap introduction = scIntroductionService.getScIntroductionByScId(school);
             if(introduction == null) continue;
@@ -96,7 +96,7 @@ public class DRApiController extends ApiBaseController{
             //abc = abc.replace("microsoft=\"\" yahei\";=\"\" font-size:=\"\" 16px;\" font-size:12px;", "");
             introduction.put("CONTENT", abc);
             scIntroductionService.editScIntroduction(introduction);
-        }
+        }*/
 
         /*DataMap arrangment = new DataMap();
         arrangment.put("CODE", "ARRANGMENT");

@@ -1,11 +1,14 @@
 package com.cms4j.helper.entity.pay;
 
-import com.cms4j.helper.entity.JsonEntity;
+import com.cms4j.helper.entity.XmlEntity;
+import org.dom4j.DocumentException;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * 预付单
  */
-public class PrePay extends JsonEntity {
+public class PrePay extends XmlEntity {
     private String return_code;
     private String return_msg;
     private String appid;
@@ -18,6 +21,10 @@ public class PrePay extends JsonEntity {
     private String device_info;
     private String err_code;
     private String err_code_des;
+
+    public PrePay(String xmlStr) throws DocumentException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        super(xmlStr);
+    }
 
     public String getReturn_code() {
         return return_code;

@@ -220,17 +220,12 @@ public class ReportService {
      */
     private void getPlace(Double score, String majortype_id, DataMap info) throws Exception {
         score = Double.valueOf(score.intValue());
-        Calendar a = Calendar.getInstance();
-        String year = String.valueOf(a.get(Calendar.YEAR));
-        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-        String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);
-        DataMap YEAR = new DataMap();
-        YEAR.put("CODE", "YEAR");
-        YEAR = dictionaryService.getDictionaryByCode(YEAR);
-        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+
         DataMap dataMap = new DataMap();
         DataMap lastDataMap = new DataMap();
-        DataMap last2DataMap = new DataMap();
+        dataMap.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 0));
+        lastDataMap.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 1));
+        /*DataMap last2DataMap = new DataMap();
         for(DataMap YEARTmp : YEARs) {
             if(YEARTmp.getString("NAME").equals(lastYear)){
                 lastDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
@@ -243,23 +238,23 @@ public class ReportService {
             if(YEARTmp.getString("NAME").equals(last2Year)) {
                 last2DataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
-        }
+        }*/
 
         dataMap.put("MAJORTYPE_ID", majortype_id);
         lastDataMap.put("MAJORTYPE_ID", majortype_id);
-        last2DataMap.put("MAJORTYPE_ID", majortype_id);
+        //last2DataMap.put("MAJORTYPE_ID", majortype_id);
 
         DataMap curYearMap = dataMap;
         DataMap lastYearMap = lastDataMap;
 
         DataMap curStucountData = stucountService.getStuCountByYear(curYearMap);
         DataMap lastStucountData = stucountService.getStuCountByYear(lastYearMap);
-        if(curStucountData == null) {//没有当年一分一档
+        /*if(curStucountData == null) {//没有当年一分一档
             curYearMap = lastDataMap;//所有数据往前推1年
             lastYearMap = last2DataMap;
             curStucountData = stucountService.getStuCountByYear(curYearMap);
             lastStucountData = stucountService.getStuCountByYear(lastYearMap);
-        }
+        }*/
 
         info.put("YEAR_ID", lastYearMap.getString("YEAR_ID"));
 

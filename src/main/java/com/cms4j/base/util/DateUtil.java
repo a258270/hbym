@@ -1,5 +1,6 @@
 package com.cms4j.base.util;
 
+import com.cms4j.base.system.dictionary.service.DictionaryService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Timestamp;
@@ -7,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Description:
@@ -183,5 +185,49 @@ public class DateUtil {
         }
         else
             return true;
+    }
+
+    /**
+     * 根据输入过去的年数获取年内码
+     * @param dictionaryService
+     * @param num 年数
+     * @return
+     */
+    public static String getLastYearByAdoptNumber(DictionaryService dictionaryService, Integer num) throws Exception {
+        Date current = getCurrentDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(current);
+        calendar.set(Calendar.MONTH, 5);
+        calendar.set(Calendar.DAY_OF_MONTH, 23);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date dateLine = calendar.getTime();//截止时间点
+
+        Calendar currentTmp = Calendar.getInstance();
+        if(current.before(dateLine)) {
+            //当前时间早于6月23日
+            return getLastYear(dictionaryService, num + 1);
+        }
+        else{
+            //当前时间晚于6月23日
+            return getLastYear(dictionaryService, num);
+        }
+    }
+
+    public static String getLastYear(DictionaryService dictionaryService, Integer number) throws Exception {
+        Calendar current = Calendar.getInstance();
+        String lastYear = String.valueOf(current.get(Calendar.YEAR) - number);
+        DataMap YEAR = new DataMap();
+        YEAR.put("CODE", "YEAR");
+        YEAR = dictionaryService.getDictionaryByCode(YEAR);
+        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+        for(DataMap YEARTmp : YEARs) {
+            if(YEARTmp.getString("NAME").equals(lastYear)){
+                return YEARTmp.getString("DIC_ID");
+            }
+        }
+
+        return "";
     }
 }

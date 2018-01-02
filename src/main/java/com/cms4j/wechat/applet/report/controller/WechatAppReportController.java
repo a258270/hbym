@@ -2,6 +2,7 @@ package com.cms4j.wechat.applet.report.controller;
 
 import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
+import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
 import com.cms4j.plant.major.major.service.MajorService;
@@ -36,9 +37,10 @@ public class WechatAppReportController {
 
         DataMap param = new DataMap();
 
-        Calendar a = Calendar.getInstance();
-        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-        DataMap YEAR = new DataMap();
+        /*Calendar a = Calendar.getInstance();*/
+        String lastYear = DateUtil.getLastYearByAdoptNumber(dictionaryService, 1);
+        param.put("YEAR_ID", lastYear);
+        /*DataMap YEAR = new DataMap();
         YEAR.put("CODE", "YEAR");
         YEAR = dictionaryService.getDictionaryByCode(YEAR);
         List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
@@ -46,7 +48,7 @@ public class WechatAppReportController {
             if(YEARTmp.getString("NAME").equals(lastYear)){
                 param.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
-        }
+        }*/
 
         DataMap dataMapOut = new DataMap();
         if(examinee != null){

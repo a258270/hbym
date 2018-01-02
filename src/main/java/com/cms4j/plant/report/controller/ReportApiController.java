@@ -3,6 +3,7 @@ package com.cms4j.plant.report.controller;
 import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
+import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.InvokeResult;
 import com.cms4j.base.util.SessionUtil;
 import com.cms4j.plant.card.util.CardUtil;
@@ -59,9 +60,10 @@ public class ReportApiController extends ApiBaseController {
     public InvokeResult getMajor() throws Exception {
         DataMap dataMap = this.getDataMap();
 
-        Calendar a = Calendar.getInstance();
-        String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-        DataMap YEAR = new DataMap();
+        /*Calendar a = Calendar.getInstance();*/
+        String lastYear = DateUtil.getLastYearByAdoptNumber(dictionaryService, 1);
+        dataMap.put("YEAR_ID", lastYear);
+        /*DataMap YEAR = new DataMap();
         YEAR.put("CODE", "YEAR");
         YEAR = dictionaryService.getDictionaryByCode(YEAR);
         List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
@@ -69,7 +71,7 @@ public class ReportApiController extends ApiBaseController {
             if(YEARTmp.getString("NAME").equals(lastYear)){
                 dataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
-        }
+        }*/
 
         DataMap curUser = SessionUtil.getCurUser();
         if(curUser != null) {
@@ -127,18 +129,19 @@ public class ReportApiController extends ApiBaseController {
         param.put("USER_ID", curUser.getString("USER_ID"));
         param.put("ITEMTYPE", PlantConst.ITEMTYPE_ZNTJK);
 
-        Calendar a = Calendar.getInstance();
+        /*Calendar a = Calendar.getInstance();
         String year = String.valueOf(a.get(Calendar.YEAR));
         String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
         String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);
         DataMap YEAR = new DataMap();
         YEAR.put("CODE", "YEAR");
         YEAR = dictionaryService.getDictionaryByCode(YEAR);
-        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);*/
         DataMap curDataMap = new DataMap();
-        DataMap lastDataMap = new DataMap();
-        DataMap last2DataMap = new DataMap();
-        for(DataMap YEARTmp : YEARs) {
+        curDataMap.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 0));
+        //DataMap lastDataMap = new DataMap();
+        //DataMap last2DataMap = new DataMap();
+        /*for(DataMap YEARTmp : YEARs) {
             if(YEARTmp.getString("NAME").equals(lastYear)){
                 lastDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
@@ -150,15 +153,12 @@ public class ReportApiController extends ApiBaseController {
             if(YEARTmp.getString("NAME").equals(last2Year)) {
                 last2DataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
-        }
+        }*/
         curDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-        lastDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-        last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        /*lastDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));*/
         //获取分数线
         List<DataMap> lines = scorelineService.getScorelineByYear(curDataMap);
-        if(lines == null) {
-            scorelineService.getScorelineByYear(lastDataMap);
-        }
 
         for(DataMap line : lines) {
             if(PlantConst.ARRANGMENT_B1.equals(dataMap.getString("ARRANGMENT_ID")) && PlantConst.ARRANGMENT_B1.equals(line.getString("ARRANGMENT_ID"))) {
@@ -352,18 +352,20 @@ public class ReportApiController extends ApiBaseController {
             return InvokeResult.failure("数值非法，请重试！");
         }
 
-        Calendar a = Calendar.getInstance();
+        /*Calendar a = Calendar.getInstance();
         String year = String.valueOf(a.get(Calendar.YEAR));
         String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-        String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);
-        DataMap YEAR = new DataMap();
+        String last2Year = String.valueOf(a.get(Calendar.YEAR) - 2);*/
+        /*DataMap YEAR = new DataMap();
         YEAR.put("CODE", "YEAR");
         YEAR = dictionaryService.getDictionaryByCode(YEAR);
-        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
+        List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);*/
         DataMap curDataMap = new DataMap();
+        curDataMap.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 0));
         DataMap lastDataMap = new DataMap();
-        DataMap last2DataMap = new DataMap();
-        for(DataMap YEARTmp : YEARs) {
+        lastDataMap.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 1));
+        //DataMap last2DataMap = new DataMap();
+        /*for(DataMap YEARTmp : YEARs) {
             if(YEARTmp.getString("NAME").equals(lastYear)){
                 lastDataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
@@ -375,10 +377,10 @@ public class ReportApiController extends ApiBaseController {
             if(YEARTmp.getString("NAME").equals(last2Year)) {
                 last2DataMap.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
             }
-        }
+        }*/
         curDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
         lastDataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
-        last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
+        //last2DataMap.put("MAJORTYPE_ID", exam.getString("MAJORTYPE"));
         List<DataMap> lines = scorelineService.getScorelineByYear(curDataMap);
         if(lines == null) {
             scorelineService.getScorelineByYear(lastDataMap);

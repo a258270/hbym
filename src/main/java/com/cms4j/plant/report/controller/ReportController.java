@@ -3,6 +3,7 @@ package com.cms4j.plant.report.controller;
 import com.cms4j.base.controller.PageBaseController;
 import com.cms4j.base.system.dictionary.service.DictionaryService;
 import com.cms4j.base.util.DataMap;
+import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.SessionUtil;
 import com.cms4j.plant.major.major.service.MajorService;
 import com.cms4j.plant.report.service.ReportService;
@@ -75,17 +76,7 @@ public class ReportController extends PageBaseController {
             modelAndView.addObject("examinee", examinee);
             DataMap param = new DataMap();
 
-            Calendar a = Calendar.getInstance();
-            String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-            DataMap YEAR = new DataMap();
-            YEAR.put("CODE", "YEAR");
-            YEAR = dictionaryService.getDictionaryByCode(YEAR);
-            List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
-            for(DataMap YEARTmp : YEARs) {
-                if(YEARTmp.getString("NAME").equals(lastYear)){
-                    param.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
-                }
-            }
+            param.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 1));
             /*
             param.put("MAJORTYPE_ID", examinee.getString("MAJORTYPE"));
             List<DataMap> schools = schoolService.getSchoolsByMajorType(param);
@@ -116,17 +107,7 @@ public class ReportController extends PageBaseController {
             modelAndView.addObject("examinee", examinee);
             DataMap param = new DataMap();
 
-            Calendar a = Calendar.getInstance();
-            String lastYear = String.valueOf(a.get(Calendar.YEAR) - 1);
-            DataMap YEAR = new DataMap();
-            YEAR.put("CODE", "YEAR");
-            YEAR = dictionaryService.getDictionaryByCode(YEAR);
-            List<DataMap> YEARs = dictionaryService.getDictionariesByFatherId(YEAR);
-            for(DataMap YEARTmp : YEARs) {
-                if(YEARTmp.getString("NAME").equals(lastYear)){
-                    param.put("YEAR_ID", YEARTmp.getString("DIC_ID"));
-                }
-            }
+            param.put("YEAR_ID", DateUtil.getLastYearByAdoptNumber(dictionaryService, 1));
             /*
             param.put("MAJORTYPE_ID", examinee.getString("MAJORTYPE"));
             */

@@ -12,6 +12,7 @@
     <img src="/static/ymplant/img/chaeacter.png" style="width: 100%;" alt=""/>
     <div class="mbti">
         <h3 style="margin-bottom: 50px;">MBTI职业性格测试题--<#if flag == 'simple'>简单版</#if><#if flag == 'pro'>专业版</#if></h3>
+        <#if subject??>
         <div class="problem">
             <p style="font-size: 18px;">哪一个答案能最贴切的描绘你一般的感受或行为？</p>
             <div>
@@ -44,32 +45,38 @@
                 <!--进度条 结束-->
             </div>
         </div>
+        </#if>
     </div>
 </div>
 <script language="JavaScript">
-    $(function () {
-        $(".btnA").click(function () {
-            sendRequest("/plant/character/api/answer/${subject.MBTI_TYPE}", {answer: "A"}, "POST", function(res){
-                if(res.hasErrors){
-                    showError(res.errorMessage);
-                    return false;
-                }
+    <#if message??>
+        showError("${message}");
+    </#if>
+    <#if subject??>
+        $(function () {
+            $(".btnA").click(function () {
+                sendRequest("/plant/character/api/answer/${subject.MBTI_TYPE}", {answer: "A"}, "POST", function(res){
+                    if(res.hasErrors){
+                        showError(res.errorMessage);
+                        return false;
+                    }
 
-                window.location.reload();
+                    window.location.reload();
+                });
+            });
+
+            $(".btnB").click(function () {
+                sendRequest("/plant/character/api/answer/${subject.MBTI_TYPE}", {answer: "B"}, "POST", function(res){
+                    if(res.hasErrors){
+                        showError(res.errorMessage);
+                        return false;
+                    }
+
+                    window.location.reload();
+                });
             });
         });
-
-        $(".btnB").click(function () {
-            sendRequest("/plant/character/api/answer/${subject.MBTI_TYPE}", {answer: "B"}, "POST", function(res){
-                if(res.hasErrors){
-                    showError(res.errorMessage);
-                    return false;
-                }
-
-                window.location.reload();
-            });
-        });
-    });
+    </#if>
 </script>
 <#include "${ctxPath}/plant/ymplant/bottom.ftl">
 </body>

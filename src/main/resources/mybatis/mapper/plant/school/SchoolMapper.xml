@@ -142,17 +142,23 @@
             </foreach>
         </if>
         GROUP BY
-        <if test="search_view != null">
-            <if test="search_view == true">
+        <if test="HOT != null">
+            <if test="HOT == true">
                 school.VIEWCOUNT ASC,
             </if>
-            <if test="search_view == false">
+            <if test="HOT == false">
                 school.VIEWCOUNT DESC,
             </if>
         </if>
-
+        <if test="GRADE != null">
+            <if test="GRADE == true">
+                school.NAME ASC,
+            </if>
+            <if test="GRADE == false">
+                school.NAME DESC,
+            </if>
+        </if>
         school.SCHOOL_ID ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
-
     </select>
 
     <select id="getCountSchoolsInLibrary" parameterType="java.util.Map" resultType="java.lang.Long">

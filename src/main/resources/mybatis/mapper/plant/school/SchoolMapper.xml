@@ -141,24 +141,24 @@
                 subjecttype.DIC_ID = #{item}
             </foreach>
         </if>
-        GROUP BY
+        GROUP BY school.SCHOOL_ID ORDER BY
         <if test="HOT != null">
-            <if test="HOT == true">
+            <if test="HOT == 'true'">
                 school.VIEWCOUNT ASC,
             </if>
-            <if test="HOT == false">
+            <if test="HOT == 'false'">
                 school.VIEWCOUNT DESC,
             </if>
         </if>
         <if test="GRADE != null">
-            <if test="GRADE == true">
+            <if test="GRADE == 'true'">
                 school.NAME ASC,
             </if>
-            <if test="GRADE == false">
+            <if test="GRADE == 'false'">
                 school.NAME DESC,
             </if>
         </if>
-        school.SCHOOL_ID ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
+        school.MSORT limit #{pageBeginNumber}, #{pageSize}
     </select>
 
     <select id="getCountSchoolsInLibrary" parameterType="java.util.Map" resultType="java.lang.Long">

@@ -589,7 +589,7 @@ ul,li{
     font-size: 18px;
     color: #fff;
     font-family: 幼圆;
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-weight: bold;
     display: inline-block;
 }
@@ -625,7 +625,7 @@ ul,li{
     font-size: 18px;
     color: #fff;
     font-family: 幼圆;
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-weight: bold;
     /*position: absolute;*/
     background-color: #33C9B5;
@@ -688,5 +688,5 @@ ul,li{
 /*响应式 结束*/
 
 .color-black {
-    color: #000000;
+    color: #333;
 }

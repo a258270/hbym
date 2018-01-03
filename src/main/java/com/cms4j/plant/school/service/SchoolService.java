@@ -557,7 +557,7 @@ public class SchoolService {
         return page;
     }
 
-    public Page getLibraryOfSchools(DataMap dataMap) throws Exception {
+        public Page getLibraryOfSchools(DataMap dataMap) throws Exception {
         Page page = new Page();
         Map params = new HashMap();
         params.put("NAME", dataMap.getString("NAME"));
@@ -590,8 +590,6 @@ public class SchoolService {
                 params.put("subjecttypes", Arrays.asList(subjecttypes));
         }
 
-        page.setParams(params);
-
         if(StringUtils.isBlank(dataMap.getString("currentPage"))) dataMap.put("currentPage", "0");
         else{
             try{
@@ -609,6 +607,12 @@ public class SchoolService {
 
         params.put("pageBeginNumber", page.getPageNumber() * page.getPageSize());
         params.put("pageSize", page.getPageSize());
+        if(!StringUtils.isBlank(dataMap.getString("HOT"))) {
+            params.put("HOT", dataMap.getString("HOT"));
+        }
+        if(!StringUtils.isBlank(dataMap.getString("GRADE"))) {
+            params.put("GRADE", dataMap.getString("GRADE"));
+        }
 
         List<DataMap> schools = this.getSchoolsInLibrary(params);
         Long totalCount = this.getCountSchoolsInLibrary(params);
@@ -623,6 +627,7 @@ public class SchoolService {
                 school.put("subjecttypes", subjecttypes);
             }
         }
+        page.setParams(params);
         page.setResults(schools);
         page.setTotalRecord(totalCount);
 

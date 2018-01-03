@@ -50,7 +50,7 @@
         <if test="params.NEWSTYPE != null">
             AND news.NEWSTYPE = #{params.NEWSTYPE}
         </if>
-        ORDER BY news.MSORT DESC
+        ORDER BY news.MSORT DESC, news.CREATETIME DESC
     </select>
 
     <!-- 批量删除新闻 -->
@@ -137,4 +137,8 @@
     <update id="addViewCount" parameterType="DataMap">
         UPDATE NEWS_NEWS SET VIEWCOUNT = VIEWCOUNT + 1 WHERE NEWS_ID = #{NEWS_ID}
     </update>
+
+    <select id="getNewsByType" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM NEWS_NEWS WHERE NEWSTYPE = #{NEWSTYPE}
+    </select>
 </mapper>

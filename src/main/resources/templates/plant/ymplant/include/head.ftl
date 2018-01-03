@@ -27,6 +27,7 @@
 <script language="JavaScript">
     var ctxPath = "${ctxPath}";
     $(function () {
+
         sendRequest(ctxPath + "/plant/chat/api/getmsgcount", {}, "POST", setMsg);
         $("#regBtn").click(function () {
             if($("#agreebox").prop("checked")){

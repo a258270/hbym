@@ -1,15 +1,13 @@
 package com.cms4j.plant.news.news.service;
 
 import com.cms4j.base.dao.DaoSupport;
-import com.cms4j.base.util.DataMap;
-import com.cms4j.base.util.Page;
-import com.cms4j.base.util.ShortUUID;
+import com.cms4j.base.util.*;
 import com.cms4j.plant.util.PlantConst;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.cms4j.base.util.DateUtil;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +22,8 @@ public class NewsService {
 
     @Autowired
     private DaoSupport daoSupport;
+    @Autowired
+    private NewsViewService newsViewService;
 
     /**
     * 根据NEWS_ID获取数据
@@ -129,8 +129,17 @@ public class NewsService {
         return (Integer) daoSupport.findForObject("NewsMapper.getNewsCount");
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void addViewCount(DataMap dataMap) throws Exception {
         daoSupport.update("NewsMapper.addViewCount", dataMap);
+
+        //增加公告新闻的阅读记录
+        if(SessionUtil.getCurUser() != null && dataMap.get("NEWSTYPE") != null && PlantConst.NEWSTYPE_GG.equals(dataMap.getString("NEWSTYPE"))) {
+            DataMap param = new DataMap();
+            param.put("USER_ID", SessionUtil.getCurUser().getString("USER_ID"));
+            param.put("NEWS_ID", dataMap.getString("NEWS_ID"));
+            newsViewService.addNewsView(param);
+        }
     }
 
     public Page getNewssForWechatApp(DataMap dataMap) throws Exception {
@@ -158,7 +167,27 @@ public class NewsService {
             page.setPageSize(Integer.valueOf(dataMap.getString("pageSize")));
 
         List<DataMap> news = this.getNewss(page);
+        //过滤已读的公告
+        if(PlantConst.NEWSTYPE_GG.equals(dataMap.getString("NEWSYPE")) && SessionUtil.getCurUser() != null && news != null) {
+            DataMap param = new DataMap();
+            param.put("USER_ID", SessionUtil.getCurUser().getString("USER_ID"));
+            List<DataMap> ggs = newsViewService.getNewsViewsByUserId(param);
+            if(ggs != null) {
+                for(DataMap gg : ggs) {
+                    for(DataMap newsObj : news) {
+                        if(newsObj.getString("NEWS_ID").equals(gg.getString("NEWS_ID"))) {
+                            news.remove(newsObj);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         page.setResults(news);
         return page;
+    }
+
+    public List<DataMap> getNewsByType(DataMap dataMap) throws Exception {
+        return (List<DataMap>) daoSupport.findForList("NewsMapper.getNewsByType", dataMap);
     }
 }

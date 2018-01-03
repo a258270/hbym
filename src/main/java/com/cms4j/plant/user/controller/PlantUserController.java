@@ -68,6 +68,8 @@ public class PlantUserController extends PageBaseController {
         if(!StringUtils.isBlank(param.getString("p"))) {
             modelAndView.addObject("url", param.getString("p"));
         }
+
+        modelAndView.addObject("curPage", "center");
         return modelAndView;
     }
 

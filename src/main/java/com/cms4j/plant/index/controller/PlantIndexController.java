@@ -6,6 +6,7 @@ import com.cms4j.base.util.*;
 import com.cms4j.plant.item.item.service.ItemService;
 import com.cms4j.plant.major.major.service.MajorService;
 import com.cms4j.plant.news.news.service.NewsService;
+import com.cms4j.plant.news.news.service.NewsViewService;
 import com.cms4j.plant.school.service.ArrangmentService;
 import com.cms4j.plant.school.service.SchoolService;
 import com.cms4j.plant.school.service.ScpropertyService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,13 +59,15 @@ public class PlantIndexController extends PageBaseController {
     private DictionaryService dictionaryService;
     @Autowired
     private MajorService majorService;
+    @Autowired
+    private NewsViewService newsViewService;
 
     @RequestMapping(value = {"/plant/index", "/"}, method = RequestMethod.GET)
-    public ModelAndView index() throws Exception {
+    public ModelAndView index(HttpServletRequest request) throws Exception {
         Page page = new Page();
         page.setPageNumber(0);
         page.setPageSize(11);
-        Map<String, Object> params = new HashMap<>();
+        DataMap params = new DataMap();
         params.put("NEWSTYPE", PlantConst.NEWSTYPE_XXHD);
         page.setParams(params);
         List<DataMap> news = newsService.getNewss(page);
@@ -104,6 +108,23 @@ public class PlantIndexController extends PageBaseController {
         page.setParams(params);
         page.setPageSize(5);
         List<DataMap> news_gg = newsService.getNewss(page);
+
+        //过滤已读的公告
+        if(PlantConst.NEWSTYPE_GG.equals(params.getString("NEWSYPE")) && SessionUtil.getCurUser() != null && news_gg != null) {
+            DataMap param = new DataMap();
+            param.put("USER_ID", SessionUtil.getCurUser().getString("USER_ID"));
+            List<DataMap> ggs = newsViewService.getNewsViewsByUserId(param);
+            if(ggs != null) {
+                for(DataMap gg : ggs) {
+                    for(DataMap newsObj : news_gg) {
+                        if(newsObj.getString("NEWS_ID").equals(gg.getString("NEWS_ID"))) {
+                            news_gg.remove(newsObj);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         modelAndView.addObject("news_gg", news_gg);
 
         List<DataMap> advertisementSchools = schoolService.getHasAdvertisementSchools();
@@ -183,6 +204,10 @@ public class PlantIndexController extends PageBaseController {
         List<DataMap> items = itemService.getAllSalingItems(page);
         modelAndView.addObject("items", items);*/
 
+        String agent = request.getHeader("user-agent");
+        if(agent.toLowerCase().contains("windows")) {//pc端用户
+            modelAndView.addObject("iswindow", true);
+        }
         modelAndView.addObject("curPage", "index");
         return modelAndView;
     }

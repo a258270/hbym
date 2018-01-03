@@ -43,6 +43,9 @@
                 <li class="home-page">
                     <a class="locking<#if curPage?? && curPage == 'news'> lockingt</#if>" href="${ctxPath}/plant/news/core">新闻中心</a>
                 </li>
+                <li class="home-page">
+                    <a class="locking<#if curPage?? && curPage == 'center'> lockingt</#if>" href="<#if !Session.session_user_key??>javascript:showError('请先登录账号');<#else><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>${ctxPath}/plant/user/center</#if><#if Session.session_user_key.ROLE_ID?? && Session.session_user_key.ROLE_ID == 'm9bxdt9g36'>${ctxPath}/plant/teacher/center</#if></#if>">个人中心</a>
+                </li>
                 <li style="float: right;margin-top: 9px;" class="disp">
                 <#--<img src="../img/nohead.png" style="width:40px;height: 40px;" alt=""/>-->
                 <#if Session.session_user_key?? && Session.session_user_key.USERNAME??>

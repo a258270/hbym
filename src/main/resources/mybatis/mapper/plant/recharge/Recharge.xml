@@ -31,6 +31,37 @@
             #{IP}
         )
     </insert>
+    <!--ls:查询订单 可用于历史详情 显示  传入值 需要user_id -->
+    <select id="orderShow" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        TOTAL_FEE,
+        CRATETIME,
+        STATE
+        FROM UR_RECHARGE
+        WHERE
+        USER_ID = #{USER_ID},
+        STATE = 1
 
+    </select>
+
+    <!--LS:根据商户订单号  更新 充值的订单的状态 0：未支付 1 ：已支付-->
+    <update id="updateTradeState" parameterType="DataMap" >
+        UPDATE UR_RECHARGE
+        SET STATE = 1
+        WHERE
+        OUT_TRADE_NO = #{OUT_TRADE_NO},
+        USER_ID = #{USER_ID}
+    </update>
+    <!--LS:根据商户订单号和用户ID 获取出 金币总数 （可用于更新钱包金币数据）-->
+    <select id="querygGoldNumByOutTradeNo" parameterType="DataMap" resultType="DataMap">
+        SELECT
+        GOLD_NUM
+        FROM UR_RECHARGE
+        WHERE
+        OUT_TRADE_NO = #{OUT_TRADE_NO},
+        USER_ID = #{USER_ID},
+        STATE = 1
+
+    </select>
 
 </mapper>

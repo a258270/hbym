@@ -60,5 +60,7 @@ public class PlantConst {
     public static final String MBTI_TYPE_PRO = "1tt3euq8ij";//专业版
     public static final String MBTI_TYPE_SIMPLE = "g57h70o2c8";//简易版
 
-
+    public enum RECHARGE_STATE {
+        UNPAID, PAID
+    }
 }

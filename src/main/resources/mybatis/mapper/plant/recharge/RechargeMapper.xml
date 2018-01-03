@@ -49,19 +49,29 @@
         UPDATE UR_RECHARGE
         SET STATE = 1
         WHERE
-        OUT_TRADE_NO = #{OUT_TRADE_NO},
-        USER_ID = #{USER_ID}
+        OUT_TRADE_NO = #{OUT_TRADE_NO}
     </update>
     <!--LS:根据商户订单号和用户ID 获取出 金币总数 （可用于更新钱包金币数据）-->
-    <select id="querygGoldNumByOutTradeNo" parameterType="DataMap" resultType="DataMap">
+    <select id="querygGoldNumByOutTradeNo" parameterType="DataMap" resultType="java.lang.Integer">
         SELECT
         GOLD_NUM
         FROM UR_RECHARGE
         WHERE
         OUT_TRADE_NO = #{OUT_TRADE_NO},
-        USER_ID = #{USER_ID},
         STATE = 1
-
+    </select>
+    
+    <select id="queryStateByOutTradeNo" parameterType="DataMap" resultType="java.lang.Integer">
+        SELECT
+        STATE
+        FROM UR_RECHARGE
+        WHERE
+        OUT_TRADE_NO = #{OUT_TRADE_NO}
+    </select>
+    
+    <select id="queryRechargeByOutTradeNo" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_RECHARGE
+        WHERE OUT_TRADE_NO = #{OUT_TRADE_NO}
     </select>
 
 </mapper>

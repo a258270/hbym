@@ -1,6 +1,12 @@
 package com.cms4j.helper.entity.pay;
+
+import com.cms4j.helper.entity.XmlEntity;
+import org.dom4j.DocumentException;
+
+import java.lang.reflect.InvocationTargetException;
+
 //status 支付结果
-public class Status {
+public class Status extends XmlEntity{
 
     private String appid;
 
@@ -27,6 +33,13 @@ public class Status {
   //  private int coupon_fee;
     private String trade_type;
     private String transaction_id;
+
+    public Status() {
+    }
+
+    public Status(String xmlStr) throws DocumentException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        super(xmlStr);
+    }
 
     public String getAppid() {
         return appid;

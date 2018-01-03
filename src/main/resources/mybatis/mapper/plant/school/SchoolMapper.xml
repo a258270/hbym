@@ -141,7 +141,17 @@
                 subjecttype.DIC_ID = #{item}
             </foreach>
         </if>
-        GROUP BY school.SCHOOL_ID ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
+        GROUP BY
+        <if test="search_view != null">
+            <if test="search_view == true">
+                school.VIEWCOUNT ASC,
+            </if>
+            <if test="search_view == false">
+                school.VIEWCOUNT DESC,
+            </if>
+        </if>
+
+        school.SCHOOL_ID ORDER BY school.MSORT limit #{pageBeginNumber}, #{pageSize}
 
     </select>
 

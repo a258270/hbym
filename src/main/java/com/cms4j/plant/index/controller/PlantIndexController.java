@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +60,7 @@ public class PlantIndexController extends PageBaseController {
     private MajorService majorService;
 
     @RequestMapping(value = {"/plant/index", "/"}, method = RequestMethod.GET)
-    public ModelAndView index() throws Exception {
+    public ModelAndView index(HttpServletRequest request) throws Exception {
         Page page = new Page();
         page.setPageNumber(0);
         page.setPageSize(11);
@@ -183,6 +184,10 @@ public class PlantIndexController extends PageBaseController {
         List<DataMap> items = itemService.getAllSalingItems(page);
         modelAndView.addObject("items", items);*/
 
+        String agent = request.getHeader("user-agent");
+        if(agent.toLowerCase().contains("windows")) {//pc端用户
+            modelAndView.addObject("iswindow", true);
+        }
         modelAndView.addObject("curPage", "index");
         return modelAndView;
     }

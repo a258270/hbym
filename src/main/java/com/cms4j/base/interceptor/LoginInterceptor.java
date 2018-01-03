@@ -28,6 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         //System.out.println();
         request.getSession().getId();
+        //request.getHeader("user-agent");
         String path = request.getServletPath();
         //过滤无需拦截的url
         if(path.matches(Const.REG_NOTERCEPTOR_URL))

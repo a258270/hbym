@@ -138,6 +138,7 @@ public class PlantTeacherController extends PageBaseController {
             complete = completeTeacherService.getCompleteTeacherByUserId(curUser);
         }
         modelAndView.addObject("complete", complete);
+        modelAndView.addObject("curPage", "center");
         return modelAndView;
     }
 

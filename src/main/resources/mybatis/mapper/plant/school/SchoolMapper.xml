@@ -161,8 +161,8 @@
             </if>
         </if>
 
-        <if test="HOT == null and GRADE == null">
-            school.MSORT
+        <if test="(HOT == null) and (GRADE == null)">
+            school.MSORT ASC
         </if>
          limit #{pageBeginNumber}, #{pageSize}
     </select>
@@ -462,7 +462,7 @@
         </if>
 
         <if test="HOT == null and GRADE == null">
-            school.MSORT
+            school.MSORT ASC
         </if>
         limit #{pageBeginNumber}, #{pageSize}
 

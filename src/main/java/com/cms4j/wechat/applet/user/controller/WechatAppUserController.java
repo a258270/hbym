@@ -367,21 +367,21 @@ public class WechatAppUserController extends ApiBaseController {
         return InvokeResult.success(true);
     }
 
-    @RequestMapping(value = "/hasnickname")
-    public InvokeResult hasNickName() throws Exception {
+    @RequestMapping(value = "/hassex")
+    public InvokeResult hasSex() throws Exception {
         DataMap curUser = SessionUtil.getCurUser();
 
         if(curUser != null && PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
             DataMap dataMap = completeStudentService.getCompleteStudentByUserId(curUser);
 
-            return InvokeResult.success(dataMap.get("NICKNAME") != null);
+            return InvokeResult.success(dataMap.get("SEX") != null);
         }
 
         return InvokeResult.success(true);
     }
 
-    @RequestMapping(value = "/addnickname")
-    public void addNickname() {
+    @RequestMapping(value = "/addsex")
+    public void addSex() {
         try{
             DataMap curUser = SessionUtil.getCurUser();
             DataMap dataMap = this.getDataMap();

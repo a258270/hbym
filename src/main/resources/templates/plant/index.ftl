@@ -34,13 +34,6 @@
 <#--</script>-->
 </head>
 <body>
-<#if !iswindow??>
-<div class="mb-zza">
-</div>
-<div class="mb-ewm">
-    <img src="${ctxPath}/static/qrcode.jpg" style="width: 80%;height: auto;" />
-</div>
-</#if>
 <div style="background-color: #ff8;border-bottom: 1px solid gray; display: none;" id="browseTip">
     <div class="container" style="padding: 10px 80px;text-align: center;font-weight: bold;font-size: 18px;">
         您的浏览器版本太低，将不能正常浏览知乎。请升级 <a href="http://windows.microsoft.com/zh-CN/internet-explorer/downloads/ie">Internet Explorer</a> 或使用

@@ -115,7 +115,7 @@ public class PlantIndexController extends PageBaseController {
         List<DataMap> news_gg = newsService.getNewss(page);
 
         //过滤已读的公告
-        if(PlantConst.NEWSTYPE_GG.equals(params.getString("NEWSYPE")) && SessionUtil.getCurUser() != null && news_gg != null) {
+        if(PlantConst.NEWSTYPE_GG.equals(params.getString("NEWSTYPE")) && SessionUtil.getCurUser() != null && news_gg != null) {
             DataMap param = new DataMap();
             param.put("USER_ID", SessionUtil.getCurUser().getString("USER_ID"));
             List<DataMap> ggs = newsViewService.getNewsViewsByUserId(param);

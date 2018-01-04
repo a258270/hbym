@@ -8,7 +8,7 @@ package com.cms4j.base.util;
  */
 public class Const {
     public static final String LOGIN = "/login";//登录页面路径
-    public static final String REG_NOTERCEPTOR_URL = ".*/((login)|(logout)|(tologin)|(getcode)|(404)|(401)|(500)|(kindfile)|(getsmscode)).*";//logininterceptor不拦截url规则
+    public static final String REG_NOTERCEPTOR_URL = ".*/((login)|(logout)|(tologin)|(getcode)|(404)|(401)|(500)|(kindfile)|(getsmscode)|(wxrecharge)|(guide)).*";//logininterceptor不拦截url规则
     public static final String REG_MANAGE_URL = ".*/((admin)).*";
     public static final String REG_PLANT_URL = ".*/((plant)).*";//平台路径
     public static final String REG_PLANT_TERCEPTOR_URL = ".*/((tocomplete)|(upload)|(center)).*";//平台需拦截路径

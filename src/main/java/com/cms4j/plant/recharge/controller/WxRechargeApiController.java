@@ -10,6 +10,7 @@ import com.cms4j.helper.entity.pay.Unifiedorder;
 import com.cms4j.helper.util.SignUtil;
 import com.cms4j.plant.recharge.service.RechargeService;
 import com.cms4j.plant.util.PlantConst;
+import com.cms4j.wechat.service.WechatUserService;
 import jxl.write.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,8 @@ public class WxRechargeApiController extends ApiBaseController{
     private WechatAppProxy wechatAppProxy;
     @Autowired
     private RechargeService rechargeService;
+    @Autowired
+    private WechatUserService wechatUserService;
 
     @RequestMapping(value = "/notice")
     public synchronized void notice(@RequestBody String strXml) {
@@ -60,15 +63,22 @@ public class WxRechargeApiController extends ApiBaseController{
     }
     //ls：数据库插入 订单未支付
     @RequestMapping(value = "addUnPayOrder")
-    public InvokeResult addUnPayOrder(DataMap dataMap)throws  Exception{
+    public InvokeResult addUnPayOrder()throws  Exception{
+
+        DataMap dataMap = this.getDataMap();
 
         DataMap curUser = SessionUtil.getCurUser();
+        DataMap wechatUser = SessionUtil.getWechatFromSession();
+        if(wechatUser == null) {
+            String massage = "请君登录账号！";
+            return  InvokeResult.failure(massage);
+        }
         if(null == curUser){
             String massage = "请君登录账号！";
             return  InvokeResult.failure(massage);
         }else{
             String user_Id = curUser.getString("USER_ID");
-            int total = (int)dataMap.get("TOTAL");
+            Integer total = Integer.valueOf(dataMap.getString("TOTAL"));
             //暂定前台传来的数据是 5元 10元 整数
             //折合的金币
             int balance = total*10;
@@ -82,6 +92,8 @@ public class WxRechargeApiController extends ApiBaseController{
             dataMap.put("OUT_TRADE_NO",out_trade_no);
             //继承ApiBaseController  用this.getRequestIpAddress() 获取IP
             dataMap.put("IP", this.getRequestIpAddress());
+            dataMap.put("USER_ID", user_Id);
+            dataMap.put("STATE", PlantConst.RECHARGE_STATE.UNPAID.ordinal());
 
             //unifiedorder 中需要设置的5个参数  body  out_trade_no   total_fee   spbill_create_ip
             Unifiedorder unifiedorder = new Unifiedorder();
@@ -92,6 +104,8 @@ public class WxRechargeApiController extends ApiBaseController{
                 //拼接Body
             sb.append(strBody);
             String sbBody = sb.toString();
+
+            dataMap.put("BODY", sbBody);
                 //2:out_trade_no   已经生成的订单号
                 //3:total_fee   以分记得充值 金额总数
                 //4:spbill_create_ip  获取用户IP 放入参数中
@@ -99,6 +113,9 @@ public class WxRechargeApiController extends ApiBaseController{
             unifiedorder.setOut_trade_no(out_trade_no);
             unifiedorder.setTotal_fee(total_fee);
             unifiedorder.setSpbill_create_ip(this.getRequestIpAddress());
+
+            //获取openid
+            unifiedorder.setOpenid(wechatUser.getString("WXAPPOPENID"));
             // 生成预付单 统一支付
             PrePayReSign prePayReSign = wechatAppProxy.createPrePayInfo(unifiedorder);
             if(prePayReSign != null){

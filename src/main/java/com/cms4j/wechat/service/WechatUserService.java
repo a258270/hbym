@@ -48,6 +48,10 @@ public class WechatUserService {
         daoSupport.delete("WechatUserMapper.removeWechatUser", dataMap);
     }
 
+    public DataMap getWechatUserByUserId(DataMap dataMap) throws Exception {
+        return (DataMap) daoSupport.findForList("WechatUserMapper.getWechatUserByUserId", dataMap);
+    }
+
     /**
      * 关联账户
      * @param dataMap

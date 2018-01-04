@@ -2,6 +2,7 @@ package com.cms4j.plant.recharge.service;
 
 import com.cms4j.base.dao.DAO;
 import com.cms4j.base.util.DataMap;
+import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.ShortUUID;
 import com.cms4j.plant.user.pocket.service.PocketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class RechargeService {
     @Transactional(rollbackFor = Exception.class)
     public void addRecharge(DataMap dataMap) throws Exception {
         dataMap.put("RECHARGE_ID", ShortUUID.randomUUID());
+        dataMap.put("CREATETIME",DateUtil.getCurrentTime());
+
         dao.save("RechargeMapper.addRecharge", dataMap);
     }
 

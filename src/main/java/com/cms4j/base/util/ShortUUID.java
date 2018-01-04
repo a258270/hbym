@@ -20,7 +20,7 @@ public class ShortUUID {
 
 
     //生成唯一订单号   专用方法orderUUID  32位
-    private static  String orderUUID(){
+    public static  String orderUUID(){
         //保证订单号 唯一
         StringBuilder sb = new StringBuilder();
         String date = DateUtil.date2Str(new Date(), "yyMMddHHmmss");

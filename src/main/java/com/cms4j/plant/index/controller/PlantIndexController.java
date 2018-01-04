@@ -64,6 +64,12 @@ public class PlantIndexController extends PageBaseController {
 
     @RequestMapping(value = {"/plant/index", "/"}, method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) throws Exception {
+        ModelAndView modelAndView = this.getModelAndView();
+        String agent = request.getHeader("user-agent");
+        if(!agent.toLowerCase().contains("windows")) {//移动端用户
+            modelAndView.setViewName("redirect:/plant/guide");
+            return modelAndView;
+        }
         Page page = new Page();
         page.setPageNumber(0);
         page.setPageSize(11);
@@ -71,7 +77,6 @@ public class PlantIndexController extends PageBaseController {
         params.put("NEWSTYPE", PlantConst.NEWSTYPE_XXHD);
         page.setParams(params);
         List<DataMap> news = newsService.getNewss(page);
-        ModelAndView modelAndView = this.getModelAndView();
         modelAndView.setViewName("/plant/index");
         /*if(news != null && news.size() > 0){
             DataMap newTop1 = news.get(0);
@@ -204,10 +209,6 @@ public class PlantIndexController extends PageBaseController {
         List<DataMap> items = itemService.getAllSalingItems(page);
         modelAndView.addObject("items", items);*/
 
-        String agent = request.getHeader("user-agent");
-        if(agent.toLowerCase().contains("windows")) {//pc端用户
-            modelAndView.addObject("iswindow", true);
-        }
         modelAndView.addObject("curPage", "index");
         return modelAndView;
     }
@@ -232,6 +233,14 @@ public class PlantIndexController extends PageBaseController {
     public ModelAndView statement() throws Exception {
         ModelAndView modelAndView = this.getModelAndView();
         modelAndView.setViewName("/plant/ymplant/below/statement");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/plant/guide")
+    public ModelAndView guid() throws Exception {
+        ModelAndView modelAndView = this.getModelAndView();
+        modelAndView.setViewName("/plant/ymplant/guide");
 
         return modelAndView;
     }

@@ -48,6 +48,7 @@ public class RechargeService {
         return (DataMap) dao.findForObject("RechargeMapper.queryRechargeByOutTradeNo", dataMap);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void recharge(String out_trade_no) throws Exception {
         DataMap param = new DataMap();
         param.put("OUT_TRADE_NO", out_trade_no);

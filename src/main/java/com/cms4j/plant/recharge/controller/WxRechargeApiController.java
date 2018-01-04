@@ -81,9 +81,9 @@ public class WxRechargeApiController extends ApiBaseController{
             Integer total = Integer.valueOf(dataMap.getString("TOTAL"));
             //暂定前台传来的数据是 5元 10元 整数
             //折合的金币
-            int balance = total*10;
+            int balance = total / 10;
             //total_fee  以分为单位
-            int total_fee = total*100;
+            int total_fee = total;
             //生成订单号
             String out_trade_no = ShortUUID.orderUUID();
 

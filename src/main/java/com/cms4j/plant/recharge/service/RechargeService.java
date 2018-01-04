@@ -62,6 +62,7 @@ public class RechargeService {
             param.put("POCKET_ID", rechargeResult.getString("POCKET_ID"));
 
             pocketService.recharge(param);
+            this.updateTradeState(param);
         }
     }
 }

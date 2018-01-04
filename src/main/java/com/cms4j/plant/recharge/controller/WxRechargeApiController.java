@@ -12,10 +12,13 @@ import com.cms4j.plant.recharge.service.RechargeService;
 import com.cms4j.plant.util.PlantConst;
 import com.cms4j.wechat.service.WechatUserService;
 import jxl.write.DateTime;
+import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.lang.reflect.InvocationTargetException;
 
 @RestController
 @RequestMapping(value = "/plant/wxrecharge")
@@ -29,15 +32,14 @@ public class WxRechargeApiController extends ApiBaseController{
 
     @RequestMapping(value = "/notice")
     public synchronized void notice(@RequestBody String strXml) {
+        strXml = strXml.replaceAll("\n", "");
         System.out.println("接到微信通知：" + strXml);
 
         try{
             Status status = new Status(strXml);
             String sign = status.getSign();
-            status.setSign(null);
-            String sign_receive = SignUtil.makeSign((PayAccount) wechatAppProxy.getWechatAppAccount(), status);
 
-            if (sign.equals(sign_receive)) {//签名验证
+            if (SignUtil.validSign((PayAccount) wechatAppProxy.getWechatAppAccount(), sign, strXml)) {//签名验证
                 String out_trade_no = status.getOut_trade_no();//商户订单号
 
                 DataMap recharge_record = new DataMap();
@@ -63,7 +65,7 @@ public class WxRechargeApiController extends ApiBaseController{
     }
     //ls：数据库插入 订单未支付
     @RequestMapping(value = "addUnPayOrder")
-    public InvokeResult addUnPayOrder()throws  Exception{
+    public synchronized InvokeResult addUnPayOrder()throws  Exception{
 
         DataMap dataMap = this.getDataMap();
 
@@ -100,7 +102,7 @@ public class WxRechargeApiController extends ApiBaseController{
                 //1:body
             StringBuilder sb = new StringBuilder();
                 //比如 “充值5元折合50金币”
-            String strBody = "充值"+ total + "元折合"+balance +"金币";
+            String strBody = "充值"+ (total / 100) + "元折合"+balance +"金币";
                 //拼接Body
             sb.append(strBody);
             String sbBody = sb.toString();
@@ -127,11 +129,5 @@ public class WxRechargeApiController extends ApiBaseController{
             }
             return InvokeResult.success(prePayReSign);
         }
-
-
     }
-
-
-
-
 }

@@ -25,11 +25,11 @@ public class Status extends XmlEntity{
     private String sign;
     private String sub_mch_id;
     private String time_end;
-    private int total_fee;
+    private String total_fee;
   //  private int coupon_fee;
-    private int coupon_count;
+    private String coupon_count;
     private String coupon_type;
-    private int coupon_id;
+    private String coupon_id;
   //  private int coupon_fee;
     private String trade_type;
     private String transaction_id;
@@ -153,20 +153,28 @@ public class Status extends XmlEntity{
         this.time_end = time_end;
     }
 
-    public int getTotal_fee() {
+    public String getTotal_fee() {
         return total_fee;
     }
 
-    public void setTotal_fee(int total_fee) {
+    public void setTotal_fee(String total_fee) {
         this.total_fee = total_fee;
     }
 
-    public int getCoupon_count() {
+    public String getCoupon_count() {
         return coupon_count;
     }
 
-    public void setCoupon_count(int coupon_count) {
+    public void setCoupon_count(String coupon_count) {
         this.coupon_count = coupon_count;
+    }
+
+    public String getCoupon_id() {
+        return coupon_id;
+    }
+
+    public void setCoupon_id(String coupon_id) {
+        this.coupon_id = coupon_id;
     }
 
     public String getCoupon_type() {
@@ -175,14 +183,6 @@ public class Status extends XmlEntity{
 
     public void setCoupon_type(String coupon_type) {
         this.coupon_type = coupon_type;
-    }
-
-    public int getCoupon_id() {
-        return coupon_id;
-    }
-
-    public void setCoupon_id(int coupon_id) {
-        this.coupon_id = coupon_id;
     }
 
     public String getTrade_type() {

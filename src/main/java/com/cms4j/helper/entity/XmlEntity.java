@@ -1,17 +1,15 @@
 package com.cms4j.helper.entity;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.tree.DefaultText;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public abstract class XmlEntity extends Entity {
 
@@ -24,6 +22,7 @@ public abstract class XmlEntity extends Entity {
     }
 
     public XmlEntity(String xmlStr) throws DocumentException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        System.out.println(xmlStr);
         Class clazz = this.getClass();
         Field[] fields = clazz.getDeclaredFields();
         Document document = DocumentHelper.parseText(xmlStr);
@@ -42,6 +41,7 @@ public abstract class XmlEntity extends Entity {
 
                     Method method = clazz.getMethod(methodName, String.class);
                     method.invoke(this, value);
+                    break;
                 }
             }
         }

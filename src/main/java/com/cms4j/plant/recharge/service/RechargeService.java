@@ -59,7 +59,7 @@ public class RechargeService {
 
             Integer gold_num = (Integer) rechargeResult.get("GOLD_NUM");
             param.put("PRICE", gold_num);
-            param.put("POCKET_ID", rechargeResult.getString("POCKET_ID"));
+            param.put("POCKET_ID", pocket.getString("POCKET_ID"));
 
             pocketService.recharge(param);
             this.updateTradeState(param);

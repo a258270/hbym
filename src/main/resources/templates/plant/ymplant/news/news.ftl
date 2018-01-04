@@ -65,10 +65,10 @@
                             <#if firstNewses_gg?? && (firstNewses_gg?size > 0)>
                                 <#list firstNewses_gg as firstNews_gg>
                             <li class="row"">
-                                <p class="col-md-9 col-sm-9 col-xs-9">
+                                <p class="col-md-8 col-sm-8 col-xs-8">
                                     <a href="${ctxPath}/plant/news/details/${firstNews_gg.NEWS_ID}" style="color: #000" target="_blank">${firstNews_gg.TITLE}</a>
                                 </p>
-                                <span class="col-md-3 col-sm-3 col-xs-3">${firstNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
+                                <span class="col-md-4 col-sm-4 col-xs-4" style="color: #AFAFAF">${firstNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
                             </li>
                                 </#list>
                             </#if>
@@ -77,10 +77,10 @@
                  </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <figure class="experts col-md-4">
-                        <#if secondNews??>
-                            <a href="${ctxPath}/plant/news/details/${secondNews_gg.NEWS_ID}" target="_blank">
-                                <img src="${secondNews_gg.IMGURL}" alt="">
-                                <h3>${secondNews_gg.TITLE}</h3>
+                        <#if secondNews_gg??>
+                            <a href="${ctxPath}/plant/news/details/${secondNews_gg.NEWS_ID}" title="${firstNews_gg.TITLE}" style="color: #333;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;" target="_blank">
+                                <img src="${secondNews_gg.IMGURL}" style="margin-bottom: 20px" alt="">
+                                <p>${secondNews_gg.TITLE}</p>
                             </a>
                         </#if>
                     </figure>
@@ -89,10 +89,10 @@
                         <#if secondNewses_gg?? && (secondNewses_gg?size > 0)>
                             <#list secondNewses_gg as secondNews_gg>
                                 <li class="row"">
-                                <h4 class="col-md-9 col-sm-9 col-xs-9">
+                                <p class="col-md-8 col-sm-8 col-xs-8">
                                     <a href="${ctxPath}/plant/news/details/${secondNews_gg.NEWS_ID}" style="color: #000" target="_blank">${secondNews_gg.TITLE}</a>
-                                </h4>
-                                <span class="col-md-3 col-sm-3 col-xs-3">${secondNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
+                                </p>
+                                <span class="col-md-4 col-sm-4 col-xs-4" style="color: #AFAFAF">${secondNews_gg.CREATETIME?string("yyyy-MM-dd")}</span>
                                 </li>
                             </#list>
                         </#if>

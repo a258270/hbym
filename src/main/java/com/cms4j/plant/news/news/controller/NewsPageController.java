@@ -46,18 +46,12 @@ public class NewsPageController extends PageBaseController {
         List<DataMap> secondNewses_gg = new ArrayList<>();
 
         if(news_gg != null && news_gg.size() > 0){
-            if(news_gg.size() > 1){
-                //两条及以上
+            if(news_gg.size() > 0){
+                //一条及以上
                 firstNews_gg = news_gg.get(0);
-                secondNews_gg = news_gg.get(1);
+                //secondNews_gg = news_gg.get(1);
                 news_gg.remove(0);
-                news_gg.remove(0);
-            }
-            else{
-                //就一条
-                firstNews_gg = news_gg.get(0);
-                news_gg.remove(0);
-                secondNews_gg = null;
+                //news_gg.remove(0);
             }
 
             if(news_gg.size() > 5) {
@@ -67,21 +61,36 @@ public class NewsPageController extends PageBaseController {
                 for(int i = 0; i < 5; i++){
                     news_gg.remove(0);
                 }
-
-                for(DataMap newsTmp : news_gg) {
-                    secondNewses_gg.add(newsTmp);
-                }
             }
             else{
                 for(DataMap newsTmp : news_gg) {
                     firstNewses_gg.add(newsTmp);
                 }
+                news_gg = new ArrayList<>();
+            }
+
+            if(news_gg.size() > 0) {
+                secondNews_gg = news_gg.get(0);
+                //secondNews_gg = news_gg.get(1);
+                news_gg.remove(0);
+            }
+
+            if(news_gg.size() > 0) {
+                for(DataMap newsTmp : news_gg) {
+                    secondNewses_gg.add(newsTmp);
+                }
+                news_gg = new ArrayList<>();
             }
         }
         else{
             firstNews_gg = null;
             secondNews_gg = null;
         }
+        if(firstNews_gg != null && firstNews_gg.get("NEWS_ID") == null)
+            firstNews_gg = null;
+
+        if(secondNews_gg != null && secondNews_gg.get("NEWS_ID") == null)
+            secondNews_gg = null;
 
         modelAndView.addObject("firstNews_gg", firstNews_gg);
         modelAndView.addObject("secondNews_gg", secondNews_gg);

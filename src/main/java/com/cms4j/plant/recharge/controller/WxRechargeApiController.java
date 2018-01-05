@@ -104,7 +104,7 @@ public class WxRechargeApiController extends ApiBaseController{
             String massage = "请君登录账号！";
             return  InvokeResult.failure(massage);
         }else{
-            Unifiedorder unifiedorder = rechargeService.makeUnifiedorder(dataMap, this.getRequestIpAddress(), curUser, wechatUser);
+            Unifiedorder unifiedorder = rechargeService.makeUnifiedorder(dataMap, this.getRequestIpAddress(), curUser);
             // 生成预付单 统一支付
             try{
                 String code_url = wechatAppProxy.createQRCode(unifiedorder);

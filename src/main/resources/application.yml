@@ -42,3 +42,6 @@ wechat:
     mch_password: 839012
     api_password: mingbanggk12345678901234567890mb
     notify_url: https://www.gaokgh.com.cn/plant/wxrecharge/notice
+  public:
+    appId: wx97edf417c19c2717
+    secret: 30a45a613e549cf9c7ad38b701962005

@@ -42,6 +42,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private String api_password;
     @Value("${wechat.applet.notify_url}")
     private String notify_url;
+    @Value("${wechat.public.appId}")
+    private String wxAppId;
+    @Value("${wechat.public.secret}")
+    private String wxSecret;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -58,14 +62,24 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public WechatAppProxy getWechatAppProxy() {
-        WechatAppAccount wechatAppAccount = null;
-        if(StringUtils.isBlank(mch_id) || StringUtils.isBlank(mch_password)) {
-            wechatAppAccount = new WechatAppAccount(appId, secret);
-        }
-        else{
-            wechatAppAccount = new PayAccount(appId, secret, mch_id, mch_password, api_password, notify_url);
+        PayAccount payAccount = new PayAccount();
+        if(!StringUtils.isBlank(wxAppId) && !StringUtils.isBlank(wxSecret)){
+            payAccount.setWxAppId(wxAppId);
+            payAccount.setWxSecret(wxSecret);
         }
 
-        return new WechatAppProxy(wechatAppAccount);
+        if(!StringUtils.isBlank(appId) && !StringUtils.isBlank(secret)){
+            payAccount.setAppId(appId);
+            payAccount.setSecret(secret);
+        }
+
+        if(!StringUtils.isBlank(mch_id) && !StringUtils.isBlank(mch_password)){
+            payAccount.setMch_id(mch_id);
+            payAccount.setMch_password(mch_password);
+            payAccount.setApi_password(api_password);
+            payAccount.setNotify_url(notify_url);
+        }
+
+        return new WechatAppProxy(payAccount);
     }
 }

@@ -32,6 +32,20 @@ public class PayApi {
         return PrePayUtil.parsePrePay(HttpUtil.sendPost(WechatAppConst.API_URL_UNIFIEDORDER, unifiedorder));
     }
 
+    private PrePay unifiedorderForWeb(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws NoSuchMethodException, IllegalAccessException, DocumentException, InvocationTargetException {
+        PayAccount payAccount = (PayAccount) wechatAppAccount;
+        unifiedorder.setAppid(wechatAppAccount.getWxAppId());
+        unifiedorder.setMch_id(payAccount.getMch_id());
+        unifiedorder.setNonce_str(ShortUUID.randomUUID().toUpperCase());
+        unifiedorder.setNotify_url(payAccount.getNotify_url());
+        unifiedorder.setSign_type(SignUtil.SIGN_TYPE);
+        String sign = SignUtil.makeSign(payAccount, unifiedorder);
+
+        unifiedorder.setSign(sign);
+
+        return PrePayUtil.parsePrePay(HttpUtil.sendPost(WechatAppConst.API_URL_UNIFIEDORDER, unifiedorder));
+    }
+
     public PrePayReSign createPrePayInfo(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws PayErrorException {
         try{
             PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
@@ -80,7 +94,8 @@ public class PayApi {
 
     public String createQRCode(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws PayErrorException {
         try{
-            PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
+            unifiedorder.setTrade_type("NATIVE");
+            PrePay prePay = this.unifiedorderForWeb(wechatAppAccount, unifiedorder);
 
             return prePay.getCode_url();
         }

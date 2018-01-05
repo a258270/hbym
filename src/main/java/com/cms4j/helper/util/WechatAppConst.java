@@ -8,5 +8,5 @@ public class WechatAppConst {
     public static final String API_URL_UNIFIEDORDER = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
     //扫码支付的二维码地址
-    public static final String API_URL_QRCODE = "weixin：//wxpay/bizpayurl";
+    public static final String API_URL_QRCODE = "weixin//wxpay/bizpayurl";
 }

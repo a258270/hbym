@@ -59,6 +59,14 @@ public class PlantConst {
 
     public static final String MBTI_TYPE_PRO = "1tt3euq8ij";//专业版
     public static final String MBTI_TYPE_SIMPLE = "g57h70o2c8";//简易版
+    //ls: 一元 兑换 金币 比率 （可以搞活动用）
+    // 一元 兑换  十金币
+   public static final int RATE_N = 10;
+   //ls: 一元 兑换 十五金币
+    //public static final int RATE_N = 15;
+    //ls: 一元 兑换 二十金币
+   // public static final int RATE_N =20;
+
 
     public enum RECHARGE_STATE {
         UNPAID, PAID, CLOSED, ERROR, BACK

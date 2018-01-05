@@ -81,7 +81,10 @@ public class RechargeService {
         Integer total = Integer.valueOf(dataMap.getString("TOTAL"));
         //暂定前台传来的数据是 5元 10元 整数
         //折合的金币
-        int balance = total / 10;
+       // int balance = total / 10;
+        //ls:修改兑换   倍率（常量值）
+        int balance = (total / 100) * PlantConst.RATE_N;
+
         //total_fee  以分为单位
         int total_fee = total;
         //生成订单号

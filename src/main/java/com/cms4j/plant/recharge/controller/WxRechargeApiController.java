@@ -2,6 +2,7 @@ package com.cms4j.plant.recharge.controller;
 
 import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.util.*;
+import com.cms4j.helper.entity.pay.UrlCallBack;
 import com.cms4j.helper.exception.PayErrorException;
 import com.cms4j.helper.WechatAppProxy;
 import com.cms4j.helper.account.PayAccount;
@@ -61,7 +62,7 @@ public class WxRechargeApiController extends ApiBaseController{
 
     }
     //ls：数据库插入 订单未支付
-    @RequestMapping(value = "addUnPayOrder")
+    @RequestMapping(value = "/addUnPayOrder")
     public synchronized InvokeResult addUnPayOrder() throws  Exception{
 
         DataMap dataMap = this.getDataMap();
@@ -76,51 +77,40 @@ public class WxRechargeApiController extends ApiBaseController{
             String massage = "请君登录账号！";
             return  InvokeResult.failure(massage);
         }else{
-            String user_Id = curUser.getString("USER_ID");
-            Integer total = Integer.valueOf(dataMap.getString("TOTAL"));
-            //暂定前台传来的数据是 5元 10元 整数
-            //折合的金币
-            int balance = total / 10;
-            //total_fee  以分为单位
-            int total_fee = total;
-            //生成订单号
-            String out_trade_no = ShortUUID.orderUUID();
-
-            dataMap.put("GOLD_NUM",balance);
-            dataMap.put("TOTAL_FEE",total_fee);
-            dataMap.put("OUT_TRADE_NO",out_trade_no);
-            //继承ApiBaseController  用this.getRequestIpAddress() 获取IP
-            dataMap.put("IP", this.getRequestIpAddress());
-            dataMap.put("USER_ID", user_Id);
-            dataMap.put("STATE", PlantConst.RECHARGE_STATE.UNPAID.ordinal());
-
-            //unifiedorder 中需要设置的5个参数  body  out_trade_no   total_fee   spbill_create_ip
-            Unifiedorder unifiedorder = new Unifiedorder();
-                //1:body
-            StringBuilder sb = new StringBuilder();
-                //比如 “充值5元折合50金币”
-            String strBody = "充值"+ (total / 100) + "元折合"+balance +"金币";
-                //拼接Body
-            sb.append(strBody);
-            String sbBody = sb.toString();
-
-            dataMap.put("BODY", sbBody);
-                //2:out_trade_no   已经生成的订单号
-                //3:total_fee   以分记得充值 金额总数
-                //4:spbill_create_ip  获取用户IP 放入参数中
-            unifiedorder.setBody(sbBody);
-            unifiedorder.setOut_trade_no(out_trade_no);
-            unifiedorder.setTotal_fee(total_fee);
-            unifiedorder.setSpbill_create_ip(this.getRequestIpAddress());
-
-            //获取openid
-            unifiedorder.setOpenid(wechatUser.getString("WXAPPOPENID"));
+            Unifiedorder unifiedorder = rechargeService.makeUnifiedorder(dataMap, this.getRequestIpAddress(), curUser, wechatUser);
             // 生成预付单 统一支付
             try{
                 PrePayReSign prePayReSign = wechatAppProxy.createPrePayInfo(unifiedorder);
                 rechargeService.addRecharge(dataMap);
 
                 return InvokeResult.success(prePayReSign);
+            }
+            catch (PayErrorException e) {
+                dataMap.put("STATE", PlantConst.RECHARGE_STATE.ERROR.ordinal());
+                rechargeService.updateTradeState(dataMap);
+                return InvokeResult.failure("发起微信支付出错，请重试");
+            }
+        }
+    }
+
+    @RequestMapping(value = "/addUnpayOrderInWeb")
+    public InvokeResult addUnpayOrderInWeb() throws Exception {
+        DataMap dataMap = this.getDataMap();
+
+        DataMap curUser = SessionUtil.getCurUser();
+        DataMap wechatUser = SessionUtil.getWechatFromSession();
+
+        if(null == curUser){
+            String massage = "请君登录账号！";
+            return  InvokeResult.failure(massage);
+        }else{
+            Unifiedorder unifiedorder = rechargeService.makeUnifiedorder(dataMap, this.getRequestIpAddress(), curUser, wechatUser);
+            // 生成预付单 统一支付
+            try{
+                String code_url = wechatAppProxy.createQRCode(unifiedorder);
+                rechargeService.addRecharge(dataMap);
+
+                return InvokeResult.success(code_url);
             }
             catch (PayErrorException e) {
                 dataMap.put("STATE", PlantConst.RECHARGE_STATE.ERROR.ordinal());

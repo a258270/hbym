@@ -1,6 +1,7 @@
 package com.cms4j.helper.api.pay;
 
 import com.cms4j.base.util.ShortUUID;
+import com.cms4j.helper.entity.pay.QRCode;
 import com.cms4j.helper.exception.PayErrorException;
 import com.cms4j.helper.account.PayAccount;
 import com.cms4j.helper.account.WechatAppAccount;
@@ -17,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 
 
 public class PayApi {
-    public PrePay unifiedorder(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws NoSuchMethodException, IllegalAccessException, DocumentException, InvocationTargetException {
+    private PrePay unifiedorder(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws NoSuchMethodException, IllegalAccessException, DocumentException, InvocationTargetException {
         PayAccount payAccount = (PayAccount) wechatAppAccount;
         unifiedorder.setAppid(wechatAppAccount.getAppId());
         unifiedorder.setMch_id(payAccount.getMch_id());
@@ -31,29 +32,61 @@ public class PayApi {
         return PrePayUtil.parsePrePay(HttpUtil.sendPost(WechatAppConst.API_URL_UNIFIEDORDER, unifiedorder));
     }
 
-    public PrePayReSign createPrePayInfo(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws InvocationTargetException, NoSuchMethodException, DocumentException, IllegalAccessException, PayErrorException {
-        PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
+    public PrePayReSign createPrePayInfo(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws PayErrorException {
+        try{
+            PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
 
-        if(PrePayUtil.UNIFIEDORDER_SUCCESS.equals(prePay.getReturn_code())
-            && PrePayUtil.UNIFIEDORDER_SUCCESS.equals(prePay.getResult_code())) {
+            if(PrePayUtil.UNIFIEDORDER_SUCCESS.equals(prePay.getReturn_code())
+                    && PrePayUtil.UNIFIEDORDER_SUCCESS.equals(prePay.getResult_code())) {
 
-            StringBuilder sb = new StringBuilder("prepay_id=");
-            sb.append(prePay.getPrepay_id());
+                StringBuilder sb = new StringBuilder("prepay_id=");
+                sb.append(prePay.getPrepay_id());
 
-            PrePayReSign prePayReSign = new PrePayReSign();
-            prePayReSign.setAppId(wechatAppAccount.getAppId());
-            prePayReSign.setTimeStamp(String.valueOf(System.currentTimeMillis()));
-            prePayReSign.setNonceStr(ShortUUID.randomUUID());
-            prePayReSign.setPackageStr(sb.toString());
-            prePayReSign.setSignType(SignUtil.SIGN_TYPE);
+                PrePayReSign prePayReSign = new PrePayReSign();
+                prePayReSign.setAppId(wechatAppAccount.getAppId());
+                prePayReSign.setTimeStamp(String.valueOf(System.currentTimeMillis()));
+                prePayReSign.setNonceStr(ShortUUID.randomUUID());
+                prePayReSign.setPackageStr(sb.toString());
+                prePayReSign.setSignType(SignUtil.SIGN_TYPE);
 
-            String sign = SignUtil.makeSign((PayAccount) wechatAppAccount, prePayReSign);
-            prePayReSign.setPaySign(sign);
+                String sign = SignUtil.makeSign((PayAccount) wechatAppAccount, prePayReSign);
+                prePayReSign.setPaySign(sign);
 
-            return prePayReSign;
+                return prePayReSign;
+            }
+            else{
+                throw new PayErrorException();
+            }
         }
-        else{
+        catch (Exception e) {
             throw new PayErrorException();
         }
+    }
+
+    public String createQRCode(WechatAppAccount wechatAppAccount) {
+        PayAccount payAccount = (PayAccount) wechatAppAccount;
+        String appid = payAccount.getAppId();
+        String mch_id = payAccount.getMch_id();
+        String time_stamp = String.valueOf(System.currentTimeMillis());
+        String nonce_str = ShortUUID.randomUUID();
+        String product_id = ShortUUID.orderUUID();
+        QRCode qrCode = new QRCode(appid, mch_id, time_stamp, nonce_str, product_id);
+
+        String sign = SignUtil.makeSign(payAccount, qrCode);
+        qrCode.setSign(sign);
+
+        return new StringBuilder(WechatAppConst.API_URL_QRCODE).append(qrCode).toString();
+    }
+
+    public String createQRCode(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws PayErrorException {
+        try{
+            PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
+
+            return prePay.getCode_url();
+        }
+        catch (Exception e) {
+            throw new PayErrorException();
+        }
+
     }
 }

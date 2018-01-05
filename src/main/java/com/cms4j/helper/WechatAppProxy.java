@@ -80,12 +80,27 @@ public class WechatAppProxy {
      * 统一下单，生成预付单
      * @param unifiedorder 统一下单信息
      * @return 预付单
-     * @throws InvocationTargetException
-     * @throws NoSuchMethodException
-     * @throws DocumentException
-     * @throws IllegalAccessException
+     * @throws PayErrorException
      */
-    public PrePayReSign createPrePayInfo(Unifiedorder unifiedorder) throws InvocationTargetException, NoSuchMethodException, DocumentException, IllegalAccessException, PayErrorException {
+    public PrePayReSign createPrePayInfo(Unifiedorder unifiedorder) throws PayErrorException {
         return payApi.createPrePayInfo(wechatAppAccount, unifiedorder);
+    }
+
+    /**
+     * 生成二维码链接地址(模式一)
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_4
+     * @return
+     */
+    public String createQRCode() {
+        return payApi.createQRCode(wechatAppAccount);
+    }
+
+    /**
+     * 生成二维码链接地址(模式二)
+     * https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_5
+     * @return
+     */
+    public String createQRCode(Unifiedorder unifiedorder) throws PayErrorException {
+        return payApi.createQRCode(wechatAppAccount, unifiedorder);
     }
 }

@@ -5,25 +5,21 @@ import org.dom4j.DocumentException;
 
 import java.lang.reflect.InvocationTargetException;
 
-/**
- * 预付单
- */
-public class PrePay extends XmlEntity {
+public class UrlCallBack extends XmlEntity {
     private String return_code;
     private String return_msg;
     private String appid;
     private String mch_id;
     private String nonce_str;
-    private String sign;
-    private String result_code;
     private String prepay_id;
-    private String trade_type;
-    private String device_info;
-    private String err_code;
+    private String result_code;
     private String err_code_des;
-    private String code_url;
+    private String sign;
 
-    public PrePay(String xmlStr) throws DocumentException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public UrlCallBack() {
+    }
+
+    public UrlCallBack(String xmlStr) throws DocumentException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         super(xmlStr);
     }
 
@@ -67,12 +63,12 @@ public class PrePay extends XmlEntity {
         this.nonce_str = nonce_str;
     }
 
-    public String getSign() {
-        return sign;
+    public String getPrepay_id() {
+        return prepay_id;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setPrepay_id(String prepay_id) {
+        this.prepay_id = prepay_id;
     }
 
     public String getResult_code() {
@@ -83,38 +79,6 @@ public class PrePay extends XmlEntity {
         this.result_code = result_code;
     }
 
-    public String getPrepay_id() {
-        return prepay_id;
-    }
-
-    public void setPrepay_id(String prepay_id) {
-        this.prepay_id = prepay_id;
-    }
-
-    public String getTrade_type() {
-        return trade_type;
-    }
-
-    public void setTrade_type(String trade_type) {
-        this.trade_type = trade_type;
-    }
-
-    public String getDevice_info() {
-        return device_info;
-    }
-
-    public void setDevice_info(String device_info) {
-        this.device_info = device_info;
-    }
-
-    public String getErr_code() {
-        return err_code;
-    }
-
-    public void setErr_code(String err_code) {
-        this.err_code = err_code;
-    }
-
     public String getErr_code_des() {
         return err_code_des;
     }
@@ -123,11 +87,11 @@ public class PrePay extends XmlEntity {
         this.err_code_des = err_code_des;
     }
 
-    public String getCode_url() {
-        return code_url;
+    public String getSign() {
+        return sign;
     }
 
-    public void setCode_url(String code_url) {
-        this.code_url = code_url;
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }

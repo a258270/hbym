@@ -47,7 +47,7 @@ public class PlantConst {
     public  static  final int PRICE_YXZXK = 5 ;// 单张院校咨询卡 价值 5 个金币   （折合0.5元人民币）
     public  static  final int PRICE_XGCSKA = 50;//单张性格测试A卡  价值50个金币  （折合5元人民币）
     public  static  final int PRICE_XGCSKB = 100;//单张性格测试B卡  价值100个金币  （折合10元人民币）
-
+    public  static  final int PRICE_GFK = 2999;//单张改分卡  价值2999个金币  （折合299元人民币）
 
     public static final String URL_NOLOGIN = "redirect:/plant/index";
 

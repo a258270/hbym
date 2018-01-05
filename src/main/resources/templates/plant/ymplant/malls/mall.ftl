@@ -23,13 +23,8 @@
 
     <div class="mall">
         <div class="container">
-            <!--顶部 banner 开始-->
-            <div class="kd-banner">
-                <img src="/static/ymplant/images/banner3.jpg" style="width: 100%;height: 300px" alt=""/>
-            </div>
-            <!--顶部 banner 结束-->
             <!--金币充值 开始-->
-            <div class="gold">
+            <div class="mb-czhi">
                 <div class="row" style="padding: 20px 0">
                     <div class="col-md-8">
                         <img src="/static/ymplant/images/tubiao/czhi.png" style="width: 100%" alt=""/>
@@ -40,15 +35,15 @@
                             <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-8">
                                     <div class="title">金币充值</div>
-                                    <p>
-                                        <span>我的余额:</span>
+                                    <p style="margin-bottom: 15px;">
+                                        <span>剩余余额：</span>
                                         <span>0金币</span>
                                     </p>
-                                    <p>
+                                    <p style="margin-bottom: 15px;">
                                        <span>充值账号：</span>
                                         <input type="text" style="width: 55%;border-radius: 4px;border: 1px solid #BBBBBB"/>
                                     </p>
-                                    <p>
+                                    <p style="margin-bottom: 15px;">
                                         <span>确认账号：</span>
                                         <input type="text" style="width: 55%;border-radius: 4px;border: 1px solid #BBBBBB"/>
                                     </p>
@@ -58,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="face">
-                                <p>
+                                <p style="margin-bottom: 15px;">
                                     <span>充值面值：</span>
                                     <a href="#" class="xze">100</a>
                                     <a href="#" class="xze">50</a>
@@ -71,15 +66,11 @@
                                         <option>500</option>
                                     </select>
                                 </p>
-                                <p>
-                                    <span>充值卡面值：</span>
-                                    <input type="text" placeholder="请输入充值码" style="width:35%;"/>
-                                </p>
-                                <p>
+                                <p style="margin-bottom: 15px;">
                                     <span>实际价格：</span>
                                     <span style="color: #FF7401;font-size: 1.3em;font-weight: bold">￥49</span>
                                 </p>
-                                <p style="text-align: center">
+                                <p style="text-align: center;margin-bottom: 15px;">
                                     <input type="button" id="saoma" value="扫码充值" class="czq" style="margin-right: 30px"/>
                                     <input type="button" value="网银充值" class="czq"/>
                                 </p>
@@ -154,8 +145,67 @@
                     </#if>
                 </div>
             </div>
-
             <!--活动套餐 结束-->
+
+            <#--普通功能卡 开始-->
+            <div class="mb-card">普通功能卡</div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                        <div class="mb-card-ku">
+                            <img src="/static/ymplant/img/2.png" style="width: 100%" alt="">
+                        </div>
+                        <p class="mb-introduce">这里是介绍</p>
+                        <p class="mb-price">
+                            <span>200</span>
+                            <span>金币</span>
+                        </p>
+                        <p style="text-align: center">
+                            <#--<input type="button" class="mb-purchase" value="立即购买">-->
+                            <a href="javascript:void (0);" class="mb-purchase">立即购买</a>
+                        </p>
+                </div>
+            </div>
+            <#--普通功能卡 结束-->
+
+        <#--会员套餐卡 开始-->
+            <div class="mb-card">会员套餐卡</div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="mb-card-ku">
+                        <img src="/static/ymplant/img/2.png" style="width: 100%" alt="">
+                    </div>
+                    <p class="mb-introduce">这里是介绍</p>
+                    <p class="mb-price">
+                        <span>200</span>
+                        <span>金币</span>
+                    </p>
+                    <p style="text-align: center">
+                    <#--<input type="button" class="mb-purchase" value="立即购买">-->
+                        <a href="javascript:void (0);" class="mb-purchase">立即购买</a>
+                    </p>
+                </div>
+            </div>
+        <#--会员套餐卡 结束-->
+
+        <#--高级功能卡 开始-->
+            <div class="mb-card">高级功能卡</div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="mb-card-ku">
+                        <img src="/static/ymplant/img/2.png" style="width: 100%" alt="">
+                    </div>
+                    <p class="mb-introduce">这里是介绍</p>
+                    <p class="mb-price">
+                        <span>200</span>
+                        <span>金币</span>
+                    </p>
+                    <p style="text-align: center">
+                    <#--<input type="button" class="mb-purchase" value="立即购买">-->
+                        <a href="javascript:void (0);" class="mb-purchase">立即购买</a>
+                    </p>
+                </div>
+            </div>
+        <#--高级功能卡 结束-->
 
         </div>
     </div>

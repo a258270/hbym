@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="${ctxPath}/static/ymplant/css/mall/mall.css?v=${v}"/>
 </head>
 <body>
-<#include "${ctxPath}/plant/ymplant/top.ftl">
+<#--<#include "${ctxPath}/plant/ymplant/top.ftl">-->
     <div class="kd-base">
         <div class="container">
             <div style="margin-bottom: 30px;">

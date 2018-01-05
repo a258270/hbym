@@ -10,8 +10,19 @@ public class PayAccount extends WechatAppAccount {
     //通知地址
     private String notify_url;
 
+    public PayAccount() {
+    }
+
     public PayAccount(String appId, String secret, String mch_id, String mch_password, String api_password, String notify_url) {
         super(appId, secret);
+        this.mch_id = mch_id;
+        this.mch_password = mch_password;
+        this.api_password = api_password;
+        this.notify_url = notify_url;
+    }
+
+    public PayAccount(String appId, String secret, String wxAppId, String wxSecret, String mch_id, String mch_password, String api_password, String notify_url) {
+        super(appId, secret, wxAppId, wxSecret);
         this.mch_id = mch_id;
         this.mch_password = mch_password;
         this.api_password = api_password;

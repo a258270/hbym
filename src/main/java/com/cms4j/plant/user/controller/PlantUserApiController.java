@@ -622,6 +622,7 @@ public class PlantUserApiController extends ApiBaseController {
         dataMap.put("NUMBER", dataMap.getString("NUMBER").trim().toUpperCase());
         dataMap.put("PASSWORD", dataMap.getString("PASSWORD").trim().toLowerCase());
         //根据输入的卡号 后台逻辑 给学生相应的VIP等级 添加不同的 使用卡 次数
+        dataMap.put("USER_ID", curUser.getString("USER_ID"));
         Integer flag = cardService.activeVip(dataMap);
 
         if(flag.equals(-1))

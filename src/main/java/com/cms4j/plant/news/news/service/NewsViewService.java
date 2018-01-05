@@ -25,7 +25,7 @@ public class NewsViewService {
         if(this.getCountNewsViewsByUserIdAndNewsId(dataMap).equals(0)) {
             dataMap.put("VIEW_ID", ShortUUID.randomUUID());
             dataMap.put("CREATETIME", DateUtil.getCurrentTime());
-            dao.save("NewsViewMapper.getCountNewsViewsByUserIdAndNewsId", dataMap);
+            dao.save("NewsViewMapper.addNewsView", dataMap);
         }
     }
 

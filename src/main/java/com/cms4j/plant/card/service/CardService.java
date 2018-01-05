@@ -194,10 +194,10 @@ public class CardService {
         //使用掉会员卡
         this.setCardUsed(card);
 
-
-        DataMap pocket = pocketService.getPocketByUserId(curUser);
+            DataMap pocket = pocketService.getPocketByUserId(curUser);
         //ls:从dataMap中获取 升级会员后截取的 UA(白银会员)/UB(黄金会员)/UC(黑钻会员)
         DataMap pocketParam = new DataMap();
+        pocketParam.put("USER_ID", curUser.getString("USER_ID"));
         if(CardUtil.CARD_PURPOSE_VIP.equals(purpose)){
             pocketParam.put("PRICE",100);
             pocketParam.put("POCKET_ID", pocket.getString("POCKET_ID"));

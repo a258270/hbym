@@ -34,4 +34,8 @@
         DELETE FROM UR_WECHAT_USER
         WHERE WECHAT_ID = #{WECHAT_ID}
     </delete>
+
+    <select id="getWechatUserByUserId" parameterType="DataMap" resultType="DataMap">
+        SELECT * FROM UR_WECHAT_USER WHERE USER_ID = #{USER_ID}
+    </select>
 </mapper>

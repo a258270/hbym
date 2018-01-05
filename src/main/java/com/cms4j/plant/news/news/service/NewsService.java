@@ -168,7 +168,7 @@ public class NewsService {
 
         List<DataMap> news = this.getNewss(page);
         //过滤已读的公告
-        if(PlantConst.NEWSTYPE_GG.equals(dataMap.getString("NEWSYPE")) && SessionUtil.getCurUser() != null && news != null) {
+        if(PlantConst.NEWSTYPE_GG.equals(dataMap.getString("NEWSTYPE")) && SessionUtil.getCurUser() != null && news != null) {
             DataMap param = new DataMap();
             param.put("USER_ID", SessionUtil.getCurUser().getString("USER_ID"));
             List<DataMap> ggs = newsViewService.getNewsViewsByUserId(param);

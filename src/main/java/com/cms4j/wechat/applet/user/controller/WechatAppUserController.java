@@ -10,10 +10,7 @@ import com.cms4j.plant.util.PlantConst;
 import com.cms4j.plant.util.PlantValidUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -355,5 +352,53 @@ public class WechatAppUserController extends ApiBaseController {
         //dataMap.put("complete", SessionUtil.getCompleteFromSession());
 
         return InvokeResult.success(dataMap);
+    }
+
+    @RequestMapping(value = "/hasheadurl")
+    public InvokeResult hasHeadUrl() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        if(curUser != null && PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+            DataMap dataMap = completeStudentService.getCompleteStudentByUserId(curUser);
+
+            return InvokeResult.success(!PlantConst.STATIC_IMG_NOHEAD.equals(dataMap.getString("HEADURL")));
+        }
+
+        return InvokeResult.success(true);
+    }
+
+    @RequestMapping(value = "/hassex")
+    public InvokeResult hasSex() throws Exception {
+        DataMap curUser = SessionUtil.getCurUser();
+
+        if(curUser != null && PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))) {
+            DataMap dataMap = completeStudentService.getCompleteStudentByUserId(curUser);
+
+            return InvokeResult.success(dataMap.get("SEX") != null);
+        }
+
+        return InvokeResult.success(true);
+    }
+
+    @RequestMapping(value = "/addsex")
+    public void addSex() {
+        try{
+            DataMap curUser = SessionUtil.getCurUser();
+            DataMap dataMap = this.getDataMap();
+            if(curUser != null
+                    && PlantConst.ROLE_STUDENT.equals(curUser.getString("ROLE_ID"))
+                    && !StringUtils.isBlank(dataMap.getString("SEX"))) {
+
+                DataMap complete = completeStudentService.getCompleteStudentByUserId(curUser);
+                if(complete != null) {
+                    complete.putAll(dataMap);
+                    completeStudentService.editCompleteStudent(complete);
+                }
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

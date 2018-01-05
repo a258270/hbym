@@ -2,6 +2,7 @@ package com.cms4j.plant.recharge.controller;
 
 import com.cms4j.base.controller.ApiBaseController;
 import com.cms4j.base.util.*;
+import com.cms4j.helper.exception.PayErrorException;
 import com.cms4j.helper.WechatAppProxy;
 import com.cms4j.helper.account.PayAccount;
 import com.cms4j.helper.entity.pay.PrePayReSign;
@@ -11,14 +12,10 @@ import com.cms4j.helper.util.SignUtil;
 import com.cms4j.plant.recharge.service.RechargeService;
 import com.cms4j.plant.util.PlantConst;
 import com.cms4j.wechat.service.WechatUserService;
-import jxl.write.DateTime;
-import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.lang.reflect.InvocationTargetException;
 
 @RestController
 @RequestMapping(value = "/plant/wxrecharge")
@@ -65,7 +62,7 @@ public class WxRechargeApiController extends ApiBaseController{
     }
     //ls：数据库插入 订单未支付
     @RequestMapping(value = "addUnPayOrder")
-    public synchronized InvokeResult addUnPayOrder()throws  Exception{
+    public synchronized InvokeResult addUnPayOrder() throws  Exception{
 
         DataMap dataMap = this.getDataMap();
 
@@ -119,15 +116,17 @@ public class WxRechargeApiController extends ApiBaseController{
             //获取openid
             unifiedorder.setOpenid(wechatUser.getString("WXAPPOPENID"));
             // 生成预付单 统一支付
-            PrePayReSign prePayReSign = wechatAppProxy.createPrePayInfo(unifiedorder);
-            if(prePayReSign != null){
+            try{
+                PrePayReSign prePayReSign = wechatAppProxy.createPrePayInfo(unifiedorder);
                 rechargeService.addRecharge(dataMap);
 
-            }else{
-                String massage  ="网路繁忙,下单失败!请稍后重试";
-                return InvokeResult.failure(massage);
+                return InvokeResult.success(prePayReSign);
             }
-            return InvokeResult.success(prePayReSign);
+            catch (PayErrorException e) {
+                dataMap.put("STATE", PlantConst.RECHARGE_STATE.ERROR.ordinal());
+                rechargeService.updateTradeState(dataMap);
+                return InvokeResult.failure("发起微信支付出错，请重试");
+            }
         }
     }
 }

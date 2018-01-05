@@ -61,6 +61,6 @@ public class PlantConst {
     public static final String MBTI_TYPE_SIMPLE = "g57h70o2c8";//简易版
 
     public enum RECHARGE_STATE {
-        UNPAID, PAID
+        UNPAID, PAID, CLOSED, ERROR, BACK
     }
 }

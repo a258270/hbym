@@ -1,6 +1,7 @@
 package com.cms4j.helper.api.pay;
 
 import com.cms4j.base.util.ShortUUID;
+import com.cms4j.helper.exception.PayErrorException;
 import com.cms4j.helper.account.PayAccount;
 import com.cms4j.helper.account.WechatAppAccount;
 import com.cms4j.helper.entity.pay.PrePay;
@@ -16,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 
 
 public class PayApi {
-    private PrePay unifiedorder(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws NoSuchMethodException, IllegalAccessException, DocumentException, InvocationTargetException {
+    public PrePay unifiedorder(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws NoSuchMethodException, IllegalAccessException, DocumentException, InvocationTargetException {
         PayAccount payAccount = (PayAccount) wechatAppAccount;
         unifiedorder.setAppid(wechatAppAccount.getAppId());
         unifiedorder.setMch_id(payAccount.getMch_id());
@@ -30,7 +31,7 @@ public class PayApi {
         return PrePayUtil.parsePrePay(HttpUtil.sendPost(WechatAppConst.API_URL_UNIFIEDORDER, unifiedorder));
     }
 
-    public PrePayReSign createPrePayInfo(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws InvocationTargetException, NoSuchMethodException, DocumentException, IllegalAccessException {
+    public PrePayReSign createPrePayInfo(WechatAppAccount wechatAppAccount, Unifiedorder unifiedorder) throws InvocationTargetException, NoSuchMethodException, DocumentException, IllegalAccessException, PayErrorException {
         PrePay prePay = this.unifiedorder(wechatAppAccount, unifiedorder);
 
         if(PrePayUtil.UNIFIEDORDER_SUCCESS.equals(prePay.getReturn_code())
@@ -51,7 +52,8 @@ public class PayApi {
 
             return prePayReSign;
         }
-
-        return null;
+        else{
+            throw new PayErrorException();
+        }
     }
 }

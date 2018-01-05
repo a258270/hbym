@@ -5,6 +5,7 @@ import com.cms4j.base.util.DataMap;
 import com.cms4j.base.util.DateUtil;
 import com.cms4j.base.util.ShortUUID;
 import com.cms4j.plant.user.pocket.service.PocketService;
+import com.cms4j.plant.util.PlantConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,7 +61,7 @@ public class RechargeService {
             Integer gold_num = (Integer) rechargeResult.get("GOLD_NUM");
             param.put("PRICE", gold_num);
             param.put("POCKET_ID", pocket.getString("POCKET_ID"));
-
+            param.put("STATE", PlantConst.RECHARGE_STATE.UNPAID.ordinal());
             pocketService.recharge(param);
             this.updateTradeState(param);
         }

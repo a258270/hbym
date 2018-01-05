@@ -39,7 +39,7 @@ public class VerifyCodeUtil {
         for(int i = 0; i < iLength; i++){
             String rand = strCode.substring(i, i + 1);
             g.setColor(new Color(20+random.nextInt(110),20+random.nextInt(110),20+random.nextInt(110)));
-            g.drawString(rand, 8 * i + 8, 28);
+            g.drawString(rand, 15 * i + 8, 28);
         }
         g.dispose();
 

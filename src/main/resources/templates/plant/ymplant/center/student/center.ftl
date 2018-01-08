@@ -43,7 +43,7 @@
                 </p>
                 <p style="text-align: center;margin: 15px 0">
                 <#--<#if Session.session_user_key?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>-->
-                    <#if Session.session_user_key?? && Session.session_user_key.CARD_PURPOSE?? && Session.session_user_key.CARD_PURPOSE!= 'UC'>
+                    <#if Session.session_user_key??  && !(Session.session_user_key.CARD_PURPOSE??)|| (Session.session_user_key.CARD_PURPOSE?? && Session.session_user_key.CARD_PURPOSE != 'UC')>
                     <input type="button" value="激活会员卡"  class="gol" onclick="$('#activecard').click()"/><br/>
                 <#--ls:需求更改
                     <input/><br/>

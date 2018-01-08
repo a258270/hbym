@@ -608,7 +608,7 @@ public class PlantUserApiController extends ApiBaseController {
         DataMap dataMap = this.getDataMap();
 
         if(StringUtils.isBlank(dataMap.getString("NUMBER"))) {
-            return InvokeResult.failure("请输入激活码！");
+            return InvokeResult.failure("请输入卡号！");
         }
 
         if(StringUtils.isBlank(dataMap.getString("PASSWORD"))) {
@@ -616,7 +616,7 @@ public class PlantUserApiController extends ApiBaseController {
         }
 
         if(dataMap.getString("NUMBER").length() != 15) {
-            return InvokeResult.failure("激活码长度不正确！");
+            return InvokeResult.failure("卡号长度不正确！");
         }
 
         dataMap.put("NUMBER", dataMap.getString("NUMBER").trim().toUpperCase());

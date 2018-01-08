@@ -22,7 +22,7 @@
             <div class="tuao">
                 <img src="/static/ymplant/images/tubiao2/7.1.png" style="width: 100%;height: 100%;" alt=""/>
             </div>
-            <span class="hyan">您当前身份属于<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑钻会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>，请<span style="color:#FF7F27;">激活</span>会员卡后提升权限！</span>
+            <span class="hyan">您当前身份属于<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑卡会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>，请<span style="color:#FF7F27;">激活</span>会员卡后提升权限！</span>
         </div>
     </div>
 

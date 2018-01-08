@@ -31,21 +31,23 @@
                     <img src="<#if completeInfo?? && completeInfo.HEADURL??>${completeInfo.HEADURL}<#else>/static/ymplant/img/timg.png</#if>" style="width: 100%;height: 100%;border-radius: 50%;" alt=""/>
                 </div>
                 <p class="name"><#if completeInfo?? && completeInfo.NICKNAME??>${completeInfo.NICKNAME}<#else>暂无</#if></p>
-                <p style="color: #7F7F7F;font-weight: bold;text-align: center;">学生</p>
+                <#--ls: 2018/1/8 需求更改  去掉 “学生” 显示-->
+                <#--<p style="color: #7F7F7F;font-weight: bold;text-align: center;">学生</p>-->
                 <#--<p style="color: #C3C3C3;font-weight: bold;text-align: center"><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>黄金<#else>普通</#if>会员</p>-->
                 <p style="text-align: center">
                     <#--ls:12/26修改显示 会员身份
                     <input class="ordinary" type="button" style="font-size: 10px;background-color:<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>#FE7F2A;<#else>#2DC473;</#if>" value="<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>黄金会员<#else>普通会员</#if>"/>-->
                    <#--12/26 未完待测试  12/27测试中-->
                     <input class="ordinary" type="button" style="font-size: 10px;background-color:<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME??>#FE7F2A;<#else>#2DC473;</#if>"
-                     value= "<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑钻会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>"/>
+                     value= "<#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UB'>黄金会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UC'>黑卡会员<#else><#if Session.session_user_key?? && Session.session_user_key.OVERDUETIME?? && Session.session_user_key.CARD_PURPOSE=='UA'>白银会员<#else>普通会员</#if></#if></#if>"/>
                 </p>
                 <p style="text-align: center;margin: 15px 0">
-                <#if Session.session_user_key?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>
+                <#--<#if Session.session_user_key?? && Session.session_user_key.ROLE_ID == 'sja4gc59bg'>-->
+                    <#if Session.session_user_key?? && Session.session_user_key.CARD_PURPOSE?? && Session.session_user_key.CARD_PURPOSE!= 'UC'>
                     <input type="button" value="激活会员卡"  class="gol" onclick="$('#activecard').click()"/><br/>
                 <#--ls:需求更改
                     <input/><br/>
-                    <input type="button" value="升级黑钻会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
+                    <input type="button" value="升级黑卡会员" style="background-color:red" class="gol" onclick="$('#authority').click()"/><br/>
                      <input/><br/>
                     <input type="button" value="升级白银会员" style="background-color:green" class="gol" onclick="$('#authority').click()"/>-->
 

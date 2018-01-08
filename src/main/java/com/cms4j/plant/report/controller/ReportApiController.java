@@ -180,7 +180,7 @@ public class ReportApiController extends ApiBaseController {
             //源代码：通过itemBelongService.getValItemBelongByUserIdAndItemType 方法查询出 智能推荐卡是否还有可用
             //次数
             int cards =  itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
-            //ls：因黑钻会员使用次数为无限 ，并设置count 的初始值为-1    做反向判断： 因cards =0为分界线， cards >0 和 cards <0 都能使用
+            //ls：因黑卡会员使用次数为无限 ，并设置count 的初始值为-1    做反向判断： 因cards =0为分界线， cards >0 和 cards <0 都能使用
             //注掉原方法： itemBelongService.useItem(cards.get(0));
            if( cards > 0) {
                //ls: 使用一次 智能推荐 减一次
@@ -440,7 +440,7 @@ public class ReportApiController extends ApiBaseController {
        //使用 模拟填报卡
         int cards = itemBelongService.getValItemBelongCountByUserIdAndItemType(param);
 
-        //ls：因黑钻会员使用次数为无限 ， 做反向判断 如果是黑钻会员直接放行
+        //ls：因黑卡会员使用次数为无限 ， 做反向判断 如果是黑卡会员直接放行
         if(!CardUtil.CARD_PURPOSE_VIP3.equals(curUser.getString("CARD_PURPOSE"))){
             if( cards>0 ){ //使用一次 减一次
                 int cards_used= cards - 1;

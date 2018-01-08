@@ -127,4 +127,8 @@ public class RechargeService {
     public Unifiedorder makeUnifiedorder(DataMap dataMap, String ip, DataMap curUser) {
         return makeUnifiedorder(dataMap, ip, curUser, null);
     }
+    /*查询所有状态为0 的订单
+     *
+     */
+
 }

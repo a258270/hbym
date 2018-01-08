@@ -92,7 +92,7 @@ public class WxRechargeApiController extends ApiBaseController{
             }
         }
     }
-
+    //ls:web端添加未支付订单
     @RequestMapping(value = "/addUnpayOrderInWeb")
     public InvokeResult addUnpayOrderInWeb() throws Exception {
         DataMap dataMap = this.getDataMap();
@@ -109,7 +109,7 @@ public class WxRechargeApiController extends ApiBaseController{
             try{
                 String code_url = wechatAppProxy.createQRCode(unifiedorder);
                 rechargeService.addRecharge(dataMap);
-
+                //返回生成的二维码地址
                 return InvokeResult.success(code_url);
             }
             catch (PayErrorException e) {

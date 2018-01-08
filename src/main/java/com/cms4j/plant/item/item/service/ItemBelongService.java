@@ -89,7 +89,7 @@ public class ItemBelongService {
             this.addItemBelong(dataMap);
 
         }else {
-            // 升级黑钻会员：判断count 是否为-1 如果为-1 则说明是升级为 黑钻会员 直接将原来的 count 值 更新为-1
+            // 升级黑卡会员：判断count 是否为-1 如果为-1 则说明是升级为 黑卡会员 直接将原来的 count 值 更新为-1
             if(count == -1){
                 dataMap.put("COUNT",count);
                 daoSupport.update("ItemBelongMapper.updatItemBelong",dataMap);
